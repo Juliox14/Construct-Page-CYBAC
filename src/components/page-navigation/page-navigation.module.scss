@@ -1,0 +1,40 @@
+@import '../../styles/abstract/custom-variables';
+@import '../../styles/abstract/custom-mixins';
+
+.page {
+    &_navigation {
+        display: flex;
+        justify-content: center;
+        &__wrap {
+            padding-top: 50px;
+        }
+        &__item {
+            &:not(:last-child) {
+                margin-right: 15px;
+            }
+        }
+        &__link {
+            background-color: #f7f4fb;
+            border: 1px solid #f7f4fb;
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            transition: $baseTransition;
+            color: inherit;
+            &.active {
+                background-color: $primary;
+                border-color: $primary;
+                color: $white;
+            }
+            &:hover {
+                background-color: $primary;
+                border-color: $primary;
+                color: $white;
+            }
+        }
+    }
+}

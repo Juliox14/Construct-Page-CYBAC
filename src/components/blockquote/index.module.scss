@@ -1,0 +1,13 @@
+@import '../../styles/abstract/custom-variables';
+@import '../../styles/abstract/custom-mixins';
+
+.area {
+    border-left: 5px solid $primary;
+    background-color: $secondary;
+    padding: 35px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+.desc {
+    color: $white;
+}

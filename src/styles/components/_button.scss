@@ -1,0 +1,54 @@
+/* ---Button--- */
+.btn {
+    transition: $baseTransition;
+    border-radius: 0;
+    width: 170px;
+    height: 60px;
+    line-height: 60px;
+    padding: 0;
+    font-size: 20px;
+    position: relative;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    border: 0;
+    @media (max-width: 479px) {
+        width: 130px;
+        height: 40px;
+        line-height: 37px;
+        font-size: 18px;
+    }
+    &.md-size {
+        width: 125px;
+        height: 40px;
+        line-height: 40px;
+    }
+    &_primary {
+        background-color: $primary;
+        color: $white;
+    }
+    &_secondary {
+        background-color: $secondary;
+        color: $white;
+    }
+    &_hover {
+        &__white {
+            &:hover {
+                background-color: $white;
+                color: inherit;
+            }
+        }
+        &__primary {
+            &:hover {
+                background-color: $primary;
+                color: $white;
+            }
+        }
+        &__secondary {
+            &:hover {
+                background-color: $secondary;
+                color: $white;
+            }
+        }
+    }
+}

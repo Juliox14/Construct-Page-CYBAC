@@ -1,0 +1,129 @@
+@import '../../styles/abstract/custom-variables';
+@import '../../styles/abstract/custom-mixins';
+@import '../../styles/components/button';
+
+.area {
+    @include breakpoint(min-xl-device) {
+        padding-top: 140px;
+    }
+    @include breakpoint(lg-device) {
+        padding-top: 100px;
+    }
+    @include breakpoint(max-md-device) {
+        padding-top: 50px;
+    }
+}
+.img {
+    padding-bottom: 30px;
+    padding-left: 70px;
+    &_wrap {
+        position: relative;
+    }
+}
+.pattern {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+.subtitle {
+    margin-bottom: 10px;
+    font-size: 28px;
+    color: $primary;
+    display: block;
+}
+.content {
+    @include breakpoint(max-md-device) {
+        padding-top: 35px;
+    }
+}
+.title {
+    font-size: 60px;
+    line-height: 60px;
+}
+.desc {
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+.info {
+    &_title {
+        color: $primary;
+        font-size: 28px;
+    }
+    &_desc {
+        border-bottom: 1px solid #dee2e6;
+        padding-bottom: 30px;
+        max-width: 260px;
+        font-size: 18px;
+    }
+    &_list {
+        li {
+            &:not(:last-child) {
+                padding-bottom: 5px;
+            }
+            a {
+                margin-left: 5px;
+                color: inherit;
+                &:hover {
+                    color: $primary;
+                }
+            }
+        }
+    }
+}
+
+.form {
+    padding-top: 50px;
+    &_area {
+        @include breakpoint(min-xl-device) {
+            padding-top: 120px;
+            padding-bottom: 140px;
+        }
+        @include breakpoint(lg-device) {
+            padding-top: 80px;
+            padding-bottom: 100px;
+        }
+        @include breakpoint(max-md-device) {
+            padding-top: 30px;
+            padding-bottom: 50px;
+        }
+    }
+    &_title {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+    &_desc {
+        max-width: 370px;
+        font-size: 18px;
+    }
+    &_group {
+        &__input {
+            display: flex;
+        }
+    }
+    &_input {
+        &__field {
+            border: 1px solid #dee2e6;
+            font-family: $yantramanav;
+            font-size: 16px;
+            padding: 15px;
+            width: 100%;
+            height: 45px;
+        }
+    }
+    &_textarea {
+        &__field {
+            border: 1px solid #dee2e6;
+            font-family: $yantramanav;
+            font-size: 16px;
+            padding: 15px;
+            height: 280px;
+            width: 100%;
+        }
+    }
+    &_btn {
+        &__wrap {
+            padding-top: 40px;
+        }
+    }
+}

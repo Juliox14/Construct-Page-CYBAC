@@ -1,0 +1,65 @@
+.clients-list {
+    padding: 20px;
+    border: 1px solid #ddd; // Cambia el color del borde a un gris claro
+    width: 80%;
+    margin: 20px auto;
+    background-color: #f9f9f9; // Añade un color de fondo suave
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Añade una sombra suave
+
+    h1 {
+        font-size: 2em;
+        text-align: center; // Cambia el color del texto a un gris oscuro
+    }
+
+    p {
+        font-size: 1.2em;
+        text-align: center;
+        margin: 0 auto 40px;
+        max-width: 80%; // Cambia el color del texto a un gris medio
+    }
+}
+
+.clients-columns {
+    display: flex;
+    justify-content: space-between;
+
+    div {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ddd;
+        padding: 10px;
+        background-color: #fff; // Añade un color de fondo blanco
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Añade una sombra suave
+        transition: all 0.3s ease; // Añade una transición suave a todos los cambios de estilo
+
+        &:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); // Añade una sombra más grande cuando se pasa el ratón por encima
+        }
+
+        h2 {
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 1.1em;
+            text-align: center;
+
+            li {
+                padding: 5px 0; // Cambia el color del texto a un gris medio
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+
+        div {
+            margin-bottom: 20px;
+        }
+    }
+}

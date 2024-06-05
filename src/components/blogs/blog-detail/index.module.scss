@@ -1,0 +1,43 @@
+@import '../../../styles/abstract/custom-variables';
+@import '../../../styles/abstract/custom-mixins';
+
+.area {
+    @include breakpoint(min-xl-device) {
+        padding-top: 140px;
+        padding-bottom: 140px;
+    }
+    @include breakpoint(lg-device) {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+    @include breakpoint(max-md-device) {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
+.content {
+    padding-top: 45px;
+}
+.meta {
+    color: $primary;
+    font-weight: 500;
+}
+.title {
+    margin-bottom: 25px;
+    font-size: 50px;
+    line-height: 1.2;
+    @include breakpoint(min-xs-device) {
+        font-size: 60px;
+    }
+}
+.subtitle {
+    margin-bottom: 30px;
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: $primary;
+}
+.desc {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
