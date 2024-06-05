@@ -11,9 +11,11 @@ function ProjectFullwidthGrid({ projects }) {
     const loadMore = () => {
         setNoOfElement(noOfElement + noOfElement);
     };
+    console.log(projects);
 
     return (
         <div className={classes.project}>
+            
             <Container>
                 <Row className="g-4">
                     {slice.map((project) => (
