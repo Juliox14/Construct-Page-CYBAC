@@ -21,7 +21,7 @@ function ProjectFullwidthPage({
             </Head>
             <Breadcrumb
                 subTitle="Our Project"
-                title="FullWidth"
+                title="Proyectos"
                 desc="Construction of itself, because it is pain some proper style design occur are pleasure"
             />
             <ProjectFullwidth projects={projects} />

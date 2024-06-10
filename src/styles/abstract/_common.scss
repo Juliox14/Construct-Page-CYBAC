@@ -1,28 +1,28 @@
 /*-- Global Style --*/
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth!important;
 }
 * {
-    box-sizing: border-box;
+    box-sizing: border-box!important;
 }
 body {
-    font-family: $yantramanav;
-    color: $secondary;
-    font-size: 16px;
-    line-height: 1.5;
-    margin: 0;
+    font-family: $yantramanav!important;
+    color: $secondary!important;
+    font-size: 16px!important;
+    line-height: 1.5!important;
+    margin: 0!important;
 }
 button {
     &:focus:not(:focus-visible) {
-        box-shadow: none;
-        outline: 0;
+        box-shadow: none!important;
+        outline: 0!important;
         border: 0;
     }
 }
 a {
     transition: $baseTransition;
-    text-decoration: none;
+    text-decoration: none!important;
 }
 h1,
 h2,
@@ -30,15 +30,15 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: $rajdhani;
-    margin-top: 0;
-    margin-bottom: 1rem;
+    font-family: $rajdhani!important;
+    margin-top: 0!important;
+    margin-bottom: 1rem!important;
 }
 p {
-    font-size: 20px;
-    line-height: 1.5;
-    margin-top: 0;
-    margin-bottom: 1rem;
+    font-size: 20px!important;
+    line-height: 1.5!important;
+    margin-top: 0!important;
+    margin-bottom: 1rem!important;
 }
 ul {
     margin: 0;
@@ -46,7 +46,7 @@ ul {
     list-style: none;
 }
 img {
-    max-width: 100%;
+    max-width: 100%!important;
 }
 .img-full {
     width: 100%;
@@ -64,7 +64,7 @@ iframe {
     border: 0;
 }
 ::selection {
-    background-color: $primary;
+    background-color: $primary!important;
     color: $white;
 }
 .align-self-center {
@@ -211,7 +211,7 @@ iframe {
         z-index: 2;
     }
     &-input {
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15)!important;
         padding-right: 70px;
         padding-left: 20px;
         color: $secondary;
@@ -220,7 +220,7 @@ iframe {
     }
     &-inner {
         &__btn {
-            background-color: $secondary;
+            background-color: $secondary!important;
             color: $white;
             border: 0;
             position: absolute;
@@ -243,7 +243,7 @@ iframe {
         &.is-sticky {
             animation: 800ms ease-in-out 0s normal none 1 running slideInDown;
             box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
-            background-color: $secondary;
+            background-color: $secondary!important;
             position: fixed;
             z-index: 99;
             top: 0;
@@ -257,7 +257,7 @@ iframe {
 .offcanvas {
     &-menu {
         transition: all 500ms linear;
-        background-color: #333333;
+        background-color: #333333!important;
         padding-top: 50px;
         padding-left: 50px;
         padding-right: 50px;
