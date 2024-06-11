@@ -8,20 +8,15 @@ import Footer from '../../components/layout/footer';
 import Newsletter from '../../components/newsletter/newsletter';
 import AllServices from '../../components/services/all-services';
 import Breadcrumb from '../../components/breadcrumb';
-import Testimonial from '../../components/testimonial';
+import HomePageServices from '../../components/home-page/homepage-services';
 import { getAllItems } from '../../lib/items-util';
 
 function ServicePage({
     aboutItemsTwo,
     services,
     serviceSectionItems,
-    bannerTwoItems,
-    brandItems,
     bannerFourItems,
     bannerSection,
-    testimonialItems,
-    testimonialSectionItems,
-    newsletterItems,
     footerItems,
 }) {
     return (
@@ -34,27 +29,20 @@ function ServicePage({
                 />
             </Head>
             <Breadcrumb
-                subTitle="Que Hacemos"
+                subTitle="¿Qué Hacemos?"
                 title="Nuestros Servicios"
-                desc="Construction of itself, because it is pain some proper style design occur are pleasure"
+                desc="En Reichstag, ofrecemos una amplia gama de servicios de construcción que abarcan todas las fases del desarrollo de proyectos, desde la concepción hasta la entrega de cada proyecto."
             />
             <AboutTwo aboutItemsTwo={aboutItemsTwo} />
-            <AllServices
+            <HomePageServices
                 services={services}
                 serviceSectionItems={serviceSectionItems}
             />
-            <BannerTwo bannerTwoItems={bannerTwoItems} />
-            <BrandOne brandItems={brandItems} />
             <BannerFour
                 bannerFourItems={bannerFourItems}
                 bannerSection={bannerSection}
             />
-            ;
-            {/* <Testimonial
-                testimonialItems={testimonialItems}
-                testimonialSectionItems={testimonialSectionItems}
-            /> */}
-            {/* <Newsletter newsletterItems={newsletterItems} /> */}
+
             <Footer footerItems={footerItems} />
         </>
     );

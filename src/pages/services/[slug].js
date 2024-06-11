@@ -47,7 +47,8 @@ function ServiceDetailsPage({
 export function getStaticProps(context) {
     const { params } = context;
     const { slug } = params;
-
+    
+    
     const sidebarList = getAllItems('services');
     const service = getItemData(slug, 'services');
     const servicesSidebar = getAllItems('service-sidebar');

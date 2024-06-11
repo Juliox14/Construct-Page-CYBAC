@@ -20,12 +20,12 @@ function ProjectFullwidthPage({
                 <meta name="description" content="Projects FullWidth" />
             </Head>
             <Breadcrumb
-                subTitle="Our Project"
-                title="FullWidth"
-                desc="Construction of itself, because it is pain some proper style design occur are pleasure"
+                subTitle="Nuestros proyectos"
+                title="Proyectos"
+                desc="Conoce todos nuestros proyectos y date una idea de las cosas increíbles que podremos lograr trabajando contigo"
             />
             <ProjectFullwidth projects={projects} />
-            <BannerFive bannerTwoItems={bannerTwoItems} />
+            {/* <BannerFive bannerTwoItems={bannerTwoItems} /> */}
             {/* <Newsletter newsletterItems={newsletterItems} /> */}
             <Footer footerItems={footerItems} />
         </>

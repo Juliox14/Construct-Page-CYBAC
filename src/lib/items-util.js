@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import axios from 'axios';
 
 export function getItemsFiles(type) {
     const itemsDirectory = path.join(process.cwd(), 'src/data', type);
@@ -33,6 +34,12 @@ export function getAllItems(type) {
     );
 
     return sortedItems;
+}
+
+
+export async function getItemPrueba(type, slug){
+    const response = await axios.get(`/api/${type}/${slug}`);
+    return response;
 }
 
 export function getFeaturedItems(items) {

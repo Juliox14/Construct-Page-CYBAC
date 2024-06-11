@@ -101,12 +101,12 @@ function Header() {
                                                 : 'search-hide'
                                         } d-block d-lg-none search-holder`}
                                     >
-                                        <buton
+                                        <button
                                             className={classes.search__btn}
                                             onClick={SearchToggle}
                                         >
                                             <FaSearch />
-                                        </buton>
+                                        </button>
                                         <form className="search-form">
                                             <input
                                                 className="search-input"
@@ -123,12 +123,12 @@ function Header() {
                                         </form>
                                     </div>
                                     <div className={classes.offcanvas}>
-                                        <buton
+                                        <button
                                             className={`${classes.offcanvas__btn} d-block d-lg-none menu-bar-button`}
                                             onClick={showOffcanvas}
                                         >
                                             <FaBars />
-                                        </buton>
+                                        </button>
                                     </div>
                                 </div>
                             </Col>

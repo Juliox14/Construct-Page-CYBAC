@@ -1,32 +1,27 @@
 'use client'
 import { useState } from "react";
+import axios from "axios";
 const adminTest = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [adminInfo, setAdminInfo] = useState({username: '', password: ''});
     const [message, setMessage] = useState('');
+
+    const handleChange = (e) => {
+        setAdminInfo(prevState => ({...prevState, [e.target.name]: e.target.value }));
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setMessage(''); // Limpia el mensaje previo
+        setMessage('');
 
-        // Envío de solicitud a la API
         try {
-            const response = await fetch('/api/test', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username, password }),
-            });
-
-            const data = await response.json();
-            if (response.ok) {
-                setMessage(`Admin creado exitosamente. ID: ${data.adminId}`);
+            const response = await axios.post('/api/test', adminInfo);
+            if (response.status === 201) {
+                setMessage(`${response.data.message}. ID: ${response.data.adminId}`);
             } else {
-                setMessage(`Error: ${data.message}`);
+                setMessage(`Error: ${response.data.message}`);
             }
         } catch (error) {
-            setMessage('Error de red');
+            setMessage('Error: ' + error.message);        
         }
     };
 
@@ -41,8 +36,8 @@ const adminTest = () => {
                                 type="text" 
                                 autoComplete="off" 
                                 name="username" 
-                                value={username} 
-                                onChange={(e) => setUsername(e.target.value)} 
+                                value={adminInfo.username} 
+                                onChange={handleChange }
                                 required 
                             />
                         </div>
@@ -52,8 +47,8 @@ const adminTest = () => {
                                 type="password" 
                                 autoComplete="off" 
                                 name="password" 
-                                value={password} 
-                                onChange={(e) => setPassword(e.target.value)} 
+                                value={adminInfo.password} 
+                                onChange={handleChange }
                                 required 
                             />
                         </div>
