@@ -5,7 +5,9 @@ import '../styles/globals.scss';
 import { ScrollToTop } from '../components/scroll';
 
 function MyApp({ Component, pageProps }) {
+
     return (
+        
         <Layout>
             <Head>
                 <meta
