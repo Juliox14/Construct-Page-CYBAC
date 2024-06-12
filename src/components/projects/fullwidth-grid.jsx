@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { createTheme } from '@mui/material/styles';
 import classes from './project.module.scss';
 import ProjectFullwidthItem from './fullwidth-item';
 import Filter from './filter';
@@ -21,14 +20,14 @@ function ProjectFullwidthGrid({ projects }) {
     return (
         <div className={classes.project}>
             <Container>
-                <div className={classes.boxBtnFiltro}>
+                <div className={classes.filtro_boxBtnFiltro}>
                     <Stack>
                         <Button variant="contained" onClick={()=> {setOpen(prevState => !prevState)}}
                         style={{backgroundColor: "#014655"}}>Filtro</Button>
                     </Stack>
                 </div>
                 <Filter open={open}/>
-                <Row className="g-4">
+                <Row className="g-4" style={{marginTop: "5px"}}>
                     {slice.map((project) => (
                         <ProjectFullwidthItem
                             key={project.slug}

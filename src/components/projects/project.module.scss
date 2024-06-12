@@ -7,11 +7,11 @@
         padding-bottom: 140px;
     }
     @include breakpoint(min-md-device) {
-        padding-top: 100px;
+        padding-top: 40px;
         padding-bottom: 100px;
     }
     @include breakpoint(max-sm-device) {
-        padding-top: 50px;
+        padding-top: 20px;
         padding-bottom: 50px;
     }
     &_btn {
@@ -109,70 +109,48 @@
     }
 }
 
-/* --- Variables -- */
-$colorInput: black;
-
-/* --- Estilos de la caja del boton filtro -- */
-.boxBtnFiltro{
-    display: flex;
-    justify-content: flex-end;
-    padding-bottom: 20px;
-}
-
-/* --- Estilos del boton filtro -- */
-.btnFiltro{
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    transition: 0.3s;
-    &:hover{
-        background: #013540;
-    }
-}
-
-
-/* --- Estilos del listado filtros -- */
-.boxFilterList{
-    width: 100%;
-
-    &_title{
-        text-align: center;
-    }
-}
-
 /* --- Estilos del filtro -- */
 .filtro{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin-bottom: 15px;
+
+    &_boxBtnFiltro{
+        display: flex;
+        justify-content: flex-end;
+        @media (max-width: 320px), (max-width: 375px), (max-width: 440px) {
+            width: 100%;
+            display: inline-block!important;
+        }
+    }
+
     &_wrapper{
         width: 400px;
         background: #fff;
         border-radius: 10px;
-        padding: 20px 25px 40px;
-    
+        padding: 0px 25px 10px;
+        @media (max-width: 320px), (max-width: 375px), (max-width: 440px) {
+            width: 280px;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
     }
     
     &_headerFilter{
         h2{
-            font-size: 24px;
+            font-size: 16px;
             font-weight: 600;
         }
     }
     
-    &_headerFilter{
-        p{
-            margin-top: 5px;
-            font-size: 16px;
-        }
-    }
-    
     &_priceInput{
-        width: 100%;
+        width: 80%;
         display: flex;
-        margin: 30px 0 35px;
+        margin: 10px 0 15px;
+        @media (max-width: 320px), (max-width: 375px), (max-width: 440px) {
+            width: 98%;
+        }
     }
     
     &_priceInput{
@@ -188,7 +166,7 @@ $colorInput: black;
     }
     
     &_field{
-        height: 45px;
+        height: 25px;
         width: 100%;
         display: flex;
         align-items: center;  
@@ -197,11 +175,11 @@ $colorInput: black;
             &:focus{
                 border: 1px solid #000;
             }
-            color: $colorInput;
+            color: black;
             width: 100%;
             height: 100%;
             outline: none;
-            font-size: 19px;
+            font-size: 14px;
             text-align: center;
             margin-left: 12px;
             border-radius: 5px;
@@ -231,6 +209,10 @@ $colorInput: black;
         background: #ddd;
         position: relative;
 
+        @media (max-width: 320px), (max-width: 375px), (max-width: 440px) {
+            width: 100%;
+        }
+
         &__progress{
             height: 5px;
             left: 0%;
@@ -245,7 +227,7 @@ $colorInput: black;
         position: relative;
 
         input{
-            color: $colorInput;
+            color: black;
             position: absolute;
             top: -7px;
             height: 5px;
@@ -273,5 +255,78 @@ $colorInput: black;
         background: #17A2B8;
         -webkit-appearance: none;
         pointer-events: auto;
+    }
+
+    /* --- Estilos de la caja de los botones que hacen de filtro -- */
+
+    &_boxBtnFilter{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 10px;
+        width: 100%;
+        height: 60%;
+    
+        @media (max-width: 320px), (max-width: 375px), (max-width: 440px) {
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+
+    /* --- Estilos de la caja de los botones para eliminar filtros -- */
+
+    &_boxBtnDelete{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+    
+        @media (max-width: 320px), (max-width: 375px), (max-width: 440px) {
+            gap: 0;
+            justify-content: center;
+        }
+    }
+
+    /* --- Estilos del listado filtros -- */
+
+    &_boxFilterList{
+        width: 100%;
+        &__title{
+            text-align: center;
+    
+            @media (max-width: 320px), (max-width: 375px), (max-width: 440px){
+                margin: 0!important;
+            }
+        }
+    }
+    
+    /* --- Estilos del boton filtro -- */
+    &_btnFiltro{
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        transition: 0.3s;
+        &:hover{
+            background: #013540;
+        }
+    }
+
+    /* --- Estilos del boton Loading -- */
+    &_boxLoading{
+        display: flex;
+        justify-content: flex-end;
+
+        @media (max-width: 320px), (max-width: 375px), (max-width: 440px) {
+            justify-content: center;
+        }
+
+        &__btnLoading{
+            background-color: #025d71!important;
+        }
     }
 }
