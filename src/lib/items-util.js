@@ -38,8 +38,12 @@ export function getAllItems(type) {
 
 
 export async function getItemPrueba(type, slug){
-    const response = await axios.get(`/api/${type}/${slug}`);
-    return response;
+    try {
+        const response = (await fetch(`http://localhost:3000/api/${type}/${slug}`)).json();
+        return response;
+    } catch (error) {
+        return null;
+    }
 }
 
 export function getFeaturedItems(items) {

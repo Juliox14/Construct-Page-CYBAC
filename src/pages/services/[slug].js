@@ -4,7 +4,7 @@ import Breadcrumb from '../../components/breadcrumb';
 import Newsletter from '../../components/newsletter/newsletter';
 import Footer from '../../components/layout/footer';
 import ServiceDetail from '../../components/services/service-detail';
-import { getAllItems, getItemData, getItemsFiles } from '../../lib/items-util';
+import { getAllItems, getItemData, getItemPrueba, getItemsFiles } from '../../lib/items-util';
 
 function ServiceDetailsPage({
     service,
@@ -14,6 +14,7 @@ function ServiceDetailsPage({
     servicesSidebar,
     newsletterItems,
     footerItems,
+    servicePrueba,
 }) {
     return (
         <>
@@ -28,7 +29,7 @@ function ServiceDetailsPage({
             </Head>
             <Breadcrumb
                 subTitle="Servicio Unitario"
-                title={service.title}
+                title={servicePrueba.servicios.titulo}
                 desc="Construction of itself, because it is pain some proper style design occur are pleasure"
             />
             <ServiceDetail
@@ -44,11 +45,11 @@ function ServiceDetailsPage({
     );
 }
 
-export function getStaticProps(context) {
+export async function getStaticProps(context) {
     const { params } = context;
     const { slug } = params;
     
-    
+    const servicePrueba = await getItemPrueba('services', slug);
     const sidebarList = getAllItems('services');
     const service = getItemData(slug, 'services');
     const servicesSidebar = getAllItems('service-sidebar');
@@ -66,6 +67,7 @@ export function getStaticProps(context) {
             ourServices,
             newsletterItems,
             footerItems,
+            servicePrueba,
         },
     };
 }
