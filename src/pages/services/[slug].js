@@ -4,7 +4,7 @@ import Breadcrumb from '../../components/breadcrumb';
 import Newsletter from '../../components/newsletter/newsletter';
 import Footer from '../../components/layout/footer';
 import ServiceDetail from '../../components/services/service-detail';
-import { getAllItems, getItemData, getItemPrueba, getItemsFiles, getFilerProyect } from '../../lib/items-util';
+import { getAllItems, getItemData, getItemPrueba, getItemsFiles } from '../../lib/items-util';
 
 function ServiceDetailsPage({
     service,
@@ -50,7 +50,6 @@ export async function getStaticProps(context) {
     const { slug } = params;
 
     const servicePrueba = await getItemPrueba('services', slug);
-    const filterProyect = await getFilerProyect(slug);
     const sidebarList = getAllItems('services');
     const service = getItemData(slug, 'services');
     const servicesSidebar = getAllItems('service-sidebar');

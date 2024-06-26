@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import axios from 'axios';
 
 export function getItemsFiles(type) {
     const itemsDirectory = path.join(process.cwd(), 'src/data', type);
@@ -46,15 +45,15 @@ export async function getItemPrueba(type, slug){
     }
 }
 
-export async function getFilerProyect(estado, rangoMin, rangoMax){
+// export async function getFilerProyect(estado, rangoMin, rangoMax){
 
-    try {
-        const response = (await fetch(`http://localhost:3000/api/projects/project-fullwidth?estado=${estado}&rangoMin=${rangoMin}&rangoMax=${rangoMax}`)).json();
-        return response;
-    } catch (error) {
-        return null;
-    }
-}
+//     try {
+//         const response = (await fetch(`http://localhost:3000/api/projects/project-fullwidth?estado=${estado}&rangoMin=${rangoMin}&rangoMax=${rangoMax}`)).json();
+//         return response;
+//     } catch (error) {
+//         return null;
+//     }
+// }
 
 export function getFeaturedItems(items) {
     return items.filter((item) => item.isFeatured);
