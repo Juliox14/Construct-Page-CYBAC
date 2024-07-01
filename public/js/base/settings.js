@@ -3,6 +3,8 @@
  * Settings
  * Modifies and applies theme settings. Needs to be exist in the page even the page doesn't have settings modal.
  *
+ * 
+ * 
  * @param {Object} attributes            Object that contains settings for the theme.
  * @param {string} attributes.placement  Menu type, accepted values are "vertical", "horizontal".
  * @param {string} attributes.behaviour  Menu pin behaviour, accepted values are "pinned", "unpinned".

@@ -104,11 +104,11 @@ Table of Contents
 *
 */
 :root {
-  --sm: 576px;
-  --md: 768px;
-  --lg: 992px;
-  --xl: 1200px;
-  --xxl: 1400px;
+  --sm: 576px!important;
+  --md: 768px!important;
+  --lg: 992px!important;
+  --xl: 1200px!important;
+  --xxl: 1400px!important;
 }
 
 /*
@@ -3362,14 +3362,14 @@ html[data-radius=flat] {
 }
 
 :root {
-  --card-spacing: 2rem;
-  --card-spacing-sm: 1.25rem;
-  --card-spacing-xs: 0.75rem;
-  --card-spacing-sm-horizontal: 1.75rem 1.25rem;
-  --card-spacing-sm-vertical: 1.25rem 1.75rem;
-  --main-spacing-horizontal: 2.5rem;
-  --main-spacing-vertical: 2rem;
-  --title-spacing: 1.25rem;
+  --card-spacing: 2rem!important;
+  --card-spacing-sm: 1.25rem!important;
+  --card-spacing-xs: 0.75rem!important;
+  --card-spacing-sm-horizontal: 1.75rem 1.25rem!important;
+  --card-spacing-sm-vertical: 1.25rem 1.75rem!important;
+  --main-spacing-horizontal: 2.5rem!important;
+  --main-spacing-vertical: 2rem!important;
+  --title-spacing: 1.25rem!important;
 }
 @media (max-width: 1199.98px) {
   :root {
