@@ -6,8 +6,9 @@ import Button from '@mui/material/Button';
 import classes from './project.module.scss';
 import ProjectFullwidthItem from './fullwidth-item';
 import Filter from './filter';
+import Link from 'next/link';
 
-function ProjectFullwidthGrid({ projects }) {
+function  ProjectFullwidthGrid({ projects }) {
     const [noOfElement, setNoOfElement] = useState(3);
     const [open, setOpen] = useState(true);
     const slice = projects.slice(0, noOfElement);
