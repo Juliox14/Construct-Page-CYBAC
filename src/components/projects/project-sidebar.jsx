@@ -3,52 +3,39 @@ import { Col } from 'react-bootstrap';
 import Link from 'next/link';
 import classes from './project.module.scss';
 
-function ProjectSidebar({ projectsSidebar }) {
+function ProjectSidebar( {projectsSidebar} ) {
     return (
         <Col lg={{ span: 3 }}>
-            {projectsSidebar?.map((sidebarItem) => (
-                <div className="sidebar pt-max-md-25" key={sidebarItem.id}>
-                    <div className={`${classes.sidebar_widget} mb-30`}>
-                        <h2 className={classes.sidebar_widget__title}>
-                            {sidebarItem?.title}
-                        </h2>
-                        <ul className={classes.sidebar_list}>
-                            {sidebarItem?.sidebarList?.map((singleList) => (
-                                <li
-                                    dangerouslySetInnerHTML={{
-                                        __html: singleList.listItem,
-                                    }}
-                                    key={singleList.id}
-                                />
-                            ))}
-                        </ul>
-                    </div>
-                    <div
-                        className={`${classes.sidebar_brochure__widget}  mb-30`}
-                    >
-                        <ul className={`${classes.sidebar_brochure__list}`}>
-                            {sidebarItem?.downloadBrochure?.map(
-                                (brochureItem) => (
-                                    <li key={brochureItem.id}>
-                                        <Link
-                                            href={brochureItem?.path}
-                                            download
-                                        >
-                                            {brochureItem?.listItem}
-                                        </Link>
-                                    </li>
-                                )
-                            )}
-                        </ul>
-                    </div>
-                    <div className={`${classes.sidebar_widget__banner}`}>
-                        <img
-                            src={sidebarItem?.widgetBanner}
-                            alt={sidebarItem?.widgetBannerAlt}
-                        />
-                    </div>
+            <div className="sidebar pt-max-md-25">
+                <div className={`${classes.sidebar_widget} mb-30`}>
+                    <h2 className={classes.sidebar_widget__title}>
+                        Información del proyecto
+                    </h2>
+                    <ul className={classes.sidebar_list}>
+                        <li>
+                            {`Cliente: ${projectsSidebar.cliente || ''}`}
+                        </li>
+                        <li>
+                            {`Ubicación: ${projectsSidebar.ubicacion || ''}, ${projectsSidebar.estado || ''}`}
+                        </li>
+                        <li>
+                            {`Tipo de obra: ${projectsSidebar.tipo_obra || ''}`}
+                        </li>
+                        <li>
+                            {`Coste de la obra: ${projectsSidebar.importe || ''}`}
+                        </li>
+                        <li>
+                            {`Fecha de inicio: ${projectsSidebar.fecha_inicio || ''}`}
+                        </li>
+                        <li>
+                            {`Fecha de finalización: ${projectsSidebar.fecha_final || ''}`}
+                        </li>
+                        <li>
+                            {`Duración de la obra: ${projectsSidebar.duracion || ''}`}
+                        </li>
+                    </ul>
                 </div>
-            ))}
+            </div>
         </Col>
     );
 }

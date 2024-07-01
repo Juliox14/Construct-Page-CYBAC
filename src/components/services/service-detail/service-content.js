@@ -5,30 +5,25 @@ import classes from './index.module.scss';
 import OurServices from './our-services';
 
 function ServiceContent({ service, richTexts, ourServices }) {
-    // const imagePath = `/images/services/${service?.slug}/${service?.largeImage}`;
-    // console.log({ data, service, item: data?.find(os => os.id == service.our_service_id) })
-    // const data = ourServices[0].data;
+    const imagePath = `/images/servicios/${service?.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}.jpg`;
 
-    console.log({ ourServices });
     return (
         <Col lg={{ span: 9 }} className="pe-lg-45">
-            {/* <div className="banner">
+            <div className="banner">
                 <img
                     className="img-full"
                     src={imagePath}
-                    alt={service?.title}
+                    alt={service?.titulo}
                 />
-            </div> */}
+            </div>
             <div className={classes.content}>
-                <h2 className={classes.title}>{service?.title}</h2>
-                <h3 className={classes.subtitle}>{service?.detailSubTitle}</h3>
-                <p className={classes.desc}>{service?.detailDesc}</p>
+                <h2 className={classes.title}>{service?.titulo}</h2>
+                <h3 className={classes.subtitle}>{service?.descripcion_breve}</h3>
+                <p className={classes.desc}>{service?.descripcion}</p>
             </div>
             <RichText richTexts={richTexts} />
             <OurServices
-                ourServices={ourServices?.find(
-                    (os) => os.id === service.our_service_id
-                )}
+                ourServices={ourServices}
             />
 
             {/* <OurServices ourServices={[...ourServicesData.filter(s => s.id == service.ourServices_id)]} /> */}
@@ -38,7 +33,7 @@ function ServiceContent({ service, richTexts, ourServices }) {
 
 ServiceContent.propTypes = {
     service: PropTypes.instanceOf(Object).isRequired,
-    richTexts: PropTypes.instanceOf(Object).isRequired,
+    richTexts: PropTypes.instanceOf(Object),
     ourServices: PropTypes.instanceOf(Object).isRequired,
 };
 

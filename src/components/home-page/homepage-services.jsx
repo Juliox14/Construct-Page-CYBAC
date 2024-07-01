@@ -5,7 +5,7 @@ import ServiceItem from '../services/service-item';
 import classes from '../services/service.module.scss';
 import SwiperComps, { Slide } from '../swiper';
 
-function HomePageServices({ services, serviceSectionItems, settings }) {
+function HomePageServices({ services, settings }) {
     settings = {
         spaceBetween: 30,
         pagination: false,
@@ -35,26 +35,24 @@ function HomePageServices({ services, serviceSectionItems, settings }) {
     return (
         <div className={classes.area}>
             <Container>
-                {serviceSectionItems.map((item) => (
-                    <div className={classes.section} key={item.id}>
-                        <div className={classes.section_title}>
-                            <span>{item?.subTitle}</span>
-                            <h2
-                                dangerouslySetInnerHTML={{
-                                    __html: item.title,
-                                }}
-                            />
-                        </div>
-                        <div className={classes.section_banner}>
-                            <h3
-                                className={classes.info}
-                                dangerouslySetInnerHTML={{
-                                    __html: item.bannerInfo,
-                                }}
-                            />
-                        </div>
+                <div className={classes.section}>
+                    <div className={classes.section_title}>
+                        <span>SERVICIOS</span>
+                        <h2
+                            dangerouslySetInnerHTML={{
+                                __html: 'Calidad<br/> en cada uno<br/> de nuestros servicios'
+                            }}
+                        />
                     </div>
-                ))}
+                    <div className={classes.section_banner}>
+                        <h3
+                            className={classes.info}
+                            dangerouslySetInnerHTML={{
+                                __html: '¿Tienes proyectos? <span>+52 81 2340 4908</span>',
+                            }}
+                        />
+                    </div>
+                </div>
                 <div className={classes.navigation__holder}>
                     <div className="service-navigation">
                         <div className="service-button-next button-next">
@@ -71,7 +69,7 @@ function HomePageServices({ services, serviceSectionItems, settings }) {
                                 className={classes.slider}
                             >
                                 {services.map((service) => (
-                                    <Slide key={service.slug}>
+                                    <Slide key={service.id_servicio}>
                                         <ServiceItem service={service} />
                                     </Slide>
                                 ))}
@@ -86,7 +84,6 @@ function HomePageServices({ services, serviceSectionItems, settings }) {
 
 HomePageServices.propTypes = {
     services: PropTypes.instanceOf(Object).isRequired,
-    serviceSectionItems: PropTypes.instanceOf(Object).isRequired,
     settings: PropTypes.shape({
         slidesPerView: PropTypes.number,
         spaceBetween: PropTypes.number,

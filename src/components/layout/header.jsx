@@ -6,10 +6,18 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { useRouter } from 'next/router';
 import classes from './header.module.scss';
 import { OffcanvasData } from './offcanvas-data';
+import { getElement} from '../../lib/items-util';
 
 function Header() {
     const router = useRouter();
-
+    const [titulosServicios, setTitulosServicios] = useState([]);
+    useEffect(() => {
+        const getTitulosServicios = async () => {
+            const result = await getElement('titulo_servicios');
+            setTitulosServicios(result);
+        };
+        getTitulosServicios();
+    }, []);
     // Header Sticky Activation
     const header = useRef();
     useEffect(() => {
@@ -95,11 +103,10 @@ function Header() {
                             <Col xl={6} lg={4} sm={6}>
                                 <div className={classes.right}>
                                     <div
-                                        className={`${
-                                            search
-                                                ? 'search-show'
-                                                : 'search-hide'
-                                        } d-block d-lg-none search-holder`}
+                                        className={`${search
+                                            ? 'search-show'
+                                            : 'search-hide'
+                                            } d-block d-lg-none search-holder`}
                                     >
                                         <button
                                             className={classes.search__btn}
@@ -184,47 +191,13 @@ function Header() {
                                                     classes.dropdown_menu
                                                 }
                                             >
-                                                <li>
-                                                    <Link href="/services/arquitectura">
-                                                        Arquitectura
+                                                {titulosServicios.map((servicio) => (
+                                                <li key={servicio.id_servicio}>
+                                                    <Link href= {`/services/${servicio.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}>
+                                                        {servicio.titulo}
                                                     </Link>
                                                 </li>
-                                                <li>
-                                                    <Link href="/services/ingenieria">
-                                                        Ingeniería
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/services/iluminacion">
-                                                        Iluminación
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/services/refrigeracion">
-                                                        Refrigeración y Equipos
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/services/instalaciones-electricas">
-                                                        Instalaciones Eléctricas
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/services/montajes-estructurales">
-                                                        Montajes Estructurales
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/services/obra-civil">
-                                                        Obra Civil
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/services/insatlaciones-hidrosanitarias">
-                                                        Instalaciones
-                                                        Hidrosanitarias
-                                                    </Link>
-                                                </li>
+                                                ))}
                                             </ul>
                                         </li>
                                         <li>
@@ -243,11 +216,10 @@ function Header() {
                                             </Link>
                                         </li>
                                         <li
-                                            className={`${
-                                                search
-                                                    ? 'search-show'
-                                                    : 'search-hide'
-                                            }`}
+                                            className={`${search
+                                                ? 'search-show'
+                                                : 'search-hide'
+                                                }`}
                                         >
                                             {/* <buton
                                                 className={classes.search__btn}
@@ -312,18 +284,17 @@ function Header() {
                                 return (
                                     <li
                                         key={item.id}
-                                        className={`${item.cName}${
-                                            submenuOpenId[item.id.toString()]
-                                                ? ' active'
-                                                : ''
-                                        }`}
+                                        className={`${item.cName}${submenuOpenId[item.id.toString()]
+                                            ? ' active'
+                                            : ''
+                                            }`}
                                         onClick={
                                             submenu
                                                 ? () =>
-                                                      showSubmenuClickHandler(
-                                                          item.id
-                                                      )
-                                                : () => {}
+                                                    showSubmenuClickHandler(
+                                                        item.id
+                                                    )
+                                                : () => { }
                                         }
                                     >
                                         <Link
