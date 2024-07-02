@@ -9,15 +9,14 @@ import Newsletter from '../../components/newsletter/newsletter';
 import AllServices from '../../components/services/all-services';
 import Breadcrumb from '../../components/breadcrumb';
 import HomePageServices from '../../components/home-page/homepage-services';
-import { getAllItems } from '../../lib/items-util';
+import { getAllItems, getItemsBy, getElement } from '../../lib/items-util';
 
 function ServicePage({
     aboutItemsTwo,
     services,
-    serviceSectionItems,
-    bannerFourItems,
-    bannerSection,
-    footerItems,
+    // bannerFourItems,
+    // bannerSection,
+    // footerItems,
 }) {
     return (
         <>
@@ -29,51 +28,48 @@ function ServicePage({
                 />
             </Head>
             <Breadcrumb
-                subTitle="¿Qué Hacemos?"
-                title="Nuestros Servicios"
-                desc="En Reichstag, ofrecemos una amplia gama de servicios de construcción que abarcan todas las fases del desarrollo de proyectos, desde la concepción hasta la entrega de cada proyecto."
+                subTitle={aboutItemsTwo.titulo_breadcrumb}
+                title={aboutItemsTwo.subtitulo_breadcrumb}
+                desc={aboutItemsTwo.descripcion_breadcrumb}
             />
             <AboutTwo aboutItemsTwo={aboutItemsTwo} />
             <HomePageServices
                 services={services}
-                serviceSectionItems={serviceSectionItems}
             />
-            <BannerFour
+            {/* <BannerFour
                 bannerFourItems={bannerFourItems}
                 bannerSection={bannerSection}
             />
 
-            <Footer footerItems={footerItems} />
+            <Footer footerItems={footerItems} /> */}
         </>
     );
 }
 
-export function getStaticProps() {
-    const aboutItemsTwo = getAllItems('about-2');
-    const AllServices = getAllItems('services');
-    const serviceSectionItems = getAllItems('service-section');
-    const bannerTwoItems = getAllItems('banner-2');
-    const brandItems = getAllItems('brand');
-    const testimonialSectionItems = getAllItems('testimonial-section');
-    const bannerFourItems = getAllItems('banner-4');
-    const bannerSection = getAllItems('banner-section');
-    const testimonialItems = getAllItems('testimonial');
-    const newsletterItems = getAllItems('newsletter');
-    const footerItems = getAllItems('footer');
+export async function getStaticProps() {
+    const AllServices = await getElement('titulo_servicios');
+    const aboutItemsTwo = await getElement('home_services');
+    // const bannerTwoItems = getAllItems('banner-2');
+    // const brandItems = getAllItems('brand');
+    // const testimonialSectionItems = getAllItems('testimonial-section');
+    // const bannerFourItems = getAllItems('banner-4');
+    // const bannerSection = getAllItems('banner-section');
+    // const testimonialItems = getAllItems('testimonial');
+    // const newsletterItems = getAllItems('newsletter');
+    // const footerItems = getAllItems('footer');
 
     return {
         props: {
-            aboutItemsTwo,
+            aboutItemsTwo: aboutItemsTwo[0],
             services: AllServices,
-            serviceSectionItems,
-            bannerTwoItems,
-            brandItems,
-            bannerFourItems,
-            bannerSection,
-            testimonialItems,
-            testimonialSectionItems,
-            newsletterItems,
-            footerItems,
+            // bannerTwoItems,
+            // brandItems,
+            // bannerFourItems,
+            // bannerSection,
+            // testimonialItems,
+            // testimonialSectionItems,
+            // newsletterItems,
+            // footerItems,
         },
     };
 }
@@ -81,15 +77,14 @@ export function getStaticProps() {
 ServicePage.propTypes = {
     aboutItemsTwo: PropTypes.instanceOf(Object).isRequired,
     services: PropTypes.instanceOf(Object).isRequired,
-    serviceSectionItems: PropTypes.instanceOf(Object).isRequired,
-    bannerTwoItems: PropTypes.instanceOf(Object).isRequired,
-    brandItems: PropTypes.instanceOf(Object).isRequired,
-    bannerFourItems: PropTypes.instanceOf(Object).isRequired,
-    bannerSection: PropTypes.instanceOf(Object).isRequired,
-    testimonialItems: PropTypes.instanceOf(Object).isRequired,
-    testimonialSectionItems: PropTypes.instanceOf(Object).isRequired,
-    newsletterItems: PropTypes.instanceOf(Object).isRequired,
-    footerItems: PropTypes.instanceOf(Object).isRequired,
+    // bannerTwoItems: PropTypes.instanceOf(Object).isRequired,
+    // brandItems: PropTypes.instanceOf(Object).isRequired,
+    // bannerFourItems: PropTypes.instanceOf(Object).isRequired,
+    // bannerSection: PropTypes.instanceOf(Object).isRequired,
+    // testimonialItems: PropTypes.instanceOf(Object).isRequired,
+    // testimonialSectionItems: PropTypes.instanceOf(Object).isRequired,
+    // newsletterItems: PropTypes.instanceOf(Object).isRequired,
+    // footerItems: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ServicePage;

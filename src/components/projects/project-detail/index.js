@@ -16,8 +16,8 @@ function ProjectDetail({
                 <Row>
                     <ProjectContent
                         project={project}
-                        richTexts={richTexts}
-                        projectsOverview={projectsOverview}
+                        // richTexts={richTexts}
+                        // projectsOverview={projectsOverview}
                     />
                     <ProjectSidebar projectsSidebar={projectsSidebar} />
                 </Row>
@@ -28,8 +28,8 @@ function ProjectDetail({
 
 ProjectDetail.propTypes = {
     project: PropTypes.instanceOf(Object).isRequired,
-    richTexts: PropTypes.instanceOf(Object).isRequired,
-    projectsOverview: PropTypes.instanceOf(Object).isRequired,
+    // richTexts: PropTypes.instanceOf(Object).isRequired,
+    // projectsOverview: PropTypes.instanceOf(Object).isRequired,
     projectsSidebar: PropTypes.instanceOf(Object).isRequired,
 };
 

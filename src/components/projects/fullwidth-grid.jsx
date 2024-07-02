@@ -30,7 +30,7 @@ function  ProjectFullwidthGrid({ projects }) {
                 <Row className="g-4" style={{marginTop: "5px"}}>
                     {slice.map((project) => (
                         <ProjectFullwidthItem
-                            key={project.slug}
+                            key={project.id_proyecto}
                             project={project}
                         />
                     ))}

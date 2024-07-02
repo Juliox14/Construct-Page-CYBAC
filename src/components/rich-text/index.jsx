@@ -62,7 +62,7 @@ function RichText({ richTexts }) {
 }
 
 RichText.propTypes = {
-    richTexts: PropTypes.instanceOf(Object).isRequired,
+    richTexts: PropTypes.instanceOf(Object),
 };
 
 export default RichText;

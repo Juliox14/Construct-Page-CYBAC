@@ -9,10 +9,7 @@ function ServiceDetail({
     sidebarList,
     richTexts,
     ourServices,
-    servicesSidebar,
 }) {
-    const { data } = ourServices[0];
-    console.log({ data });
     return (
         <div className={classes.area}>
             <Container>
@@ -20,11 +17,10 @@ function ServiceDetail({
                     <ServiceContent
                         service={service}
                         // richTexts={richTexts}
-                        ourServices={data}
+                        ourServices={ourServices}
                     />
                     <ServiceSidebar
                         sidebarList={sidebarList}
-                        servicesSidebar={servicesSidebar}
                     />
                 </Row>
             </Container>
@@ -37,7 +33,6 @@ ServiceDetail.propTypes = {
     sidebarList: PropTypes.instanceOf(Object).isRequired,
     richTexts: PropTypes.instanceOf(Object).isRequired,
     ourServices: PropTypes.instanceOf(Object).isRequired,
-    servicesSidebar: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ServiceDetail;

@@ -1,26 +1,22 @@
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Breadcrumb from '../../components/breadcrumb';
-import Newsletter from '../../components/newsletter/newsletter';
 import Footer from '../../components/layout/footer';
 import ServiceDetail from '../../components/services/service-detail';
-import { getAllItems, getItemData, getItemPrueba, getItemsFiles } from '../../lib/items-util';
+import {getItems, getElement, getAllItems, getItemsBy} from '../../lib/items-util';
 
 function ServiceDetailsPage({
-    service,
     sidebarList,
     richTexts,
-    ourServices,
-    servicesSidebar,
-    newsletterItems,
-    footerItems,
+    // footerItems,
     servicePrueba,
-}) {
+})
+{;
     return (
         <>
             <Head>
                 <title>
-                    {service.title} - Reichstag, Edificaciones S.A. de C.V.
+                    {servicePrueba.servicios.titulo} - Reichstag, Edificaciones S.A. de C.V.
                 </title>
                 <meta
                     name="description"
@@ -34,13 +30,12 @@ function ServiceDetailsPage({
             />
             <ServiceDetail
                 sidebarList={sidebarList}
-                service={service}
+                service={servicePrueba.servicios}
                 richTexts={richTexts}
-                ourServices={ourServices}
-                servicesSidebar={servicesSidebar}
+                ourServices={servicePrueba.get_servicio}
             />
             {/* <Newsletter newsletterItems={newsletterItems} /> */}
-            <Footer footerItems={footerItems} />
+            {/* <Footer footerItems={footerItems} /> */}
         </>
     );
 }
@@ -48,51 +43,43 @@ function ServiceDetailsPage({
 export async function getStaticProps(context) {
     const { params } = context;
     const { slug } = params;
-
-    const servicePrueba = await getItemPrueba('services', slug);
-    const sidebarList = getAllItems('services');
-    const service = getItemData(slug, 'services');
-    const servicesSidebar = getAllItems('service-sidebar');
-    const richTexts = getAllItems('rich-text');
-    const ourServices = getAllItems('our-service');
-    const newsletterItems = getAllItems('newsletter');
-    const footerItems = getAllItems('footer');
+    
+    const servicePrueba = await getItemsBy('services', slug);
+    const sidebarList = await getElement('titulo_servicios');
+    console.log('sidebarList: ' ,sidebarList);
+    // const footerItems = getAllItems('footer');
 
     return {
         props: {
-            service,
             sidebarList,
-            servicesSidebar,
-            richTexts,
-            ourServices,
-            newsletterItems,
-            footerItems,
+            // footerItems,
             servicePrueba,
         },
     };
 }
 
-export function getStaticPaths() {
-    const serviceFilenames = getItemsFiles('services');
-
-    const slugs = serviceFilenames.map((fileName) =>
-        fileName.replace(/\.md$/, '')
+export async function getStaticPaths() {
+    const serviceNames = await getElement('titulo_servicios');
+    const paths = serviceNames.map((Name) =>{
+        return {
+            params: {
+                slug: `${Name.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`, 
+            },
+        };
+    }
     );
+    console.log('paths: ', paths);
 
     return {
-        paths: slugs.map((slug) => ({ params: { slug } })),
+        paths,
         fallback: false,
     };
 }
 
 ServiceDetailsPage.propTypes = {
-    service: PropTypes.instanceOf(Object).isRequired,
+    servicePrueba: PropTypes.instanceOf(Object).isRequired,
     sidebarList: PropTypes.instanceOf(Object).isRequired,
-    richTexts: PropTypes.instanceOf(Object).isRequired,
-    ourServices: PropTypes.instanceOf(Object).isRequired,
-    servicesSidebar: PropTypes.instanceOf(Object).isRequired,
-    newsletterItems: PropTypes.instanceOf(Object).isRequired,
-    footerItems: PropTypes.instanceOf(Object).isRequired,
+    // footerItems: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ServiceDetailsPage;
