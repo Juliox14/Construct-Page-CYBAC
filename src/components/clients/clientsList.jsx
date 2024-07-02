@@ -1,7 +1,22 @@
 import PropTypes from 'prop-types';
 import classes from './clientsList.module.scss';
+import axios from 'axios';
 
-function ClientsList({ municipios, iniciativaPrivada, particulares }) {
+function ClientsList({dataClient}) { 
+    let clientes_municipio=[];
+    let clientes_iniciativa_privada=[];
+    let clientes_particular=[];
+    for(let cliente of dataClient){
+        if(cliente.clasificacion_cliente=='municipios'){
+            clientes_municipio.push(cliente);
+        }
+        else if(cliente.clasificacion_cliente=='iniciativa privada'){
+            clientes_iniciativa_privada.push(cliente);
+        }
+        else{
+            clientes_particular.push(cliente);
+        }
+    }
     return (
         <div className={classes['clients-list']}>
             <div>
@@ -22,24 +37,24 @@ function ClientsList({ municipios, iniciativaPrivada, particulares }) {
                 <div>
                     <h2>Municipios</h2>
                     <ul>
-                        {municipios?.map((client) => (
-                            <li key={client.id}>{client.name}</li>
+                        {clientes_municipio.map((client) => (
+                            <li key={client.id_cliente}>{client.nombre_cliente}</li>
                         ))}
                     </ul>
                 </div>
                 <div>
                     <h2>Iniciativa Privada</h2>
                     <ul>
-                        {iniciativaPrivada?.map((client) => (
-                            <li key={client.id}>{client.name}</li>
+                        {clientes_iniciativa_privada.map((client) => (
+                            <li key={client.id_cliente}>{client.nombre_cliente}</li>
                         ))}
                     </ul>
                 </div>
                 <div>
                     <h2>Particulares</h2>
                     <ul>
-                        {particulares?.map((client) => (
-                            <li key={client.id}>{client.name}</li>
+                        {clientes_particular.map((client) => (
+                            <li key={client.id_cliente}>{client.nombre_cliente}</li>
                         ))}
                     </ul>
                 </div>
@@ -49,24 +64,7 @@ function ClientsList({ municipios, iniciativaPrivada, particulares }) {
 }
 
 ClientsList.propTypes = {
-    municipios: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            name: PropTypes.string.isRequired,
-        })
-    ),
-    iniciativaPrivada: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            name: PropTypes.string.isRequired,
-        })
-    ),
-    particulares: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            name: PropTypes.string.isRequired,
-        })
-    ),
+    dataClient: PropTypes.instanceOf(Object).isRequired
 };
 
 export default ClientsList;
