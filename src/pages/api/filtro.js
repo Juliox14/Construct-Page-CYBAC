@@ -20,9 +20,9 @@ export default async function filtro(req, res) {
 
 const getFunction = async(req, res) =>{
     try{
-        console.log(req.body)
         const { param } = req.body;
         const { estado, precioInicial, precioFinal } = param;
+        console.log("ESTADO: ", estado, "PRECIO INICIAL: ", precioInicial, "PRECIO FINAL: ", precioFinal);
         const response = await db.query(`CALL filtro(?, ?, ?)`, [estado, precioInicial, precioFinal]);
         return response;
     }catch(error){
