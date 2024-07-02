@@ -32,11 +32,6 @@ const TemplateLayout = ({children}) => {
             name="format-detection"
             content="telephone=no, date=no, email=no, address=no"
         />
-        <Script src="/js/vendor/jquery-3.5.1.min.js"  strategy="afterInteractive"/>
-        <Script src="/js/vendor/bootstrap.bundle.min.js" strategy="afterInteractive"/>
-        <Script src="/js/vendor/OverlayScrollbars.min.js" strategy="afterInteractive"/>
-        <Script src="/js/vendor/autoComplete.min.js" strategy="afterInteractive"/>
-        <Script src="/js/vendor/clamp.min.js" strategy="afterInteractive"/>
       </Head>
 
       <div className="template-container">

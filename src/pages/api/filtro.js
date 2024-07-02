@@ -1,6 +1,6 @@
 import db from '../../../database/config/db';
 
-export default async function filtro(res, req) {
+export default async function filtro(req, res) {
 
     switch(req.method){
         case 'GET':
@@ -12,16 +12,19 @@ export default async function filtro(res, req) {
             }
             break;
         default:
+            console.log(" CHUPAAAAAAS : ", req.method)
             res.status(405).json({ message: 'Método no permitido' });
             break;
     }
 }
 
-const getFunction = async(res, req) =>{
-    const { param } = req.body;
+const getFunction = async(req, res) =>{
     try{
-        const response = await db.query(`CALL filtro(?)`, [param]);
-        return response[0];
+        console.log(req.body)
+        const { param } = req.body;
+        const { estado, precioInicial, precioFinal } = param;
+        const response = await db.query(`CALL filtro(?, ?, ?)`, [estado, precioInicial, precioFinal]);
+        return response;
     }catch(error){
         res.status(500).json({ message: 'Error al hacer la consulta', error });
     }  

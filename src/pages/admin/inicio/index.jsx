@@ -1,7 +1,7 @@
-import TemplateLayout from "../components/templateLayout";
+import TemplateLayout from "../../../components/templateLayout";
 import { useState, useEffect } from "react";
 
-export default function TemplatePage() {
+export default function AdminPage() {
 
   const [isClient, setIsclient] = useState(false);
 
@@ -39,7 +39,7 @@ export default function TemplatePage() {
                 <img
                   className="profile"
                   alt="profile"
-                  src="img/profile/profile-1.webp"
+                  src="/img/profile/profile-1.webp"
                 />
                 <div className="name">Zayn Hartley</div>
               </a>
@@ -1805,9 +1805,6 @@ export default function TemplatePage() {
           </div>
         </div>
       </div>
-    {/* Search Modal End */}
-
-      {/* <ScriptLoader/> */}
       </>
       )};
     </TemplateLayout>

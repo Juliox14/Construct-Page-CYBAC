@@ -271,11 +271,11 @@ function Header() {
                                             </form> */}
                                         </li>
                                         <li>
-                                            <Link href="/contact">
-                                                <button className="theme-btn">
+                                            <a href="/admin">
+                                                <span>
                                                     Portal
-                                                </button>
-                                            </Link>
+                                                </span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </nav>

@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Divider, Button, InputLabel, Select, MenuItem, FormControl } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import classes from './project.module.scss';
-import LoadingButton from '../loadingButton/loadingButton';
 
 const Filter = ({open}) =>{
 
@@ -20,7 +19,7 @@ const Filter = ({open}) =>{
 
     useEffect(() => {
         // Aquí se obtiene el slider y los inputs
-        let priceGap = 100000;
+        let priceGap = 1000000;
         const slider = sliderReference.current,
         rangeInput = slider.querySelectorAll("input"),
         priceInputChildren = priceInput.current.querySelectorAll("input");
@@ -171,8 +170,8 @@ const Filter = ({open}) =>{
                                     <div className={`${classes.filtro_slider__progress}`} ref={progress}></div>
                                 </div>
                                 <div className={classes.filtro_rangeInput} ref={sliderReference}>
-                                    <input type="range" className={`rangeMin ${classes.filtro_inputTypeRange}`} id={classes.filtro_inputTypeRange} min="0" max="1000000" defaultValue="0" step="1000"/>
-                                    <input type="range" className={`rangeMax ${classes.filtro_inputTypeRange}`} id={classes.filtro_inputTypeRange} min="0" max="1000000" defaultValue="250000" step="1000"/>
+                                    <input type="range" className={`rangeMin ${classes.filtro_inputTypeRange}`} id={classes.filtro_inputTypeRange} min="0" max="10000000" defaultValue="0" step="10000"/>
+                                    <input type="range" className={`rangeMax ${classes.filtro_inputTypeRange}`} id={classes.filtro_inputTypeRange} min="0" max="10000000" defaultValue="2500000" step="10000"/>
                                 </div>
                             </div>
                         </div>
@@ -191,8 +190,8 @@ const Filter = ({open}) =>{
                                     <em>---</em>
                                 </MenuItem>
                                 <MenuItem value={10}>Tamaulipas</MenuItem>
-                                <MenuItem value={20}>Chiapa</MenuItem>
-                                <MenuItem value={30}>Veracru</MenuItem>
+                                <MenuItem value={20}>Chiapas</MenuItem>
+                                <MenuItem value={30}>Sonora</MenuItem>
                             </Select>
                         </FormControl>
                     </div>

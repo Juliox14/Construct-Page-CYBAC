@@ -7,6 +7,7 @@ export default async function handler(req, res) {
 
     try {
         const [rows] = await db.query('SELECT * FROM servicios;');
+        console.log("CHUPASSSSSSSSSSSSSSSSSS AÑAÑIN:", req.method)
 
         res.status(200).json(rows);
     } catch (error) {
