@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -10,12 +10,25 @@ import Filter from './filter';
 function  ProjectFullwidthGrid({ projects }) {
     const [noOfElement, setNoOfElement] = useState(3);
     const [open, setOpen] = useState(true);
-    const slice = projects.slice(0, noOfElement);
+    const [filterProyects, setFilterProyects] = useState([]);
+    let slice = projects.slice(0, noOfElement);
+
+    if(filterProyects.length > 0){
+        slice = filterProyects.slice(0, noOfElement);
+    }
 
     const loadMore = () => {
         setNoOfElement(noOfElement + noOfElement);
     };
-    console.log(projects);
+
+    // Función para actualizar los datos filtrados
+    const handleFilterUpdate = (data) => {
+        setFilterProyects(data);
+    };
+
+    useEffect(() => {
+        setNoOfElement(3);
+    }, [filterProyects]);
 
     return (
         <div className={classes.project}>
@@ -26,16 +39,16 @@ function  ProjectFullwidthGrid({ projects }) {
                         style={{backgroundColor: "#014655"}}>Filtro</Button>
                     </Stack>
                 </div>
-                <Filter open={open}/>
+                <Filter open={open} handleFilterUpdate={handleFilterUpdate}/>
                 <Row className="g-4" style={{marginTop: "5px"}}>
-                    {slice.map((project) => (
+                    {slice.map((project, index) => (
                         <ProjectFullwidthItem
-                            key={project.id_proyecto}
+                            key={index}
                             project={project}
                         />
                     ))}
                 </Row>
-                {noOfElement < projects.length && (
+                {noOfElement < projects.length && (filterProyects.length > 0 ? (noOfElement < filterProyects.length) : true) && (
                     <div className={classes.project_btn__wrap}>
                         <button
                             type="button"
@@ -46,7 +59,7 @@ function  ProjectFullwidthGrid({ projects }) {
                         </button>
                     </div>
                 )}
-                {noOfElement > projects.length && (
+                {noOfElement > projects.length && (filterProyects.length > 0 ? (noOfElement > filterProyects.length) : true) && (
                     <div className={classes.project_btn__wrap}>
                         <span className={classes.loadedText}>
                             Todos los proyectos cargados!
