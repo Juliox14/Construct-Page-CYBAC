@@ -7,9 +7,9 @@ export default async function handler(req, res){
     else{
         try {
             const [rows] = await db.query('SELECT * FROM home_services;');
-            res.status(200).json(rows);
+            return res.status(200).json(rows);
         } catch (error) {
-            res.status(500).json({ message: 'Error en el servidor', error });
+            return res.status(500).json({ message: 'Error en el servidor', error });
         }
     }
 }

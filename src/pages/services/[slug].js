@@ -8,7 +8,7 @@ import {getItems, getElement, getAllItems, getItemsBy} from '../../lib/items-uti
 function ServiceDetailsPage({
     sidebarList,
     richTexts,
-    // footerItems,
+    footerItems,
     servicePrueba,
 })
 {;
@@ -35,7 +35,7 @@ function ServiceDetailsPage({
                 ourServices={servicePrueba.get_servicio}
             />
             {/* <Newsletter newsletterItems={newsletterItems} /> */}
-            {/* <Footer footerItems={footerItems} /> */}
+            <Footer footerItems={footerItems} services={sidebarList} />
         </>
     );
 }
@@ -47,12 +47,12 @@ export async function getStaticProps(context) {
     const servicePrueba = await getItemsBy('services', slug);
     const sidebarList = await getElement('titulo_servicios');
     console.log('sidebarList: ' ,sidebarList);
-    // const footerItems = getAllItems('footer');
+    const footerItems = await getElement('footer');
 
     return {
         props: {
             sidebarList,
-            // footerItems,
+            footerItems,
             servicePrueba,
         },
     };
@@ -79,7 +79,7 @@ export async function getStaticPaths() {
 ServiceDetailsPage.propTypes = {
     servicePrueba: PropTypes.instanceOf(Object).isRequired,
     sidebarList: PropTypes.instanceOf(Object).isRequired,
-    // footerItems: PropTypes.instanceOf(Object).isRequired,
+    footerItems: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ServiceDetailsPage;

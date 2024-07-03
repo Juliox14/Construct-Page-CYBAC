@@ -1,182 +1,168 @@
+'use client'
 import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'react-bootstrap';
 import * as FaIcons from 'react-icons/fa';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import classes from './footer.module.scss';
+import { useState } from 'react';
 
-function Footer({ footerItems }) {
+function Footer({ footerItems, services}) {
+    const [showAllServices, setShowAllServices] = useState(false);
+
+    const toggleServices = () => {
+        setShowAllServices(!showAllServices);
+    };
+
+    const visibleServices = showAllServices ? services : services.slice(0, 5);
     return (
         <footer>
-            {footerItems?.map((footerItem) => (
-                <Fragment key={footerItem.id}>
-                    <div className={`${classes.bg}`}>
-                        <Container>
-                            <Row>
-                                <Col lg={{ span: 3 }}>
-                                    <div className={classes.widget__item}>
-                                        <Link href="/" className={classes.logo}>
-                                            <img
-                                                src={footerItem?.footerLogo}
-                                                alt={footerItem?.footerLogoAlt}
-                                            />
-                                        </Link>
-                                        <p
-                                            className={classes.desc}
-                                            dangerouslySetInnerHTML={{
-                                                __html: footerItem?.excerpt,
-                                            }}
+            <Fragment key={footerItems?.footer.id_footer}>
+                <div className={`${classes.bg}`}>
+                    <Container>
+                        <Row>
+                            <Col lg={{ span: 3 }}>
+                                <div className={classes.widget__item}>
+                                    <Link href="/" className={classes.logo}>
+                                        <img
+                                            src={footerItems?.footer.ruta_logo}
+                                            alt='Logo Reichstag'
                                         />
-                                        <div className={classes.inquary}>
-                                            <h2
-                                                className={classes.inquary_info}
-                                            >
-                                                {footerItem?.inquary}
-                                            </h2>
-                                            <Link
-                                                href="tel://+12345-879-854"
-                                                className={
-                                                    classes.inquary_number
-                                                }
-                                            >
-                                                {footerItem?.inquaryNumber}
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col
-                                    xl={{ span: 3 }}
-                                    lg={{ span: 2 }}
-                                    sm={{ span: 6 }}
-                                    className="ps-xl-80 pt-40 pt-lg-0"
-                                >
-                                    <div className={classes.widget__item}>
-                                        <h2 className={classes.widget__title}>
-                                            {footerItem?.informationTitle}
+                                    </Link>
+                                    <p className={classes.desc}>
+                                        {footerItems?.footer.eslogan}
+                                    </p>
+                                    <div className={classes.inquary}>
+                                        <h2 className={classes.inquary_info}>
+                                            Consultas
                                         </h2>
-                                        <ul className={classes.widget__list}>
-                                            {footerItem?.informationList?.map(
-                                                (item) => (
-                                                    <li key={item.id}>
-                                                        <Link
-                                                            href={`/${item.path}`}
-                                                        >
-                                                            {item.title}
-                                                        </Link>
-                                                    </li>
-                                                )
-                                            )}
-                                        </ul>
-                                    </div>
-                                </Col>
-                                <Col
-                                    lg={{ span: 3 }}
-                                    sm={{ span: 6 }}
-                                    className="ps-lg-50 pt-40 pt-lg-0"
-                                >
-                                    <div className={classes.widget__item}>
-                                        <h2 className={classes.widget__title}>
-                                            {footerItem?.quickLinkTitle}
-                                        </h2>
-                                        <ul className={classes.widget__list}>
-                                            {footerItem?.quickLinkList?.map(
-                                                (item) => (
-                                                    <li key={item.id}>
-                                                        <Link
-                                                            href={`/${item.path}`}
-                                                        >
-                                                            {item.title}
-                                                        </Link>
-                                                    </li>
-                                                )
-                                            )}
-                                        </ul>
-                                    </div>
-                                </Col>
-                                <Col
-                                    xl={{ span: 3 }}
-                                    lg={{ span: 4 }}
-                                    className="pt-40 pt-lg-0"
-                                >
-                                    <div className={classes.widget__item}>
-                                        <h2 className={classes.widget__title}>
-                                            {footerItem?.contactInfoTitle}
-                                        </h2>
-                                        <div
-                                            className={`pb-25 ${classes.widget__info}`}
+                                        <Link
+                                            href={`tel://${footerItems?.footer.telefono}`}
+                                            className={
+                                                classes.inquary_number
+                                            }
                                         >
-                                            <p
-                                                className={
-                                                    classes.widget_address
-                                                }
-                                                dangerouslySetInnerHTML={{
-                                                    __html: footerItem?.widgetAddress,
-                                                }}
-                                            />
-                                            <span
-                                                className={
-                                                    classes.widget_number
-                                                }
-                                            >
-                                                {footerItem?.widgetNumber}
-                                            </span>
-                                        </div>
-                                        <div className={classes.widget__info}>
-                                            <p
-                                                className={
-                                                    classes.widget_address
-                                                }
-                                                dangerouslySetInnerHTML={{
-                                                    __html: footerItem?.additionWidgetAddress,
-                                                }}
-                                            />
-                                            <span
-                                                className={
-                                                    classes.widget_number
-                                                }
-                                            >
-                                                {
-                                                    footerItem?.additionWidgetNumber
-                                                }
-                                            </span>
-                                        </div>
+                                            {footerItems?.footer.telefono}
+                                        </Link>
                                     </div>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </div>
-                    <div className={classes.bottom}>
-                        <Container>
-                            <Row>
-                                <Col md={{ span: 6 }} sm={{ span: 4 }}>
-                                    <ul className={classes.social}>
-                                        {footerItem?.socialList?.map((item) => {
-                                            const Social =
-                                                FaIcons[item.socialIcon];
-                                            return (
-                                                <li key={item.id}>
-                                                    <Link href={`${item.path}`}>
-                                                        <Social />
+                                </div>
+                            </Col>
+                            <Col
+                                xl={{ span: 3 }}
+                                lg={{ span: 2 }}
+                                sm={{ span: 6 }}
+                                className="ps-xl-80 pt-40 pt-lg-0"
+                            >
+                                <div className={classes.widget__item}>
+                                    <h2 className={classes.widget__title}>
+                                        Servicios
+                                    </h2>
+                                    <ul className={classes.widget__list}>
+                                        {visibleServices?.map(
+                                            (item) => (
+                                                <li key={item.id_servicio}>
+                                                    <Link
+                                                        href={`/services/${item.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
+                                                    >
+                                                        {item.titulo}
                                                     </Link>
                                                 </li>
-                                            );
-                                        })}
+                                            )
+                                        )}
                                     </ul>
-                                </Col>
-                                <Col md={{ span: 6 }} sm={{ span: 8 }}>
-                                    <div className={classes.copyright}>
-                                        <span className={classes.text}>
-                                            © {new Date().getFullYear()}{' '}
-                                            Reichstag Todos los Derechos
-                                            Reservados.
+                                    {services.length > 5 && (
+                                        <span
+                                            className={classes.viewMore}
+                                            onClick={toggleServices}
+                                        >
+                                            {showAllServices ? 'Ver menos' : 'Ver más'}
+                                        </span>
+                                    )}
+                                </div>
+                            </Col>
+                            <Col
+                                lg={{ span: 3 }}
+                                sm={{ span: 6 }}
+                                className="ps-lg-50 pt-40 pt-lg-0"
+                            >
+                                <div className={classes.widget__item}>
+                                    <h2 className={classes.widget__title}>
+                                        Enlaces rápidos
+                                    </h2>
+                                    <ul className={classes.widget__list}>
+                                        {footerItems?.enlaces_rapidos?.map(
+                                            (item) => (
+                                                <li key={item.id_enlace}>
+                                                    <Link
+                                                        href={`/${item.enlace}`}
+                                                    >
+                                                        {item.nombre_enlace}
+                                                    </Link>
+                                                </li>
+                                            )
+                                        )}
+                                    </ul>
+                                </div>
+                            </Col>
+                            <Col
+                                xl={{ span: 3 }}
+                                lg={{ span: 4 }}
+                                className="pt-40 pt-lg-0"
+                            >
+                                <div className={classes.widget__item}>
+                                    <h2 className={classes.widget__title}>
+                                        Información de contacto
+                                    </h2>
+                                    <div
+                                        className={`pb-25 ${classes.widget__info}`}
+                                    >
+                                        <p className={classes.widget_address}>
+                                            {`${footerItems?.footer.direccion} | C.P ${footerItems?.footer.codigo_postal} | `} 
+                                            <span className='text-primary'>{footerItems?.footer.ubicacion}</span>
+                                        </p>
+                                        <span
+                                            className={
+                                                classes.widget_number
+                                            }
+                                        >
+                                            {footerItems?.footer.telefono}
                                         </span>
                                     </div>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </div>
-                </Fragment>
-            ))}
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
+                <div className={classes.bottom}>
+                    <Container>
+                        <Row>
+                            <Col md={{ span: 6 }} sm={{ span: 4 }}>
+                                <ul className={classes.social}>
+                                    {footerItems?.redes_sociales?.map((item) => {
+                                        const Social = FaIcons[item.icono_red_social];
+                                        return (
+                                            <li key={item.id_red_social}>
+                                                <Link href={`${item.enlace_red_social}`}>
+                                                    <Social />
+                                                </Link>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>   
+                            </Col>
+                            <Col md={{ span: 6 }} sm={{ span: 8 }}>
+                                <div className={classes.copyright}>
+                                    <span className={classes.text}>
+                                        © {new Date().getFullYear()}{' '}
+                                        Reichstag Todos los Derechos
+                                        Reservados.
+                                    </span>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
+            </Fragment>
         </footer>
     );
 }
