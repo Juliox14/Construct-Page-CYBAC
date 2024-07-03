@@ -198,7 +198,7 @@
         position: absolute;
         font-weight: 500;
         font-size: 14px;
-        top: 110%;
+        bottom: -165%;
         left: 0;
     }
 
@@ -234,6 +234,12 @@
             background: none;
             pointer-events: none;
             -webkit-appearance: none;
+        }
+
+        input{
+            &:active{
+                cursor: grabbing;
+            }
         }
     }
 
@@ -315,7 +321,7 @@
         }
     }
 
-    /* --- Estilos del boton Loading -- */
+    /* --- Estilos del boton Aplicar filtros -- */
     &_boxLoading{
         display: flex;
         justify-content: flex-end;

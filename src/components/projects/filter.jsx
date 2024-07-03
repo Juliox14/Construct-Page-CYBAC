@@ -3,8 +3,9 @@ import { motion } from 'framer-motion';
 import { Divider, Button, InputLabel, Select, MenuItem, FormControl } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import classes from './project.module.scss';
+import { handleFilter } from '../../lib/getProyects';
 
-const Filter = ({open}) =>{
+const Filter = ({open, handleFilterUpdate}) =>{
 
     const sliderReference = useRef(); 
     const progress = useRef();
@@ -12,6 +13,8 @@ const Filter = ({open}) =>{
 
     const [minValState, setMinValState] = useState();
     const [maxValState, setMaxValState] = useState();
+    const [filterNumber, setFilterNumber] = useState(false);
+    const [filterSlider , setFilterSlider] = useState(false);
 
     const [filtros, setFiltros] = useState([]);
     const [estado, setEstados] = useState('');
@@ -19,7 +22,7 @@ const Filter = ({open}) =>{
 
     useEffect(() => {
         // Aquí se obtiene el slider y los inputs
-        let priceGap = 1000000;
+        let priceGap = 500000;
         const slider = sliderReference.current,
         rangeInput = slider.querySelectorAll("input"),
         priceInputChildren = priceInput.current.querySelectorAll("input");
@@ -30,7 +33,7 @@ const Filter = ({open}) =>{
                 let minVal = parseInt(priceInputChildren[0].value),
                 maxVal = parseInt(priceInputChildren[1].value);
 
-                if((maxVal - minVal >= priceGap) && maxVal <= 1000000 && minVal >= 0){
+                if((maxVal - minVal >= priceGap) && maxVal <= 5000000 && minVal >= 0){
                     if((e.target.className.includes("inputMin"))){
                         rangeInput[0].value = minVal;
                         progress.current.style.left = (minVal / rangeInput[0].max) * 100 + "%";
@@ -44,17 +47,15 @@ const Filter = ({open}) =>{
                 if(!(minVal)) priceInputChildren[0].value = 0;
                 if(!(maxVal)) priceInputChildren[1].value = 0;
 
-                if(minVal > 1000000) priceInputChildren[0].value = 1000000;
-                if(maxVal > 1000000) priceInputChildren[1].value = 1000000;
-
-                console.log(minVal, maxVal);
+                if(minVal > 5000000) priceInputChildren[0].value = 5000000;
+                if(maxVal > 5000000) priceInputChildren[1].value = 5000000;
                 if(minVal >= maxVal) setAlertMinVal(true);
                 else{
                     setAlertMinVal(false);
-                    console.log("entro");
                 }
                 setMaxValState(maxVal);
                 setMinValState(minVal);
+                setFilterNumber(prev => !prev);
             });
         });
 
@@ -86,6 +87,7 @@ const Filter = ({open}) =>{
 
                 setMaxValState(maxVal);
                 setMinValState(minVal);
+                setFilterSlider(prev => !prev);
             });
         });
     }, []);
@@ -115,25 +117,43 @@ const Filter = ({open}) =>{
                     return prevFiltros;
                 });
             }
-            console.log(minValState, maxValState)
         }
-    },[maxValState, minValState]);
+    },[filterNumber, filterSlider]);
 
     // Lógica para eliminar un filtro
     const handleDeleteFilter = (index, filtro) => {
         setFiltros(filtros.filter((filtro, i) => i !== index));
         switch (filtro) {
             case "Rango de precio":
-                setMinValState(undefined);
-                setMaxValState(undefined);
+                setMinValState(null);
+                setMaxValState(null);
                 break;
             case "Estado":
-                setEstados('');
+                setEstados("");
                 break;
 
             // Aquí se pueden agregar más casos para más filtros
             default:
                 break;
+        }
+    }
+
+    useEffect(() => {
+        console.log(filtros);
+    }, [filtros]);
+
+    const handleSubmit = async() => {
+        try{
+            const data = {
+                estado: estado,
+                precioInicial: minValState,
+                precioFinal: maxValState
+            }
+            const getData = await handleFilter(data.estado, data.precioInicial, data.precioFinal);
+            
+            handleFilterUpdate(getData);
+        }catch(error){
+            console.log(error);
         }
     }
 
@@ -162,7 +182,7 @@ const Filter = ({open}) =>{
                                     <div className={classes.filtro_priceInput__separator}>-</div>
                                     <div className={classes.filtro_field}>
                                         <span>$Max</span>
-                                        <input type="number" className="inputMax" defaultValue="250000" required/>
+                                        <input type="number" className="inputMax" defaultValue="1250000" required/>
                                     </div>
                                     {alertMinVal && <span className={classes.filtro_alert}>El valor minimo es mayor o igual al maximo</span>}
                                 </div>
@@ -170,8 +190,8 @@ const Filter = ({open}) =>{
                                     <div className={`${classes.filtro_slider__progress}`} ref={progress}></div>
                                 </div>
                                 <div className={classes.filtro_rangeInput} ref={sliderReference}>
-                                    <input type="range" className={`rangeMin ${classes.filtro_inputTypeRange}`} id={classes.filtro_inputTypeRange} min="0" max="10000000" defaultValue="0" step="10000"/>
-                                    <input type="range" className={`rangeMax ${classes.filtro_inputTypeRange}`} id={classes.filtro_inputTypeRange} min="0" max="10000000" defaultValue="2500000" step="10000"/>
+                                    <input type="range" className={`rangeMin ${classes.filtro_inputTypeRange}`} id={classes.filtro_inputTypeRange} min="0" max="5000000" defaultValue="0" step="1000" />
+                                    <input type="range" className={`rangeMax ${classes.filtro_inputTypeRange}`} id={classes.filtro_inputTypeRange} min="0" max="5000000" defaultValue="1250000" step="1000"/>
                                 </div>
                             </div>
                         </div>
@@ -189,15 +209,15 @@ const Filter = ({open}) =>{
                                 <MenuItem value="">
                                     <em>---</em>
                                 </MenuItem>
-                                <MenuItem value={10}>Tamaulipas</MenuItem>
-                                <MenuItem value={20}>Chiapas</MenuItem>
-                                <MenuItem value={30}>Sonora</MenuItem>
+                                <MenuItem value="Tamaulipas">Tamaulipas</MenuItem>
+                                <MenuItem value="Chiapas">Chiapas</MenuItem>
+                                <MenuItem value="Sonora">Sonora</MenuItem>
                             </Select>
                         </FormControl>
                     </div>
                 </div>
                 <div className={classes.filtro_boxLoading}>
-                    <Button variant="contained" className={classes.filtro_boxLoading__btnLoading}>Aplicar filtros</Button>
+                    <Button variant="contained" className={classes.filtro_boxLoading__btnLoading} onClick={handleSubmit}>Aplicar filtros</Button>
                 </div>
         </motion.div>
     );

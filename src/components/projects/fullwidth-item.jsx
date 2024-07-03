@@ -5,6 +5,7 @@ import { Col } from 'react-bootstrap';
 function ProjectFullwidthItem({ project }) {
     const imagePath = `/images/projects/aula_pantepec/aula_pantepec.jpg`;
     const linkPath = `/projects/${project?.id_proyecto}`;
+    console.log(project)
 
     return (
         <Col lg={{ span: 4 }} md={{ span: 6 }}>
