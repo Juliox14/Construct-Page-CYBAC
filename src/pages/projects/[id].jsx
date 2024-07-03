@@ -5,7 +5,7 @@ import Breadcrumb from '../../components/breadcrumb';
 import Newsletter from '../../components/newsletter/newsletter';
 import ProjectDetail from '../../components/projects/project-detail';
 import Footer from '../../components/layout/footer';
-import { getAllItems, getItemData, getItemsFiles, getPaths, getItemsBy } from '../../lib/items-util';
+import { getItemsBy, getElement } from '../../lib/items-util';
 
 function ProjectDetailPage({
     project,
@@ -68,7 +68,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-    const projects = await getPaths('titulo_proyectos');
+    const projects = await getElement('titulo_proyectos');
 
     const paths = projects.map((project) =>{
         return {

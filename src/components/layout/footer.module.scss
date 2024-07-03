@@ -127,3 +127,13 @@
         }
     }
 }
+
+.viewMore{
+    color: #ADA479;
+    font-size: small;
+    margin-top: 20px;
+    &:hover {
+        cursor: pointer;
+        color: #fff;
+    }
+}
