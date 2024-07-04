@@ -29,14 +29,27 @@
     }
 }
 .bg {
-    background-image: url('/images/brand/bg/1-1.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    // background-image: url('/images/brand/bg/1-1.png');
+    background-color: rgb(209, 209, 209);
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: center;
 }
 .item {
+    div{
+        text-align: center;
+        font-size: 1.1em;
+        color: #014554;
+    }
+
     @include breakpoint(max-sm-device) {
         display: flex;
         justify-content: center;
     }
+}
+.aux3{
+    background-color: red;
+}
+.aux2{
+    background-color: black;
 }
