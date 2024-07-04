@@ -1,12 +1,16 @@
 import PropTypes from 'prop-types';
 import classes from './clientsList.module.scss';
 import axios from 'axios';
+import icon from '../../../public/images/brand/1.png';
+import Image from 'next/image';
+import { red } from '@mui/material/colors';
 
-function ClientsList({dataClient}) { 
+function ClientsList({dataHomeClients}) { 
     let clientes_municipio=[];
     let clientes_iniciativa_privada=[];
     let clientes_particular=[];
-    for(let cliente of dataClient){
+    const [data_desc] = dataHomeClients[1];
+    for(let cliente of dataHomeClients[0]){
         if(cliente.clasificacion_cliente=='municipios'){
             clientes_municipio.push(cliente);
         }
@@ -21,24 +25,19 @@ function ClientsList({dataClient}) {
         <div className={classes['clients-list']}>
             <div>
                 <h1>Clientes</h1>
-                <p>
-                    Nos enorgullece contar con la confianza de clientes
-                    excepcionales que han experimentado el compromiso, la
-                    calidad y la dedicación que caracterizan a Reichstag,
-                    Edificaciones S.A. de C.V. Cada proyecto es una colaboración
-                    única, y trabajamos incansablemente para superar
-                    expectativas, ofreciendo soluciones a medida que reflejan
-                    nuestro compromiso con la excelencia. Descubra cómo hemos
-                    llevado a cabo visiones exitosas y cómo podemos ser su socio
-                    preferido en la materialización de proyectos excepcionales.
-                </p>
+                <p>{data_desc.desc_principal}</p>
             </div>
             <div className={classes['clients-columns']}>
                 <div>
                     <h2>Municipios</h2>
                     <ul>
                         {clientes_municipio.map((client) => (
-                            <li key={client.id_cliente}>{client.nombre_cliente}</li>
+                            <li key={client.id_cliente}>
+                                {/* <div>
+                                    <Image src={icon.src} alt='logo cliente' fill={true}></Image>
+                                </div> */}
+                                {client.nombre_cliente}
+                            </li>
                         ))}
                     </ul>
                 </div>
@@ -64,7 +63,7 @@ function ClientsList({dataClient}) {
 }
 
 ClientsList.propTypes = {
-    dataClient: PropTypes.instanceOf(Object).isRequired
+    dataHomeClients: PropTypes.instanceOf(Object).isRequired
 };
 
 export default ClientsList;
