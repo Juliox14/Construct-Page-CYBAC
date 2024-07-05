@@ -1,0 +1,29 @@
+@import '../../styles/abstract/custom-variables';
+
+.scroll {
+    &_to {
+        &__top {
+            background-color: $secondary;
+            cursor: pointer;
+            position: fixed;
+            right: 50px;
+            bottom: 90px;
+            z-index: 1;
+            font-size: 18px;
+            overflow: hidden;
+            display: block;
+            text-align: center;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            transition: $baseTransition;
+            color: $white;
+            border: 0;
+            outline: 0;
+            display: inline-block;
+            &:hover {
+                background-color: $primary;
+            }
+        }
+    }
+}

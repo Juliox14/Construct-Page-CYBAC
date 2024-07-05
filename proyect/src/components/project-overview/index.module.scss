@@ -1,0 +1,53 @@
+@import '../../styles/abstract/custom-variables';
+@import '../../styles/abstract/custom-mixins';
+
+.item {
+    padding-top: 30px;
+}
+.title {
+    font-size: 32px;
+    line-height: 1.2;
+}
+.desc {
+    margin-bottom: 40px;
+    font-size: 18px;
+}
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    li {
+        display: flex;
+        @include breakpoint(min-md-device) {
+            width: 50%;
+        }
+        &:not(:last-child) {
+            padding-bottom: 20px;
+        }
+    }
+    &_icon {
+        color: $primary;
+    }
+    &_text {
+        padding-left: 10px;
+        max-width: 290px;
+        margin-top: -5px;
+    }
+}
+.image {
+    padding-top: 25px;
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+.handover {
+    &_title {
+        padding-top: 40px;
+        font-size: 32px;
+        line-height: 1.2;
+    }
+    &_desc {
+        margin-bottom: 20px;
+        font-size: 18px;
+    }
+}

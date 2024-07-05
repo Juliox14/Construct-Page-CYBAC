@@ -1,0 +1,59 @@
+@import '../../styles/abstract/custom-variables';
+@import '../../styles/abstract/custom-mixins';
+
+.area {
+    @include breakpoint(min-md-device) {
+        padding-top: 140px;
+    }
+    @include breakpoint(max-sm-device) {
+        padding-top: 95px;
+    }
+}
+.max {
+    &_md {
+        &_g {
+            &_y {
+                &__80 {
+                    @include breakpoint(max-md-device) {
+                        --bs-gutter-y: 80px !important;
+                    }
+                }
+            }
+        }
+    }
+}
+.pb {
+    &__140 {
+        padding-bottom: 140px;
+    }
+}
+.item {
+    position: relative;
+    text-align: center;
+    .count {
+        font-size: 60px;
+        line-height: 0.7;
+        &_inner {
+            &__text {
+                -webkit-text-fill-color: transparent;
+                -webkit-text-stroke: 2px #eaecef;
+                position: absolute;
+                font-size: 100px;
+                line-height: 47.97px;
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: -1;
+                opacity: 0.5;
+            }
+        }
+        &_title {
+            font-family: $rajdhani;
+            font-weight: 500;
+            color: $primary;
+            display: block;
+            font-size: 28px;
+            line-height: 1.1;
+        }
+    }
+}

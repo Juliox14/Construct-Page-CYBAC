@@ -1,0 +1,60 @@
+@import '../../styles/abstract/custom-variables';
+@import '../../styles/abstract/custom-mixins';
+@import '../../styles/components/button';
+
+.bg {
+    background-image: url('/images/banner/bg/2-1.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.image {
+    height: 100%;
+    img {
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.content {
+    padding-left: 115px;
+    padding-bottom: 94px;
+    padding-top: 90px;
+    width: calc(100% - 250px);
+    @include breakpoint(max-xl-device) {
+        padding-left: 55px;
+        width: 100%;
+    }
+    @include breakpoint(max-lg-device) {
+        padding-left: 30px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
+.sub_title {
+    padding-bottom: 10px;
+    font-weight: 700;
+    margin-top: -5px;
+    color: $primary;
+    font-size: 20px;
+    display: block;
+}
+.title {
+    margin-bottom: 35px;
+    color: $white;
+    font-size: 60px;
+    line-height: 1;
+    @include breakpoint(max-sm-device) {
+        font-size: 40px;
+    }
+}
+.desc {
+    margin-bottom: 40px;
+    max-width: 480px;
+    color: $white;
+}
+.with {
+    &__sticker {
+        display: flex;
+        flex-direction: column;
+    }
+}

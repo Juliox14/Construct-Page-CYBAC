@@ -1,0 +1,74 @@
+[
+    {
+        "label": "Customers > Detail",
+        "url": "Customers.Detail.html"
+    },
+    {
+        "label": "Customers > List",
+        "url": "Customers.List.html"
+    },
+    {
+        "label": "Dashboard",
+        "url": "Dashboard.html"
+    },
+    {
+        "label": "Discount",
+        "url": "Discount.html"
+    },
+    {
+        "label": "Orders > Detail",
+        "url": "Orders.Detail.html"
+    },
+    {
+        "label": "Orders > List",
+        "url": "Orders.List.html"
+    },
+    {
+        "label": "Products > Detail",
+        "url": "Products.Detail.html"
+    },
+    {
+        "label": "Products > List",
+        "url": "Products.List.html"
+    },
+    {
+        "label": "Settings > General",
+        "url": "Settings.General.html"
+    },
+    {
+        "label": "Settings",
+        "url": "Settings.html"
+    },
+    {
+        "label": "Shipping",
+        "url": "Shipping.html"
+    },
+    {
+        "label": "Storefront > Cart",
+        "url": "Storefront.Cart.html"
+    },
+    {
+        "label": "Storefront > Categories",
+        "url": "Storefront.Categories.html"
+    },
+    {
+        "label": "Storefront > Checkout",
+        "url": "Storefront.Checkout.html"
+    },
+    {
+        "label": "Storefront > Detail",
+        "url": "Storefront.Detail.html"
+    },
+    {
+        "label": "Storefront > Filters",
+        "url": "Storefront.Filters.html"
+    },
+    {
+        "label": "Storefront > Home",
+        "url": "Storefront.Home.html"
+    },
+    {
+        "label": "Storefront > Invoice",
+        "url": "Storefront.Invoice.html"
+    }
+]
