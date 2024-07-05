@@ -1,0 +1,106 @@
+@import '../../styles/abstract/custom-variables';
+@import '../../styles/abstract/custom-mixins';
+
+.area {
+    @include breakpoint(min-xl-device) {
+        padding-bottom: 125px;
+    }
+    @include breakpoint(lg-device) {
+        padding-bottom: 90px;
+    }
+    @include breakpoint(max-md-device) {
+        padding-bottom: 50px;
+    }
+}
+.y {
+    &_axis {
+        &__140 {
+            @include breakpoint(min-xl-device) {
+                padding-top: 140px;
+                padding-bottom: 140px;
+            }
+            @include breakpoint(lg-device) {
+                padding-top: 100px;
+                padding-bottom: 100px;
+            }
+            @include breakpoint(max-md-device) {
+                padding-top: 50px;
+                padding-bottom: 50px;
+            }
+        }
+    }
+}
+.section {
+    &__wrap {
+        .subtitle {
+            text-transform: uppercase;
+            padding-bottom: 5px;
+            font-weight: 700;
+            color: $primary;
+            display: block;
+            font-size: 20px;
+        }
+        .title {
+            max-width: 425px;
+            font-size: 60px;
+            line-height: 1;
+            @include breakpoint(max-sm-device) {
+                font-size: 40px;
+            }
+        }
+    }
+    &__btn {
+        text-decoration: underline;
+        font-size: 25px;
+        line-height: 1;
+        color: inherit;
+    }
+}
+.item {
+    .content {
+        border-radius: 0 25px 0 25px;
+        background-color: #eaf5ff;
+        padding: 30px 45px;
+        position: relative;
+        .desc {
+            font-family: $rajdhani;
+            position: relative;
+            font-weight: 500;
+            color: #2b2d37;
+            line-height: 24px;
+            font-size: 16px;
+        }
+        .quotation {
+            font-size: 40px;
+            position: absolute;
+            line-height: 1;
+            &.direction {
+                &_left {
+                    top: -5px;
+                    left: -30px;
+                }
+                &_right {
+                    top: auto;
+                    bottom: -25px;
+                }
+            }
+        }
+        .user {
+            &_info {
+                display: flex;
+            }
+            &_content {
+                padding-left: 15px;
+            }
+            &_name {
+                font-size: 18px;
+                color: $primary;
+                margin-bottom: 0;
+            }
+            &_occupation {
+                font-family: $rajdhani;
+                font-weight: 500;
+            }
+        }
+    }
+}

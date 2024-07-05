@@ -1,0 +1,30 @@
+// Font Family
+$yantramanav: 'Yantramanav', sans-serif;
+$rajdhani: 'Rajdhani', sans-serif;
+
+// Color
+$primary: #ADA479;
+$secondary: #014655;
+$white: #ffffff;
+
+// Transition
+$baseTransition: all 0.3s ease 0s;
+
+// Bootstrap grid-breakpoints
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1600px,
+);
+
+// Bootstrap container-max-widths
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1170px,
+    xxl: 1200px,
+);

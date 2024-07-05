@@ -1,0 +1,66 @@
+@import '../../styles/abstract/custom-variables';
+@import '../../styles/abstract/custom-mixins';
+@import '../../styles/components/button';
+
+.area {
+    @include breakpoint(min-xl-device) {
+        padding-top: 140px;
+        padding-bottom: 140px;
+    }
+    @include breakpoint(lg-device) {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+    @include breakpoint(max-md-device) {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
+.content {
+    text-align: center;
+}
+.title {
+    text-shadow: 9px 4px 0px #ebc2c2;
+    color: $primary;
+    font-size: 199px;
+    font-weight: 900;
+    letter-spacing: 26px;
+    line-height: 168px;
+    margin-bottom: 5px;
+    @include breakpoint(max-sm-device) {
+        font-size: 110px;
+        line-height: 1;
+    }
+}
+.subtitle {
+    color: #444444;
+    font-weight: 600;
+    font-size: 30px;
+    margin-bottom: 5px;
+    span {
+        font-size: 68px;
+        color: $primary;
+        vertical-align: sub;
+    }
+}
+.desc {
+    color: #3e3e3f;
+    max-width: 590px;
+    line-height: 1.5;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 45px;
+}
+.btn {
+    box-shadow: 0 5px 10px #ebc2c2;
+    width: 200px;
+    height: 80px;
+    line-height: 80px;
+    &:hover {
+        box-shadow: 0 5px 10px $secondary;
+    }
+    &_wrap {
+        display: flex;
+        justify-content: center;
+    }
+}
