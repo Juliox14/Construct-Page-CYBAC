@@ -94,7 +94,7 @@ function Footer({ footerItems, services}) {
                                             (item) => (
                                                 <li key={item.id_enlace}>
                                                     <Link
-                                                        href={`/${item.enlace}`}
+                                                        href={`${item.enlace}`}
                                                     >
                                                         {item.nombre_enlace}
                                                     </Link>
@@ -142,7 +142,7 @@ function Footer({ footerItems, services}) {
                                         const Social = FaIcons[item.icono_red_social];
                                         return (
                                             <li key={item.id_red_social}>
-                                                <Link href={`${item.enlace_red_social}`}>
+                                                <Link href={`${item.enlace_red_social}`} target='_blank'>
                                                     <Social />
                                                 </Link>
                                             </li>
