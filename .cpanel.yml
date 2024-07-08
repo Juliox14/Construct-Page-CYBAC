@@ -1,5 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/ecobrush/public_html/martillo.reichstag.com.mx
-    - /bin/rsync -av /cpanelCodeNext
