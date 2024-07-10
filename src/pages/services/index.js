@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import PropTypes from 'prop-types';
+import PropTypes, { object } from 'prop-types';
 import AboutTwo from '../../components/about/index-2';
 import BannerTwo from '../../components/banner/index-2';
 import BannerFour from '../../components/banner/index-4';
@@ -14,6 +14,8 @@ import {getElement } from '../../lib/items';
 function ServicePage({
     aboutItemsTwo,
     services,
+    servicesList,
+    footerItems,
     // bannerFourItems,
     // bannerSection,
     // footerItems,
@@ -39,9 +41,8 @@ function ServicePage({
             {/* <BannerFour
                 bannerFourItems={bannerFourItems}
                 bannerSection={bannerSection}
-            />
-
-            <Footer footerItems={footerItems} /> */}
+            /> */}
+            <Footer footerItems={footerItems} services={servicesList}/>
         </>
     );
 }
@@ -49,6 +50,8 @@ function ServicePage({
 export async function getStaticProps() {
     const AllServices = await getElement('titulo_servicios');
     const aboutItemsTwo = await getElement('home_services');
+    const servicesList = await getElement('titulo_servicios');
+    const footerItems = await getElement('footer');
     // const bannerTwoItems = getAllItems('banner-2');
     // const brandItems = getAllItems('brand');
     // const testimonialSectionItems = getAllItems('testimonial-section');
@@ -62,6 +65,8 @@ export async function getStaticProps() {
         props: {
             aboutItemsTwo: aboutItemsTwo[0],
             services: AllServices,
+            servicesList,
+            footerItems,
             // bannerTwoItems,
             // brandItems,
             // bannerFourItems,

@@ -29,14 +29,40 @@
     }
 }
 .bg {
-    background-image: url('/images/brand/bg/1-1.png');
+    // background-image: url('/images/brand/bg/1-1.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.title{
+    width: full;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 .item {
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 1.1em;
+        color: #014554;
+    }
+
     @include breakpoint(max-sm-device) {
         display: flex;
         justify-content: center;
     }
+}
+.aux{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.aux2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

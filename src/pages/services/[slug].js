@@ -6,7 +6,7 @@ import ServiceDetail from '../../components/services/service-detail';
 import {getElement, getItemsBy} from '../../lib/items';
 
 function ServiceDetailsPage({
-    sidebarList,
+    servicesList,
     richTexts,
     footerItems,
     servicePrueba,
@@ -29,13 +29,13 @@ function ServiceDetailsPage({
                 desc="Construction of itself, because it is pain some proper style design occur are pleasure"
             />
             <ServiceDetail
-                sidebarList={sidebarList}
+                servicesList={servicesList}
                 service={servicePrueba.servicios}
                 richTexts={richTexts}
                 ourServices={servicePrueba.get_servicio}
             />
             {/* <Newsletter newsletterItems={newsletterItems} /> */}
-            <Footer footerItems={footerItems} services={sidebarList} />
+            <Footer footerItems={footerItems} services={servicesList} />
         </>
     );
 }
@@ -45,12 +45,12 @@ export async function getStaticProps(context) {
     const { slug } = params;
     
     const servicePrueba = await getItemsBy('services', slug);
-    const sidebarList = await getElement('titulo_servicios');
+    const servicesList = await getElement('titulo_servicios');
     const footerItems = await getElement('footer');
 
     return {
         props: {
-            sidebarList,
+            servicesList,
             footerItems,
             servicePrueba,
         },
@@ -68,7 +68,6 @@ export async function getStaticPaths() {
     }
     );
     console.log('paths: ', paths);
-
     return {
         paths,
         fallback: false,
@@ -77,7 +76,7 @@ export async function getStaticPaths() {
 
 ServiceDetailsPage.propTypes = {
     servicePrueba: PropTypes.instanceOf(Object).isRequired,
-    sidebarList: PropTypes.instanceOf(Object).isRequired,
+    servicesList: PropTypes.instanceOf(Object).isRequired,
     footerItems: PropTypes.instanceOf(Object).isRequired,
 };
 

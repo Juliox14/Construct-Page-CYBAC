@@ -6,7 +6,7 @@ import ProjectSlider from '../projects/project-slider';
 import classes from './latest-project.module.scss';
 import SwiperComps, { Slide } from '../swiper';
 
-function LatestProject({ projects, projectSectionItems, settings }) {
+function LatestProject({ projects, settings }) {
     settings = {
         spaceBetween: 0,
         pagination: false,
@@ -30,6 +30,12 @@ function LatestProject({ projects, projectSectionItems, settings }) {
             },
         },
     };
+    //Relleno de arreglo con los proyectos destacados basado en su propiedad isDestacado
+    const proyectos_destacados_array = []
+    console.log(projects)
+    for(let proyectos_destacados of projects){
+        proyectos_destacados.isDestacado && proyectos_destacados_array.push(proyectos_destacados);
+    }
     return (
         <div>
             <div className={classes.bg}>
@@ -46,24 +52,17 @@ function LatestProject({ projects, projectSectionItems, settings }) {
                         <div className={classes.section_area}>
                             <div className={classes.section_with__navigation}>
                                 <div className={classes.section_title__wrap}>
-                                    {projectSectionItems?.map((item) => (
-                                        <div
-                                            key={item.id}
-                                            className={classes.section_title}
-                                        >
-                                            <span>{item?.subTitle}</span>
+                                        <div className={classes.section_title}>
+                                            <span>Proyectos</span>
                                             <h2
                                                 dangerouslySetInnerHTML={{
-                                                    __html: item?.title,
+                                                    __html: 'Nuestros proyectos destacados',
                                                 }}
                                             />
                                         </div>
-                                    ))}
                                 </div>
                                 <div className={classes.section_navigation}>
-                                    <div
-                                        className={`${classes.button_next} project-button-next`}
-                                    >
+                                    <div className={`${classes.button_next} project-button-next`}>
                                         <FaChevronLeft />
                                     </div>
                                     <div
@@ -76,11 +75,8 @@ function LatestProject({ projects, projectSectionItems, settings }) {
                         </div>
                         <div className={classes.slider}>
                             <SwiperComps settings={settings}>
-                                {projects.map((project) => (
-                                    <Slide
-                                        className={classes.item}
-                                        key={project.slug}
-                                    >
+                                {proyectos_destacados_array.map((project) => (
+                                    <Slide className={classes.item} key={project.id_proyecto}>
                                         <ProjectSlider project={project} />
                                     </Slide>
                                 ))}
@@ -95,7 +91,6 @@ function LatestProject({ projects, projectSectionItems, settings }) {
 
 LatestProject.propTypes = {
     projects: PropTypes.instanceOf(Object).isRequired,
-    projectSectionItems: PropTypes.instanceOf(Object).isRequired,
     settings: PropTypes.shape({
         slidesPerView: PropTypes.number,
         spaceBetween: PropTypes.number,
