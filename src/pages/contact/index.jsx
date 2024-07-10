@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Breadcrumb from '../../components/breadcrumb';
 import Contact from '../../components/contact';
 import Footer from '../../components/layout/footer';
-import { getElement } from '../../lib/items-util';
+import { getElement } from '../../lib/items';
 
 function ContactPage({ contactItems, footerItems, services }) {
     return (

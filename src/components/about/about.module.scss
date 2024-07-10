@@ -151,6 +151,28 @@
 .desc {
     font-size: 18px;
     margin-bottom: 35px;
+
+    ul {
+        list-style-type: square;
+        margin-left: 20px;
+        margin-bottom: 25px;
+        margin-top: 25px;
+    }
+
+    li {
+        font-size: 18px;
+        line-height: 1.25;
+        margin-bottom: 10px;
+        max-width: 360px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &::marker {
+            color: $primary;
+        }
+    }
 }
 .list {
     display: flex;

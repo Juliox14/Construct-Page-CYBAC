@@ -5,7 +5,7 @@ import CountUp from 'react-countup';
 import { InView } from 'react-intersection-observer';
 import classes from './counter.module.scss';
 
-function CounterTwo() {
+function CounterTwo({proyectos, clientes}) {
     const [focus, setFocus] = useState(false);
     const visibleChangeHandler = (isVisible) => {
         if (isVisible) {
@@ -18,17 +18,17 @@ function CounterTwo() {
     return (
         <div className={`${classes.area} ${classes.pb__140}`}>
             <Container>
-                <Row className={classes.max_md_g_y__80}>
-                    <Col lg={{ span: 3 }}>
+                <Row className={classes.max_md_g_y__80} style={{justifyContent: "center"}}>
+                    <Col lg={{ span: 3 }} className='mx-auto'>
                         <CountUp
                             start={focus ? 0 : null}
-                            end={985}
-                            duration={3}
+                            end={proyectos}
+                            duration={1}
                         >
                             {({ countUpRef }) => (
                                 <div className={classes.item}>
                                     <h2 className={classes.count_inner__text}>
-                                        985
+                                        {proyectos}
                                     </h2>
                                     <span
                                         className={classes.count}
@@ -48,16 +48,16 @@ function CounterTwo() {
                             )}
                         </CountUp>
                     </Col>
-                    <Col lg={{ span: 3 }}>
+                    <Col lg={{ span: 3 }} className="mx-auto">
                         <CountUp
                             start={focus ? 0 : null}
-                            end={527}
-                            duration={3}
+                            end={clientes}
+                            duration={1}
                         >
                             {({ countUpRef }) => (
                                 <div className={classes.item}>
                                     <h2 className={classes.count_inner__text}>
-                                        527
+                                        {clientes}
                                     </h2>
                                     <span
                                         className={classes.count}
@@ -71,64 +71,6 @@ function CounterTwo() {
                                     >
                                         <span className={classes.count_title}>
                                             Clientes
-                                        </span>
-                                    </InView>
-                                </div>
-                            )}
-                        </CountUp>
-                    </Col>
-                    <Col lg={{ span: 3 }}>
-                        <CountUp
-                            start={focus ? 0 : null}
-                            end={856}
-                            duration={3}
-                        >
-                            {({ countUpRef }) => (
-                                <div className={classes.item}>
-                                    <h2 className={classes.count_inner__text}>
-                                        856
-                                    </h2>
-                                    <span
-                                        className={classes.count}
-                                        ref={countUpRef}
-                                    />
-                                    <InView
-                                        as="div"
-                                        onChange={(inView) =>
-                                            visibleChangeHandler(inView)
-                                        }
-                                    >
-                                        <span className={classes.count_title}>
-                                            Exitos
-                                        </span>
-                                    </InView>
-                                </div>
-                            )}
-                        </CountUp>
-                    </Col>
-                    <Col lg={{ span: 3 }}>
-                        <CountUp
-                            start={focus ? 0 : null}
-                            end={120}
-                            duration={3}
-                        >
-                            {({ countUpRef }) => (
-                                <div className={classes.item}>
-                                    <h2 className={classes.count_inner__text}>
-                                        120
-                                    </h2>
-                                    <span
-                                        className={classes.count}
-                                        ref={countUpRef}
-                                    />
-                                    <InView
-                                        as="div"
-                                        onChange={(inView) =>
-                                            visibleChangeHandler(inView)
-                                        }
-                                    >
-                                        <span className={classes.count_title}>
-                                            Premios
                                         </span>
                                     </InView>
                                 </div>

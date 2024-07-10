@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Breadcrumb from '../../components/breadcrumb';
 import Footer from '../../components/layout/footer';
 import ServiceDetail from '../../components/services/service-detail';
-import {getItems, getElement, getAllItems, getItemsBy} from '../../lib/items-util';
+import {getElement, getItemsBy} from '../../lib/items';
 
 function ServiceDetailsPage({
     sidebarList,
@@ -46,7 +46,6 @@ export async function getStaticProps(context) {
     
     const servicePrueba = await getItemsBy('services', slug);
     const sidebarList = await getElement('titulo_servicios');
-    console.log('sidebarList: ' ,sidebarList);
     const footerItems = await getElement('footer');
 
     return {

@@ -1,4 +1,4 @@
-import { getAllItems } from './items-util';
+import { getAllItems } from './fs';
 import { flatDeep } from '../utils/flatDeep';
 
 export const getBlogTags = () => {

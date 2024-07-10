@@ -5,7 +5,7 @@ import Breadcrumb from '../../components/breadcrumb';
 import Footer from '../../components/layout/footer';
 import Newsletter from '../../components/newsletter/newsletter';
 import ProjectFullwidth from '../../components/projects/fullwidth';
-import { getAllItems, getElement} from '../../lib/items-util';
+import {getElement} from '../../lib/items';
 
 function ProjectFullwidthPage({
     projects,

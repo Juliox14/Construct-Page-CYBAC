@@ -12,27 +12,26 @@
     max-width: 335px;
     margin-bottom: 25px;
 
-    // Estilos para listas dentro de .desc
     ul {
-        list-style-type: square; // Cambia esto si prefieres un tipo de lista diferente
-        margin-left: 20px; // Espaciado desde el borde izquierdo
-        padding-left: 20px; // Espaciado interno
-        margin-bottom: 25px; // Espaciado inferior para separar listas de otros elementos
+        list-style-type: square;
+        margin-left: 20px;
+        padding-left: 20px;
+        margin-bottom: 25px;
     }
 
     li {
-        font-size: 18px; // Asegura que el texto tenga el mismo tamaño que el de .desc
-        line-height: 1.25; // Espaciado entre líneas para mejorar la legibilidad
-        margin-bottom: 10px; // Espaciado entre elementos de la lista
-        max-width: 360px; // Asegura que los elementos de lista tengan un ancho máximo
-        padding-left: 10px; // Espaciado interno para los puntos de lista
+        font-size: 18px;
+        line-height: 1.25;
+        margin-bottom: 10px;
+        max-width: 360px;
+        padding-left: 10px;
 
         &:last-child {
-            margin-bottom: 0; // Elimina el margen inferior del último elemento
+            margin-bottom: 0;
         }
 
         &::marker {
-            color: $primary; // Color de los puntos de lista, usando tu variable de color primaria
+            color: $primary;
         }
     }
 }

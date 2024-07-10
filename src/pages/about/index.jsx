@@ -6,24 +6,30 @@ import BannerThree from '../../components/banner/index-3';
 import CounterTwo from '../../components/counter/index-2';
 import LatestProject from '../../components/home-page/latest-project';
 import Footer from '../../components/layout/footer';
-import Newsletter from '../../components/newsletter/newsletter';
 import Team from '../../components/team';
 import Testimonial from '../../components/testimonial';
-import { getAllItems, getFeaturedItems } from '../../lib/items-util';
+import { getElement } from '../../lib/items';
 import TimeLine from '../../components/timeline/timeline';
 
 function AboutPage({
     aboutItems,
-    bannerThreeItems,
     projects,
     projectSectionItems,
     teamItems,
-    teamSectionItems,
-    testimonialItems,
-    testimonialSectionItems,
-    newsletterItems,
     footerItems,
-}) {
+    services,
+})
+{
+    const bannerThreeItems = {
+        mision: aboutItems.mision,
+        vision: aboutItems.vision,
+        valores: aboutItems.valores
+    };
+
+    const teamSectionItems = {
+        titulo: aboutItems.titulo_equipo,
+        descripcion: aboutItems.descripcion_equipo
+    };
     return (
         <>
             <Head>
@@ -36,53 +42,46 @@ function AboutPage({
                 />
             </Head>
             <Breadcrumb
-                subTitle="Que Hacemos"
-                title="Sobre Nosotros"
-                desc="En Reichstag Edificaciones, Transformamos Visiones Construyendo."
+                subTitle={aboutItems.titulo_breadcrumb}
+                title={aboutItems.subtitulo_breadcrumb}
+                desc={aboutItems.descripcion_breadcrumb}
             />
-            <AboutOne aboutItems={aboutItems} />
+            <AboutOne aboutItem={aboutItems} />
             <BannerThree bannerThreeItems={bannerThreeItems} />
-            <CounterTwo />
-            <TimeLine />
-            <LatestProject
+            <CounterTwo proyectos={aboutItems.proyectos} clientes={aboutItems.clientes} />
+            {/* <TimeLine /> */}
+            {/* <LatestProject
                 projects={projects}
                 projectSectionItems={projectSectionItems}
-            />
-            <Team teamItems={teamItems} teamSectionItems={teamSectionItems} />
+            /> */}
+            <Team teamItems={teamItems} teamSectionItems={teamSectionItems}/>
             {/* <Testimonial
                 testimonialItems={testimonialItems}
                 testimonialSectionItems={testimonialSectionItems}
             /> */}
             {/* <Newsletter newsletterItems={newsletterItems} /> */}
-            <Footer footerItems={footerItems} />
+            <Footer footerItems={footerItems} services={services} />
         </>
     );
 }
 
-export function getStaticProps() {
-    const aboutItems = getAllItems('about');
-    const bannerThreeItems = getAllItems('banner-3');
-    const projectSectionItems = getAllItems('project-section');
-    const projects = getAllItems('projects');
-    const LatestProject = getFeaturedItems(projects);
-    const teamSectionItems = getAllItems('team-section');
-    const teamItems = getAllItems('team');
-    const testimonialSectionItems = getAllItems('testimonial-section');
-    const testimonialItems = getAllItems('testimonial');
-    const newsletterItems = getAllItems('newsletter');
-    const footerItems = getAllItems('footer');
+export async function getStaticProps() {
+    const aboutItems = await getElement('about');
+    const teamItems = await getElement('team');
+    // const projectSectionItems = getAllItems('project-section');
+    // const projects = getAllItems('projects');
+    // const LatestProject = getFeaturedItems(projects);
+    const services = await getElement('titulo_servicios');
+    const footerItems = await getElement('footer');
 
     return {
         props: {
-            aboutItems,
-            bannerThreeItems,
-            projectSectionItems,
-            projects: LatestProject,
-            teamSectionItems,
-            testimonialItems,
-            testimonialSectionItems,
+            aboutItems: aboutItems[0],
+            // projectSectionItems,
+            // projects: LatestProject,
+            // teamSectionItems,
+            services,
             teamItems,
-            newsletterItems,
             footerItems,
         },
     };
@@ -91,13 +90,7 @@ export function getStaticProps() {
 AboutPage.propTypes = {
     aboutItems: PropTypes.instanceOf(Object).isRequired,
     bannerThreeItems: PropTypes.instanceOf(Object).isRequired,
-    projects: PropTypes.instanceOf(Object).isRequired,
-    projectSectionItems: PropTypes.instanceOf(Object).isRequired,
     teamItems: PropTypes.instanceOf(Object).isRequired,
-    newsletterItems: PropTypes.instanceOf(Object).isRequired,
-    teamSectionItems: PropTypes.instanceOf(Object).isRequired,
-    testimonialItems: PropTypes.instanceOf(Object).isRequired,
-    testimonialSectionItems: PropTypes.instanceOf(Object).isRequired,
     footerItems: PropTypes.instanceOf(Object).isRequired,
 };
 

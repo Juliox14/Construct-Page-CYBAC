@@ -6,7 +6,7 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { useRouter } from 'next/router';
 import classes from './header.module.scss';
 import { OffcanvasData } from './offcanvas-data';
-import { getElement} from '../../lib/items-util';
+import { getElement} from '../../lib/items';
 
 function Header() {
     const router = useRouter();

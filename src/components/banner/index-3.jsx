@@ -9,41 +9,66 @@ function BannerThree({ bannerThreeItems }) {
         <div className="banner_area">
             <Container>
                 <Row className="g-30">
-                    {bannerThreeItems?.map((bannerThreeItem) => (
-                        <Col
-                            lg={{ span: 4 }}
-                            md={{ span: 6 }}
-                            key={bannerThreeItem.id}
+                    <Col
+                        lg={{ span: 4 }}
+                        md={{ span: 6 }}
+                    >
+                        <div
+                            className={`${classes.item} ${classes.secondary__bg}`}
                         >
                             <div
-                                className={bannerThreeItem.dynamicClassName
-                                    .split(' ')
-                                    .map((item) => classes[item])
-                                    .join(' ')}
+                                className={classes.content}
+                                data-count='01'
                             >
-                                <div
-                                    className={classes.content}
-                                    data-count={`${bannerThreeItem?.dataCount}`}
-                                >
-                                    <h2 className={classes.title}>
-                                        {bannerThreeItem?.title}
-                                    </h2>
-                                    <p className={classes.desc}>
-                                        {bannerThreeItem?.excerpt}
-                                    </p>
-                                    <Link
-                                        href={`${bannerThreeItem.path}`}
-                                        className={classes.link__btn}
-                                    >
-                                        {bannerThreeItem?.btnText}
-                                        <span className={classes.icon}>
-                                            <IoArrowForwardOutline />
-                                        </span>
-                                    </Link>
-                                </div>
+                                <h2 className={classes.title}>
+                                    Misión
+                                </h2>
+                                <p className={classes.desc}>
+                                    {bannerThreeItems?.mision}
+                                </p>
                             </div>
-                        </Col>
-                    ))}
+                        </div>
+                    </Col>
+                    <Col
+                        lg={{ span: 4 }}
+                        md={{ span: 6 }}
+                    >
+                        <div
+                            className={`${classes.item} ${classes.primary__bg}`}
+                        >
+                            <div
+                                className={classes.content}
+                                data-count='02'
+                            >
+                                <h2 className={classes.title}>
+                                    Visión
+                                </h2>
+                                <p className={classes.desc}>
+                                    {bannerThreeItems?.vision}
+                                </p>
+                            </div>
+                        </div>
+                    </Col>
+                    <Col
+                        lg={{ span: 4 }}
+                        md={{ span: 6 }}
+                    >
+                        <div
+                            className={`${classes.item} ${classes.secondary__bg}`}
+                        >
+                            <div
+                                className={classes.content}
+                                data-count='03'
+                            >
+                                <h2 className={classes.title}>
+                                    Valores
+                                </h2>
+                                <p className={classes.desc}>
+                                    {bannerThreeItems?.valores}
+                                </p>
+                            </div>
+                        </div>
+                    </Col>
                 </Row>
             </Container>
         </div>

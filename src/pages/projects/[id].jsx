@@ -5,7 +5,7 @@ import Breadcrumb from '../../components/breadcrumb';
 import Newsletter from '../../components/newsletter/newsletter';
 import ProjectDetail from '../../components/projects/project-detail';
 import Footer from '../../components/layout/footer';
-import { getItemsBy, getElement } from '../../lib/items-util';
+import { getItemsBy, getElement } from '../../lib/items';
 
 function ProjectDetailPage({
     project,

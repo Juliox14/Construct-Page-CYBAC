@@ -8,7 +8,7 @@ import Breadcrumb from '../../components/breadcrumb';
 import Footer from '../../components/layout/footer';
 import Newsletter from '../../components/newsletter/newsletter';
 import TestimonialTwo from '../../components/testimonial/index-2';
-import { getAllItems } from '../../lib/items-util';
+import { getAllItems } from '../../lib/items';
 import ClientsList from '../../components/clients/clientsList';
 
 function OurClients({

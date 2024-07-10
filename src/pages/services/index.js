@@ -9,7 +9,7 @@ import Newsletter from '../../components/newsletter/newsletter';
 import AllServices from '../../components/services/all-services';
 import Breadcrumb from '../../components/breadcrumb';
 import HomePageServices from '../../components/home-page/homepage-services';
-import { getAllItems, getItemsBy, getElement } from '../../lib/items-util';
+import {getElement } from '../../lib/items';
 
 function ServicePage({
     aboutItemsTwo,
