@@ -6,10 +6,6 @@ import ColorModeContext from '../../../context/contexDarkMode';
 
 const AdminPageMain = () => {
 
-    const theme = useTheme();
-    const colorMode = useContext(ColorModeContext);
-
-
     return (
         <>
             <Box className={classes.reichstag}
