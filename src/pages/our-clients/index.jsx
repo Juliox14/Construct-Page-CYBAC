@@ -1,17 +1,16 @@
 // 'use client'
 
 import Head from 'next/head';
-import PropTypes from 'prop-types';
+import PropTypes, { array } from 'prop-types';
 import BannerTwo from '../../components/banner/index-2';
 import BrandTwo from '../../components/brand/index-2';
 import Breadcrumb from '../../components/breadcrumb';
 import Footer from '../../components/layout/footer';
-import {getElement } from '../../lib/items';
+import {getElement} from '../../lib/items';
 import ClientsList from '../../components/clients/clientsList';
 
 function OurClients({
     dataHomeClients,
-    other_data,
     servicesList,
     footerItems,
     settings
@@ -107,25 +106,23 @@ function OurClients({
 
 export async function getStaticProps() {
     const dataHomeClients = await getElement('home_clients');
-    const [other_data] = dataHomeClients[1];
+    console.log(dataHomeClients)
     const servicesList = await getElement('titulo_servicios');
+    console.log(servicesList)
     const footerItems = await getElement('footer');
+    console.log(footerItems)
     return {
         props: {
+            dataHomeClients,
             servicesList,
             footerItems,
-            dataHomeClients,
-            other_data,
         },
     };
 }
 
 OurClients.propTypes = {
-    brandItems: PropTypes.instanceOf(Object).isRequired,
-    bannerTwoItems: PropTypes.instanceOf(Object).isRequired,
-    testimonialItems: PropTypes.instanceOf(Object).isRequired,
-    testimonialSectionItems: PropTypes.instanceOf(Object).isRequired,
-    newsletterItems: PropTypes.instanceOf(Object).isRequired,
+    dataHomeClients: PropTypes.arrayOf(array).isRequired,
+    servicesList: PropTypes.arrayOf(Object).isRequired,
     footerItems: PropTypes.instanceOf(Object).isRequired,
 };
 

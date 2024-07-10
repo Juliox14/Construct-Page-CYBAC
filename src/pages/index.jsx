@@ -8,7 +8,7 @@ import HomePageServices from '../components/home-page/homepage-services';
 import LatestProject from '../components/home-page/latest-project';
 import Footer from '../components/layout/footer';
 import Newsletter from '../components/newsletter/newsletter';
-import { getAllItems, getElement, getFeaturedItems } from '../lib/items-util';
+import { getAllItems, getElement, getFeaturedItems } from '../lib/items';
 import BannerOne from '../components/banner';
 import Counter from '../components/counter';
 import LatestBlog from '../components/home-page/latest-blog';

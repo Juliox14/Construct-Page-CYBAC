@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import classes from './clientsList.module.scss';
 import axios from 'axios';
 
-function ClientsList({dataClient}) { 
+function ClientsList({dataHomeClients}) { 
     let clientes_municipio=[];
     let clientes_iniciativa_privada=[];
     let clientes_particular=[];
@@ -18,7 +18,6 @@ function ClientsList({dataClient}) {
             clientes_particular.push(cliente);
         }
     }
-    console.log(clientes_municipio);
     return (
         <div className={classes['clients-list']}>
             <div>
