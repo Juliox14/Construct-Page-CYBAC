@@ -2,7 +2,7 @@ import classes from "./header.module.scss";
 import MovilDropDown from "./MovilDropdown";
 import Image from "next/image";
 import { useContext, useState } from 'react';
-import { useTheme } from '@mui/material/styles';
+import { duration, useTheme } from '@mui/material/styles';
 import ColorModeContext from "../../../context/contexDarkMode";
 
 
@@ -61,33 +61,34 @@ export default function NavAdmin() {
                     <div>
                         <div className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxHeader}>
                             <Image src={AdminLogo.src} alt="Logo" width={60} height={60} priority={true}/>
-                            <motion.h3 
-                            variants={{
-                                visible: {
-                                    display: "flex",
-                                    opacity: 1,
-                                },
-                                hidden: {
-                                    display: "none",
-                                    opacity: 0,
-                                }}}
-                                animate={hidden ? "hidden" : "visible"}>
+                            <div style={{position: "relative", height: "30px", width: "100%", overflow: "hidden"}}>
+                                <motion.h3 variants={{
+                                    visible: {
+                                        opacity: 1,
+                                    },
+                                    hidden: {
+                                        opacity: 0,
+                                        transition: { duration: 0.01 }
+                                    }}}
+                                    animate={hidden ? "hidden" : "visible"}>
+                                        
+                                        Gunther Nettel
                                     
-                                    Gunther Nettel
-                                    
-                            </motion.h3>
+                                </motion.h3>
+                            </div>
                         </div>
-                        <motion.div
+                        <motion.div 
                         variants={{
-                                visible: {
-                                    display: "flex",
-                                    opacity: 1,
-                                },
-                                hidden: {
-                                    display: "none",
-                                    opacity: 0,
-                                }}}
-                                animate={hidden ? "hidden" : "visible"}>
+                            visible: {
+                                width: "100%",
+                                opacity: 1,
+                            },
+                            hidden: {
+                                opacity: 0,
+                                transition: { duration: 0.01 }
+                            }}}
+                            animate={hidden ? "hidden" : "visible"}
+                            className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxIcons}>
                             <SearchIcon />
                             <LockIcon />
                             <IconButton onClick={colorMode.toggleColorMode} color="inherit" sx={{padding: 0}}>
@@ -101,8 +102,7 @@ export default function NavAdmin() {
                     variants={{
                         hidden: {
                             overflow: "hidden",
-                            maxHeight: "80%",
-                            gap: "20px",
+                            maxHeight: "60%",
                         }}}
                         animate={hidden ? "hidden" : ""}>
                         <li>
@@ -110,96 +110,119 @@ export default function NavAdmin() {
                             <motion.a href="#"
                             variants={{
                                 visible: {
-                                    display: "block",
                                     opacity: 1,
                                 },
                                 hidden: {
-                                    display: "none",
+                                    width: 0,
                                     opacity: 0,
                                 }}}
-                                animate={hidden ? "hidden" : "visible"}>Inicio</motion.a>
+                                animate={hidden ? "hidden" : "visible"}>
+                                    
+                                    Inicio
+                                
+                                </motion.a>
                         </li>
                         <li>
                             <InfoIcon />
                             <motion.a href="#"
                             variants={{
                                 visible: {
-                                    display: "block",
                                     opacity: 1,
                                 },
                                 hidden: {
-                                    display: "none",
+                                    width: 0,
                                     opacity: 0,
                                 }}}
-                                animate={hidden ? "hidden" : "visible"}>Nosotros</motion.a>
+                                animate={hidden ? "hidden" : "visible"}>
+                                    
+                                Nosotros
+                                
+                            </motion.a>
                         </li>
                         <li>
                             <InventoryIcon />
                             <motion.a href="#"
                             variants={{
                                 visible: {
-                                    display: "block",
                                     opacity: 1,
                                 },
                                 hidden: {
-                                    display: "none",
+                                    width: 0,
                                     opacity: 0,
                                 }}}
-                                animate={hidden ? "hidden" : "visible"}>Servicios</motion.a>
+                                animate={hidden ? "hidden" : "visible"}>
+                                    
+                                Servicios
+                                 
+                            </motion.a>
                         </li>
                         <li>
                             <PrecisionManufacturingIcon />
                             <motion.a href="#"
                             variants={{
                                 visible: {
-                                    display: "block",
                                     opacity: 1,
                                 },
                                 hidden: {
-                                    display: "none",
+                                    width: 0,
                                     opacity: 0,
                                 }}}
-                                animate={hidden ? "hidden" : "visible"}>Proyectos</motion.a>
+                                animate={hidden ? "hidden" : "visible"}>
+                                    
+                                    Proyectos
+                                    
+                            </motion.a>
                         </li>
                         <li>
                             <PeopleIcon />
                             <motion.a href="#"
                             variants={{
                                 visible: {
-                                    display: "block",
                                     opacity: 1,
                                 },
                                 hidden: {
-                                    display: "none",
+                                    width: 0,
                                     opacity: 0,
                                 }}}
-                                animate={hidden ? "hidden" : "visible"}>Clientes</motion.a>
+                                animate={hidden ? "hidden" : "visible"}>
+                                    
+                                    Clientes
+                                
+                                </motion.a>
                         </li>
                         <li>
                             <ContactsIcon />
                             <motion.a href="#"
                             variants={{
                                 visible: {
-                                    display: "block",
                                     opacity: 1,
                                 },
                                 hidden: {
-                                    display: "none",
+                                    width: 0,
                                     opacity: 0,
                                 }}}
-                                animate={hidden ? "hidden" : "visible"}>Contacto</motion.a>
+                                animate={hidden ? "hidden" : "visible"}>
+                                    
+                                    Contacto
+                                    
+                                </motion.a>
                         </li>
                         <li>
                             <ContactsIcon />
                             <motion.a href="#"
                             variants={{
                                 visible: {
-                                    display: "block",
+                                    opacity: 1,
                                 },
                                 hidden: {
-                                    display: "none",
+                                    width: 0,
+                                    opacity: 0,
                                 }}}
-                                animate={hidden ? "hidden" : "visible"}>Footer</motion.a>
+                                animate={hidden ? "hidden" : "visible"}>
+                                    
+                                    Footer
+                                
+                                </motion.a>
                         </li>
                     </motion.ul>
                 </motion.nav>
