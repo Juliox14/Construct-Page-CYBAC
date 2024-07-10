@@ -40,7 +40,7 @@
 
 .desktopHeaderElement{
     display: none;
-    width: 20%;
+    width: 5%;
     height: 100%;
     position: relative;
 
@@ -49,7 +49,7 @@
     }
 
     &_boxContainerOfNavAdmin{
-        width: 20%;
+        width: 5%;
         height: 100vh;
         position: fixed;
         color: white;
@@ -74,6 +74,17 @@
             img{
                 border-radius: 100%;
             }
+            h3{
+                text-align: center;
+                position: absolute;
+                opacity: 0;
+                width: 100%;
+            }
+        }
+
+        &_boxIcons{
+            margin-top: 10px;
+            opacity: 0;
         }
 
         ::-webkit-scrollbar{
@@ -100,11 +111,9 @@
             margin-top: 50px;
             gap: 10px;
             overflow: auto;
-            
 
-            :hover{
+            > :hover{
                 background-color: #025567;
-                cursor: pointer;
             }
 
             li{
@@ -114,12 +123,16 @@
                 font-size: 17px;
                 padding: 15px;
                 border-radius: 15px;
+                overflow: hidden;
+                cursor: pointer;
+
                 a{
                     margin-left: 10px;
                     text-decoration: none;
                     color: white;
-                    cursor: default;
+                    opacity: 0;
                 }
+
             }
         }
     }
