@@ -9,6 +9,8 @@ import { getAllItems, getElement} from '../../lib/items-util';
 
 function ProjectFullwidthPage({
     projects,
+    servicesList,
+    footerItems,
     // footerItems,
 }) {
     return (
@@ -23,18 +25,21 @@ function ProjectFullwidthPage({
                 desc="Conoce todos nuestros proyectos y date una idea de las cosas increíbles que podremos lograr trabajando contigo"
             />
             <ProjectFullwidth projects={projects} />
-            {/* <Footer footerItems={footerItems} /> */}
+            <Footer footerItems={footerItems} services={servicesList} />
         </>
     );
 }
 
 export async function getStaticProps() {
     const proyectos = await getElement('proyectos');
-    // const footerItems = getAllItems('footer');
+    const servicesList = await getElement('titulo_servicios');
+    const footerItems = await getElement('footer');
 
     return {
         props: {
             projects: proyectos,
+            servicesList,
+            footerItems,
             // bannerTwoItems,
             // newsletterItems,
             // footerItems,

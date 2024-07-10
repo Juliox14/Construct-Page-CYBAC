@@ -11,16 +11,17 @@ function ClientsList({dataHomeClients}) {
     let clientes_particular=[];
     const [data_desc] = dataHomeClients[1];
     for(let cliente of dataHomeClients[0]){
-        if(cliente.clasificacion_cliente=='municipios'){
+        if(cliente.clasificacion_cliente==='Municipios' && cliente.ruta_logo_cliente==null){
             clientes_municipio.push(cliente);
         }
-        else if(cliente.clasificacion_cliente=='iniciativa privada'){
+        else if(cliente.clasificacion_cliente==='Iniciativa Privada' && cliente.ruta_logo_cliente==null){
             clientes_iniciativa_privada.push(cliente);
         }
-        else{
+        else if(cliente.ruta_logo_cliente===null){
             clientes_particular.push(cliente);
         }
     }
+    console.log(clientes_municipio);
     return (
         <div className={classes['clients-list']}>
             <div>

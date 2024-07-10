@@ -17,8 +17,9 @@ function Hero({ heroItems, settings }) {
     return (
         <SwiperComps settings={settings} sliderCName="hero-slider">
             {heroItems?.map((heroItem) => (
+                console.log(heroItem),
                 <Slide
-                    className={`animation-style-01 ${heroItem.heroBG
+                    className={`animation-style-01 ${heroItem.bg
                         .split(' ')
                         .map((item) => classes[item])
                         .join(' ')}`}
@@ -40,7 +41,7 @@ function Hero({ heroItems, settings }) {
                             <div
                                 className={`desc-animation ${classes.desc}`}
                                 dangerouslySetInnerHTML={{
-                                    __html: heroItem.desc,
+                                    __html: heroItem.descripcion,
                                 }}
                             />
                             <div
@@ -50,13 +51,13 @@ function Hero({ heroItems, settings }) {
                                     href="/projects/project-fullwidth"
                                     className={`me-20 ${classes.btn} ${classes.btn_secondary} ${classes.btn_hover__white}`}
                                 >
-                                    {heroItem?.btnSecondaryText}
+                                    Saber más
                                 </Link>
                                 <Link
                                     href="/contact"
                                     className={`${classes.btn} ${classes.btn_primary} ${classes.btn_hover__white}`}
                                 >
-                                    {heroItem?.btnPrimaryText}
+                                    Contáctanos
                                 </Link>
                             </div>
                         </div>
