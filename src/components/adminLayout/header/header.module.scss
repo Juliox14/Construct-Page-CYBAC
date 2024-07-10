@@ -1,0 +1,126 @@
+@import '../../../styles/abstract/custom-variables';
+@import '../../../styles/abstract/custom-mixins';
+
+// index:
+// - header
+
+
+.boxHeaderMain{
+    display: block;
+    @include breakpoint(min-lg-device){
+        display: flex;
+    }
+}
+
+// Path: movilDropdown
+
+.movilHeaderElement{
+    height: 10vh;
+
+    @include breakpoint(min-lg-device){
+        display: none;
+    }
+
+    &_boxContainerOfNavAdmin{
+        //md:hidden block h-full
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
+        background-color: $secondary;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+
+        &_iconNav{
+            margin-right: 10px;
+            color: $primary!important;
+        }
+    }
+}
+
+.desktopHeaderElement{
+    display: none;
+    width: 20%;
+    height: 100%;
+    position: relative;
+
+    @include breakpoint(min-lg-device){
+        display: block;
+    }
+
+    &_boxContainerOfNavAdmin{
+        width: 20%;
+        height: 100vh;
+        position: fixed;
+        color: white;
+        text-decoration: none;
+        background-color: $secondary;
+
+        > div{
+            margin-top: 35px;
+
+            > div{
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+            }
+        }
+
+        &_boxHeader{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            img{
+                border-radius: 100%;
+            }
+        }
+
+        ::-webkit-scrollbar{
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track{
+            background-color: #025567;
+            border-radius: 15px;
+        }
+
+        ::-webkit-scrollbar-thumb{
+            background-color: #8a8a8a92;
+            border-radius: 15px;
+        }
+
+        &_boxUl{
+            width: 100%;
+            max-height: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            gap: 10px;
+            overflow: auto;
+            
+
+            :hover{
+                background-color: #025567;
+                cursor: pointer;
+            }
+
+            li{
+                width: 80%;
+                display: flex;
+                align-items: center;
+                font-size: 17px;
+                padding: 15px;
+                border-radius: 15px;
+                a{
+                    margin-left: 10px;
+                    text-decoration: none;
+                    color: white;
+                    cursor: default;
+                }
+            }
+        }
+    }
+}

@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Layout from '../components/layout/layout';
-import Script from 'next/script';
 import "../styles/globals.scss";
 import { ScrollToTop } from '../components/scroll';
 
@@ -12,7 +11,7 @@ function MyApp({ Component, pageProps }) {
     return isTemplatePage ? (
         <>
             <Head>
-            <link
+                {/* <link
                     rel="apple-touch-icon-precomposed"
                     sizes="57x57"
                     href="/img/favicon/apple-touch-icon-57x57.png"
@@ -81,10 +80,10 @@ function MyApp({ Component, pageProps }) {
                     type="image/png"
                     href="/img/favicon/favicon-128.png"
                     sizes="128x128"
-                    />
+                    /> */}
                     {/* Favicon Tags End */}
                     {/* Font Tags Start */}
-                    <link rel="preconnect" href="https://fonts.gstatic.com" />
+                    {/* <link rel="preconnect" href="https://fonts.gstatic.com" />
                     <link
                     href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap"
                     rel="stylesheet"
@@ -92,17 +91,17 @@ function MyApp({ Component, pageProps }) {
                     <link
                     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"
                     rel="stylesheet"
-                    />
-                    <link rel="stylesheet" href="/font/CS-Interface/style.css" />
+                    /> */}
+                    {/* <link rel="stylesheet" href="/font/CS-Interface/style.css" /> */}
                     {/* Font Tags End */}
                     {/* Vendor Styles Start */}
-                    <link rel="stylesheet" href="/css/vendor/bootstrap.min.css" />
-                    <link rel="stylesheet" href="/css/vendor/OverlayScrollbars.min.css" />
+                    {/* <link rel="stylesheet" href="/css/vendor/bootstrap.min.css" />
+                    <link rel="stylesheet" href="/css/vendor/OverlayScrollbars.min.css" /> */}
                     {/* Vendor Styles End */}
                     {/* Template Base Styles Start */}
-                    <link rel="stylesheet" href="/css/styles.css"/>
+                    {/* <link rel="stylesheet" href="/css/styles.css"/> */}
                     {/* Template Base Styles End */}
-                    <link rel="stylesheet" href="/css/main.css"/>
+                    {/* <link rel="stylesheet" href="/css/main.css"/> */}
             </Head>
             <Component {...pageProps} />
         </>
