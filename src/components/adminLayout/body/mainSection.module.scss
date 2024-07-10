@@ -1,0 +1,22 @@
+@import '../../../styles/abstract/custom-variables';
+@import '../../../styles/abstract/custom-mixins';
+
+.boxFather{
+    width: 80%;
+
+    @include breakpoint(md-device){
+        width: 100%;
+    }
+
+    @include breakpoint(lm-device){
+        width: 100%;
+    }
+
+    @include breakpoint(s-device){
+        width: 100%;
+    }
+}
+
+.reichstag{
+    width: 100%;
+}

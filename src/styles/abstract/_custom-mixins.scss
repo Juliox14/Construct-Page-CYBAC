@@ -92,4 +92,9 @@
             @content;
         }
     }
+    @if $point == s-device {
+        @media (min-width: 320px) and (max-width: 575px) {
+            @content;
+        }
+    }
 }
