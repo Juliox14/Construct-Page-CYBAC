@@ -52,7 +52,6 @@ function AboutPage({
             {/* <TimeLine /> */}
             {/* <LatestProject
                 projects={projects}
-                projectSectionItems={projectSectionItems}
             /> */}
             <Team teamItems={teamItems} teamSectionItems={teamSectionItems}/>
             {/* <Testimonial

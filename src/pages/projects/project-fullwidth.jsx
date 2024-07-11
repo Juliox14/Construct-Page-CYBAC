@@ -2,6 +2,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import BannerFive from '../../components/banner/index-5';
 import Breadcrumb from '../../components/breadcrumb';
+import BannerTwo from '../../components/banner/index-2';
 import Footer from '../../components/layout/footer';
 import Newsletter from '../../components/newsletter/newsletter';
 import ProjectFullwidth from '../../components/projects/fullwidth';
@@ -11,7 +12,6 @@ function ProjectFullwidthPage({
     projects,
     servicesList,
     footerItems,
-    // footerItems,
 }) {
     return (
         <>
@@ -25,6 +25,7 @@ function ProjectFullwidthPage({
                 desc="Conoce todos nuestros proyectos y date una idea de las cosas increíbles que podremos lograr trabajando contigo"
             />
             <ProjectFullwidth projects={projects} />
+            <BannerTwo/>
             <Footer footerItems={footerItems} services={servicesList} />
         </>
     );
@@ -42,16 +43,15 @@ export async function getStaticProps() {
             footerItems,
             // bannerTwoItems,
             // newsletterItems,
-            // footerItems,
         },
     };
 }
 
 ProjectFullwidthPage.propTypes = {
     projects: PropTypes.instanceOf(Object).isRequired,
+    footerItems: PropTypes.instanceOf(Object).isRequired,
     // bannerTwoItems: PropTypes.instanceOf(Object).isRequired,
     // newsletterItems: PropTypes.instanceOf(Object).isRequired,
-    // footerItems: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ProjectFullwidthPage;

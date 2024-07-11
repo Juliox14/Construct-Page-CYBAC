@@ -30,55 +30,6 @@ function OurClients({
             clientes_particular.push(cliente);
         }
     }
-    settings = {
-        pagination: false,
-        loop: true,
-        navigation: {
-            nextEl: '.brand-button-next',
-            prevEl: '.brand-button-prev',
-        },
-        breakpoints: {
-            1200: {
-                slidesPerView: 4,
-                grid: {
-                    rows: 2,
-                    fill: 'row',
-                },
-                spaceBetween: 50,
-            },
-            768: {
-                slidesPerView: 4,
-                grid: {
-                    rows: 2,
-                    fill: 'row',
-                },
-                spaceBetween: 100,
-            },
-            576: {
-                slidesPerView: 3,
-                grid: {
-                    rows: 2,
-                    fill: 'row',
-                },
-                spaceBetween: 30,
-            },
-            480: {
-                slidesPerView: 2,
-                grid: {
-                    rows: 2,
-                    fill: 'row',
-                },
-                spaceBetween: 30,
-            },
-            0: {
-                slidesPerView: 1,
-                grid: {
-                    rows: 1,
-                },
-                spaceBetween: 30,
-            },
-        },
-    };
     return (
         <>
             <Head>
@@ -95,10 +46,11 @@ function OurClients({
                 title="Clientes Satifechos"
                 desc="Construction of itself, because it is pain some proper style design occur are pleasure"
             />
+
             <ClientsList dataHomeClients={dataHomeClients}/>
-            {(clientes_municipio.length != 0) && <BrandTwo clientes_municipios={clientes_municipio} settings={settings}/>}
-            {(clientes_iniciativa_privada.length != 0) && <BrandTwo clientes_municipios={clientes_iniciativa_privada} settings={settings}/>}
-            {(clientes_particular.length != 0) && <BrandTwo clientes_municipios={clientes_particular} settings={settings}/>}
+            {(clientes_municipio.length != 0) && <BrandTwo clientes={clientes_municipio} settings={settings}/>}
+            {(clientes_iniciativa_privada.length != 0) && <BrandTwo clientes={clientes_iniciativa_privada} settings={settings}/>}
+            {(clientes_particular.length != 0) && <BrandTwo clientes={clientes_particular} settings={settings}/>}
             <Footer footerItems={footerItems} services={servicesList} />
         </>
     );

@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import PropTypes from 'prop-types';
+import PropTypes, { array } from 'prop-types';
 import AboutOne from '../components/about';
 import BannerTwo from '../components/banner/index-2';
 import BrandOne from '../components/brand';
@@ -18,12 +18,14 @@ import Testimonial from '../components/testimonial';
 export default function HomePage({
     heroItems,
     projects,
+    aboutItems,
+    services,
+    brandItems,
+    servicesList,
+    footerItems,
     // bannerItems,
-    // aboutItems,
     // projects,
     // projectSectionItems,
-    // brandItems,
-    // services,
     // serviceSectionItems,
     // bannerTwoItems,
     // teamItems,
@@ -45,26 +47,30 @@ export default function HomePage({
                 />
             </Head>
             <Hero heroItems={heroItems} />
-            {/* <AboutOne aboutItems={aboutItems} /> */}
+            <AboutOne aboutItem={aboutItems} />
             <LatestProject
                 projects={projects}
             />
-            {/* <HomePageServices
+            <HomePageServices
                 services={services}
-                serviceSectionItems={serviceSectionItems}
             />
-            <BannerTwo bannerTwoItems={bannerTwoItems} />
-            <BrandOne brandItems={brandItems} />
-            <Newsletter newsletterItems={newsletterItems} />
-            <Footer footerItems={footerItems} /> */}
+            <BannerTwo/>
+            <BrandOne clientes={brandItems} />
+            {/* <Newsletter newsletterItems={newsletterItems} /> */}
+            <Footer footerItems={footerItems} services={servicesList}/>
         </>
     );
 }
 
 export async function getStaticProps() {
     const allDataHome = await getElement('home');
+    const [aboutItems] = await getElement('about');
     const heroItems = allDataHome[0];
     const projects = allDataHome[1];
+    const services = await getElement('titulo_servicios');
+    const brandItems = await getElement('brand_one');
+    const servicesList = await getElement('titulo_servicios');
+    const footerItems = await getElement('footer');
     // const bannerItems = getAllItems('banner');
     // const aboutItems = getAllItems('about');
     // const projects = getAllItems('projects');
@@ -89,12 +95,14 @@ export async function getStaticProps() {
             allDataHome,
             heroItems,
             projects,
+            aboutItems,
+            services,
+            brandItems,
+            servicesList,
+            footerItems,
             // bannerItems,
-            // aboutItems,
             // projectSectionItems,
             // projects: LatestProject,
-            // brandItems,
-            // services: HomePageServices,
             // serviceSectionItems,
             // bannerTwoItems,
             // teamItems,
@@ -104,19 +112,21 @@ export async function getStaticProps() {
             // blogSectionItems,
             // blogs: LatestBlog,
             // newsletterItems,
-            // footerItems,
         },
     };
 }
 
 HomePage.propTypes = {
-
+    allDataHome: PropTypes.arrayOf(array).isRequired,
     heroItems: PropTypes.instanceOf(Object).isRequired,
     projects: PropTypes.instanceOf(Object).isRequired,
+    aboutItems: PropTypes.object.instanceOf,
+    services: PropTypes.instanceOf(Object).isRequired,
+    servicesList: PropTypes.arrayOf(Object).isRequired,
+    brandItems: PropTypes.instanceOf(Object).isRequired,
     // bannerItems: PropTypes.instanceOf(Object).isRequired,
     // aboutItems: PropTypes.instanceOf(Object).isRequired,
     // projects: PropTypes.instanceOf(Object).isRequired,
-    // brandItems: PropTypes.instanceOf(Object).isRequired,
     // services: PropTypes.instanceOf(Object).isRequired,
     // serviceSectionItems: PropTypes.instanceOf(Object).isRequired,
     // bannerTwoItems: PropTypes.instanceOf(Object).isRequired,
