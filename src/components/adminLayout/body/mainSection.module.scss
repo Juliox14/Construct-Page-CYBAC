@@ -2,6 +2,11 @@
 @import '../../../styles/abstract/custom-mixins';
 
 .boxFather{
+<<<<<<< HEAD
+=======
+    width: 80%;
+    background-color: #fbfbfb;
+>>>>>>> admon
     @include breakpoint(md-device){
         width: 100%;
     }

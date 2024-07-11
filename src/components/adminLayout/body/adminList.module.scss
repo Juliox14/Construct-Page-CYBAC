@@ -1,0 +1,46 @@
+@import '../../../styles/abstract/custom-variables';
+@import '../../../styles/abstract/custom-mixins';
+
+
+.adminList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+
+    .itemList{
+        display: flex;
+        width: 92%;
+        height: auto;
+        border-radius: 10px;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1em 1em;
+        gap: 1em;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.15);
+        p{
+            font-size: medium;
+            margin: 0;
+        }
+        a{
+            :hover{
+                color: #014655;
+            }
+        }
+    }
+
+    .textos{
+        display: flex;
+        width: 90%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1em;
+        gap: 1em;
+        opacity: 0.4;
+
+        p{
+            font-size: 1em;
+            margin: 0;
+        }
+    }
+}
