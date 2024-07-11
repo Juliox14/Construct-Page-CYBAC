@@ -10,9 +10,11 @@
 }
 .image {
     height: 100%;
+    overflow: hidden;
+    background-color: #014655;
     img {
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
     }
 }
 .content {

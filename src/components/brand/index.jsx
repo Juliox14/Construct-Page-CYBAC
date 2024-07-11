@@ -4,8 +4,9 @@ import dynamic from 'next/dynamic';
 import { Container } from 'react-bootstrap';
 import classes from './brand.module.scss';
 import { Slide } from '../swiper';
+import icon from '../../../public/images/brand/5.png'
 
-function BrandOne({ brandItems, settings }) {
+function BrandTwo({settings, clientes}) {
     const SwiperComps = dynamic(() => import('../swiper'), {
         ssr: false,
     });
@@ -18,12 +19,12 @@ function BrandOne({ brandItems, settings }) {
         },
         breakpoints: {
             1200: {
-                slidesPerView: 5,
+                slidesPerView: 4,
                 grid: {
                     rows: 2,
                     fill: 'row',
                 },
-                spaceBetween: 100,
+                spaceBetween: 50,
             },
             768: {
                 slidesPerView: 4,
@@ -58,19 +59,23 @@ function BrandOne({ brandItems, settings }) {
             },
         },
     };
+    console.log(clientes)
     return (
-        <div
-            className={`${classes.bg} ${classes.space__top} ${classes.space__bottom}`}
-        >
-            <Container>
-                <SwiperComps settings={settings}>
-                    {brandItems?.map((brandItem) => (
-                        <Slide key={brandItem.id}>
+        <div className={`${classes.bg} ${classes.space__yaxis}`}>
+            <Container className={classes.aux}>
+                <SwiperComps settings={settings} className={classes.aux3}>
+                    {clientes.map((brandItem) => (
+                        <Slide key={brandItem.id_cliente} className={classes.aux2}>
                             <Link href="/" className={classes.item}>
-                                <img
-                                    src={brandItem?.image}
-                                    alt={brandItem?.imageAlt}
-                                />
+                                <div>
+                                    <img
+                                        src={icon.src} 
+                                        alt='logo cliente'
+                                        // src={brandItem.ruta_logo_cliente}
+                                        // alt={brandItem.alt}
+                                    />
+                                </div>
+                                <div>{brandItem.nombre_cliente}</div>
                             </Link>
                         </Slide>
                     ))}
@@ -79,9 +84,8 @@ function BrandOne({ brandItems, settings }) {
         </div>
     );
 }
-
-BrandOne.propTypes = {
-    brandItems: PropTypes.instanceOf(Object).isRequired,
+BrandTwo.propTypes = {
+    clientes: PropTypes.instanceOf(Object).isRequired,
     settings: PropTypes.shape({
         slidesPerView: PropTypes.number,
         spaceBetween: PropTypes.number,
@@ -90,4 +94,4 @@ BrandOne.propTypes = {
     }),
 };
 
-export default BrandOne;
+export default BrandTwo;

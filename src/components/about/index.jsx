@@ -9,7 +9,6 @@ import { useState, useEffect } from 'react';
 
 function AboutOne({ aboutItem }) {
     const [sanitizedItem, setSanitizedItem] = useState([]);
-
     useEffect(() => {
         if (typeof window !== 'undefined') {
             // Sanitizar el HTML solo en el cliente
@@ -22,6 +21,7 @@ function AboutOne({ aboutItem }) {
     }, [aboutItem]);
     return (
         <div className={classes.area}>
+            {console.log(aboutItem.id_nosotros)}
             <Container key={aboutItem.id_nosotros}>
                 <div className={classes.section}>
                     <div className={classes.section__wrap}>
@@ -88,7 +88,7 @@ function AboutOne({ aboutItem }) {
 }
 
 AboutOne.propTypes = {
-    aboutItems: PropTypes.instanceOf(Object).isRequired,
+    aboutItem: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default AboutOne;
