@@ -40,21 +40,38 @@
 
 .desktopHeaderElement{
     display: none;
-    width: 5%;
-    height: 100%;
+    width: 4.5em;
+    height: 100vh;
     position: relative;
+    background-color: $secondary;
 
-    @include breakpoint(min-lg-device){
+    @include breakpoint(lg-device){
         display: block;
     }
 
+    @include breakpoint(xl-device){
+        display: block;
+    }
+
+    @include breakpoint(xxl-device){
+        display: block;
+    }
+
+    @include breakpoint(2xxl-device){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+
+    
+
     &_boxContainerOfNavAdmin{
-        width: 5%;
-        height: 100vh;
+        width: 4.5em;
+        height: auto;
         position: fixed;
         color: white;
         text-decoration: none;
-        background-color: $secondary;
 
         > div{
             margin-top: 35px;
@@ -70,6 +87,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-sizing: content-box;
 
             img{
                 border-radius: 100%;

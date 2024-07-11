@@ -66,6 +66,12 @@
         }
     }
 
+    @if $point == 2xxl-device {
+        @media (min-width: 1600px) and (max-width: 2570px) {
+            @content;
+        }
+    }
+
     //  Single Device
     @if $point == xxl-device {
         @media (min-width: 1400px) and (max-width: 1599px) {

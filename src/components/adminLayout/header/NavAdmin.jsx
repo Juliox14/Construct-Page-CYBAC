@@ -1,8 +1,8 @@
 import classes from "./header.module.scss";
 import MovilDropDown from "./MovilDropdown";
 import Image from "next/image";
-import { useContext, useState } from 'react';
-import { duration, useTheme } from '@mui/material/styles';
+import { useContext, useEffect, useState } from 'react';
+import { useTheme } from '@mui/material/styles';
 import ColorModeContext from "../../../context/contexDarkMode";
 
 
@@ -17,6 +17,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import IconButton from '@mui/material/IconButton';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
@@ -30,6 +31,12 @@ export default function NavAdmin() {
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
     const [hidden, setHidden] = useState(true);
+    const [lock, setLock] = useState(false);
+
+    const handleLockHeader = () => {
+        if(lock) return
+        else setHidden(true)
+    }
     
 
     return (
@@ -48,7 +55,7 @@ export default function NavAdmin() {
             }}}
             animate={hidden ? "" : "visible"}
             onMouseOver={() => setHidden(false)}
-            onMouseOut={() => setHidden(true)}>
+            onMouseOut={() => handleLockHeader()}>
                 <motion.nav className={classes.desktopHeaderElement_boxContainerOfNavAdmin}
                 variants={{
                     visible: {
@@ -90,7 +97,9 @@ export default function NavAdmin() {
                             animate={hidden ? "hidden" : "visible"}
                             className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxIcons}>
                             <SearchIcon />
-                            <LockIcon />
+                            <IconButton onClick={() => setLock((prev) => (!prev))} color="inherit" sx={{padding: 0}}>
+                                {lock ? <LockIcon/> : <LockOpenIcon />}
+                            </IconButton>
                             <IconButton onClick={colorMode.toggleColorMode} color="inherit" sx={{padding: 0}}>
                                 {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
                             </IconButton>
