@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useContext, useState } from 'react';
 import { duration, useTheme } from '@mui/material/styles';
 import ColorModeContext from "../../../context/contexDarkMode";
-
+import Notifications from "./notifications";
 
 //Importaciones de la libreria de frameMotion
 import { motion } from "framer-motion";
@@ -24,14 +24,14 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import PeopleIcon from '@mui/icons-material/People';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import { Badge } from "@mui/material";
 
 export default function NavAdmin() {
 
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
     const [hidden, setHidden] = useState(true);
-    
-
+    const email = process.env.EMAIL_USER;
     return (
         <>
             <header className={classes.movilHeaderElement}>
@@ -94,7 +94,7 @@ export default function NavAdmin() {
                             <IconButton onClick={colorMode.toggleColorMode} color="inherit" sx={{padding: 0}}>
                                 {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
                             </IconButton>
-                            <NotificationsIcon />
+                            <Notifications email={'integraciones@reichstag.com.mx'}/>
                         </motion.div>
                     </div>
 
