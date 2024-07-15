@@ -113,7 +113,7 @@ export default function NavAdmin() {
                                 <IconButton onClick={colorMode.toggleColorMode} color="inherit" sx={{padding: 0}}>
                                     {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
                                 </IconButton>
-                                <NotificationsIcon />
+                                <Notifications email={'integraciones@reichstag.com.mx'}/>
                             </motion.div>
                         </div>
 
