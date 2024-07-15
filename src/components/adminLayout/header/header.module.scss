@@ -7,6 +7,7 @@
 
 .boxHeaderMain{
     display: block;
+    height: 100%;
     @include breakpoint(min-lg-device){
         display: flex;
     }
@@ -38,12 +39,10 @@
     }
 }
 
-.desktopHeaderElement{
+.desktopFalseBoxHeader{
     display: none;
     width: 4.5em;
-    height: 100vh;
     position: relative;
-    background-color: $secondary;
 
     @include breakpoint(lg-device){
         display: block;
@@ -62,13 +61,18 @@
         flex-direction: column;
         justify-content: center;
     }
+}
 
-
-    
+.desktopHeaderElement{
+    width: 4.5em;
+    height: 100vh;
+    position: fixed;
+    background-color: $secondary;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;    
 
     &_boxContainerOfNavAdmin{
         width: 4.5em;
-        height: auto;
         position: fixed;
         color: white;
         text-decoration: none;

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 import classes from './footer.module.scss';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function Footer({ footerItems, services}) {
     const [showAllServices, setShowAllServices] = useState(false);
@@ -14,12 +15,13 @@ function Footer({ footerItems, services}) {
         setShowAllServices(!showAllServices);
     };
 
-    const visibleServices = showAllServices ? services : services.slice(0, 5);
+    const visibleServices = services.slice(0, 5);
+    const hiddenServices = services.slice(5);
     return (
         <footer>
             <Fragment key={footerItems?.footer.id_footer}>
                 <div className={`${classes.bg}`}>
-                    <Container>
+                    <Container style={{height: "380px"}}>
                         <Row>
                             <Col lg={{ span: 3 }}>
                                 <div className={classes.widget__item}>
@@ -70,6 +72,25 @@ function Footer({ footerItems, services}) {
                                             )
                                         )}
                                     </ul>
+
+                                    <motion.ul className={classes.widget__list} style={{ marginTop: "15px", overflow: "hidden"}}
+                                    initial={{ height: "0px", display: "block"}}
+                                    variants={{ visible: { height: "auto"}, 
+                                                hidden: { height: "0px"}}}
+                                    animate={ showAllServices ? "visible" : "hidden" }>
+                                        {hiddenServices?.map(
+                                            (item) => (
+                                                    <li
+                                                        key="view-all">
+                                                            <Link
+                                                            href={`/services/${item.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}>
+                                                                {item.titulo}
+                                                            </Link>
+                                                    </li>
+                                            )
+                                        )}
+                                    </motion.ul>
+
                                     {services.length > 5 && (
                                         <span
                                             className={classes.viewMore}

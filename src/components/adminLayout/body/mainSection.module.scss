@@ -3,7 +3,6 @@
 
 .boxFather{
     width: 80%;
-    background-color: #fbfbfb;
     flex: 1;
     @include breakpoint(md-device){
         width: 100%;
