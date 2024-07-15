@@ -1,39 +1,48 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { InputBase, styled } from '@mui/material';
+import { useState } from 'react';
+import { Box, Autocomplete, TextField, styled } from '@mui/material';
 
 export default function SearchBar() {
-    const Search = styled('div')(({ theme }) => ({
-        backgroundColor: "white",
-        padding: "5px 10px",
-        borderRadius: '10px',
-        width: "80%", // Ancho para dispositivos pequeños
-        margin: "2em auto 1.5em auto", // Centrado para dispositivos pequeños
-        display: "flex",
-        alignItems: "center",
-        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.1)",
-        [theme.breakpoints.up('sm')]: {
-            width: "60%",
-            marginTop: "3em",
-        },
-        [theme.breakpoints.up('md')]: {
-            width: "40%",
-            marginTop: "4em",
-            marginLeft: "4em",
-            marginBottom: "1.5em",
-        },
-        [theme.breakpoints.up('lg')]: {
-            width: "20%",
-            marginTop: "5em",
-            marginLeft: "4em",
-            marginBottom: "1.5em",
-        },
-    }));
+
+    const defaultProps = {
+        options: top100Films,
+        getOptionLabel: (option) => option.title,
+      };
+      
+      const [value, setValue] = useState(null);
+
     return (
-        <div>
-            <Search>
-                <SearchIcon style={{ marginRight: '10px', color: 'grey' }} />
-                <InputBase placeholder='Buscar...' type='search' />
-            </Search>
-        </div>
+        <Box
+        sx={{
+            bgcolor: 'background.default',
+            color: 'text.primary',
+            height: '200px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+        }}>
+            <Box sx={{
+            bgcolor: 'background.default',
+            color: 'text.primary',
+            display: 'flex',
+            alignItems: 'center',
+        }}>
+                <SearchIcon style={{ marginRight: '10px', marginTop: "15px", color: 'grey' }} />
+                    <Autocomplete
+                        {...defaultProps}
+                        id="controlled-demo"
+                        sx={{
+                            width: "300px",
+                        }}
+                        value={value}
+                        onChange={(event, newValue) => {
+                        setValue(newValue);
+                        }}
+                        renderInput={(params) => (
+                        <TextField {...params} label="Buscar" variant="standard" />
+                        )}
+                    />
+            </Box>
+        </Box>
     );
 }
