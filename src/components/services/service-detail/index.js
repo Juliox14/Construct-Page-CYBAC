@@ -7,7 +7,6 @@ import ServiceContent from './service-content';
 function ServiceDetail({
     service,
     sidebarList,
-    richTexts,
     ourServices,
 }) {
     return (
@@ -16,7 +15,6 @@ function ServiceDetail({
                 <Row className="g-30">
                     <ServiceContent
                         service={service}
-                        // richTexts={richTexts}
                         ourServices={ourServices}
                     />
                     <ServiceSidebar
@@ -31,7 +29,6 @@ function ServiceDetail({
 ServiceDetail.propTypes = {
     service: PropTypes.instanceOf(Object).isRequired,
     sidebarList: PropTypes.instanceOf(Object).isRequired,
-    richTexts: PropTypes.instanceOf(Object).isRequired,
     ourServices: PropTypes.instanceOf(Object).isRequired,
 };
 

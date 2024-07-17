@@ -21,7 +21,7 @@ export default async function emailHandler(req, res) {
             await transporter.sendMail({
                 ...mailOptions,
                 subject: `Nuevo mensaje desde formulario web - ${asunto}`,
-                text: mensaje,
+                text: `Nombre: ${nombre} - Email: ${email} - Mensaje: ${mensaje}`,
                 html: htmlContent
             })
             return res.status(200).json({ message: 'Email sent successfully' })
