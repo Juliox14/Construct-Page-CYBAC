@@ -9,14 +9,14 @@ function ServiceDetailsPage({
     servicesList,
     richTexts,
     footerItems,
-    servicePrueba,
+    services,
 })
 {;
     return (
         <>
             <Head>
                 <title>
-                    {servicePrueba.servicios.titulo} - Reichstag, Edificaciones S.A. de C.V.
+                    {services.servicios.titulo} - Reichstag, Edificaciones S.A. de C.V.
                 </title>
                 <meta
                     name="description"
@@ -25,16 +25,15 @@ function ServiceDetailsPage({
             </Head>
             <Breadcrumb
                 subTitle="Servicio Unitario"
-                title={servicePrueba.servicios.titulo}
+                title={services.servicios.titulo}
                 desc="Construction of itself, because it is pain some proper style design occur are pleasure"
             />
             <ServiceDetail
-                servicesList={servicesList}
+                sidebarList={servicesList}
                 service={servicePrueba.servicios}
                 richTexts={richTexts}
-                ourServices={servicePrueba.get_servicio}
+                ourServices={services.get_servicio}
             />
-            {/* <Newsletter newsletterItems={newsletterItems} /> */}
             <Footer footerItems={footerItems} services={servicesList} />
         </>
     );
@@ -44,7 +43,7 @@ export async function getStaticProps(context) {
     const { params } = context;
     const { slug } = params;
     
-    const servicePrueba = await getItemsBy('services', slug);
+    const services = await getItemsBy('services', slug);
     const servicesList = await getElement('titulo_servicios');
     const footerItems = await getElement('footer');
 
@@ -67,7 +66,6 @@ export async function getStaticPaths() {
         };
     }
     );
-    console.log('paths: ', paths);
     return {
         paths,
         fallback: false,
