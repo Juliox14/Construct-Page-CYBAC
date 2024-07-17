@@ -23,7 +23,18 @@ const AdminLayout = ({ children }) => {
         () =>
         createTheme({
             palette: {
-            mode,
+              mode,
+              ...(mode === 'dark' && {
+                  background: {
+                    default: "#1c1c1c",
+                    paper: "#2F2F2F",
+                  },
+                }),
+            },
+            transitions: {
+              duration: {
+                standard: 300,
+              },
             },
         }),
         [mode],

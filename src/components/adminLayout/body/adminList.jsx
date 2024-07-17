@@ -1,12 +1,16 @@
-import { Box, CircularProgress } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import classes from './adminList.module.scss';
 import Link from 'next/link';
+
+// Elementos de MUI material
+import { Box, CircularProgress, useTheme } from '@mui/material';
+
 
 export default function AdminList({nombre_elemento, descripcion, link, idFrame, position}) {
 
     const [loading, setLoading] = useState(true);
     const iframe = useRef(null);
+    const theme = useTheme();
 
     useEffect(() => {
         iframe.current.onload = () => {
@@ -16,16 +20,18 @@ export default function AdminList({nombre_elemento, descripcion, link, idFrame, 
 
     return (
         <Box className={classes.boxFatherItemList} sx={{
-            bgcolor: 'white',
-            color: 'text.primary',
+            bgcolor: theme.palette.mode === 'dark' ? '#2f2f2f6d' : 'white',
+            boxShadow: theme.palette.mode === 'dark' ? "" : "0px 0px 10px 0px rgba(0,0,0,0.1)",
+            transition: `background-color ${theme.transitions.duration.standard}ms`
         }}>
             <Link href={link}>
                 <Box className={classes.itemList} sx={{
-                    bgcolor: 'white',
-                    color: 'text.primary',
+                    color: theme.palette.mode === 'dark' ? "white" : "#014655",
+                    transition: `background-color 1000ms`
                 }}
                 >
                     <div style={{
+                        backgroundColor: theme.palette.mode === 'dark' ? "#c8c8c8" : "white",
                         maxWidth: "420px",
                         marginTop: "20px",
                         border: "1px solid rgba(0, 0, 0, 0.06)",

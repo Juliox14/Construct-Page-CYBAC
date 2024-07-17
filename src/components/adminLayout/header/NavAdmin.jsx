@@ -60,8 +60,15 @@ export default function NavAdmin() {
                     variants={{
                     visible: {
                         width: "20%",
-                    }}}
-                    animate={hidden ? "" : "visible"}
+                    },
+                    changeColor: {
+                        backgroundColor: "#171717",
+                        transition: { duration: 0.3 },
+                    },}}
+                    animate={[
+                        hidden ? "" : "visible",
+                        theme.palette.mode === "dark" ? "changeColor" : "",
+                    ]}
                     onMouseOver={() => setHidden(false)}
                     onMouseOut={() => handleLockHeader()}></motion.header>
                     

@@ -1,11 +1,12 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useRef, useState } from 'react';
-import { Box, Autocomplete, TextField, IconButton, styled, InputAdornment } from '@mui/material';
+import { Box, Autocomplete, TextField, IconButton, useTheme } from '@mui/material';
 
 export default function SearchBar({top100Films, callBack}) {
 
     const [value, setValue] = useState(null);
     const searchRef = useRef(null);
+    const theme = useTheme();
 
     const defaultProps = {
         options: top100Films,
@@ -31,12 +32,14 @@ export default function SearchBar({top100Films, callBack}) {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            transition: `background-color ${theme.transitions.duration.standard}ms`
         }}>
             <Box sx={{
             bgcolor: 'background.default',
             color: 'text.primary',
             display: 'flex',
             alignItems: 'center',
+            transition: `background-color ${theme.transitions.duration.standard}ms`
         }}>
                 <IconButton onClick={handleFocusSearch} sx={{ marginTop: "15px" }}>
                     <SearchIcon sx={{ color: 'grey' }}/>
