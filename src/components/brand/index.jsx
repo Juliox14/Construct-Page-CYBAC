@@ -59,7 +59,6 @@ function BrandTwo({settings, clientes}) {
             },
         },
     };
-    console.log(clientes)
     return (
         <div className={`${classes.bg} ${classes.space__yaxis}`}>
             <Container className={classes.aux}>

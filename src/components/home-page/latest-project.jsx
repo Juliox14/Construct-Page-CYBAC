@@ -31,8 +31,7 @@ function LatestProject({ projects, settings }) {
         },
     };
     //Relleno de arreglo con los proyectos destacados basado en su propiedad isDestacado
-    const proyectos_destacados_array = []
-    console.log(projects)
+    const proyectos_destacados_array = [];
     for(let proyectos_destacados of projects){
         proyectos_destacados.isDestacado && proyectos_destacados_array.push(proyectos_destacados);
     }

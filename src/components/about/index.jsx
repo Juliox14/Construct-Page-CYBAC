@@ -21,7 +21,6 @@ function AboutOne({ aboutItem }) {
     }, [aboutItem]);
     return (
         <div className={classes.area}>
-            {console.log(aboutItem.id_nosotros)}
             <Container key={aboutItem.id_nosotros}>
                 <div className={classes.section}>
                     <div className={classes.section__wrap}>

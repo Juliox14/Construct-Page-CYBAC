@@ -17,7 +17,6 @@ function Hero({ heroItems, settings }) {
     return (
         <SwiperComps settings={settings} sliderCName="hero-slider">
             {heroItems?.map((heroItem) => (
-                console.log(heroItem),
                 <Slide
                     className={`animation-style-01 ${heroItem.bg
                         .split(' ')

@@ -1,48 +1,78 @@
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
+import { useEffect, useRef, useState } from 'react';
 import classes from './adminList.module.scss';
-import Image from 'next/image';
-import EditIcon from '@mui/icons-material/Edit';
+import Link from 'next/link';
 
-export default function AdminList({nombre_elemento, descripcion, link}) {
+export default function AdminList({nombre_elemento, descripcion, link, idFrame, position}) {
+
+    const [loading, setLoading] = useState(true);
+    const iframe = useRef(null);
+
+    useEffect(() => {
+        iframe.current.onload = () => {
+            setLoading(false);
+        }
+    }, []);
 
     return (
-        <Box className={classes.boxFatherItemList}>
-            <Box className={classes.itemList} sx={{
-                bgcolor: 'white',
-                color: 'text.primary',
-            }}
-            >
-                <div style={{
-                    maxWidth: "360px",
-                    borderRadius: "10px",
-                    overflow: "hidden",
-                }}>
+        <Box className={classes.boxFatherItemList} sx={{
+            bgcolor: 'white',
+            color: 'text.primary',
+        }}>
+            <Link href={link}>
+                <Box className={classes.itemList} sx={{
+                    bgcolor: 'white',
+                    color: 'text.primary',
+                }}
+                >
                     <div style={{
-                        width: "600px",
-                        position: "relative",
-                        height: "340px",
+                        maxWidth: "420px",
+                        marginTop: "20px",
+                        border: "1px solid rgba(0, 0, 0, 0.06)",
+                        borderRadius: "15px",
+                        borderRadius: "10px",
                         overflow: "hidden",
-                        pointerEvents: "none",
                     }}>
-                        <iframe 
-                        src={"https://www.reichstag.com.mx/"} 
-                        title={"Reichstag"} 
-                        style={{ 
-                            position: "absolute",
-                            width: "100%",
-                            height: "1000vh",
-                            top: "-10.5vh",
-                            transform: 'scale(0.6)',
-                            transformOrigin: '0 0',
-                            borderRadius: "15px",
-                            sandbox:"allow-same-origin allow-scripts"
-                        }} />
+                        <div style={{
+                            width: "600px",
+                            position: "relative",
+                            height: "340px",
+                            overflow: "hidden",
+                            pointerEvents: "none",
+                        }}>
+                            {loading && (
+                                    <Box sx={{
+                                        position: "absolute",
+                                        top: "50%",
+                                        left: "35%",
+                                        transform: "translate(-50%, -50%)",
+                                    }}>
+                                        <CircularProgress />
+                                    </Box>
+                                )}
+                            <iframe 
+                            id={idFrame}
+                            ref={iframe}
+                            src={"http://localhost:3000/"} 
+                            title={"Reichstag"} 
+                            style={{ 
+                                position: "absolute",
+                                width: "100%",
+                                height: "1000vh",
+                                top: `${position}`,
+                                transform: 'scale(0.7)',
+                                transformOrigin: '0 0',
+                                borderRadius: "15px",
+                                sandbox:"allow-same-origin allow-scripts",
+                                
+                            }} />
+                        </div>
                     </div>
-                </div>
-                <p>{nombre_elemento}</p>
-                <p>{descripcion}</p>
-                <p href={link}>Haga click para editar</p>
-            </Box>
+                    <p>{nombre_elemento}</p>
+                    <p>{descripcion}</p>
+                    <p href={link}>Haga click para editar</p>
+                </Box>
+            </Link>
         </Box>
     )
 }

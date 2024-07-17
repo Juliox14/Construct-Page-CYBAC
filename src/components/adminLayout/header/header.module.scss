@@ -23,7 +23,6 @@
     }
 
     &_boxContainerOfNavAdmin{
-        //md:hidden block h-full
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -68,8 +67,6 @@
     height: 100vh;
     position: fixed;
     background-color: $secondary;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;    
 
     &_boxContainerOfNavAdmin{
         width: 4.5em;
@@ -93,9 +90,6 @@
             align-items: center;
             box-sizing: content-box;
 
-            img{
-                border-radius: 100%;
-            }
             h3{
                 text-align: center;
                 position: absolute;
