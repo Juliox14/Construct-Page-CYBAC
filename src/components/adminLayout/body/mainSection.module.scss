@@ -4,6 +4,7 @@
 .boxFather{
     width: 80%;
     flex: 1;
+    font-family: $rajdhani;
     @include breakpoint(md-device){
         width: 100%;
     }

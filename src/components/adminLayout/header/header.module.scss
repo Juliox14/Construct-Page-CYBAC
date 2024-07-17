@@ -42,6 +42,7 @@
     display: none;
     width: 4.5em;
     position: relative;
+    font-family: $rajdhani;
 
     @include breakpoint(lg-device){
         display: block;
