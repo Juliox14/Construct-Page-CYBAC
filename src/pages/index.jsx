@@ -72,7 +72,7 @@ HomePage.propTypes = {
     allDataHome: PropTypes.arrayOf(array).isRequired,
     heroItems: PropTypes.instanceOf(Object).isRequired,
     projects: PropTypes.instanceOf(Object).isRequired,
-    aboutItems: PropTypes.object.instanceOf,
+    aboutItems: PropTypes.instanceOf(Object).isRequired,
     services: PropTypes.instanceOf(Object).isRequired,
     servicesList: PropTypes.arrayOf(Object).isRequired,
     brandItems: PropTypes.instanceOf(Object).isRequired,

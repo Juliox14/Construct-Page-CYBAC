@@ -4,17 +4,12 @@ import AboutOne from '../../components/about';
 import Breadcrumb from '../../components/breadcrumb';
 import BannerThree from '../../components/banner/index-3';
 import CounterTwo from '../../components/counter/index-2';
-import LatestProject from '../../components/home-page/latest-project';
 import Footer from '../../components/layout/footer';
 import Team from '../../components/team';
-import Testimonial from '../../components/testimonial';
 import { getElement } from '../../lib/items';
-import TimeLine from '../../components/timeline/timeline';
 
 function AboutPage({
     aboutItems,
-    projects,
-    projectSectionItems,
     teamItems,
     footerItems,
     services,
@@ -49,16 +44,7 @@ function AboutPage({
             <AboutOne aboutItem={aboutItems} />
             <BannerThree bannerThreeItems={bannerThreeItems} />
             <CounterTwo proyectos={aboutItems.proyectos} clientes={aboutItems.clientes} />
-            {/* <TimeLine /> */}
-            {/* <LatestProject
-                projects={projects}
-            /> */}
             <Team teamItems={teamItems} teamSectionItems={teamSectionItems}/>
-            {/* <Testimonial
-                testimonialItems={testimonialItems}
-                testimonialSectionItems={testimonialSectionItems}
-            /> */}
-            {/* <Newsletter newsletterItems={newsletterItems} /> */}
             <Footer footerItems={footerItems} services={services} />
         </>
     );
@@ -67,18 +53,12 @@ function AboutPage({
 export async function getStaticProps() {
     const aboutItems = await getElement('about');
     const teamItems = await getElement('team');
-    // const projectSectionItems = getAllItems('project-section');
-    // const projects = getAllItems('projects');
-    // const LatestProject = getFeaturedItems(projects);
     const services = await getElement('titulo_servicios');
     const footerItems = await getElement('footer');
 
     return {
         props: {
             aboutItems: aboutItems[0],
-            // projectSectionItems,
-            // projects: LatestProject,
-            // teamSectionItems,
             services,
             teamItems,
             footerItems,
@@ -88,7 +68,6 @@ export async function getStaticProps() {
 
 AboutPage.propTypes = {
     aboutItems: PropTypes.instanceOf(Object).isRequired,
-    bannerThreeItems: PropTypes.instanceOf(Object).isRequired,
     teamItems: PropTypes.instanceOf(Object).isRequired,
     footerItems: PropTypes.instanceOf(Object).isRequired,
 };

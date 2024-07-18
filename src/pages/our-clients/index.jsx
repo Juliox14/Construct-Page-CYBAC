@@ -58,11 +58,8 @@ function OurClients({
 
 export async function getStaticProps() {
     const dataHomeClients = await getElement('home_clients');
-    console.log(dataHomeClients)
     const servicesList = await getElement('titulo_servicios');
-    console.log(servicesList)
     const footerItems = await getElement('footer');
-    console.log(footerItems)
     return {
         props: {
             dataHomeClients,

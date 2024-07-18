@@ -30,7 +30,7 @@ function ServiceDetailsPage({
             />
             <ServiceDetail
                 sidebarList={servicesList}
-                service={servicePrueba.servicios}
+                service={services.servicios}
                 richTexts={richTexts}
                 ourServices={services.get_servicio}
             />
@@ -51,7 +51,7 @@ export async function getStaticProps(context) {
         props: {
             servicesList,
             footerItems,
-            servicePrueba,
+            services,
         },
     };
 }
@@ -73,7 +73,7 @@ export async function getStaticPaths() {
 }
 
 ServiceDetailsPage.propTypes = {
-    servicePrueba: PropTypes.instanceOf(Object).isRequired,
+    services: PropTypes.instanceOf(Object).isRequired,
     servicesList: PropTypes.instanceOf(Object).isRequired,
     footerItems: PropTypes.instanceOf(Object).isRequired,
 };

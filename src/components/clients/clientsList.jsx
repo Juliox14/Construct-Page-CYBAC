@@ -65,7 +65,7 @@ function ClientsList({dataHomeClients}) {
 }
 
 ClientsList.propTypes = {
-    dataClient: PropTypes.instanceOf(Object).isRequired
+    dataHomeClients: PropTypes.instanceOf(Object).isRequired
 };
 
 export default ClientsList;
