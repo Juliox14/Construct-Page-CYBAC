@@ -7,13 +7,7 @@ import Hero from '../components/home-page/hero';
 import HomePageServices from '../components/home-page/homepage-services';
 import LatestProject from '../components/home-page/latest-project';
 import Footer from '../components/layout/footer';
-import Newsletter from '../components/newsletter/newsletter';
-import { getAllItems, getElement, getFeaturedItems } from '../lib/items';
-import BannerOne from '../components/banner';
-import Counter from '../components/counter';
-import LatestBlog from '../components/home-page/latest-blog';
-import Team from '../components/team';
-import Testimonial from '../components/testimonial';
+import {getElement} from '../lib/items';
 
 export default function HomePage({
     heroItems,
@@ -23,19 +17,6 @@ export default function HomePage({
     brandItems,
     servicesList,
     footerItems,
-    // bannerItems,
-    // projects,
-    // projectSectionItems,
-    // serviceSectionItems,
-    // bannerTwoItems,
-    // teamItems,
-    // teamSectionItems,
-    // testimonialItems,
-    // testimonialSectionItems,
-    // blogs,
-    // blogSectionItems,
-    // newsletterItems,
-    // footerItems,
 }) {
     return (
         <>
@@ -71,24 +52,7 @@ export async function getStaticProps() {
     const brandItems = await getElement('brand_one');
     const servicesList = await getElement('titulo_servicios');
     const footerItems = await getElement('footer');
-    // const bannerItems = getAllItems('banner');
-    // const aboutItems = getAllItems('about');
-    // const projects = getAllItems('projects');
-    // const LatestProject = getFeaturedItems(projects);
-    // const brandItems = getAllItems('brand');
-    // const services = getAllItems('services');
-    // const serviceSectionItems = getAllItems('service-section');
-    // const HomePageServices = getFeaturedItems(services);
-    // const bannerTwoItems = getAllItems('banner-2');
-    // const teamItems = getAllItems('team');
-    // const teamSectionItems = getAllItems('team-section');
-    // const testimonialItems = getAllItems('testimonial');
-    // const testimonialSectionItems = getAllItems('testimonial-section');
-    // const blogSectionItems = getAllItems('blog-section');
-    // const blogs = getAllItems('blogs');
-    // const LatestBlog = getFeaturedItems(blogs);
-    // const newsletterItems = getAllItems('newsletter');
-    // const footerItems = getAllItems('footer');
+    
 
     return {
         props: {
@@ -100,18 +64,6 @@ export async function getStaticProps() {
             brandItems,
             servicesList,
             footerItems,
-            // bannerItems,
-            // projectSectionItems,
-            // projects: LatestProject,
-            // serviceSectionItems,
-            // bannerTwoItems,
-            // teamItems,
-            // teamSectionItems,
-            // testimonialItems,
-            // testimonialSectionItems,
-            // blogSectionItems,
-            // blogs: LatestBlog,
-            // newsletterItems,
         },
     };
 }
@@ -124,18 +76,4 @@ HomePage.propTypes = {
     services: PropTypes.instanceOf(Object).isRequired,
     servicesList: PropTypes.arrayOf(Object).isRequired,
     brandItems: PropTypes.instanceOf(Object).isRequired,
-    // bannerItems: PropTypes.instanceOf(Object).isRequired,
-    // aboutItems: PropTypes.instanceOf(Object).isRequired,
-    // projects: PropTypes.instanceOf(Object).isRequired,
-    // services: PropTypes.instanceOf(Object).isRequired,
-    // serviceSectionItems: PropTypes.instanceOf(Object).isRequired,
-    // bannerTwoItems: PropTypes.instanceOf(Object).isRequired,
-    // teamItems: PropTypes.instanceOf(Object).isRequired,
-    // teamSectionItems: PropTypes.instanceOf(Object).isRequired,
-    // testimonialItems: PropTypes.instanceOf(Object).isRequired,
-    // testimonialSectionItems: PropTypes.instanceOf(Object).isRequired,
-    // blogs: PropTypes.instanceOf(Object).isRequired,
-    // blogSectionItems: PropTypes.instanceOf(Object).isRequired,
-    // newsletterItems: PropTypes.instanceOf(Object).isRequired,
-    // footerItems: PropTypes.instanceOf(Object).isRequired,
 };

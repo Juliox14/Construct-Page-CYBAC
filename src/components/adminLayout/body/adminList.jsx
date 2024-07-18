@@ -74,8 +74,8 @@ export default function AdminList({nombre_elemento, descripcion, link, idFrame, 
                             }} />
                         </div>
                     </div>
-                    <p>{nombre_elemento}</p>
-                    <p>{descripcion}</p>
+                    <p><strong>{nombre_elemento}</strong></p>
+                    <p className={classes.desc}>{descripcion}</p>
                     <p href={link}>Haga click para editar</p>
                 </Box>
             </Link>
