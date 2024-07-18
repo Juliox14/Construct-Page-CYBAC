@@ -138,10 +138,6 @@ const Filter = ({open, handleFilterUpdate}) =>{
         }
     }
 
-    useEffect(() => {
-        console.log(filtros);
-    }, [filtros]);
-
     const handleSubmit = async() => {
         try{
             const data = {

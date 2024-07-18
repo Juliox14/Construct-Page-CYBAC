@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 import classes from './footer.module.scss';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 function Footer({ footerItems, services}) {
     const [showAllServices, setShowAllServices] = useState(false);
@@ -79,9 +79,9 @@ function Footer({ footerItems, services}) {
                                                 hidden: { height: "0px"}}}
                                     animate={ showAllServices ? "visible" : "hidden" }>
                                         {hiddenServices?.map(
-                                            (item) => (
+                                            (item, index) => (
                                                     <li
-                                                        key="view-all">
+                                                        key={index}>
                                                             <Link
                                                             href={`/services/${item.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}>
                                                                 {item.titulo}

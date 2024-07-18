@@ -6,13 +6,12 @@ import { Col } from 'react-bootstrap';
 function ProjectFullwidthItem({ project }) {
     const imagePath = `/images/projects/aula_pantepec/aula_pantepec.jpg`;
     const linkPath = `/projects/${project?.id_proyecto}`;
-    console.log(project)
 
     return (
         <Col lg={{ span: 4 }} md={{ span: 6 }}>
             <div className="project-item">
                 <Link href={linkPath} className="project-img">
-                    <Image src={imagePath} alt={project?.nombre_proyecto} width={200} height={200} />
+                    <Image src={imagePath} alt={project?.nombre_proyecto} width={200} height={200} fetchPriority='hight'/>
                 </Link>
                 <div className="project-content">
                     <span className="sub-title">{project?.tipo_obra}</span>
