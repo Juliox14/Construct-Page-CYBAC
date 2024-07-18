@@ -70,7 +70,7 @@
     background-color: $secondary;
 
     &_boxContainerOfNavAdmin{
-        width: 4.5em;
+        width: 4.4em;
         position: fixed;
         color: white;
         text-decoration: none;
@@ -133,7 +133,7 @@
                 background-color: $primary;
             }
 
-            li{
+            a{
                 width: 80%;
                 display: flex;
                 align-items: center;
@@ -142,14 +142,18 @@
                 border-radius: 15px;
                 overflow: hidden;
                 cursor: pointer;
+                text-decoration: none;
+                color: white;
 
-                a{
+                li{
                     margin-left: 10px;
-                    text-decoration: none;
-                    color: white;
                     opacity: 0;
                 }
 
+            }
+
+            &_liActive{
+                background-color: $primary;
             }
         }
     }

@@ -88,7 +88,6 @@ export async function getStaticProps() {
 
 AboutPage.propTypes = {
     aboutItems: PropTypes.instanceOf(Object).isRequired,
-    bannerThreeItems: PropTypes.instanceOf(Object).isRequired,
     teamItems: PropTypes.instanceOf(Object).isRequired,
     footerItems: PropTypes.instanceOf(Object).isRequired,
 };
