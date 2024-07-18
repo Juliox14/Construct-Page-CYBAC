@@ -1,17 +1,18 @@
-import AdminBodyLayout from './adminBodyLayout';
+import classes from "./adminList.module.scss";
+
+// Componentes personalizados
 import SearchBar from './searchBar';
 import AdminList from './adminList';
+
+// React
 import { useState } from 'react';
 
-const AdminPageMain = () => {
+// Elementos de MUI material
+import { Box, useTheme } from "@mui/material";
 
-    const componentsInThePage = [
-    {title: 'Slider', description: 'Slider de la página principal', link: '/admin/slider', id: "frame1", position: "-19vh"},
-    {title: 'Sobre nosotros', description: 'Información sobre la empresa', link: '/admin/about', id: "frame2", position: "-66vh"},
-    {title: 'Proyectos', description: 'Proyectos de la empresa', link: '/admin/projects', id: "frame3", position: "-236vh"},
-    {title: 'Slider clientes', description: 'Clientes mostrados en un slider con su respectivo nombre', link: '/admin/projects', id: "frame4", position: "-445vh"},
-    ];
+const Component = ({componentsInThePage}) => {
 
+    const theme = useTheme();
     const [filterSearch, setFilterSearch] = useState(componentsInThePage);
 
     const handleSearch = (search) => {
@@ -23,18 +24,24 @@ const AdminPageMain = () => {
     return (
         <> 
             <SearchBar top100Films={componentsInThePage} callBack={handleSearch}/>
-            <AdminBodyLayout>
+            <Box className={classes.adminList}
+            sx={{
+                bgcolor: 'background.default',
+                color: theme.palette.mode === 'dark' ? "white" : "#014655",
+                transition: `background-color ${theme.transitions.duration.standard}ms`
+            }}>
                 {filterSearch.map((component, index) => (
                     <AdminList key={index} 
                         nombre_elemento={component.title} 
                         descripcion={component.description} 
                         link={component.link} 
                         idFrame={component.id}
-                        position={component.position} />
+                        urlFrame={component.urlFrame}
+                        positionFrame={component.positionFrame} />
                 ))}
-            </AdminBodyLayout>
+            </Box>
         </>
     );
 }
 
-export default AdminPageMain;
+export default Component;

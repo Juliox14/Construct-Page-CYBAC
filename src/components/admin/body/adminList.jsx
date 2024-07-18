@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
 import classes from './adminList.module.scss';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 // Elementos de MUI material
 import { Box, CircularProgress, useTheme } from '@mui/material';
 
 
-export default function AdminList({nombre_elemento, descripcion, link, idFrame, position}) {
+export default function AdminList({nombre_elemento, descripcion, link, idFrame, urlFrame, positionFrame}) {
 
     const [loading, setLoading] = useState(true);
     const iframe = useRef(null);
@@ -27,9 +27,8 @@ export default function AdminList({nombre_elemento, descripcion, link, idFrame, 
             <Link href={link}>
                 <Box className={classes.itemList} sx={{
                     color: theme.palette.mode === 'dark' ? "white" : "#014655",
-                    transition: `background-color 1000ms`
-                }}
-                >
+                    transition: `background-color ${theme.transitions.duration.standard}ms`
+                }}>
                     <div style={{
                         backgroundColor: theme.palette.mode === 'dark' ? "#c8c8c8" : "white",
                         maxWidth: "420px",
@@ -59,13 +58,13 @@ export default function AdminList({nombre_elemento, descripcion, link, idFrame, 
                             <iframe 
                             id={idFrame}
                             ref={iframe}
-                            src={"http://localhost:3000/"} 
+                            src= {`${urlFrame}`}
                             title={"Reichstag"} 
                             style={{ 
                                 position: "absolute",
-                                width: "100%",
+                                width: "600px",
                                 height: "1000vh",
-                                top: `${position}`,
+                                top: `${positionFrame}`,
                                 transform: 'scale(0.7)',
                                 transformOrigin: '0 0',
                                 borderRadius: "15px",

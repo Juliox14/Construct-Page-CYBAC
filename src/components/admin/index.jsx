@@ -1,5 +1,5 @@
 import Head from "next/head";
-import NavAdmin from "./header/NavAdmin";
+import NavAdmin from "./header";
 import classes from "./header/header.module.scss";
 import classesMain from "./body/mainSection.module.scss";
 import Box from "@mui/material/Box";

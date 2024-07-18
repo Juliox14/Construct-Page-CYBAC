@@ -34,12 +34,9 @@ export default function SearchBar({top100Films, callBack}) {
             alignItems: 'center',
             transition: `background-color ${theme.transitions.duration.standard}ms`
         }}>
-            <Box sx={{
-            bgcolor: 'background.default',
-            color: 'text.primary',
+            <div style={{
             display: 'flex',
             alignItems: 'center',
-            transition: `background-color ${theme.transitions.duration.standard}ms`
         }}>
                 <IconButton onClick={handleFocusSearch} sx={{ marginTop: "15px" }}>
                     <SearchIcon sx={{ color: 'grey' }}/>
@@ -58,7 +55,7 @@ export default function SearchBar({top100Films, callBack}) {
                         <TextField {...params} id="inputSearch" label="Buscar" variant="standard" inputRef={searchRef}/>
                     )}
                 />
-            </Box>
+            </div>
         </Box>
     );
 }

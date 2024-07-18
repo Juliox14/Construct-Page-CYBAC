@@ -1,6 +1,9 @@
 import classes from "./header.module.scss";
+import { useContext, useState } from 'react';
+import { useRouter } from "next/router";
+
+// Componentes personalizados
 import MovilDropDown from "./MovilDropdown";
-import { useContext, useEffect, useState } from 'react';
 import ColorModeContext from "../../../context/contexDarkMode";
 import Notifications from "./notifications";
 
@@ -28,6 +31,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 
 export default function NavAdmin() {
 
+    const { pathname } = useRouter();
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
     const [hidden, setHidden] = useState(true);
@@ -73,13 +77,7 @@ export default function NavAdmin() {
                     onMouseOut={() => handleLockHeader()}></motion.header>
                     
                     <motion.nav className={classes.desktopHeaderElement_boxContainerOfNavAdmin}
-                    variants={{
-                        visible: {
-                            width: "20%",
-                        },
-                        hidden: {
-                            
-                        }}}
+                    variants={{ visible: { width: "20%" }}}
                     animate={hidden ? "hidden" : "visible"}>
                         <div>
                             <div className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxHeader}>
@@ -130,10 +128,9 @@ export default function NavAdmin() {
                                 maxHeight: "60%",
                             }}}
                             animate={hidden ? "hidden" : ""}>
-                            <li>
-                                <HomeIcon />
-                                <motion.a href="#"
-                                variants={{
+                            <a href="http://localhost:3000/admin" style={{ backgroundColor: pathname === "/admin" ? "#ADA479" : ""}}>
+                                    <HomeIcon />
+                                    <motion.li variants={{
                                     visible: {
                                         opacity: 1,
                                     },
@@ -142,15 +139,12 @@ export default function NavAdmin() {
                                         opacity: 0,
                                     }}}
                                     animate={hidden ? "hidden" : "visible"}>
-                                        
                                         Inicio
-                                    
-                                    </motion.a>
-                            </li>
-                            <li>
-                                <InfoIcon />
-                                <motion.a href="#"
-                                variants={{
+                                    </motion.li>
+                            </a>
+                            <a href="http://localhost:3000/admin/nosotros" style={{ backgroundColor: pathname === "/admin/nosotros" ? "#ADA479" : ""}}>
+                                    <InfoIcon />
+                                    <motion.li variants={{
                                     visible: {
                                         opacity: 1,
                                     },
@@ -159,15 +153,12 @@ export default function NavAdmin() {
                                         opacity: 0,
                                     }}}
                                     animate={hidden ? "hidden" : "visible"}>
-                                        
-                                    Nosotros
-                                    
-                                </motion.a>
-                            </li>
-                            <li>
-                                <InventoryIcon />
-                                <motion.a href="#"
-                                variants={{
+                                        Nosotros
+                                    </motion.li>
+                            </a>
+                            <a href="http://localhost:3000/admin/servicio" style={{ backgroundColor: pathname === "/admin/servicio" ? "#ADA479" : ""}}>
+                                    <InventoryIcon />
+                                    <motion.li variants={{
                                     visible: {
                                         opacity: 1,
                                     },
@@ -176,15 +167,12 @@ export default function NavAdmin() {
                                         opacity: 0,
                                     }}}
                                     animate={hidden ? "hidden" : "visible"}>
-                                        
-                                    Servicios
-                                    
-                                </motion.a>
-                            </li>
-                            <li>
-                                <PrecisionManufacturingIcon />
-                                <motion.a href="#"
-                                variants={{
+                                        Servicio
+                                    </motion.li>
+                            </a>
+                            <a href="http://localhost:3000/admin/proyecto" style={{ backgroundColor: pathname === "/admin/proyecto" ? "#ADA479" : ""}}>
+                                    <PrecisionManufacturingIcon />
+                                    <motion.li variants={{
                                     visible: {
                                         opacity: 1,
                                     },
@@ -193,15 +181,12 @@ export default function NavAdmin() {
                                         opacity: 0,
                                     }}}
                                     animate={hidden ? "hidden" : "visible"}>
-                                        
-                                        Proyectos
-                                        
-                                </motion.a>
-                            </li>
-                            <li>
-                                <PeopleIcon />
-                                <motion.a href="#"
-                                variants={{
+                                        Proyecto
+                                    </motion.li>
+                            </a>
+                            <a href="http://localhost:3000/admin/clientes" style={{ backgroundColor: pathname === "/admin/clientes" ? "#ADA479" : ""}}>
+                                    <ContactsIcon />
+                                    <motion.li variants={{
                                     visible: {
                                         opacity: 1,
                                     },
@@ -210,15 +195,12 @@ export default function NavAdmin() {
                                         opacity: 0,
                                     }}}
                                     animate={hidden ? "hidden" : "visible"}>
-                                        
                                         Clientes
-                                    
-                                    </motion.a>
-                            </li>
-                            <li>
-                                <ContactsIcon />
-                                <motion.a href="#"
-                                variants={{
+                                    </motion.li>
+                            </a>
+                            <a href="http://localhost:3000/admin/contacto" style={{ backgroundColor: pathname === "/admin/contacto" ? "#ADA479" : ""}}>
+                                    <PeopleIcon />
+                                    <motion.li variants={{
                                     visible: {
                                         opacity: 1,
                                     },
@@ -227,15 +209,12 @@ export default function NavAdmin() {
                                         opacity: 0,
                                     }}}
                                     animate={hidden ? "hidden" : "visible"}>
-                                        
                                         Contacto
-                                        
-                                    </motion.a>
-                            </li>
-                            <li>
-                                <ContactsIcon />
-                                <motion.a href="#"
-                                variants={{
+                                    </motion.li>
+                            </a>
+                            <a href="http://localhost:3000/admin/footer" style={{ backgroundColor: pathname === "/admin/footer" ? "#ADA479" : ""}}>
+                                    <ContactsIcon />
+                                    <motion.li variants={{
                                     visible: {
                                         opacity: 1,
                                     },
@@ -244,11 +223,9 @@ export default function NavAdmin() {
                                         opacity: 0,
                                     }}}
                                     animate={hidden ? "hidden" : "visible"}>
-                                        
                                         Footer
-                                    
-                                    </motion.a>
-                            </li>
+                                    </motion.li>
+                            </a>
                         </motion.ul>
                     </motion.nav>
             </motion.div>
