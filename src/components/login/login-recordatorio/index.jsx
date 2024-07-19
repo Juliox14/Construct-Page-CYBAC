@@ -11,19 +11,12 @@ export default function LoginRecordatorio(){
                 <div className={classes.image_pc}>
                     <Image src={perfil.src} fill></Image>
                 </div>
-                <h1 className={classes.h1_pc}>Login Recordatorio</h1>
+                <h1 className={classes.h1_pc}>Paula Zuleta</h1>
                 <h2 className={classes.h2_pc}>Administrador</h2>
             </section>
             <form className={classes.form_pc}>
                 <ReactInput type='password' placeHolder='Contraseña' ancho='400px'/>
-                <ReactInput></ReactInput>
-                <ReactInput></ReactInput>
-                <ReactInput></ReactInput>
-                <ReactInput></ReactInput>
-                <ReactInput></ReactInput>
-                <ReactInput></ReactInput>
-                
-                <Button variant="outlined" className={classes.btn_pc}>Ingresar</Button>
+                <Button variant="outlined" className={classes.btn_pc}>Iniciar Sesión</Button>
             </form>
         </div>
     );

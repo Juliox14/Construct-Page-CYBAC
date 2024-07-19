@@ -1,31 +1,26 @@
-import classes from './loginInicialStyles.module.css'
+import classes from './loginStyles.module.css'
 import Image from 'next/image';
-import perfil from '../../../../public/img/favicon/profile-1.jpg'
+import perfil from '../../../../public/images/logo/favicon_reichstag_color.png'
 import Button from '@mui/material/Button';
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import { styled } from '@mui/system';
-export default function LoginInicial() {
-    const MyInput = styled('input')({
-        width: 40,
-        height: 45,
-        // border-radius: '12px',
-        // border-style: 'solid',
-        // border-color: '#E6E6E6',
-        // border-width: '1px',
-        // margin-bottom: '2em',
-        // padding-inline: '1em',
-        // font-weight: '530',
-        // color: '#4E4E4E',
-    });
-    return (
-        <>
-            <TextField id="standard-basic" label="Standar"
-            sx={{
-                width:'10ch',
-                borderColor: '#0000',
-            }}/>
-        </>
+import ReactInput from '../reactInput';
+
+export default function LoginInicial(){
+    function HandlerClick(event) {
+        console.log('Pressioned button')
+    }
+    return(
+        <div className={classes.container_pc}>
+            <section className={classes.section1_pc}>
+                <div className={classes.image_pc}>
+                    <Image src={perfil.src} fill></Image>
+                </div>
+                <h1 className={classes.h1_pc}>Reischtag</h1>
+            </section>
+            <form className={classes.form_pc}>
+                <ReactInput placeHolder='Nombre de usuario'></ReactInput>
+                <ReactInput type='password' placeHolder='Contraseña'/>
+                <Button variant="outlined" className={classes.btn_pc} onClick={HandlerClick()}>Iniciar Sesión</Button>
+            </form>
+        </div>
     );
 }
