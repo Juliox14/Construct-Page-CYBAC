@@ -1,6 +1,7 @@
 import classes from "./header.module.scss";
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 // Componentes personalizados
 import MovilDropDown from "./MovilDropdown";
@@ -11,7 +12,6 @@ import Notifications from "./notifications";
 import { motion } from "framer-motion";
 
 // Componentes de Mui/matterial
-import Avatar from "@mui/material/Avatar";
 import { useTheme } from '@mui/material/styles';
 
 // Importanciones de imagenes e iconos
@@ -28,6 +28,7 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import PeopleIcon from '@mui/icons-material/People';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import Cookies from "js-cookie";
 
 export default function NavAdmin() {
 
@@ -39,8 +40,24 @@ export default function NavAdmin() {
 
     const handleLockHeader = () => {
         if(lock) return
-        else setHidden(true)
+        else {
+           setHidden(true);
+        }
     }
+
+    const [backgroundNavBar, setBackgroundNavBar] = useState(null);
+    const [lockCookie, setLockCookie] = useState(null);
+
+    useEffect(() => {
+        const darkMode = Cookies.get("darkMode") === 'dark';
+        const lock = Cookies.get("lock") === 'true';
+        setLockCookie(lock);
+        setHidden(!lock);
+        setLock(lock);
+        setBackgroundNavBar(darkMode ? "#171717" : "#014655");
+    }, []);
+
+    if (backgroundNavBar === null && lockCookie === null) return null;
     
 
     return (
@@ -53,6 +70,7 @@ export default function NavAdmin() {
             </header>
 
             <motion.div className={classes.desktopFalseBoxHeader}
+            initial={{ width: Cookies.get("lock") === "true" ? "20%" : "4.5em" }}
             variants={{
             visible: {
                 width: "20%",
@@ -61,29 +79,40 @@ export default function NavAdmin() {
             onMouseOver={() => setHidden(false)}
             onMouseOut={() => handleLockHeader()}>
                 <motion.header className={classes.desktopHeaderElement}
+                    initial={{ width: Cookies.get("lock") === "true" ? "20%" : "4.5em", backgroundColor: backgroundNavBar }}
                     variants={{
                     visible: {
                         width: "20%",
                     },
+                    hidden: {
+                        width: "4.5em",
+                    },
                     changeColor: {
                         backgroundColor: "#171717",
                         transition: { duration: 0.3 },
+                    }, 
+                    changeColorLight: {
+                        backgroundColor: "#014655",
+                        transition: { duration: 0.01 }
                     },}}
                     animate={[
-                        hidden ? "" : "visible",
-                        theme.palette.mode === "dark" ? "changeColor" : "",
+                        hidden ? "hidden" : "visible",
+                        theme.palette.mode === "dark" ? "changeColor" : "changeColorLight",
                     ]}
                     onMouseOver={() => setHidden(false)}
                     onMouseOut={() => handleLockHeader()}></motion.header>
                     
                     <motion.nav className={classes.desktopHeaderElement_boxContainerOfNavAdmin}
-                    variants={{ visible: { width: "20%" }}}
+                    initial={{ width: Cookies.get("lock") === "true" ? "20%" : "4.4em" }}
+                    variants={{ visible: { width: "20%" }, hidden: { width: "4.5em"}}}
                     animate={hidden ? "hidden" : "visible"}>
                         <div>
                             <div className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxHeader}>
-                                <Avatar alt="Logo Admin" src={AdminLogo.src} sx={{ width: 56, height: 56 }}/>
+                                <Image alt="Logo Admin" src={AdminLogo.src} width={56} height={56}/>
                                 <div style={{position: "relative", height: "30px", width: "100%", overflow: "hidden"}}>
-                                    <motion.h3 variants={{
+                                    <motion.h3 
+                                    initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
+                                    variants={{
                                         visible: {
                                             opacity: 1,
                                         },
@@ -99,6 +128,7 @@ export default function NavAdmin() {
                                 </div>
                             </div>
                             <motion.div 
+                            initial={{ width: Cookies.get("lock") === "true" ? "100%" : 0, opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
                             variants={{
                                 visible: {
                                     width: "100%",
@@ -111,7 +141,10 @@ export default function NavAdmin() {
                                 animate={hidden ? "hidden" : "visible"}
                                 className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxIcons}>
                                 <SearchIcon />
-                                <IconButton onClick={() => setLock((prev) => (!prev))} color="inherit" sx={{padding: 0}}>
+                                <IconButton onClick={() => {setLock((prev) => {
+                                    Cookies.set("lock", !prev);
+                                    return (!prev)
+                                })}} color="inherit" sx={{padding: 0}}>
                                     {lock ? <LockIcon/> : <LockOpenIcon />}
                                 </IconButton>
                                 <IconButton onClick={colorMode.toggleColorMode} color="inherit" sx={{padding: 0}}>
@@ -130,98 +163,119 @@ export default function NavAdmin() {
                             animate={hidden ? "hidden" : ""}>
                             <a href="http://localhost:3000/admin" style={{ backgroundColor: pathname === "/admin" ? "#ADA479" : ""}}>
                                     <HomeIcon />
-                                    <motion.li variants={{
-                                    visible: {
-                                        opacity: 1,
-                                    },
-                                    hidden: {
-                                        width: 0,
-                                        opacity: 0,
-                                    }}}
+                                    <motion.li 
+                                    initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
+                                    variants={{
+                                        visible: {
+                                            opacity: 1,
+                                        },
+                                        hidden: {
+                                            width: 0,
+                                            opacity: 0,
+                                        }
+                                    }}
                                     animate={hidden ? "hidden" : "visible"}>
                                         Inicio
                                     </motion.li>
                             </a>
                             <a href="http://localhost:3000/admin/nosotros" style={{ backgroundColor: pathname === "/admin/nosotros" ? "#ADA479" : ""}}>
                                     <InfoIcon />
-                                    <motion.li variants={{
-                                    visible: {
-                                        opacity: 1,
-                                    },
-                                    hidden: {
-                                        width: 0,
-                                        opacity: 0,
-                                    }}}
+                                    <motion.li 
+                                    initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
+                                    variants={{
+                                        visible: {
+                                            opacity: 1,
+                                        },
+                                        hidden: {
+                                            width: 0,
+                                            opacity: 0,
+                                        }
+                                    }}
                                     animate={hidden ? "hidden" : "visible"}>
                                         Nosotros
                                     </motion.li>
                             </a>
                             <a href="http://localhost:3000/admin/servicio" style={{ backgroundColor: pathname === "/admin/servicio" ? "#ADA479" : ""}}>
                                     <InventoryIcon />
-                                    <motion.li variants={{
-                                    visible: {
-                                        opacity: 1,
-                                    },
-                                    hidden: {
-                                        width: 0,
-                                        opacity: 0,
-                                    }}}
+                                    <motion.li 
+                                    initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
+                                    variants={{
+                                        visible: {
+                                            opacity: 1,
+                                        },
+                                        hidden: {
+                                            width: 0,
+                                            opacity: 0,
+                                        }
+                                    }}
                                     animate={hidden ? "hidden" : "visible"}>
                                         Servicio
                                     </motion.li>
                             </a>
                             <a href="http://localhost:3000/admin/proyecto" style={{ backgroundColor: pathname === "/admin/proyecto" ? "#ADA479" : ""}}>
                                     <PrecisionManufacturingIcon />
-                                    <motion.li variants={{
-                                    visible: {
-                                        opacity: 1,
-                                    },
-                                    hidden: {
-                                        width: 0,
-                                        opacity: 0,
-                                    }}}
+                                    <motion.li 
+                                    initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
+                                    variants={{
+                                        visible: {
+                                            opacity: 1,
+                                        },
+                                        hidden: {
+                                            width: 0,
+                                            opacity: 0,
+                                        }
+                                    }}
                                     animate={hidden ? "hidden" : "visible"}>
                                         Proyecto
                                     </motion.li>
                             </a>
                             <a href="http://localhost:3000/admin/clientes" style={{ backgroundColor: pathname === "/admin/clientes" ? "#ADA479" : ""}}>
                                     <ContactsIcon />
-                                    <motion.li variants={{
-                                    visible: {
-                                        opacity: 1,
-                                    },
-                                    hidden: {
-                                        width: 0,
-                                        opacity: 0,
-                                    }}}
+                                    <motion.li 
+                                    initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
+                                    variants={{
+                                        visible: {
+                                            opacity: 1,
+                                        },
+                                        hidden: {
+                                            width: 0,
+                                            opacity: 0,
+                                        }
+                                    }}
                                     animate={hidden ? "hidden" : "visible"}>
                                         Clientes
                                     </motion.li>
                             </a>
                             <a href="http://localhost:3000/admin/contacto" style={{ backgroundColor: pathname === "/admin/contacto" ? "#ADA479" : ""}}>
                                     <PeopleIcon />
-                                    <motion.li variants={{
-                                    visible: {
-                                        opacity: 1,
-                                    },
-                                    hidden: {
-                                        width: 0,
-                                        opacity: 0,
-                                    }}}
+                                    <motion.li
+                                    initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
+                                    variants={{
+                                        visible: {
+                                            opacity: 1,
+                                        },
+                                        hidden: {
+                                            width: 0,
+                                            opacity: 0,
+                                        }
+                                    }}
                                     animate={hidden ? "hidden" : "visible"}>
                                         Contacto
                                     </motion.li>
                             </a>
                             <a href="http://localhost:3000/admin/footer" style={{ backgroundColor: pathname === "/admin/footer" ? "#ADA479" : ""}}>
                                     <ContactsIcon />
-                                    <motion.li variants={{
-                                    visible: {
-                                        opacity: 1,
-                                    },
-                                    hidden: {
-                                        width: 0,
-                                        opacity: 0,
-                                    }}}
+                                    <motion.li 
+                                    initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
+                                    variants={{
+                                        visible: {
+                                            opacity: 1,
+                                        },
+                                        hidden: {
+                                            width: 0,
+                                            opacity: 0,
+                                        }
+                                    }}
                                     animate={hidden ? "hidden" : "visible"}>
                                         Footer
                                     </motion.li>

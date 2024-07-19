@@ -1,11 +1,12 @@
 import classes from "./adminList.module.scss";
+import Cookies from "js-cookie";
 
 // Componentes personalizados
 import SearchBar from './searchBar';
 import AdminList from './adminList';
 
 // React
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Elementos de MUI material
 import { Box, useTheme } from "@mui/material";
@@ -21,13 +22,22 @@ const Component = ({componentsInThePage}) => {
         }));
     }
 
+
+    const [backgroundNavBar, setBackgroundNavBar] = useState(null);
+
+    useEffect(() => {
+        const darkMode = Cookies.get("darkMode") === 'dark';
+        setBackgroundNavBar(darkMode ? "#1c1c1c" : "white");
+    }, []);
+
+    if (backgroundNavBar === null) return null;
+
     return (
         <> 
             <SearchBar top100Films={componentsInThePage} callBack={handleSearch}/>
             <Box className={classes.adminList}
             sx={{
-                bgcolor: 'background.default',
-                color: theme.palette.mode === 'dark' ? "white" : "#014655",
+                bgcolor: "background.default",
                 transition: `background-color ${theme.transitions.duration.standard}ms`
             }}>
                 {filterSearch.map((component, index) => (

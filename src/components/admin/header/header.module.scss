@@ -40,7 +40,6 @@
 
 .desktopFalseBoxHeader{
     display: none;
-    width: 4.5em;
     position: relative;
     font-family: $rajdhani;
 
@@ -64,13 +63,10 @@
 }
 
 .desktopHeaderElement{
-    width: 4.5em;
     height: 100vh;
     position: fixed;
-    background-color: $secondary;
 
     &_boxContainerOfNavAdmin{
-        width: 4.4em;
         position: fixed;
         color: white;
         text-decoration: none;
@@ -90,6 +86,13 @@
             flex-direction: column;
             align-items: center;
             box-sizing: content-box;
+
+            img{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin-top: 20px;
+            }
 
             h3{
                 text-align: center;
@@ -131,6 +134,7 @@
 
             > :hover{
                 background-color: $primary;
+                transition: all 0.3s ease 0s;
             }
 
             a{

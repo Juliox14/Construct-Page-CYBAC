@@ -1,5 +1,17 @@
 /*-- Global Style --*/
 
+:root {
+    --background-default: #ffffff;
+    --background-paper: #f5f5f5;
+    --text-primary: #000000;
+  }
+  
+  .dark {
+    --background-default: #1c1c1c;
+    --background-paper: #2F2F2F;
+    --text-primary: #ffffff;
+  }
+
 html {
     scroll-behavior: smooth;
 }
