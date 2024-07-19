@@ -9,7 +9,6 @@
     position: relative;
     height: 130px;
     width: 130px;
-    border-radius: 100%;
     overflow: hidden;
 }
 .section1_pc{
@@ -22,6 +21,7 @@
     justify-content: center;
 }
 .h1_pc{
+    margin-top: 10px;
     margin-bottom: 0;
 }
 .h2_pc{
@@ -48,4 +48,3 @@
     width: 200px;
     margin-bottom: 15px;
 }
-
