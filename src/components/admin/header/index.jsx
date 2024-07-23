@@ -129,8 +129,8 @@ export default function NavAdmin() {
 
                                 <motion.img alt="Logo Admin" src={AdminLogo.src} className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxHeader_imgUser}
                                 initial={{
-                                    width: "2.5em",
-                                    height: "2.5em",
+                                    width: Cookies.get("lock") === "true" ? "3.5em" : "2.5em",
+                                    height: Cookies.get("lock") === "true" ? "3.5em" : "2.5em",
                                 }}
                                 variants={{
                                     visible: {
@@ -186,7 +186,7 @@ export default function NavAdmin() {
 
                         <motion.ul className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxUl}
                         initial={{
-                            marginTop: "-20px",
+                            marginTop: Cookies.get("lock") === "true" ? "35px" : "-20px",
                         }}
                         variants={{
                             hidden: {
