@@ -16,6 +16,7 @@ import { useTheme } from '@mui/material/styles';
 
 // Importanciones de imagenes e iconos
 import AdminLogo from "../../../../public/Admin.jpeg";
+import AdminHeader from "../../../../public/images/logo/white_golden.png";
 import SearchIcon from '@mui/icons-material/Search';
 import LockIcon from '@mui/icons-material/Lock';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
@@ -92,7 +93,7 @@ export default function NavAdmin() {
                         transition: { duration: 0.3 },
                     }, 
                     changeColorLight: {
-                        backgroundColor: "#014655",
+                        backgroundColor: "#013641",
                         transition: { duration: 0.01 }
                     },}}
                     animate={[
@@ -108,7 +109,36 @@ export default function NavAdmin() {
                     animate={hidden ? "hidden" : "visible"}>
                         <div>
                             <div className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxHeader}>
-                                <Image alt="Logo Admin" src={AdminLogo.src} width={56} height={56}/>
+                                <motion.div
+                                initial={{
+                                    width: "70%",
+                                    overflow: "hidden",
+                                }}
+                                variants={{
+                                    hidden: {
+                                        width: "75%"
+                                    }}}
+                                    animate={hidden ? "hidden" : ""}>
+
+                                    <motion.img alt="Logo Admin" src={AdminHeader.src}
+                                    initial={{
+                                        minWidth: "14em",
+                                        height: "3.5em",
+                                    }}/>
+                                </motion.div>
+
+                                <motion.img alt="Logo Admin" src={AdminLogo.src} className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxHeader_imgUser}
+                                initial={{
+                                    width: "2.5em",
+                                    height: "2.5em",
+                                }}
+                                variants={{
+                                    visible: {
+                                        width: "3.5em",
+                                        height: "3.5em",
+                                    }}}
+                                    animate={hidden ? "" : "visible"}/>
+
                                 <div style={{position: "relative", height: "30px", width: "100%", overflow: "hidden"}}>
                                     <motion.h3 
                                     initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
@@ -155,12 +185,18 @@ export default function NavAdmin() {
                         </div>
 
                         <motion.ul className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxUl}
+                        initial={{
+                            marginTop: "-20px",
+                        }}
                         variants={{
                             hidden: {
-                                overflow: "hidden",
-                                maxHeight: "60%",
+                                marginTop: "-20px",
+                                overflow: "initial",
+                            },
+                            visible: {
+                                marginTop: "35px",
                             }}}
-                            animate={hidden ? "hidden" : ""}>
+                            animate={hidden ? "hidden" : "visible"}>
                             <a href="http://localhost:3000/admin" style={{ backgroundColor: pathname === "/admin" ? "#ADA479" : ""}}>
                                     <HomeIcon />
                                     <motion.li 
@@ -261,6 +297,23 @@ export default function NavAdmin() {
                                     }}
                                     animate={hidden ? "hidden" : "visible"}>
                                         Contacto
+                                    </motion.li>
+                            </a>
+                            <a href="http://localhost:3000/admin/footer" style={{ backgroundColor: pathname === "/admin/footer" ? "#ADA479" : ""}}>
+                                    <ContactsIcon />
+                                    <motion.li 
+                                    initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
+                                    variants={{
+                                        visible: {
+                                            opacity: 1,
+                                        },
+                                        hidden: {
+                                            width: 0,
+                                            opacity: 0,
+                                        }
+                                    }}
+                                    animate={hidden ? "hidden" : "visible"}>
+                                        Header
                                     </motion.li>
                             </a>
                             <a href="http://localhost:3000/admin/footer" style={{ backgroundColor: pathname === "/admin/footer" ? "#ADA479" : ""}}>
