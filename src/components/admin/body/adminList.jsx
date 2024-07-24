@@ -1,83 +1,64 @@
 import classes from './adminList.module.scss';
-import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 // Elementos de MUI material
-import { Box, CircularProgress, useTheme } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
+import Image from 'next/image';
+import EditIcon from '@mui/icons-material/Edit';
+
+// Elementos de react
+import { useState } from 'react';
 
 
-export default function AdminList({nombre_elemento, descripcion, link, idFrame, urlFrame, positionFrame}) {
-
-    const [loading, setLoading] = useState(true);
-    const iframe = useRef(null);
+export default function AdminList({nombre_elemento, descripcion, link, id, url, video}) {
+    
     const theme = useTheme();
+    const [hover, setHover] = useState(false);
 
-    useEffect(() => {
-        iframe.current.onload = () => {
-            setLoading(false);
-        }
-    }, []);
+    const handleOver = () => {
+        setHover(true);
+    }
+
+    const handleOut = () => {
+        setHover(false);
+    }
 
     return (
-        <Box className={classes.boxFatherItemList} sx={{
+        <Box component="section" className={classes.adminList_boxFatherItemList} sx={{
+            position: "relative",
             bgcolor: theme.palette.mode === 'dark' ? '#2f2f2f6d' : 'white',
             boxShadow: theme.palette.mode === 'dark' ? "" : "0px 0px 10px 0px rgba(0,0,0,0.1)",
             transition: `background-color ${theme.transitions.duration.standard}ms`
         }}>
-            <Link href={link}>
-                <Box className={classes.itemList} sx={{
-                    color: theme.palette.mode === 'dark' ? "white" : "#014655",
-                    transition: `background-color ${theme.transitions.duration.standard}ms`
-                }}>
-                    <div style={{
-                        backgroundColor: theme.palette.mode === 'dark' ? "#c8c8c8" : "white",
-                        maxWidth: "420px",
-                        marginTop: "20px",
-                        border: "1px solid rgba(0, 0, 0, 0.06)",
-                        borderRadius: "15px",
-                        borderRadius: "10px",
-                        overflow: "hidden",
-                    }}>
-                        <div style={{
-                            width: "600px",
-                            position: "relative",
-                            height: "340px",
-                            overflow: "hidden",
-                            pointerEvents: "none",
-                        }}>
-                            {loading && (
-                                    <Box sx={{
-                                        position: "absolute",
-                                        top: "50%",
-                                        left: "35%",
-                                        transform: "translate(-50%, -50%)",
-                                    }}>
-                                        <CircularProgress />
-                                    </Box>
-                                )}
-                            <iframe 
-                            id={idFrame}
-                            ref={iframe}
-                            src= {`${urlFrame}`}
-                            title={"Reichstag"} 
-                            style={{ 
-                                position: "absolute",
-                                width: "600px",
-                                height: "1000vh",
-                                top: `${positionFrame}`,
-                                transform: 'scale(0.7)',
-                                transformOrigin: '0 0',
-                                borderRadius: "15px",
-                                sandbox:"allow-same-origin allow-scripts",
-                                
-                            }} />
-                        </div>
+            <Link href={link} onMouseOver={handleOver} onMouseOut={handleOut}/>
+            {hover && (<div className={classes.adminList_boxFatherItemList_editBox} style={{
+                backgroundColor: theme.palette.mode === 'dark' ? "#2f2f2fb4" : "#ffffffa4",
+            }}> 
+                <EditIcon fontSize="large" sx={{ color: theme.palette.mode === 'dark' ? "#ADA479" : "#014655"}}/>
+            </div>)}
+            <Box className={classes.adminList_itemList} sx={{
+                color: theme.palette.mode === 'dark' ? "white" : "#014655",
+                transition: `background-color ${theme.transitions.duration.standard}ms`,
+            }}>
+                <div>
+                    <div>
+                        {video === undefined ? (
+                            <Image key={id} src={url} alt={nombre_elemento} fill style={{ borderRadius: "20px" }} />
+                        ): (
+                            <video autoPlay loop muted playsInline style={{
+                                width: "100%",
+                                height: "100%",
+                                borderRadius: "20px",
+                            }}>
+                                <source src="/images/admin/inicio/slider_home.mp4" type="video/mp4" />
+                                Tu navegador no soporta el elemento de video.
+                            </video>
+                            )}
                     </div>
-                    <p><strong>{nombre_elemento}</strong></p>
-                    <p className={classes.desc}>{descripcion}</p>
-                    <p href={link}>Haga click para editar</p>
-                </Box>
-            </Link>
+                </div>
+                <p><strong>{nombre_elemento}</strong></p>
+                <p className={classes.desc}>{descripcion}</p>
+            </Box>
         </Box>
     )
 }

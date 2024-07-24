@@ -29,6 +29,8 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import PeopleIcon from '@mui/icons-material/People';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import ExploreIcon from '@mui/icons-material/Explore';
+import CallToActionIcon from '@mui/icons-material/CallToAction';
 import Cookies from "js-cookie";
 
 export default function NavAdmin() {
@@ -299,8 +301,8 @@ export default function NavAdmin() {
                                         Contacto
                                     </motion.li>
                             </a>
-                            <a href="http://localhost:3000/admin/footer" style={{ backgroundColor: pathname === "/admin/footer" ? "#ADA479" : ""}}>
-                                    <ContactsIcon />
+                            <a href="http://localhost:3000/admin/header" style={{ backgroundColor: pathname === "/admin/header" ? "#ADA479" : ""}}>
+                                    <ExploreIcon />
                                     <motion.li 
                                     initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
                                     variants={{
@@ -317,7 +319,7 @@ export default function NavAdmin() {
                                     </motion.li>
                             </a>
                             <a href="http://localhost:3000/admin/footer" style={{ backgroundColor: pathname === "/admin/footer" ? "#ADA479" : ""}}>
-                                    <ContactsIcon />
+                                    <CallToActionIcon />
                                     <motion.li 
                                     initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
                                     variants={{

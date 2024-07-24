@@ -35,7 +35,7 @@ const Component = ({componentsInThePage}) => {
     return (
         <> 
             <SearchBar top100Films={componentsInThePage} callBack={handleSearch}/>
-            <Box className={classes.adminList}
+            <Box component="div" className={classes.adminList}
             sx={{
                 bgcolor: "background.default",
                 transition: `background-color ${theme.transitions.duration.standard}ms`
@@ -45,9 +45,9 @@ const Component = ({componentsInThePage}) => {
                         nombre_elemento={component.title} 
                         descripcion={component.description} 
                         link={component.link} 
-                        idFrame={component.id}
-                        urlFrame={component.urlFrame}
-                        positionFrame={component.positionFrame} />
+                        id={component.id}
+                        url={component.url} 
+                        video={component.video}/>
                 ))}
             </Box>
         </>

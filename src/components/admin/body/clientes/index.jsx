@@ -3,9 +3,8 @@ import Component from "..";
 const Clientes = () => {
 
     const componentsInThePage = [
-        {title: 'Slider', description: 'Slider de la página principal', link: '/admin/slider', id: "frame1", urlFrame: 'http://localhost:3000/our-clients', positionFrame: "-7.5vh"},
-        {title: 'Sobre nosotros', description: 'Información sobre la empresa', link: '/admin/about', id: "frame2", urlFrame: 'http://localhost:3000/our-clients', positionFrame: "-52vh"},
-        {title: 'Proyectos', description: 'Proyectos de la empresa', link: '/admin/projects', id: "frame3", urlFrame: 'http://localhost:3000/our-clients', positionFrame: "-236vh"},
+        {title: 'Titulo', description: 'Titulo y descripción breve de la página', link: '/admin/slider', id: "frame1", url: '/images/admin/clients/title.png'},
+        {title: 'Deslizador de clientes', description: 'Apartado donde se muestran los clientes que posee Reichstag', link: '/admin/about', id: "frame2", url: '/images/admin/clients/clients.png'},
     ];
 
     return (

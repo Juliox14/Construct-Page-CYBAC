@@ -72,6 +72,7 @@ const AdminLayout = ({ children }) => {
               sx={{
                 bgcolor: 'background.default',
                 color: 'text.primary',
+                transition: `background-color ${theme.transitions.duration.standard}ms`,
               }}
             >
               {children}

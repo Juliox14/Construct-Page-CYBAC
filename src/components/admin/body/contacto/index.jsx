@@ -3,10 +3,9 @@ import Component from "..";
 const Contacto = () => {
 
     const componentsInThePage = [
-        {title: 'Slider', description: 'Slider de la página principal', link: '/admin/slider', id: "frame1", urlFrame: 'http://localhost:3000/contact', positionFrame: "-7vh"},
-        {title: 'Sobre nosotros', description: 'Información sobre la empresa', link: '/admin/about', id: "frame2", urlFrame: 'http://localhost:3000/contact', positionFrame: "-108vh"},
-        {title: 'Proyectos', description: 'Proyectos de la empresa', link: '/admin/projects', id: "frame3", urlFrame: 'http://localhost:3000/contact', positionFrame: "-165vh"},
-        {title: 'Slider clientes', description: 'Clientes mostrados en un slider con su respectivo nombre', link: '/admin/projects', id: "frame4", urlFrame: 'http://localhost:3000/contact', positionFrame: "-445vh"},
+        {title: 'Titulo', description: 'Titulo y descripción breve de la página', link: '/admin/slider', id: "frame1", url: '/images/admin/contact/title.png'},
+        {title: 'Información de contacto', description: 'Información acerca de como contactar a la empresa', link: '/admin/about', id: "frame2", url: '/images/admin/contact/description.png'},
+        {title: 'Formulario de contacto', description: 'Apartado donde se puede contactar a la empresa a través de correo electronico. En la parte superior cuenta con una pequeña descripción', link: '/admin/projects', id: "frame3", url: '/images/admin/contact/form.png'},
     ];
 
     return (

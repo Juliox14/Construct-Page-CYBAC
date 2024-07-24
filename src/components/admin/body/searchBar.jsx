@@ -45,7 +45,7 @@ export default function SearchBar({top100Films, callBack}) {
                     {...defaultProps}
                     id="controlled-demo"
                     sx={{
-                        width: "300px",
+                        width: { xs: "200px", sm: "300px" },
                     }}
                     value={value}
                     onChange={(event, newValue) => {
