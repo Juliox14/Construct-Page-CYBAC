@@ -24,9 +24,9 @@ function ServiceDetailsPage({
                 />
             </Head>
             <Breadcrumb
-                subTitle="Servicio Unitario"
-                title={services.servicios.titulo}
-                desc="Construction of itself, because it is pain some proper style design occur are pleasure"
+                subTitle={services.servicios.subtitulo_breadcrumb}
+                title={services.servicios.titulo_breadcrumb}
+                desc={services.servicios.descripcion_breadcrumb}
             />
             <ServiceDetail
                 sidebarList={servicesList}
@@ -39,7 +39,7 @@ function ServiceDetailsPage({
     );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const { params } = context;
     const { slug } = params;
     
@@ -53,22 +53,6 @@ export async function getStaticProps(context) {
             footerItems,
             services,
         },
-    };
-}
-
-export async function getStaticPaths() {
-    const serviceNames = await getElement('titulo_servicios');
-    const paths = serviceNames.map((Name) =>{
-        return {
-            params: {
-                slug: `${Name.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`, 
-            },
-        };
-    }
-    );
-    return {
-        paths,
-        fallback: false,
     };
 }
 

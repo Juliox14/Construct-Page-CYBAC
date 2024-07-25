@@ -56,7 +56,7 @@ function OurClients({
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const dataHomeClients = await getElement('home_clients');
     const servicesList = await getElement('titulo_servicios');
     const footerItems = await getElement('footer');

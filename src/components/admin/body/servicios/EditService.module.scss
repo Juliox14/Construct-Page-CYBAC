@@ -1,0 +1,72 @@
+.formGroup {
+    margin-bottom: 0px;
+    position: relative;;
+
+    h3 {
+        margin-bottom: 0px;
+    }
+
+    label{
+        display: block;
+        margin-bottom: 5px;
+    }
+    textarea {
+        box-sizing: border-box;
+        width: 100%; /* O el tamaño que necesites */
+        overflow-y: hidden; /* Ocultar el scroll vertical */
+        resize: none; 
+        min-height: 300px;
+        max-height: max-content;
+        font-family: 'Yantramanav', sans-serif;
+        margin-bottom: 10px;
+    }
+    input{
+        margin-bottom: 10px;
+    }
+}
+
+.formControl,
+.formControlDark {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.formControlDark {
+    background-color: #333;
+    color: white;
+}
+
+.editor,
+.editorDark {
+    padding: 10px;
+    min-height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.editorDark {
+    background-color: #333;
+    color: white;
+}
+
+.toolbar {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.button {
+    margin-top: 20px;
+}
+
+.formSubservicio{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.subservicioInd{
+    width: 400px;
+}

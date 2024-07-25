@@ -26,7 +26,7 @@ function ContactPage({ contactItems, footerItems, services }) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const contactItems = await getElement('contact');
     const footerItems = await getElement('footer');
     const services = await getElement('titulo_servicios');

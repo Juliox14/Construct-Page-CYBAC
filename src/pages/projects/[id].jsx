@@ -9,14 +9,8 @@ import { getItemsBy, getElement } from '../../lib/items';
 
 function ProjectDetailPage({
     project,
-    projectsSidebar,
-    richTexts,
-    projectsOverview,
-    bannerTwoItems,
-    newsletterItems,
     footerItems,
-})
-{
+}) {
     return (
         <>
             <Head>
@@ -34,65 +28,31 @@ function ProjectDetailPage({
             <ProjectDetail
                 project={project}
                 projectsSidebar={project}
-                // richTexts={richTexts}
-                // projectsOverview={projectsOverview}
             />
-            {/* <Newsletter newsletterItems={newsletterItems} />
-            <Footer footerItems={footerItems} /> */}
+            <Footer footerItems={footerItems} />
         </>
     );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const { params } = context;
     const { id } = params;
     const type = 'proyects';
 
     const project = await getItemsBy(type, id);
-    // const richTexts = getAllItems('rich-text');
-    // const projectsOverview = getAllItems('project-overview');
-    // const bannerTwoItems = getAllItems('banner-2');
-    // const newsletterItems = getAllItems('newsletter');
-    // const footerItems = getAllItems('footer');
+    const footerItems = await getElement('footer');
 
     return {
         props: {
             project: project[0],
-            // richTexts,
-            // projectsOverview,
-            // bannerTwoItems,
-            // newsletterItems,
-            // footerItems,
+            footerItems,
         },
-    };
-}
-
-export async function getStaticPaths() {
-    const projects = await getElement('titulo_proyectos');
-
-    const paths = projects.map((project) =>{
-        return {
-            params: {
-                id: `${project.id_proyecto}`, 
-            },
-        };
-    }
-    );
-
-    return {
-        paths,
-        fallback: false,
     };
 }
 
 ProjectDetailPage.propTypes = {
     project: PropTypes.instanceOf(Object).isRequired,
-    projectsSidebar: PropTypes.instanceOf(Object).isRequired,
-    // richTexts: PropTypes.instanceOf(Object).isRequired,
-    // projectsOverview: PropTypes.instanceOf(Object).isRequired,
-    // bannerTwoItems: PropTypes.instanceOf(Object).isRequired,
-    // newsletterItems: PropTypes.instanceOf(Object).isRequired,
-    // footerItems: PropTypes.instanceOf(Object).isRequired,
+    footerItems: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ProjectDetailPage;
