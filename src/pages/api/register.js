@@ -1,47 +1,46 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import bcrypt from "bcryptjs"
-import { sql } from '@vercel/postgres';
-import { db } from '@vercel/postgres';
+import mysql from 'mysql2/promise';
 
-export default async function registernHandler(req, register) {
-    if (req.method === 'POST') {
-        const { nombre, apellido, email, password } = req.body;    
-        const hashedPassword = await bcrypt.hash(password, 10);
+const db = mysql.createPool({
+    host: process.env.MYSQL_DATABASE_HOST,
+    user: process.env.MYSQL_DATABASE_USER,
+    password: process.env.MYSQL_DATABASE_PASSWORD,
+    database: process.env.MYSQL_DATABASE_NAME,
+    multipleStatements: true,
+});
 
-        const client = await db.connect();
-        try {
-            // Insertar datos en la base de datos
-            const result = await insertCliente(nombre, apellido, email, hashedPassword, res);
-
-            if (result.insertar_cliente === 'Cliente registrado exitosamente'){
-                res.status(201).json(result);
-            }
-            else{
-                res.status(401).json(result)
-            }
-            
-        } catch (error) {
-            res.status(500).json({ error: 'Error interno del servidor' });
-        }finally{
-            client.release();
-        }
-    } else {
-        res.status(400).json({ error: 'Método no permitido' });
+const insertAdmin = async (username, password) => {
+    try {
+        
+        const [rows] = await db.query('SET @result = NULL; CALL insert_admin(?, ?, @result); SELECT @result;', [username, password]);
+        const result = rows[2][0]['@result'];
+        console.log(result)
+        return result;
+    } catch (error) {
+        console.error('Error al insertar administrador:', error);
+        return { error: 'Error interno del servidor' };
     }
 };
 
-const insertCliente = async (nombre, apellido, email, hashedPassword, res) => {
+export default async function registerHandler(req, res) {
+    if (req.method !== 'POST') {
+        
+        return res.status(405).json({ message: 'Método no permitido' });
+    }
     try {
-        const result = await sql`SELECT * FROM insertar_cliente(${nombre}, ${apellido}, ${email}, ${hashedPassword})`;
-
-        // Verificar si el resultado es un array con al menos un elemento
-        if (Array.isArray(result.rows) && result.rows.length > 0 && result.rows[0].insertar_cliente) {
-            return result.rows[0]; // Devolver el primer elemento del array
+        
+        const { username, password } = req.body;
+        const result = await insertAdmin(username, password);
+        if (result == 0) {
+            
+            console.log(res.status(409).json({ message: 'Usuario existente' }));
+            return res.status(201).json({ message: 'Usuario existente' });
         } else {
-            throw new Error('Error al ejecutar el procedimiento almacenado');
+            
+            return res.status(201).json({ message: 'Usuario insertado correctamente', id: result });
         }
     } catch (error) {
-            console.error('Error al insertar cliente:', error);
-            return { error: 'Error interno del servidor' }; // Devolver un objeto con el mensaje de error
+        
+        console.error('Error al insertar administrador:', error);
+        return res.status(500).json({ error: 'Error interno del servidor' });
     }
-};
+}

@@ -7,7 +7,6 @@ export default function ReactInput({ name, isRequired, type = 'text', placeHolde
     // Estilos reactivos
     const [inputState, setInputState] = useState('desactivo');
     const [inputValue, setInputValue] = useState('');
-    console.log(placeHolder)
     const anchoDiv = { width: ancho };
 
     // Cuando cambie el valor del input se introduce dicho valor en la variable de estado 'inputValue'
@@ -54,7 +53,7 @@ export default function ReactInput({ name, isRequired, type = 'text', placeHolde
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 onChange={handleChange}
-                {...isRequired&& 'isRequired'}
+                required={isRequired}
             />
         </div>
     );

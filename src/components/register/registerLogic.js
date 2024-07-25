@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import axios from 'axios';
 
 export function validateEmail(correo) {
     // Expresión regular para validar un correo electrónico
@@ -29,46 +29,38 @@ export function validatePassword(password, confirmPassword) {
         if (password != confirmPassword) {
             return 'Las contraseñas deben ser iguales';
         }
-    }
-    else if (password.length < 8) {
-        return 'La contraseña debe tener al menos 8 caracteres';
-    }
-    else if (!containsSpecialChar) {
-        return `La contraseña debe tener al menos un carácter especial (${specialChars})`;
+        else if (password.length < 8) {
+            return 'La contraseña debe tener al menos 8 caracteres';
+        }
+        else if (!containsSpecialChar) {
+            return `La contraseña debe tener al menos un carácter especial (${specialChars})`;
+        }
     }
     return true;
 }
 
-export function reinicioRegister() {
-    setContenidoInput({ ...contenidoInput, nombre: '', apellido: '', email: '', password: '', confirmPassword: '' })
-    if (formRefRegister.current) {
-        formRefRegister.current.reset();
-    }
-}
-
 export async function guardarDatos(values) {
-    if (validateUser(values.username) != true) {
-        console.log(validateUser(values.username))
-        return validateUser(values.username)
-    }
-    if (validatePassword(values.password,values.confirmPassword) != true) {
-        console.log(validatePassword(values.password,values.confirmPassword))
-        return validatePassword(values.password,values.confirmPassword)
-    }
-
     try {
-        const response = await axios.post('/api/auth/register', formData);
-        console.log(response.data);
-        setRegisterSucces(true);
-        setTimeout(() => {
-            setRegisterSucces(false);
-        }, 6000);
-        setCambiarForm(!cambiaSrForm);
+        var response = '';
+        if (validateUser(values.username) != true) {
+            response = validateUser(values.username);
+            return response
+        }
+        if (validatePassword(values.password,values.confirmPassword) != true) {
+            response = validatePassword(values.password,values.confirmPassword)
+            return response
+        }
+        const formData = {
+            username:values.username,
+            password:values.password,
+        }
+        response = await axios.post('/api/register', formData);
+        if(response.status === 409){
+            return response.data.message;
+        }
+        return true;
     } catch (error) {
-        setRegisterError(true);
-        setTimeout(() => {
-            setRegisterError(false);
-        }, 6000);
+        console.error(error)
+        return 'Usuario no disponible, intente con otro nombre de usuario.';
     }
 }
-export default guardarDatos;

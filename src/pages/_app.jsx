@@ -6,7 +6,7 @@ import "../styles/globals.scss";
 import { ScrollToTop } from '../components/scroll';
 
 function MyApp({ Component, pageProps }) {
-    const isTemplatePage = Component.name === 'AdminPage' || Component.name === 'Login' || Component.name === 'Inicio';
+    const isTemplatePage = Component.name === 'AdminPage' || Component.name === 'Fsdmihmv' || Component.name === 'Login' || Component.name === 'Inicio';
 
     return isTemplatePage ? (
         <>
