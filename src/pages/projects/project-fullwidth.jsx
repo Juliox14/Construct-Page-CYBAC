@@ -31,7 +31,7 @@ function ProjectFullwidthPage({
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const proyectos = await getElement('proyectos');
     const servicesList = await getElement('titulo_servicios');
     const footerItems = await getElement('footer');
@@ -41,8 +41,6 @@ export async function getStaticProps() {
             projects: proyectos,
             servicesList,
             footerItems,
-            // bannerTwoItems,
-            // newsletterItems,
         },
     };
 }
@@ -50,8 +48,7 @@ export async function getStaticProps() {
 ProjectFullwidthPage.propTypes = {
     projects: PropTypes.instanceOf(Object).isRequired,
     footerItems: PropTypes.instanceOf(Object).isRequired,
-    // bannerTwoItems: PropTypes.instanceOf(Object).isRequired,
-    // newsletterItems: PropTypes.instanceOf(Object).isRequired,
+    servicesList: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ProjectFullwidthPage;

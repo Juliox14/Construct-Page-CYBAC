@@ -50,7 +50,7 @@ function AboutPage({
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const aboutItems = await getElement('about');
     const teamItems = await getElement('team');
     const services = await getElement('titulo_servicios');

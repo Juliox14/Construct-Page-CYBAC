@@ -43,7 +43,7 @@ export default function HomePage({
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const allDataHome = await getElement('home');
     const [aboutItems] = await getElement('about');
     const heroItems = allDataHome[0];

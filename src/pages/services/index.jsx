@@ -1,12 +1,7 @@
 import Head from 'next/head';
 import PropTypes, { object } from 'prop-types';
 import AboutTwo from '../../components/about/index-2';
-import BannerTwo from '../../components/banner/index-2';
-import BannerFour from '../../components/banner/index-4';
-import BrandOne from '../../components/brand';
 import Footer from '../../components/layout/footer';
-import Newsletter from '../../components/newsletter/newsletter';
-import AllServices from '../../components/services/all-services';
 import Breadcrumb from '../../components/breadcrumb';
 import HomePageServices from '../../components/home-page/homepage-services';
 import {getElement } from '../../lib/items';
@@ -38,10 +33,6 @@ function ServicePage({
             <HomePageServices
                 services={services}
             />
-            {/* <BannerFour
-                bannerFourItems={bannerFourItems}
-                bannerSection={bannerSection}
-            /> */}
             <Footer footerItems={footerItems} services={servicesList}/>
         </>
     );
@@ -52,14 +43,6 @@ export async function getStaticProps() {
     const aboutItemsTwo = await getElement('home_services');
     const servicesList = await getElement('titulo_servicios');
     const footerItems = await getElement('footer');
-    // const bannerTwoItems = getAllItems('banner-2');
-    // const brandItems = getAllItems('brand');
-    // const testimonialSectionItems = getAllItems('testimonial-section');
-    // const bannerFourItems = getAllItems('banner-4');
-    // const bannerSection = getAllItems('banner-section');
-    // const testimonialItems = getAllItems('testimonial');
-    // const newsletterItems = getAllItems('newsletter');
-    // const footerItems = getAllItems('footer');
 
     return {
         props: {
@@ -67,14 +50,7 @@ export async function getStaticProps() {
             services: AllServices,
             servicesList,
             footerItems,
-            // bannerTwoItems,
-            // brandItems,
-            // bannerFourItems,
-            // bannerSection,
-            // testimonialItems,
-            // testimonialSectionItems,
-            // newsletterItems,
-            // footerItems,
+          
         },
     };
 }
@@ -82,14 +58,8 @@ export async function getStaticProps() {
 ServicePage.propTypes = {
     aboutItemsTwo: PropTypes.instanceOf(Object).isRequired,
     services: PropTypes.instanceOf(Object).isRequired,
-    // bannerTwoItems: PropTypes.instanceOf(Object).isRequired,
-    // brandItems: PropTypes.instanceOf(Object).isRequired,
-    // bannerFourItems: PropTypes.instanceOf(Object).isRequired,
-    // bannerSection: PropTypes.instanceOf(Object).isRequired,
-    // testimonialItems: PropTypes.instanceOf(Object).isRequired,
-    // testimonialSectionItems: PropTypes.instanceOf(Object).isRequired,
-    // newsletterItems: PropTypes.instanceOf(Object).isRequired,
-    // footerItems: PropTypes.instanceOf(Object).isRequired,
+    servicesList: PropTypes.instanceOf(Object).isRequired,
+    footerItems: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ServicePage;

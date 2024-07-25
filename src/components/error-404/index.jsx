@@ -11,7 +11,7 @@ function Error404() {
                         <div className={classes.content}>
                             <h1 className={classes.title}>404</h1>
                             <h2 className={classes.subtitle}>
-                                <span>Lo sentimos,</span> pagina no encotrada!
+                                <span>Lo sentimos,</span> pagina no encontrada!
                             </h2>
                             <p className={classes.desc}>
                                 Parece que no hay nada aquí. Prueba algo más o

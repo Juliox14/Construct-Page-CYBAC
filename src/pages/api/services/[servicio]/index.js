@@ -1,3 +1,4 @@
+import { object } from "prop-types";
 import db from "../../../../../database/config/db";
 
 export default async function servicesHandler(req, res) {
@@ -18,7 +19,35 @@ export default async function servicesHandler(req, res) {
             console.error(error);
             res.status(500).json({ message: 'Internal Server Error', error });
         }
-    } else {
+    }else if (req.method === 'PUT') {
+        try {
+            const { servicio } = req.query;
+            const servicioData = req.body;
+            const parseServicioData = parseData(servicioData);
+            console.log(parseServicioData);
+            
+            const [dataServices] = await db.execute(`UPDATE servicios SET ${parseServicioData} WHERE titulo = "${servicio}"`);
+            res.status(200).json({ message: 'Servicio actualizado correctamente' });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Internal Server Error', error });
+        }
+    }
+    else {
         res.status(405).json({ message: 'Método no permitido' });
     }
 };
+
+
+const parseData = (data) => {
+    let string = '';
+    Object.keys(data).forEach((key, index) => {
+        string += `${key}="${data[key]}"`;
+        if (index !== Object.keys(data).length - 1) {
+            string += ', ';
+        } else {
+            string += '';
+        }
+    });
+    return string;
+}
