@@ -5,15 +5,17 @@ import Link from 'next/link';
 import { Box, useTheme } from '@mui/material';
 import Image from 'next/image';
 import EditIcon from '@mui/icons-material/Edit';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // Elementos de react
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 
 export default function AdminList({nombre_elemento, descripcion, link, id, url, video}) {
     
     const theme = useTheme();
     const [hover, setHover] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const handleOver = () => {
         setHover(true);
@@ -22,6 +24,11 @@ export default function AdminList({nombre_elemento, descripcion, link, id, url, 
     const handleOut = () => {
         setHover(false);
     }
+
+    const handleOutProgress = () => {
+        return setLoading(false);
+    }
+
 
     return (
         <Box component="section" className={classes.adminList_boxFatherItemList} sx={{
@@ -43,7 +50,10 @@ export default function AdminList({nombre_elemento, descripcion, link, id, url, 
                 <div>
                     <div>
                         {video === undefined ? (
-                            <Image key={id} src={url} alt={nombre_elemento} fill style={{ borderRadius: "20px" }} />
+                            <>
+                                {loading && (<div className={classes.adminList_itemList_circularProgress}> <CircularProgress /> </div>)}
+                                <Image key={id} src={url} alt={nombre_elemento} fill style={{ borderRadius: "20px" }} onLoad={() =>handleOutProgress()}/>
+                            </>
                         ): (
                             <video autoPlay loop muted playsInline style={{
                                 width: "100%",
