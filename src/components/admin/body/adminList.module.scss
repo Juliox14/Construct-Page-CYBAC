@@ -10,7 +10,136 @@
     > :hover{
         transform: scale(1.02);
         transition: 0.3s ease;
-        cursor: pointer;
+        
+    }
+
+    &_boxFatherItemList{
+        width: 35em;
+        border-radius: 20px;
+        padding: 1em 1em;
+        margin-bottom: 25px;
+
+        .deleteConfirm{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+            padding: 1em 1em;
+            border-radius: 20px;
+            background-color: rgba(255, 0, 0, 0.2);
+            color: red;
+            font-size: 1.2em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s ease;
+
+            &:hover{
+                background-color: rgba(255, 0, 0, 0.4);
+            }
+        }
+    
+        @include breakpoint(s-device){
+            width: 95%;
+        }
+
+        > a{
+            position: absolute; 
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%; 
+            padding: 1em 1em; 
+            border-radius: 20px; 
+            background-color: transparent;
+            z-index: 3;
+        }
+
+        &_editBox{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            padding: 1em 1em;
+            border-radius: 20px;
+            z-index: 1;
+        }
+    }
+
+    &_itemList{
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        width: auto;
+        height: auto;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1em;
+
+        &_circularProgress{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        > div{
+            width: 100%;
+            border: 1px solid rgba(151, 151, 151, 0.137);
+            border-radius: 20px;
+
+            > div{
+                position: relative;
+                width: 100%;
+                height: 16.4em;
+                border-radius: 20px;
+                @include breakpoint(s-device){
+                    height: 8.4em;
+                }
+            }
+        }
+
+        p{
+            font-size: medium;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+    
+    .textos{
+        display: flex;
+        width: 90%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1em;
+        gap: 1em;
+        opacity: 0.4;
+
+        p{
+            font-size: 1em;
+            margin: 0;
+        }
+    }
+}
+
+.desc{
+    font-size: small!important;
+}
+
+
+.adminServiceList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    column-gap: 3em;
+
+    > :hover{
+        transform: scale(1.02);
+        transition: 0.3s ease;
     }
 
     &_boxFatherItemList{
@@ -105,8 +234,4 @@
             margin: 0;
         }
     }
-}
-
-.desc{
-    font-size: small!important;
 }

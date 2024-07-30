@@ -8,7 +8,7 @@ function Breadcrumb({ subTitle, title, desc }) {
                 <div className="page_content">
                     <span className="page_subtitle">{subTitle}</span>
                     <h1 className="page_title">{title}</h1>
-                    <p className="page_desc">{desc}</p>
+                    <p style={{maxWidth: '800px'}}>{desc}</p>
                 </div>
             </Container>
         </div>

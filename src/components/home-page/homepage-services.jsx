@@ -4,6 +4,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import ServiceItem from '../services/service-item';
 import classes from '../services/service.module.scss';
 import SwiperComps, { Slide } from '../swiper';
+import Link from 'next/link';
 
 function HomePageServices({ services, settings }) {
     settings = {
@@ -45,14 +46,17 @@ function HomePageServices({ services, settings }) {
                         />
                     </div>
                     <div className={classes.section_banner}>
-                        <h3
-                            className={classes.info}
-                            dangerouslySetInnerHTML={{
-                                __html: '¿Tienes proyectos? <span>+52 81 2340 4908</span>',
-                            }}
-                        />
+                        <Link href="tel:+528123404908">
+                            <h3
+                                className={classes.info}
+                                dangerouslySetInnerHTML={{
+                                    __html: '¿Tienes proyectos? <span>+52 81 2340 4908</span>',
+                                }}
+                            />
+                        </Link>
                     </div>
                 </div>
+
                 <div className={classes.navigation__holder}>
                     <div className="service-navigation">
                         <div className="service-button-next button-next">
@@ -77,8 +81,8 @@ function HomePageServices({ services, settings }) {
                         </Col>
                     </Row>
                 </div>
-            </Container>
-        </div>
+            </Container >
+        </div >
     );
 }
 

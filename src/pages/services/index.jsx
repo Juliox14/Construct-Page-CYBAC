@@ -11,9 +11,6 @@ function ServicePage({
     services,
     servicesList,
     footerItems,
-    // bannerFourItems,
-    // bannerSection,
-    // footerItems,
 }) {
     return (
         <>
@@ -38,7 +35,7 @@ function ServicePage({
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const AllServices = await getElement('titulo_servicios');
     const aboutItemsTwo = await getElement('home_services');
     const servicesList = await getElement('titulo_servicios');

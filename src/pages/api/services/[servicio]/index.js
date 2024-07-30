@@ -24,10 +24,17 @@ export default async function servicesHandler(req, res) {
             const { servicio } = req.query;
             const servicioData = req.body;
             const parseServicioData = parseData(servicioData);
-            console.log(parseServicioData);
-            
-            const [dataServices] = await db.execute(`UPDATE servicios SET ${parseServicioData} WHERE titulo = "${servicio}"`);
+            await db.execute(`UPDATE servicios SET ${parseServicioData} WHERE titulo = "${servicio}"`);
             res.status(200).json({ message: 'Servicio actualizado correctamente' });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Internal Server Error', error });
+        }
+    }else if (req.method === 'DELETE') {
+        try {
+            const { servicio } = req.query;
+            await db.execute('DELETE FROM servicios WHERE id_servicio = ?', [servicio]);
+            res.status(200).json({ message: 'Servicio eliminado correctamente' });
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Internal Server Error', error });
