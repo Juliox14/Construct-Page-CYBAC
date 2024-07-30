@@ -16,8 +16,8 @@ function ContactPage({ contactItems, footerItems, services }) {
                 />
             </Head>
             <Breadcrumb
-                subTitle={contactItems.titulo_breadcrumb}
-                title={contactItems.subtitulo_breadcrumb}
+                subTitle={contactItems.subtitulo_breadcrumb}
+                title={contactItems.titulo_breadcrumb}
                 desc={contactItems.descripcion_breadcrumb}
             />
             <Contact contactItems={contactItems} />

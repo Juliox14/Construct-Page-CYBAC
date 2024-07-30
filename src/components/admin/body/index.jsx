@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 // Elementos de MUI material
 import { Box, useTheme } from "@mui/material";
 
-const Component = ({componentsInThePage, extra}) => {
+const Component = ({componentsInThePage, extra, delete_button}) => {
 
     const theme = useTheme();
     const [filterSearch, setFilterSearch] = useState(componentsInThePage);
@@ -22,6 +22,9 @@ const Component = ({componentsInThePage, extra}) => {
         }));
     }
 
+    useEffect(() => {
+        setFilterSearch(componentsInThePage);
+    }, [componentsInThePage]);
 
     const [backgroundNavBar, setBackgroundNavBar] = useState(null);
 
@@ -47,7 +50,8 @@ const Component = ({componentsInThePage, extra}) => {
                         link={component.link} 
                         id={component.id}
                         url={component.url} 
-                        video={component.video}/>
+                        video={component.video}
+                        delete_button={component.title !=='Index de servicios' ? delete_button : false }/>
                 ))}
             </Box>
         </>

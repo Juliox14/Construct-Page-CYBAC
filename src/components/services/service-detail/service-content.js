@@ -5,14 +5,12 @@ import classes from './index.module.scss';
 import OurServices from './our-services';
 
 function ServiceContent({ service, richTexts, ourServices }) {
-    const imagePath = `/images/servicios/${service?.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}.jpg`;
-
     return (
         <Col lg={{ span: 9 }} className="pe-lg-45">
             <div className="banner">
                 <img
                     className="img-full"
-                    src={imagePath}
+                    src={service?.imagen_url}
                     alt={service?.titulo}
                 />
             </div>

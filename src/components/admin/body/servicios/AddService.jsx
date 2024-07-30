@@ -14,7 +14,8 @@ const AddServiceBtn = () => {
                     color: "white"
                 }
             }
-        }><AddIcon /> Agregar servicio</Button>
+        }
+        href="/admin/servicio/newService"><AddIcon /> Agregar servicio</Button>
     );
 }
 

@@ -5,12 +5,6 @@ import { getElement } from "../../../../lib/items";
 import { useEffect, useState } from "react";
 
 const Servicios = () => {
-
-    // const componentsInThePage = [
-    //     {title: 'Titulo', description: 'Titulo y descripción breve de la página', link: '/admin/slider', id: "frame1", url: '/images/admin/services/title.png'},
-    //     {title: 'Descripción', description: 'Información acerca del servicio que ofrece la empresa', link: '/admin/about', id: "frame2", url: '/images/admin/services/description.png'},
-    //     {title: 'Carrusel de servicios', description: 'Servicios mostrados en un carrusel con su respectiva imagen y nombre', link: '/admin/projects', id: "frame3", url: '/images/admin/services/servicesSlider.png'},
-    // ];
     const [componentsInThePage, setComponentsInThePage] = useState([]);
 
     useEffect(() => {
@@ -23,15 +17,23 @@ const Servicios = () => {
                 id: service.id_servicio,
                 url: '/images/admin/services/description.png'
             }));
-            setComponentsInThePage(updatedComponents);
 
+            const initialComponent = {
+                title: 'Index de servicios',
+                description: 'Página general de servicios',
+                link: '/admin/servicio/edit/index',
+                id: "frame1",
+                url: '/images/admin/services/title.png'
+            };
+
+            setComponentsInThePage([initialComponent, ...updatedComponents]);
         };
         fetchServices();
     }, []);
 
     return (
         <>
-            <Component componentsInThePage={componentsInThePage} extra={true} />
+            <Component componentsInThePage={componentsInThePage} extra={true} delete_button={true} />
         </>
     );
 }

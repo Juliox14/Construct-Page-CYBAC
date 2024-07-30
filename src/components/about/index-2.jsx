@@ -17,18 +17,12 @@ function AboutTwo({aboutItemsTwo}) {
                                     alt='Pattern'
                                 />
                             </div>
-                            <div className={classes.img}>
-                                <img
-                                    className="img-full"
-                                    src='/images/about/2-1-303x457.jpg'
-                                    alt='About Image'
-                                />
-                            </div>
+                            
                             <div className={classes.group__img}>
                                 <div className={classes.single_img}>
                                     <img
                                         className="img-full"
-                                        src='/images/about/2-2-204x211.jpg'
+                                        src={aboutItemsTwo?.imagen_url_about}
                                         alt='About Single Image'
                                     />
                                 </div>
