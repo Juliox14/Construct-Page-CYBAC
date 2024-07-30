@@ -1,7 +1,7 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useRef, useState } from 'react';
 import { Box, Autocomplete, TextField, IconButton, useTheme } from '@mui/material';
-import AddServiceBtn from './servicios/AddService';
+import AddBtn from './items-util/AddBtn';
 
 export default function SearchBar({top100Films, callBack, extra}) {
 
@@ -48,7 +48,7 @@ export default function SearchBar({top100Films, callBack, extra}) {
                     marginRight: '120px',
                     marginBottom: '80px',
                 }}>
-                    <AddServiceBtn />
+                    <AddBtn obj={extra}/>
                 </div> 
             )}
                 <IconButton onClick={handleFocusSearch} sx={{ marginTop: "15px" }}>

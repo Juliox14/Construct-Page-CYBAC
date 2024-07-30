@@ -144,7 +144,7 @@ export default function AdminList({ nombre_elemento, descripcion, link, id, url,
                             color: theme.palette.mode === 'dark' ? "white" : "#014655",
                             transition: `background-color ${theme.transitions.duration.standard}ms`,
                         }}>
-                            <div style={{ width: 'max-content', height: 'max-content' }}>
+                            <div style={{ width: 'max-content' , maxWidth: '32em', height: 'max-content' }}>
                                 <div>
                                     {video === undefined ? (
                                         <>
@@ -171,7 +171,7 @@ export default function AdminList({ nombre_elemento, descripcion, link, id, url,
                                     )}
                                 </div>
                             </div>
-                            <p><strong>{nombre_elemento}</strong></p>
+                            <p className={classes.nombre_elemento}><strong>{nombre_elemento}</strong></p>
                             <p className={classes.desc}>{descripcion}</p>
                         </Box>
                     </div>
