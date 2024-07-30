@@ -51,7 +51,8 @@ const Component = ({componentsInThePage, extra, delete_button}) => {
                         id={component.id}
                         url={component.url} 
                         video={component.video}
-                        delete_button={component.title !=='Index de servicios' ? delete_button : false }/>
+                        delete_button={component.title !=='Index de servicios' ? delete_button : false }
+                    />
                 ))}
             </Box>
         </>
