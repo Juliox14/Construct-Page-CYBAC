@@ -5,9 +5,8 @@ import Image from 'next/image';
 import Button from '@mui/material/Button';
 import ReactInput from '../login/reactInput';
 import { useState } from 'react';
-import {guardarDatos, reinicioRegister, validatePassword, validateUser} from './registerLogic';
+import {guardarDatos} from './registerLogic';
 import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
 
 export default function Register() {
 
@@ -24,7 +23,6 @@ export default function Register() {
         setAlert(false);
     };
     async function HandlerSubmit(event) {
-        console.log(values)
         event.preventDefault();
         const result = await guardarDatos(values);
         if(result != true){

@@ -61,6 +61,6 @@ export async function guardarDatos(values) {
         return true;
     } catch (error) {
         console.error(error)
-        return 'Usuario no disponible, intente con otro nombre de usuario.';
+        return 'Salio mal';
     }
 }
