@@ -28,8 +28,10 @@ function Hero({ heroItems, settings }) {
                         <div className="content">
                             <span
                                 className={`subtitle-animation ${classes.subtitle}`}
+                                dangerouslySetInnerHTML={{
+                                    __html: heroItem.subtitle,
+                                }}
                             >
-                                {heroItem?.subtitle}
                             </span>
                             <div
                                 className={`title-animation ${classes.title}`}

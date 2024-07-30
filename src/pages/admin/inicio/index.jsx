@@ -1,5 +1,5 @@
-import AdminLayout from "../../components/admin";
-import AdminPageMain from "../../components/admin/body/inicio";
+import AdminLayout from "../../../components/admin";
+import AdminPageMain from "../../../components/admin/body/inicio";
 
 
 export default function AdminPage() {

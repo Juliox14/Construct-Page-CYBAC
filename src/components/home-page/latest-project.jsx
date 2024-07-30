@@ -53,11 +53,7 @@ function LatestProject({ projects, settings }) {
                                 <div className={classes.section_title__wrap}>
                                         <div className={classes.section_title}>
                                             <span>Proyectos</span>
-                                            <h2
-                                                dangerouslySetInnerHTML={{
-                                                    __html: 'Nuestros proyectos destacados',
-                                                }}
-                                            />
+                                            <h2>Nuestros proyectos destacados</h2>
                                         </div>
                                 </div>
                                 <div className={classes.section_navigation}>
