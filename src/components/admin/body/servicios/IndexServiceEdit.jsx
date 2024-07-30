@@ -150,7 +150,9 @@ const IndexServiceEdit = ({ home_services }) => {
                                 onChange={handleInputChange}
                                 className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                             />
-                            <img src={home_services_data.imagen_url_about} alt="Imagen del servicio" width={100} height={100} />
+                            <div className={classes.imagePreview}>
+                                <img src={home_services_data.imagen_url_about} alt="Imagen del servicio" />
+                            </div>
                         </div>
                         <div className={classes.formGroup}>
                             <label htmlFor="descripcion_about">Descripción</label>

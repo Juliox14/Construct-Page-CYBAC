@@ -4,15 +4,15 @@ import Link from 'next/link';
 import classes from './ruta.module.scss';
 
 
-const Ruta = ({ rutas }) => {
+const Ruta = ({ rutas , titulo}) => {
     const theme = useTheme();
     return (
         <div className={classes.ruta}>
             <Link style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}} href={rutas[rutas.length-2].link}><ArrowBackIcon sx={{ color: theme.palette.mode === 'dark' ? '#014655' : '#014655', fontSize: '30px', cursor: 'pointer', '&:hover':{
                 color: '#ADA479'
             } }} /></Link>
-            <div>
-                <h1>Editar servicios</h1>
+            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-end'}}>
+                <h1>{titulo}</h1>
                 <p style={{ color: theme.palette.mode === 'dark' ? '#014655' : '#014655' }}>
                     {rutas.map((ruta, index) =>
                     (
