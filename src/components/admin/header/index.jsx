@@ -199,7 +199,7 @@ export default function NavAdmin() {
                                 marginTop: "35px",
                             }}}
                             animate={hidden ? "hidden" : "visible"}>
-                            <a href="http://localhost:3000/admin" style={{ backgroundColor: pathname === "/admin" ? "#ADA479" : ""}}>
+                            <a href="http://localhost:3000/admin/inicio" style={{ backgroundColor: pathname === "/admin" ? "#ADA479" : ""}}>
                                     <HomeIcon />
                                     <motion.li 
                                     initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}

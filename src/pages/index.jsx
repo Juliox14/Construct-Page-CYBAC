@@ -56,7 +56,6 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            allDataHome,
             heroItems,
             projects,
             aboutItems,
