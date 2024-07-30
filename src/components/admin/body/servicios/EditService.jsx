@@ -24,36 +24,24 @@ import BotonFixed from "../items-util/botonFixed";
 
 const EditService = ({ servicio }) => {
     const theme = useTheme();
-    const [modo, setModo] = useState('');
     const [servicioData, setServicioData] = useState({ id_servicio: 0, titulo_breadcrumb: '', subtitulo_breadcrumb: '', descripcion_breadcrumb: '', titulo: '', imagen_url: '', descripcion_breve: '', descripcion: '' });
     const [subServiciosData, setSubServiciosData] = useState([]);
     const [newSubservicioData, setNewSubservicioData] = useState([]);
-    const [file, setFile] = useState(null);
     const [message, setMessage] = useState('');
 
-
     useEffect(() => {
-        setModo(theme.palette.mode);
-    }, [theme.palette.mode]);
+        setServicioData({
+            id_servicio: servicio.servicios.id_servicio || 0,
+            titulo_breadcrumb: servicio.servicios.titulo_breadcrumb || '',
+            subtitulo_breadcrumb: servicio.servicios.subtitulo_breadcrumb || '',
+            descripcion_breadcrumb: servicio.servicios.descripcion_breadcrumb || '',
+            titulo: servicio.servicios.titulo || '',
+            imagen_url: servicio.servicios.imagen_url || '',
+            descripcion_breve: servicio.servicios.descripcion_breve || '',
+            descripcion: servicio.servicios.descripcion || ''
+        });
+        setSubServiciosData(servicio.get_servicio || []);
 
-    useEffect(() => {
-        const services = async () => {
-            const data = await getItemsBy('services', servicio);
-            if (data && data.servicios) {
-                setServicioData({
-                    id_servicio: data.servicios.id_servicio || 0,
-                    titulo_breadcrumb: data.servicios.titulo_breadcrumb || '',
-                    subtitulo_breadcrumb: data.servicios.subtitulo_breadcrumb || '',
-                    descripcion_breadcrumb: data.servicios.descripcion_breadcrumb || '',
-                    titulo: data.servicios.titulo || '',
-                    imagen_url: data.servicios.imagen_url || '',
-                    descripcion_breve: data.servicios.descripcion_breve || '',
-                    descripcion: data.servicios.descripcion || ''
-                });
-                setSubServiciosData(data.get_servicio || []);
-            }
-        }
-        services();
     }, [servicio]);
 
     const addSubservice = () => {
@@ -98,81 +86,20 @@ const EditService = ({ servicio }) => {
         setNewSubservicioData(updatedNewSubServicios);
     };
 
-
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const response = await axios.put(`/api/services/${servicio}`, servicioData);
-
-    //     if (response.status === 200) {
-    //         setMessage('Servicio actualizado correctamente');
-    //         setInterval(() => {
-    //             setMessage('');
-    //         }, 10000);
-    //     } else {
-    //         setMessage('Error al actualizar el servicio');
-    //         setInterval(() => {
-    //             setMessage('');
-    //         }, 5000);
-    //     }
-
-    // };
-
-    // const handleSubmitSubservicio = async (e) => {
-    //     e.preventDefault();
-    //     if (newSubservicioData.length > 0) {
-    //         const response1 = await axios.put(`/api/subservices`, subServiciosData);
-    //         if (response1.status === 200) {
-    //             setMessage('Subservicios actualizados correctamente');
-    //             setInterval(() => {
-    //                 setMessage('');
-    //             }, 10000);
-    //         } else {
-    //             setMessage('Error al actualizar los subservicios');
-    //             setInterval(() => {
-    //                 setMessage('');
-    //             }, 5000);
-    //         }
-
-    //         const response = await axios.post(`/api/subservices`, newSubservicioData);
-    //         if (response.status === 200) {
-    //             setMessage('Subservicios agregados correctamente');
-    //             setInterval(() => {
-    //                 setMessage('');
-    //             }, 10000);
-    //         } else {
-    //             setMessage('Error al agregar los subservicios');
-    //             setInterval(() => {
-    //                 setMessage('');
-    //             }, 5000);
-    //         }
-    //     } else {
-    //         const response = await axios.put(`/api/subservices`, subServiciosData);
-    //         if (response.status === 200) {
-    //             setMessage('Subservicios actualizados correctamente');
-    //             setInterval(() => {
-    //                 setMessage('');
-    //             }, 10000);
-    //         } else {
-    //             setMessage('Error al actualizar los subservicios');
-    //             setInterval(() => {
-    //                 setMessage('');
-    //             }, 5000);
-    //         }
-    //     }
-    // };
-
     const handleBothSubmits = async () => {
         try {
             // Enviar datos del servicio
             const responseService = await axios.put(`/api/services/${servicio}`, servicioData);
             if (responseService.status === 200) {
-                setMessage('Servicio actualizado correctamente');
+                setMessage(responseService.data.message);
+                setInterval(() => {
+                    setMessage('');
+                }, 1500);
             } else {
                 setMessage('Error al actualizar el servicio');
                 return; // Detener si falla
             }
-    
+
             // Enviar datos de los subservicios existentes
             if (subServiciosData.length > 0) {
                 const responseSubservices = await axios.put(`/api/subservices`, subServiciosData);
@@ -180,17 +107,17 @@ const EditService = ({ servicio }) => {
                     setMessage(response.data.message);
                     setInterval(() => {
                         setMessage('');
-                    }, 30000);
-                    
+                    }, 1500);
+
                 } else {
                     setMessage('Error al actualizar los subservicios');
                     setInterval(() => {
                         setMessage('');
-                    }, 30000);
+                    }, 1500);
                     return; // Detener si falla
                 }
             }
-    
+
             // Enviar nuevos subservicios
             if (newSubservicioData.length > 0) {
                 const responseNewSubservices = await axios.post(`/api/subservices`, newSubservicioData);
@@ -198,12 +125,12 @@ const EditService = ({ servicio }) => {
                     setMessage(response.data.message);
                     setInterval(() => {
                         setMessage('');
-                    }, 30000);
+                    }, 1500);
                 } else {
                     setMessage(response.data.message);
                     setInterval(() => {
                         setMessage('');
-                    }, 30000);
+                    }, 1500);
                     return; // Detener si falla
                 }
             }
@@ -265,16 +192,16 @@ const EditService = ({ servicio }) => {
                 }}
                 >
                     {message && (
-                        <div style={{position: 'absolute', top: '40px', left: '80px', width: 'auto', height: 'auto', zIndex: '1000'}}>
-                        <Alert variant="outlined" severity="success" sx={{
-                            position: 'fixed',
-                            
-                        }} >
-                            {message}
-                        </Alert>
+                        <div style={{ position: 'absolute', top: '40px', left: '80px', width: 'auto', height: 'auto', zIndex: '1000' }}>
+                            <Alert variant="outlined" severity="success" sx={{
+                                position: 'fixed',
+
+                            }} >
+                                {message}
+                            </Alert>
                         </div>
                     )}
-                    <Ruta rutas={rutas}/>
+                    <Ruta rutas={rutas} />
                     <Box sx={{
                         bgcolor: theme.palette.mode === 'dark' ? "#1C1C1C" : "#FFFFFF",
                         color: theme.palette.mode === 'dark' ? "white" : "#014655",
@@ -306,7 +233,7 @@ const EditService = ({ servicio }) => {
                                         name="titulo_breadcrumb"
                                         value={servicioData.titulo_breadcrumb}
                                         onChange={handleInputChange}
-                                        className={modo === 'dark' ? classes.formControlDark : classes.formControl}
+                                        className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                     />
                                 </div>
                                 <div className={classes.formGroup}>
@@ -317,7 +244,7 @@ const EditService = ({ servicio }) => {
                                         name="subtitulo_breadcrumb"
                                         value={servicioData.subtitulo_breadcrumb}
                                         onChange={handleInputChange}
-                                        className={modo === 'dark' ? classes.formControlDark : classes.formControl}
+                                        className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                     />
                                 </div>
                                 <div className={classes.formGroup}>
@@ -328,7 +255,7 @@ const EditService = ({ servicio }) => {
                                         value={servicioData.descripcion_breadcrumb}
                                         onChange={handleInputChange}
                                         rows="4"
-                                        className={modo === 'dark' ? classes.formControlDark : classes.formControl}
+                                        className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                     ></textarea>
                                 </div>
                                 <div className={classes.formGroup}>
@@ -339,7 +266,7 @@ const EditService = ({ servicio }) => {
                                         name="titulo"
                                         value={servicioData.titulo}
                                         onChange={handleInputChange}
-                                        className={modo === 'dark' ? classes.formControlDark : classes.formControl}
+                                        className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                     />
                                 </div>
                                 <div className={classes.formGroup}>
@@ -349,7 +276,8 @@ const EditService = ({ servicio }) => {
                                         id="imagen"
                                         name="imagen_url"
                                         onChange={handleInputChange}
-                                        className={modo === 'dark' ? classes.formControlDark : classes.formControl}
+                                        className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                        value={servicioData.imagen_url}
                                     />
                                     {servicioData.imagen_url && (
                                         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px', marginTop: '10px' }}>
@@ -365,12 +293,12 @@ const EditService = ({ servicio }) => {
                                         name="descripcion_breve"
                                         value={servicioData.descripcion_breve}
                                         onChange={handleInputChange}
-                                        className={modo === 'dark' ? classes.formControlDark : classes.formControl}
+                                        className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                     />
                                 </div>
                                 <div className={classes.formGroup}>
                                     <label htmlFor="descripcion">Descripción</label>
-                                    <textarea name="descripcion" id="descripcion" value={servicioData.descripcion} onChange={handleInputChange} className={modo === 'dark' ? classes.formControlDark : classes.formControl} />
+                                    <textarea name="descripcion" id="descripcion" value={servicioData.descripcion} onChange={handleInputChange} className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} />
                                 </div>
                                 <div className={classes.button}>
                                 </div>
@@ -409,7 +337,7 @@ const EditService = ({ servicio }) => {
                                                     name="titulo_subservicio"
                                                     value={item.titulo_subservicio}
                                                     onChange={(e) => handleInputSubserviceChange(index, e)}
-                                                    className={modo === 'dark' ? classes.formControlDark : classes.formControl}
+                                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                                 />
                                             </div>
                                             <div className={classes.formGroup}>
@@ -457,7 +385,7 @@ const EditService = ({ servicio }) => {
                                                     name="titulo_subservicio"
                                                     value={item.titulo_subservicio}
                                                     onChange={(e) => handleInputNewSubserviceChange(index, e)}
-                                                    className={modo === 'dark' ? classes.formControlDark : classes.formControl}
+                                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                                 />
                                             </div>
                                             <div className={classes.formGroup}>
@@ -486,10 +414,12 @@ const EditService = ({ servicio }) => {
                                     ))}
                                 </div>
                                 <div className={classes.buttonsSubSer}>
-                                    <Button variant="contained" sx={{ bgcolor: '#014655', color: '#F1F1F1', height: 'max-content', "&:hover": {
-                                        backgroundColor: '#757254',
-                                        color: '#F1F1F1'
-                                    }  }} onClick={addSubservice} type="button">
+                                    <Button variant="contained" sx={{
+                                        bgcolor: '#014655', color: '#F1F1F1', height: 'max-content', "&:hover": {
+                                            backgroundColor: '#757254',
+                                            color: '#F1F1F1'
+                                        }
+                                    }} onClick={addSubservice} type="button">
                                         Agregar subservicio
                                     </Button>
                                 </div>

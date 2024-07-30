@@ -9,13 +9,13 @@ const Servicios = () => {
 
     useEffect(() => {
         const fetchServices = async () => {
-            const services = await getElement('titulo_servicios');
+            const services = await getElement('allServices');
             const updatedComponents = services.map((service) => ({
                 title: service.titulo,
                 description: `Información sobre el servicio ${service.titulo}`,
                 link: `/admin/servicio/edit/${service.titulo}`,
                 id: service.id_servicio,
-                url: '/images/admin/services/description.png'
+                url: service.imagen_url
             }));
 
             const initialComponent = {
