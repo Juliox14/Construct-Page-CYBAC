@@ -18,28 +18,86 @@ const EditAbout = ({dataSSR}) => {
 
     const [data , setData] = useState(dataSSR);
     const [editState, setEditState] = useState(false);
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState(["", ""]);
+    const [confirmationUpdate, setConfirmationUpdate] = useState(false);
+    const refForm = useRef(null);
+
+    const reportIncompleteForm = (e) =>{
+        e.preventDefault();
+        if(refForm.current.reportValidity()){
+            refForm.current.requestSubmit();
+        }else{
+            setConfirmationUpdate(false);
+            setMessage(['Por favor, llene todos los campos', 'error']);
+            setInterval(() => {
+                setMessage(["", ""]);
+            }, 5000);
+        }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append(`file${1}` , data.img1);
+        formData.append(`file${2}` , data.img2);
 
-        const response = await axios.put(`/api/about`, data);
+        const responseImageUrl = await axios.post("/api/upload", formData);
 
-        if (response.status === 200) {
-            setMessage('Servicio actualizado correctamente');
-            setInterval(() => {
-                setMessage('');
-            }, 10000);
-        } else {
-            setMessage('Error al actualizar el servicio');
-            setInterval(() => {
-                setMessage('');
-            }, 5000);
+        const updatedDataWithImg = { 
+            ...data,
+            img1: responseImageUrl.data.url[0].file,
+            img2: responseImageUrl.data.url[1].file 
+        }
+
+        if(responseImageUrl.status === 200){
+            const response = await axios.put(`/api/about`, updatedDataWithImg);
+
+            if (response.status === 200) {
+                setConfirmationUpdate(false);
+                setMessage(['Servicio actualizado correctamente', 'success']);
+                setInterval(() => {
+                    setMessage('');
+                }, 10000);
+            } else {
+                setConfirmationUpdate(false);
+                setMessage(['Error al actualizar', 'error']);
+                setInterval(() => {
+                    setMessage('');
+                }, 5000);
+            }
         }
     };
 
     return (
         <>
+            {confirmationUpdate && (
+                    <Box sx={{
+                        position: 'fixed',
+                        top: '0',
+                        left: '0',
+                        width: '100%',
+                        height: '100%',
+                        bgcolor: 'rgba(0, 0, 0, 0.5)',
+                        zIndex: '1000',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }} component="form" onSubmit={(e)=> reportIncompleteForm(e)}>
+                        <Box sx={{
+                            bgcolor: theme.palette.mode === 'dark' ? "#242424" : "#E3E3E3",
+                            color: theme.palette.mode === 'dark' ? "white" : "#014655",
+                            transition: `background-color ${theme.transitions.duration.standard}ms`,
+                            borderRadius: '10px',
+                            padding: '20px',
+                        }}>
+                            <h2>¿Estás seguro de actualizar sobre nosotros?</h2>
+                            <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+                                <Button variant="contained" color="primary" type="submit">Confirmar</Button>
+                                <Button variant="contained" color="primary" onClick={() => setConfirmationUpdate(false)}>Cancelar</Button>
+                            </div>
+                        </Box>
+                    </Box>
+                )}
             {editState === false &&
                 <Box sx={{
                     bgcolor: theme.palette.mode === 'dark' ? "#1C1C1C" : "#FFFFFF",
@@ -59,22 +117,23 @@ const EditAbout = ({dataSSR}) => {
             <Box sx={{
                     color: theme.palette.mode === 'dark' ? "" : "#014655",
                     transition: `background-color ${theme.transitions.duration.standard}ms`,
-                    borderRadius: '10px',
-                    padding: '20px',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     // maxWidth: '70%',
                 }}>
-                    {message && (
-                        <Alert variant="outlined" severity="success" sx={{
+                    {message[0] !== "" && (
+                        <Alert severity={`${message[1]}`} sx={{
                             position: 'fixed',
                             width: 'auto',
                             height: 'auto',
-                            bgcolor: '#26ca7032',
                             zIndex: '1000',
                         }} >
-                            {message}
+                            {message[0]}
                         </Alert>
                     )}
-                    <form className={classes.homeEdit_secondSection_formSubservicio} onSubmit={handleSubmit}>
+                    <form className={classes.homeEdit_aboutSection_formSubservicio} ref={refForm} onSubmit={handleSubmit}>
                         <div>
                             <div>
                                 <label htmlFor={`subtitulo_about_${data.subtitulo_nosotros}`}>Subtitulo</label>
@@ -125,6 +184,12 @@ const EditAbout = ({dataSSR}) => {
                                         type="file"
                                         accept="image/*"
                                         name="imagen"
+                                        onChange={(e) => {
+                                            const updatedData = data;
+                                            updatedData.img1 = e.target.files[0];
+                                            setData(updatedData);
+                                        }}
+                                        required
                                         className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                     />
                                 <label htmlFor="imagen2" style={{marginBottom: 0}}>Imagen 2</label>
@@ -132,6 +197,12 @@ const EditAbout = ({dataSSR}) => {
                                         type="file"
                                         accept="image/*"
                                         name="imagen2"
+                                        onChange={(e) => {
+                                            const updatedData = data;
+                                            updatedData.img2 = e.target.files[0];
+                                            setData(updatedData);
+                                        }}
+                                        required
                                         className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                     />
                             </div>
@@ -159,7 +230,9 @@ const EditAbout = ({dataSSR}) => {
                                             'bold italic |' +
                                             '| bullist numlist outdent indent | ',
                                         content_style: `body { font-family:Helvetica,Arial,sans-serif; font-size:12px; }`,
-                                        extended_valid_elements: 'span[*]'
+                                        extended_valid_elements: 'span[*]',
+                                        skin: 'oxide-dark',
+                                        content_css: 'dark',
                                     }} sty/>
                             </div>
                             <div>
@@ -187,11 +260,24 @@ const EditAbout = ({dataSSR}) => {
                                             'bold italic |' +
                                             '| bullist numlist outdent indent | ',
                                         content_style: `body { font-family:Helvetica,Arial,sans-serif; font-size:12px; }`,
-                                        extended_valid_elements: 'span[*]'
+                                        extended_valid_elements: 'span[*]',
+                                        skin: 'oxide-dark',
+                                        content_css: 'dark',
                                     }} sty/>
                             </div>
                         </div>
-                        <Button variant="contained" color="primary" type="submit" > Guardar cambios </Button>
+                        <div className={classes.homeEdit_aboutSection_formSubservicio_updateAlert}>
+                            <Button variant="contained" color="primary"  onClick={() => setConfirmationUpdate(true)} 
+                                sx={{
+                                    width: "200px",
+                                    height: "50px",
+                                    bgcolor: "#014655",
+                                    color: "white",
+                                    ":hover": {
+                                        bgcolor: "#0d5c6c",
+                                    }
+                                }}> Guardar cambios </Button>
+                        </div>
                     </form>
             </Box>
         </>

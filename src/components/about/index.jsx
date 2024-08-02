@@ -6,6 +6,7 @@ import classes from './about.module.scss';
 import TimeLine from '../timeline/timeline';
 import DOMPurify from 'dompurify';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 function AboutOne({ aboutItem }) {
     const [sanitizedItem, setSanitizedItem] = useState([]);
@@ -19,6 +20,14 @@ function AboutOne({ aboutItem }) {
             setSanitizedItem(sanitized);
         }
     }, [aboutItem]);
+
+    const imageLoader1 = () => {
+        return `${aboutItem.img1}`
+    }
+
+    const imageLoader2 = () => {
+        return `${aboutItem.img2}`
+    }
     return (
         <div className={classes.area}>
             <Container key={aboutItem.id_nosotros}>
@@ -43,10 +52,14 @@ function AboutOne({ aboutItem }) {
                                 />
                             </div>
                             <div className={classes.img}>
-                                <img
-                                    src='/images/about/1-1.jpg'
+                                <Image
+                                    loader={imageLoader2}
+                                    src="/images/about"
                                     alt='about image'
                                     className="img-full"
+                                    width={650}
+                                    height={530}
+                                    priority
                                 />
                             </div>
                         </div>
@@ -68,9 +81,13 @@ function AboutOne({ aboutItem }) {
                                     </h2>
                                 </div>
                                 <div className={classes.experience_img}>
-                                    <img
+                                    <Image
+                                        loader={imageLoader1}
                                         src='/images/about/avatar.png'
                                         alt='años de experiencia'
+                                        width={80}
+                                        height={85}
+                                        priority
                                     />
                                 </div>
                             </div>
