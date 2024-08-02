@@ -301,23 +301,6 @@ export default function NavAdmin() {
                                         Contacto
                                     </motion.li>
                             </a>
-                            <a href="http://localhost:3000/admin/header" style={{ backgroundColor: pathname === "/admin/header" ? "#ADA479" : ""}}>
-                                    <ExploreIcon />
-                                    <motion.li 
-                                    initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
-                                    variants={{
-                                        visible: {
-                                            opacity: 1,
-                                        },
-                                        hidden: {
-                                            width: 0,
-                                            opacity: 0,
-                                        }
-                                    }}
-                                    animate={hidden ? "hidden" : "visible"}>
-                                        Header
-                                    </motion.li>
-                            </a>
                             <a href="http://localhost:3000/admin/footer" style={{ backgroundColor: pathname === "/admin/footer" ? "#ADA479" : ""}}>
                                     <CallToActionIcon />
                                     <motion.li 

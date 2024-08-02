@@ -1,21 +1,25 @@
-'use client'
 //Imports de react.
 import { useEffect, useState } from "react";
 
+//Imports de next.
 import Image from 'next/image';
 
 //Imports de componentes de Material UI.
-import { Box, Button, CircularProgress, Alert, FormControlLabel, Checkbox } from "@mui/material";
+import { Box, Button, Alert, FormControlLabel, Checkbox } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { TextareaAutosize } from "@mui/material";
+import InfoIcon from '@mui/icons-material/Info';
 
 //Imports de estilos.
 import classes from "../servicios/EditService.module.scss"
 
 //Imports de librerias externas.
 import axios from "axios";
+
+//Imports de componentes propios.
 import Ruta from "../items-util/ruta";
 import BotonFixed from "../items-util/botonFixed";
-import {TextareaAutosize} from "@mui/material";
+
 
 const EditProyecto = ({ proyecto }) => {
     const theme = useTheme();
@@ -45,6 +49,25 @@ const EditProyecto = ({ proyecto }) => {
         imagen_overview: null,
     });
     const [message, setMessage] = useState('');
+    const [showTooltipRich, setShowTooltipRich] = useState(false);
+    const [showTooltipOver, setShowTooltipOver] = useState(false);
+
+    const handleRichMouseEnter = () => {
+        setShowTooltipRich(true);
+    };
+
+    const handleRichMouseLeave = () => {
+        setShowTooltipRich(false);
+    };
+
+
+    const handleOverMouseEnter = () => {
+        setShowTooltipOver(true);
+    };
+
+    const handleOverMouseLeave = () => {
+        setShowTooltipOver(false);
+    };
 
     useEffect(() => {
         setProyectoData({
@@ -171,7 +194,7 @@ const EditProyecto = ({ proyecto }) => {
                                 />
                             </div>
                             <div className={classes.formGroup}>
-                                <label htmlFor="ubicacion">Ubicación</label>
+                                <label htmlFor="ubicacion">Ciudad</label>
                                 <input
                                     type="text"
                                     id="ubicacion"
@@ -314,7 +337,7 @@ const EditProyecto = ({ proyecto }) => {
                                 <form>
                                     <div className={classes.subservicioHead}>
                                         <h3>Sección Richtext</h3>
-                                        <button type="button" onClick={() => setProyectoData({...proyectoData, use_richtexts: 0})}>
+                                        <button type="button" onClick={() => setProyectoData({ ...proyectoData, use_richtexts: 0 })}>
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a80505" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 <path d="M3 6h18" />
                                                 <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
@@ -351,14 +374,63 @@ const EditProyecto = ({ proyecto }) => {
                                     </div>
                                 </form>
                             ) : (
-                                <Button variant="contained" sx={{
-                                    bgcolor: '#014655', color: '#F1F1F1', height: 'max-content', "&:hover": {
-                                        backgroundColor: '#757254',
-                                        color: '#F1F1F1',
-                                    }
-                                }} type="button" onClick={() => setProyectoData({...proyectoData, use_richtexts: 1})}>
-                                    Agregar sección richtext
-                                </Button>
+                                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
+                                    <Button variant="contained" sx={{
+                                        bgcolor: '#014655', color: '#F1F1F1', height: 'max-content', "&:hover": {
+                                            backgroundColor: '#757254',
+                                            color: '#F1F1F1',
+                                        }
+                                    }} type="button" onClick={() => setProyectoData({ ...proyectoData, use_richtexts: 1 })}>
+                                        Agregar sección richtext
+                                    </Button>
+                                    <div
+                                        style={{ position: 'relative' }}
+                                        onMouseEnter={handleRichMouseEnter}
+                                        onMouseLeave={handleRichMouseLeave}
+                                    >
+                                        <InfoIcon
+                                            color="disabled"
+                                            sx={{
+                                                fontSize: '20px',
+                                                cursor: 'pointer',
+                                                position: 'relative',
+                                            }}
+                                        />
+                                        {showTooltipRich && (
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '30px',
+                                                left: '50%',
+                                                transform: 'translateX(-50%)',
+                                                width: '400px',
+                                                padding: '10px',
+                                                backgroundColor: '#fff',
+                                                border: '1px solid #ccc',
+                                                borderRadius: '4px',
+                                                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                                                zIndex: 100,
+                                            }}>
+                                                <div style={{
+                                                    position: 'absolute',
+                                                    top: '-10px',
+                                                    left: '50%',
+                                                    transform: 'translateX(-50%)',
+                                                    width: '0',
+                                                    height: '0',
+                                                    borderLeft: '10px solid transparent',
+                                                    borderRight: '10px solid transparent',
+                                                    borderBottom: '10px solid #fff',
+                                                }}></div>
+                                                <Image src="/images/admin/projects/richtext_example.png" alt="Descripción de la imagen"
+                                                    layout="responsive"
+                                                    width={16}
+                                                    height={9}
+                                                    objectFit="cover"
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
                             )}
 
                         </Box>
@@ -375,7 +447,7 @@ const EditProyecto = ({ proyecto }) => {
                                 <form>
                                     <div className={classes.subservicioHead}>
                                         <h3>Sección Overview</h3>
-                                        <button type="button" onClick={() => setProyectoData({...proyectoData, use_overview: 0})}>
+                                        <button type="button" onClick={() => setProyectoData({ ...proyectoData, use_overview: 0 })}>
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a80505" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 <path d="M3 6h18" />
                                                 <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
@@ -406,14 +478,63 @@ const EditProyecto = ({ proyecto }) => {
                                     </div>
                                 </form>
                             ) : (
-                                <Button variant="contained" sx={{
-                                    bgcolor: '#014655', color: '#F1F1F1', height: 'max-content', "&:hover": {
-                                        backgroundColor: '#757254',
-                                        color: '#F1F1F1',
-                                    }
-                                }} type="button" onClick={() => setProyectoData({...proyectoData, use_overview: proyectoData.use_overview === 1 ? 0 : 1})}>
-                                    Agregar sección overview
-                                </Button>
+                                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
+                                    <Button variant="contained" sx={{
+                                        bgcolor: '#014655', color: '#F1F1F1', height: 'max-content', "&:hover": {
+                                            backgroundColor: '#757254',
+                                            color: '#F1F1F1',
+                                        }
+                                    }} type="button" onClick={() => setProyectoData({ ...proyectoData, use_overview: proyectoData.use_overview === 1 ? 0 : 1 })}>
+                                        Agregar sección overview
+                                    </Button>
+                                    <div
+                                        style={{ position: 'relative' }}
+                                        onMouseEnter={handleOverMouseEnter}
+                                        onMouseLeave={handleOverMouseLeave}
+                                    >
+                                        <InfoIcon
+                                            color="disabled"
+                                            sx={{
+                                                fontSize: '20px',
+                                                cursor: 'pointer',
+                                                position: 'relative',
+                                            }}
+                                        />
+                                        {showTooltipOver && (
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '30px',
+                                                left: '50%',
+                                                transform: 'translateX(-50%)',
+                                                width: '400px',
+                                                padding: '10px',
+                                                backgroundColor: '#fff',
+                                                border: '1px solid #ccc',
+                                                borderRadius: '4px',
+                                                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                                                zIndex: 100,
+                                            }}>
+                                                <div style={{
+                                                    position: 'absolute',
+                                                    top: '-10px',
+                                                    left: '50%',
+                                                    transform: 'translateX(-50%)',
+                                                    width: '0',
+                                                    height: '0',
+                                                    borderLeft: '10px solid transparent',
+                                                    borderRight: '10px solid transparent',
+                                                    borderBottom: '10px solid #fff',
+                                                }}></div>
+                                                <Image src="/images/admin/projects/overview_example.png" alt="Descripción de la imagen"
+                                                    layout="responsive"
+                                                    width={16}
+                                                    height={9}
+                                                    objectFit="cover"
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
                             )}
                         </Box>
                     </Box>

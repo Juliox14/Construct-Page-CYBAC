@@ -1,4 +1,3 @@
-'use client'
 //Imports de react.
 import { useEffect, useState, useRef } from "react";
 
@@ -41,7 +40,6 @@ const EditService = ({ servicio }) => {
 
     const addSubservice = () => {
         const id_servicio = servicioData.id_servicio;
-        console.log(id_servicio);
         setNewSubservicioData([...newSubservicioData, { id_servicio: id_servicio, titulo_subservicio: '', descripcion_subservicio: '' }]);
     };
 
