@@ -103,7 +103,6 @@ const EditService = ({ servicio }) => {
                     setInterval(() => {
                         setMessage('');
                     }, 1500);
-
                 } else {
                     setMessage('Error al actualizar los subservicios');
                     setInterval(() => {

@@ -1,0 +1,12 @@
+.body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    padding-right: 0px;
+    padding-left: 20px;
+    position: relative;
+}
