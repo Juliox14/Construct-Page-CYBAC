@@ -3,10 +3,12 @@ import classes from './inputStyle.module.css';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-export default function ReactInput({ name, isRequired, type = 'text', placeHolder = 'Lorem Ipsum', ancho = '400px', callBackOnInputChange }) {
+export default function ReactInput({ name, isRequired, type = 'text', placeHolder = 'Lorem Ipsum', ancho = '400px', callBackOnInputChange, value='' }) {
     // Estilos reactivos
-    const [inputState, setInputState] = useState('desactivo');
-    const [inputValue, setInputValue] = useState('');
+    const [inputState, setInputState] = useState(
+        value ? 'relleno' : 'desactivo'
+    );
+    const [inputValue, setInputValue] = useState(value);
     const anchoDiv = { width: ancho };
 
     // Cuando cambie el valor del input se introduce dicho valor en la variable de estado 'inputValue'
@@ -49,6 +51,7 @@ export default function ReactInput({ name, isRequired, type = 'text', placeHolde
             <input
                 name={name}
                 type={type}
+                value={inputValue}
                 className={classes.input}
                 onFocus={handleFocus}
                 onBlur={handleBlur}

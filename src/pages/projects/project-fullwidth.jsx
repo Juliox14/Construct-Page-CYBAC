@@ -1,10 +1,8 @@
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-import BannerFive from '../../components/banner/index-5';
 import Breadcrumb from '../../components/breadcrumb';
 import BannerTwo from '../../components/banner/index-2';
 import Footer from '../../components/layout/footer';
-import Newsletter from '../../components/newsletter/newsletter';
 import ProjectFullwidth from '../../components/projects/fullwidth';
 import {getElement} from '../../lib/items';
 

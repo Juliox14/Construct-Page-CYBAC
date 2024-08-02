@@ -7,7 +7,6 @@ import {getElement, getItemsBy} from '../../lib/items';
 
 function ServiceDetailsPage({
     servicesList,
-    richTexts,
     footerItems,
     services,
 })
@@ -31,7 +30,6 @@ function ServiceDetailsPage({
             <ServiceDetail
                 sidebarList={servicesList}
                 service={services.servicios}
-                richTexts={richTexts}
                 ourServices={services.get_servicio}
             />
             <Footer footerItems={footerItems} services={servicesList} />

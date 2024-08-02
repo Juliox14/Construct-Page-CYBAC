@@ -1,8 +1,5 @@
-// 'use client'
-
 import Head from 'next/head';
 import PropTypes, { array } from 'prop-types';
-import BannerTwo from '../../components/banner/index-2';
 import BrandTwo from '../../components/brand/index-2';
 import Breadcrumb from '../../components/breadcrumb';
 import Footer from '../../components/layout/footer';
@@ -12,8 +9,7 @@ import ClientsList from '../../components/clients/clientsList';
 function OurClients({
     dataHomeClients,
     servicesList,
-    footerItems,
-    settings
+    footerItems
 }) {
     let clientes_municipio=[];
     let clientes_iniciativa_privada=[];
@@ -48,9 +44,9 @@ function OurClients({
             />
 
             <ClientsList dataHomeClients={dataHomeClients}/>
-            {(clientes_municipio.length != 0) && <BrandTwo clientes={clientes_municipio} settings={settings}/>}
-            {(clientes_iniciativa_privada.length != 0) && <BrandTwo clientes={clientes_iniciativa_privada} settings={settings}/>}
-            {(clientes_particular.length != 0) && <BrandTwo clientes={clientes_particular} settings={settings}/>}
+            {(clientes_municipio.length != 0) && <BrandTwo clientes={clientes_municipio}/>}
+            {(clientes_iniciativa_privada.length != 0) && <BrandTwo clientes={clientes_iniciativa_privada}/>}
+            {(clientes_particular.length != 0) && <BrandTwo clientes={clientes_particular}/>}
             <Footer footerItems={footerItems} services={servicesList} />
         </>
     );

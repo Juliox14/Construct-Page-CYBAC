@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import AdminLayout from '../../../../components/admin';
 import EditService from '../../../../components/admin/body/servicios/EditService';
 import { getItemsBy } from '../../../../lib/items';

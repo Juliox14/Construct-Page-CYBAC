@@ -6,7 +6,7 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { useRouter } from 'next/router';
 import classes from './header.module.scss';
 import { OffcanvasData } from './offcanvas-data';
-import { getElement} from '../../lib/items';
+import { getElement } from '../../lib/items';
 
 function Header() {
     const router = useRouter();
@@ -160,27 +160,6 @@ function Header() {
                                             <Link href="/about">
                                                 <span>Nosotros</span>
                                             </Link>
-                                            <ul
-                                                className={
-                                                    classes.dropdown_menu
-                                                }
-                                            >
-                                                <li>
-                                                    <Link href="/about">
-                                                        Filosofía
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/about">
-                                                        Equipamiento
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/about">
-                                                        Organigrama
-                                                    </Link>
-                                                </li>
-                                            </ul>
                                         </li>
                                         <li className={classes.dropdown_holder}>
                                             <Link href="/services">
@@ -192,11 +171,11 @@ function Header() {
                                                 }
                                             >
                                                 {titulosServicios.map((servicio) => (
-                                                <li key={servicio.id_servicio}>
-                                                    <Link href= {`/services/${servicio.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}>
-                                                        {servicio.titulo}
-                                                    </Link>
-                                                </li>
+                                                    <li key={servicio.id_servicio}>
+                                                        <Link href={`/services/${servicio.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}>
+                                                            {servicio.titulo}
+                                                        </Link>
+                                                    </li>
                                                 ))}
                                             </ul>
                                         </li>
@@ -214,33 +193,6 @@ function Header() {
                                             <Link href="/contact">
                                                 <span>Contacto</span>
                                             </Link>
-                                        </li>
-                                        <li
-                                            className={`${search
-                                                ? 'search-show'
-                                                : 'search-hide'
-                                                }`}
-                                        >
-                                            {/* <buton
-                                                className={classes.search__btn}
-                                                onClick={SearchToggle}
-                                            >
-                                                <FaSearch />
-                                            </buton>
-                                            <form className="search-form">
-                                                <input
-                                                    className="search-input"
-                                                    type="search"
-                                                    name="search"
-                                                    placeholder="Search"
-                                                />
-                                                <button
-                                                    className="search-inner__btn"
-                                                    type="submit"
-                                                >
-                                                    <FaSearch />
-                                                </button>
-                                            </form> */}
                                         </li>
                                         <li>
                                             <a href="/admin">

@@ -1,11 +1,20 @@
-import { Box, Button, Alert } from "@mui/material";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+// Imports de mui material
+import { Box, Button, Alert, TextareaAutosize} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+
+// Import de estilos
 import classes from "./EditService.module.scss";
+
+// Imports de react
 import { useEffect, useState } from "react";
-import { Editor } from "@tinymce/tinymce-react";
-import Link from "next/link";
+
+// Imports de axios
 import axios from "axios";
+
+// Imports de tinymce
+import { Editor } from "@tinymce/tinymce-react";
+
+// Imports de componentes propios
 import Ruta from "../items-util/ruta";
 
 const NewServiceForm = () => {
@@ -172,6 +181,7 @@ const NewServiceForm = () => {
                                 name="titulo_breadcrumb"
                                 value={servicioData.titulo_breadcrumb}
                                 onChange={handleInputChange}
+                                required
                                 className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                             />
                         </div>
@@ -183,19 +193,21 @@ const NewServiceForm = () => {
                                 name="subtitulo_breadcrumb"
                                 value={servicioData.subtitulo_breadcrumb}
                                 onChange={handleInputChange}
+                                required
                                 className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                             />
                         </div>
                         <div className={classes.formGroup}>
                             <label htmlFor="descripcion_breadcrumb">Descripción Breadcrumb</label>
-                            <textarea
+                            <TextareaAutosize
                                 id="descripcion_breadcrumb"
                                 name="descripcion_breadcrumb"
                                 value={servicioData.descripcion_breadcrumb}
                                 onChange={handleInputChange}
+                                required
                                 rows="4"
                                 className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            ></textarea>
+                            />
                         </div>
                         <div className={classes.formGroup}>
                             <label htmlFor="titulo">Título</label>
@@ -237,7 +249,7 @@ const NewServiceForm = () => {
                         </div>
                         <div className={classes.formGroup}>
                             <label htmlFor="descripcion">Descripción</label>
-                            <textarea name="descripcion" defaultValue={servicioData.descripcion} onChange={handleInputChange} className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} />
+                            <TextareaAutosize name="descripcion" defaultValue={servicioData.descripcion} onChange={handleInputChange} className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} />
                         </div>
                         <Button
                             type="submit"
