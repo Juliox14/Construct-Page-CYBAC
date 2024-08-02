@@ -128,7 +128,7 @@ const NewServiceForm = () => {
             padding: '50px',
             display: 'block',
         }}>
-            <Ruta rutas={rutas} />
+            <Ruta rutas={rutas} titulo={'Agregar servicio'} />
             <Box sx={{
                 bgcolor: theme.palette.mode === 'dark' ? "#1C1C1C" : "#FFFFFF",
                 color: theme.palette.mode === 'dark' ? "white" : "#014655",

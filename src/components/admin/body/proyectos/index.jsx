@@ -10,13 +10,13 @@ const Proyectos = ({proyectos}) => {
                 title: proyecto.nombre_proyecto,
                 description: `Información sobre el proyecto de ${proyecto.cliente}`,
                 link: `/admin/proyecto/edit/${proyecto.id_proyecto}`,
-                id: proyecto.id_proyectoo,
+                id: proyecto.id_proyecto,
                 url: proyecto.ruta_imagen
             }));
 
             const initialComponent = {
-                title: 'Titulo',
-                description: 'Titulo y descripción breve de la página',
+                title: 'Index de proyectos',
+                description: 'Titulo, subtitulo y descripción breve del breadcrumb',
                 link: '/admin/slider',
                 id: "frame1",
                 url: '/images/admin/projects/title.png'

@@ -13,13 +13,10 @@
 
     textarea {
         box-sizing: border-box;
-        width: 100%;
         /* O el tamaño que necesites */
         overflow-y: hidden;
         /* Ocultar el scroll vertical */
         resize: none;
-        min-height: 300px;
-        max-height: max-content;
         font-family: 'Yantramanav', sans-serif;
         margin-bottom: 10px;
     }
@@ -116,7 +113,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    align-items: flex-start;
     button {
         background-color: transparent;
         border: none;

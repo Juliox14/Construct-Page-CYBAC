@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap';
 import Link from 'next/link';
 import classes from './project.module.scss';
 
-function ProjectSidebar( {projectsSidebar} ) {
+function ProjectSidebar({ projectsSidebar }) {
     return (
         <Col lg={{ span: 3 }}>
             <div className="sidebar pt-max-md-25">
@@ -13,25 +13,25 @@ function ProjectSidebar( {projectsSidebar} ) {
                     </h2>
                     <ul className={classes.sidebar_list}>
                         <li>
-                            {`Cliente: ${projectsSidebar.cliente || ''}`}
+                            <strong>Cliente: </strong>{`${projectsSidebar.cliente || ''}`}
                         </li>
                         <li>
-                            {`Ubicación: ${projectsSidebar.ubicacion || ''}, ${projectsSidebar.estado || ''}`}
+                            <strong>Ubicación: </strong>{`${projectsSidebar.ubicacion || ''}, ${projectsSidebar.estado || ''}`}
                         </li>
                         <li>
-                            {`Tipo de obra: ${projectsSidebar.tipo_obra || ''}`}
+                            <strong>Tipo de obra: </strong>{`${projectsSidebar.tipo_obra || ''}`}
                         </li>
                         <li>
-                            {`Coste de la obra: ${projectsSidebar.importe || ''}`}
+                            <strong>Coste de la obra: </strong>{`$${projectsSidebar.importe || ''}`}
                         </li>
                         <li>
-                            {`Fecha de inicio: ${projectsSidebar.fecha_inicio || ''}`}
+                            <strong>Fecha de inicio: </strong>{`${projectsSidebar.fecha_inicio || ''}`}
                         </li>
                         <li>
-                            {`Fecha de finalización: ${projectsSidebar.fecha_final || ''}`}
+                            <strong>Fecha de finalización: </strong> {`${projectsSidebar.fecha_final || ''}`}
                         </li>
                         <li>
-                            {`Duración de la obra: ${projectsSidebar.duracion || ''}`}
+                            <strong>Duración de la obra: </strong>{`${projectsSidebar.duracion || ''} ${projectsSidebar.duracion > 1 ? 'meses' : 'mes'}`}
                         </li>
                     </ul>
                 </div>

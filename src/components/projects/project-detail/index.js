@@ -3,11 +3,10 @@ import { Container, Row } from 'react-bootstrap';
 import classes from './index.module.scss';
 import ProjectSidebar from '../project-sidebar';
 import ProjectContent from './project-content';
+import RichText from '../../rich-text';
 
 function ProjectDetail({
     project,
-    richTexts,
-    projectsOverview,
     projectsSidebar,
 }) {
     return (
@@ -16,8 +15,6 @@ function ProjectDetail({
                 <Row>
                     <ProjectContent
                         project={project}
-                        // richTexts={richTexts}
-                        // projectsOverview={projectsOverview}
                     />
                     <ProjectSidebar projectsSidebar={projectsSidebar} />
                 </Row>
@@ -28,8 +25,6 @@ function ProjectDetail({
 
 ProjectDetail.propTypes = {
     project: PropTypes.instanceOf(Object).isRequired,
-    // richTexts: PropTypes.instanceOf(Object).isRequired,
-    // projectsOverview: PropTypes.instanceOf(Object).isRequired,
     projectsSidebar: PropTypes.instanceOf(Object).isRequired,
 };
 

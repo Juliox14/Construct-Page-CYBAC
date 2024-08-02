@@ -2,8 +2,6 @@
 //Imports de react.
 import { useEffect, useState } from "react";
 
-import Image from 'next/image';
-
 //Imports de componentes de Material UI.
 import { Box, Button, CircularProgress, Alert, FormControlLabel, Checkbox } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -15,12 +13,11 @@ import classes from "../servicios/EditService.module.scss"
 import axios from "axios";
 import Ruta from "../items-util/ruta";
 import BotonFixed from "../items-util/botonFixed";
-import {TextareaAutosize} from "@mui/material";
 
-const EditProyecto = ({ proyecto }) => {
+
+const NewProject = () => {
     const theme = useTheme();
     const [proyectoData, setProyectoData] = useState({
-        id_proyecto: 0,
         cliente: '',
         ubicacion: '',
         estado: '',
@@ -46,33 +43,6 @@ const EditProyecto = ({ proyecto }) => {
     });
     const [message, setMessage] = useState('');
 
-    useEffect(() => {
-        setProyectoData({
-            id_proyecto: proyecto.id_proyecto,
-            cliente: proyecto.cliente,
-            ubicacion: proyecto.ubicacion,
-            estado: proyecto.estado,
-            tipo_obra: proyecto.tipo_obra,
-            importe: proyecto.importe,
-            ruta_imagen: proyecto.ruta_imagen,
-            fecha_inicio: proyecto.fecha_inicio,
-            fecha_final: proyecto.fecha_final,
-            nombre_proyecto: proyecto.nombre_proyecto,
-            descripcion_proyecto: proyecto.descripcion_proyecto,
-            isDestacado: proyecto.isDestacado,
-            use_richtexts: proyecto.use_richtexts,
-            texto1_richtext: proyecto.texto1_richtext,
-            texto2_richtext: proyecto.texto2_richtext,
-            texto3_richtext: proyecto.texto3_richtext,
-            use_overview: proyecto.use_overview,
-            ruta_imagen_richtext: proyecto.ruta_imagen_richtext,
-            texto_final_richtext: proyecto.texto_final_richtext,
-            titulo_overview: proyecto.titulo_overview,
-            descripcion_overview: proyecto.descripcion_overview,
-            imagen_overview: proyecto.imagen_overview,
-        });
-    }, [proyecto]);
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setProyectoData({
@@ -84,13 +54,31 @@ const EditProyecto = ({ proyecto }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await axios.put(`/api/proyects/${proyectoData.id_proyecto}`, proyectoData);
+        let response = null;
+        if (proyectoData.use_richtexts === 1 && proyectoData.use_overview === 1) {
+            response = await axios.post('/api/proyectos', proyectoData);
+        } else if (proyectoData.use_richtexts === 1 && proyectoData.use_overview === 0) {
+            const {texto1_richtext, texto2_richtext, texto3_richtext, ruta_imagen_richtext, texto_final_richtext, ...data} = proyectoData;
+            setProyectoData(data);
+            response = await axios.post('/api/proyectos', proyectoData);
+        }else if (proyectoData.use_richtexts === 0 && proyectoData.use_overview === 1) {
+            const {titulo_overview, descripcion_overview, imagen_overview, ...data} = proyectoData;
+            setProyectoData(data);
+            response = await axios.post('/api/proyectos', proyectoData);
+        }else{
+            const {texto1_richtext, texto2_richtext, texto3_richtext, ruta_imagen_richtext, texto_final_richtext, titulo_overview, descripcion_overview, imagen_overview, ...data} = proyectoData;
+            setProyectoData(data);
+            response = await axios.post('/api/proyectos', proyectoData);
+        }
+
+        
 
         if (response.status === 200) {
             setMessage(response.data.message);
             setInterval(() => {
                 setMessage('');
-            }, 5000);
+                window.location.href = '/admin/proyecto';
+            }, 1000);
         } else {
             setMessage('Error al actualizar el proyecto');
             setInterval(() => {
@@ -99,12 +87,17 @@ const EditProyecto = ({ proyecto }) => {
         }
     };
 
-    const loaderImage = (image) => {
-        return image;
+    const handleRichtexts = () => {
+        setProyectoData({ ...proyectoData, use_richtexts: proyectoData.use_richtexts === 1 ? 0 : 1 });
+        console.log(proyectoData.use_richtexts);
     };
 
+    const handleOverview = () => {
+        setProyectoData({ ...proyectoData, use_overview: proyectoData.use_overview === 1 ? 0 : 1 });
+        console.log(proyectoData.use_overview);
+    };
 
-    const rutas = [{ link: '/admin', nombre: 'Inicio' }, { link: '/admin/proyecto', nombre: 'Proyectos' }, { link: `/admin/servicio/${proyectoData.id_proyecto}`, nombre: `${proyectoData.nombre_proyecto}` }];
+    const rutas = [{ link: '/admin', nombre: 'Inicio' }, { link: '/admin/proyecto', nombre: 'Proyectos' }, { link: '/admin/servicio/newProject', nombre: 'Nuevo Proyecto' }];
 
     return (
         <>
@@ -116,9 +109,7 @@ const EditProyecto = ({ proyecto }) => {
                 width: 'auto',
                 padding: '50px',
                 display: 'block',
-                position: 'relative',
-            }}
-            >
+            }}>
                 {message && (
                     <Alert variant="outlined" severity="success" sx={{
                         position: 'fixed',
@@ -132,7 +123,7 @@ const EditProyecto = ({ proyecto }) => {
                         {message}
                     </Alert>
                 )}
-                <Ruta rutas={rutas} titulo={'Editar proyecto'} />
+                <Ruta rutas={rutas} titulo={'Agregar proyecto'} />
                 <Box sx={{
                     bgcolor: theme.palette.mode === 'dark' ? "#1C1C1C" : "#FFFFFF",
                     color: theme.palette.mode === 'dark' ? "white" : "#014655",
@@ -145,7 +136,6 @@ const EditProyecto = ({ proyecto }) => {
                     gridAutoRows: '1fr',
 
                 }}>
-
                     <Box sx={{
                         bgcolor: theme.palette.mode === 'dark' ? "#242424" : "#E3E3E3",
                         color: theme.palette.mode === 'dark' ? "white" : "#014655",
@@ -153,11 +143,10 @@ const EditProyecto = ({ proyecto }) => {
                         borderRadius: '10px',
                         padding: '20px',
                         height: 'min-content',
-                        gridRowStart: '1',
-                        gridRowEnd: '3',
+                        width: '800px',
                     }}>
                         <h3>Editar página principal</h3>
-                        <form onSubmit={handleSubmit}>
+                        <form>
                             <div className={classes.formGroup}>
                                 <label htmlFor="cliente">Cliente</label>
                                 <input
@@ -167,7 +156,6 @@ const EditProyecto = ({ proyecto }) => {
                                     value={proyectoData.cliente}
                                     onChange={handleInputChange}
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                    required
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -179,7 +167,6 @@ const EditProyecto = ({ proyecto }) => {
                                     value={proyectoData.ubicacion}
                                     onChange={handleInputChange}
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                    required
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -191,7 +178,6 @@ const EditProyecto = ({ proyecto }) => {
                                     value={proyectoData.estado}
                                     onChange={handleInputChange}
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                    required
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -203,7 +189,6 @@ const EditProyecto = ({ proyecto }) => {
                                     value={proyectoData.tipo_obra}
                                     onChange={handleInputChange}
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                    required
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -215,7 +200,6 @@ const EditProyecto = ({ proyecto }) => {
                                     value={proyectoData.importe}
                                     onChange={handleInputChange}
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                    required
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -227,11 +211,10 @@ const EditProyecto = ({ proyecto }) => {
                                     value={proyectoData.ruta_imagen}
                                     onChange={handleInputChange}
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                    required
                                 />
                                 {proyectoData.ruta_imagen && (
                                     <div className={classes.imagePreview}>
-                                        <Image src={proyectoData.ruta_imagen} loader={() => loaderImage(proyectoData.ruta_imagen)} width={300} height={200} alt="Imagen del proyecto" />
+                                        <img src={proyectoData.ruta_imagen} alt="Imagen del proyecto" />
                                     </div>
                                 )}
                             </div>
@@ -244,7 +227,6 @@ const EditProyecto = ({ proyecto }) => {
                                     value={proyectoData.fecha_inicio}
                                     onChange={handleInputChange}
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                    required
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -256,7 +238,6 @@ const EditProyecto = ({ proyecto }) => {
                                     value={proyectoData.fecha_final}
                                     onChange={handleInputChange}
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                    required
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -268,20 +249,18 @@ const EditProyecto = ({ proyecto }) => {
                                     value={proyectoData.nombre_proyecto}
                                     onChange={handleInputChange}
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                    required
                                 />
                             </div>
                             <div className={classes.formGroup}>
                                 <label htmlFor="descripcion_proyecto">Descripción del Proyecto</label>
-                                <TextareaAutosize
+                                <textarea
                                     id="descripcion_proyecto"
                                     name="descripcion_proyecto"
                                     value={proyectoData.descripcion_proyecto}
                                     onChange={handleInputChange}
                                     rows="4"
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                    required
-                                ></TextareaAutosize>
+                                ></textarea>
                             </div>
                             <div className={classes.formGroup_check}>
                                 <FormControlLabel label="¿Es destacado?" control={<Checkbox id="isDestacado"
@@ -290,7 +269,6 @@ const EditProyecto = ({ proyecto }) => {
                                     onChange={(e) => setProyectoData({
                                         ...proyectoData,
                                         isDestacado: e.target.checked ? 1 : 0
-
                                     })}
                                 />} />
                             </div>
@@ -314,7 +292,7 @@ const EditProyecto = ({ proyecto }) => {
                                 <form>
                                     <div className={classes.subservicioHead}>
                                         <h3>Sección Richtext</h3>
-                                        <button type="button" onClick={() => setProyectoData({...proyectoData, use_richtexts: 0})}>
+                                        <button type="button" onClick={() => handleRichtexts()}>
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a80505" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 <path d="M3 6h18" />
                                                 <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
@@ -326,15 +304,15 @@ const EditProyecto = ({ proyecto }) => {
                                     </div>
                                     <div className={classes.formGroup}>
                                         <label htmlFor="texto1_richtext">Texto 1</label>
-                                        <TextareaAutosize className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} type="text" id="texto1_richtext" name="texto1_richtext" value={proyectoData.texto1_richtext} onChange={handleInputChange} />
+                                        <input className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} type="text" id="texto1_richtext" name="texto1_richtext" value={proyectoData.texto1_richtext} onChange={handleInputChange} />
                                     </div>
                                     <div className={classes.formGroup}>
                                         <label htmlFor="texto2_richtext">Texto 2</label>
-                                        <TextareaAutosize className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} type="text" id="texto2_richtext" name="texto2_richtext" value={proyectoData.texto2_richtext} onChange={handleInputChange} />
+                                        <input className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} type="text" id="texto2_richtext" name="texto2_richtext" value={proyectoData.texto2_richtext} onChange={handleInputChange} />
                                     </div>
                                     <div className={classes.formGroup}>
                                         <label htmlFor="texto3_richtext">Texto 3</label>
-                                        <TextareaAutosize className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} type="text" id="texto3_richtext" name="texto3_richtext" value={proyectoData.texto3_richtext} onChange={handleInputChange} />
+                                        <input className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} type="text" id="texto3_richtext" name="texto3_richtext" value={proyectoData.texto3_richtext} onChange={handleInputChange} />
                                     </div>
                                     <div className={classes.formGroup}>
                                         <label htmlFor="ruta_imagen_richtext">Ruta de la Imagen</label>
@@ -347,7 +325,7 @@ const EditProyecto = ({ proyecto }) => {
                                     </div>
                                     <div className={classes.formGroup}>
                                         <label htmlFor="texto_final_richtext">Texto Final</label>
-                                        <TextareaAutosize className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} id="texto_final_richtext" name="texto_final_richtext" value={proyectoData.texto_final_richtext} onChange={handleInputChange} rows="4"></TextareaAutosize>
+                                        <textarea className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} id="texto_final_richtext" name="texto_final_richtext" value={proyectoData.texto_final_richtext} onChange={handleInputChange} rows="4"></textarea>
                                     </div>
                                 </form>
                             ) : (
@@ -356,7 +334,7 @@ const EditProyecto = ({ proyecto }) => {
                                         backgroundColor: '#757254',
                                         color: '#F1F1F1',
                                     }
-                                }} type="button" onClick={() => setProyectoData({...proyectoData, use_richtexts: 1})}>
+                                }} type="button" onClick={() => handleRichtexts()}>
                                     Agregar sección richtext
                                 </Button>
                             )}
@@ -375,7 +353,7 @@ const EditProyecto = ({ proyecto }) => {
                                 <form>
                                     <div className={classes.subservicioHead}>
                                         <h3>Sección Overview</h3>
-                                        <button type="button" onClick={() => setProyectoData({...proyectoData, use_overview: 0})}>
+                                        <button type="button" onClick={() => handleOverview()}>
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a80505" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 <path d="M3 6h18" />
                                                 <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
@@ -392,7 +370,7 @@ const EditProyecto = ({ proyecto }) => {
 
                                     <div className={classes.formGroup}>
                                         <label htmlFor="descripcion_overview">Descripción</label>
-                                        <TextareaAutosize className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} id="descripcion_overview" name="descripcion_overview" value={proyectoData.descripcion_overview} onChange={handleInputChange} rows="4"></TextareaAutosize>
+                                        <textarea className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} id="descripcion_overview" name="descripcion_overview" value={proyectoData.descripcion_overview} onChange={handleInputChange} rows="4"></textarea>
                                     </div>
 
                                     <div className={classes.formGroup}>
@@ -411,18 +389,17 @@ const EditProyecto = ({ proyecto }) => {
                                         backgroundColor: '#757254',
                                         color: '#F1F1F1',
                                     }
-                                }} type="button" onClick={() => setProyectoData({...proyectoData, use_overview: proyectoData.use_overview === 1 ? 0 : 1})}>
+                                }} type="button" onClick={() => handleOverview()}>
                                     Agregar sección overview
                                 </Button>
                             )}
                         </Box>
                     </Box>
                     <BotonFixed metodo={handleSubmit} />
-
                 </Box>
             </Box>
         </>
     );
 };
 
-export default EditProyecto;
+export default NewProject;
