@@ -31,7 +31,7 @@ const EditAbout = ({dataSSR}) => {
             setMessage(['Por favor, llene todos los campos', 'error']);
             setInterval(() => {
                 setMessage(["", ""]);
-            }, 5000);
+            }, 4000);
         }
     }
 
@@ -56,14 +56,14 @@ const EditAbout = ({dataSSR}) => {
                 setConfirmationUpdate(false);
                 setMessage(['Servicio actualizado correctamente', 'success']);
                 setInterval(() => {
-                    setMessage('');
-                }, 10000);
+                    setMessage(['', '']);
+                }, 4000);
             } else {
                 setConfirmationUpdate(false);
-                setMessage(['Error al actualizar', 'error']);
+                setMessage(['Error al actualizar los datos', 'error']);
                 setInterval(() => {
-                    setMessage('');
-                }, 5000);
+                    setMessage(['', '']);
+                }, 4000);
             }
         }
     };
@@ -117,10 +117,8 @@ const EditAbout = ({dataSSR}) => {
             <Box sx={{
                     color: theme.palette.mode === 'dark' ? "" : "#014655",
                     transition: `background-color ${theme.transitions.duration.standard}ms`,
-                    height: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    height: '100vh',
+                    position: 'relative',
                     // maxWidth: '70%',
                 }}>
                     {message[0] !== "" && (
@@ -128,6 +126,7 @@ const EditAbout = ({dataSSR}) => {
                             position: 'fixed',
                             width: 'auto',
                             height: 'auto',
+                            margin: '2% 4.5%',
                             zIndex: '1000',
                         }} >
                             {message[0]}
@@ -137,7 +136,7 @@ const EditAbout = ({dataSSR}) => {
                         <div>
                             <div>
                                 <label htmlFor={`subtitulo_about_${data.subtitulo_nosotros}`}>Subtitulo</label>
-                                <textarea name="subtitulo_about" id={`subtitulo_about_${data.subtitulo_nosotros}`} rows={10} cols={40} style={{resize: "none"}}
+                                <textarea name="subtitulo_about" id={`subtitulo_about_${data.subtitulo_nosotros}`} rows={10} cols={40} style={{resize: "none", backgroundColor: theme.palette.mode === 'dark' ? "#222F3E" : "white", color: theme.palette.mode === 'dark' ? "white" : "black", transition: `background-color ${theme.transitions.duration.standard}ms`}}
                                 onChange={(e) => {
                                     const updatedData = data;
                                     updatedData.subtitulo_nosotros = e.target.value;
@@ -146,7 +145,7 @@ const EditAbout = ({dataSSR}) => {
                             </div>
                             <div>
                                 <label htmlFor={`title_about_${data.titulo_nosotros}`}>Título</label>
-                                <textarea name="title_about" id={`title_about_${data.titulo_nosotros}`} rows={10} cols={40} style={{resize: "none"}}
+                                <textarea name="title_about" id={`title_about_${data.titulo_nosotros}`} rows={10} cols={40} style={{resize: "none", backgroundColor: theme.palette.mode === 'dark' ? "#222F3E" : "white", color: theme.palette.mode === 'dark' ? "white" : "black", transition: `background-color ${theme.transitions.duration.standard}ms`}}
                                 onChange={(e) => {
                                     const updatedData = data;
                                     updatedData.titulo_nosotros = e.target.value;
@@ -155,7 +154,7 @@ const EditAbout = ({dataSSR}) => {
                             </div>
                             <div>
                                 <label htmlFor={`descripcion_about_${data.descripcion_nosotros}`}>Descripción</label>
-                                <textarea name="descripcion_about" id={`descripcion_about_${data.descripcion_nosotros}`} rows={10} cols={40} style={{resize: "none"}}
+                                <textarea name="descripcion_about" id={`descripcion_about_${data.descripcion_nosotros}`} rows={10} cols={40} style={{resize: "none", backgroundColor: theme.palette.mode === 'dark' ? "#222F3E" : "white", color: theme.palette.mode === 'dark' ? "white" : "black", transition: `background-color ${theme.transitions.duration.standard}ms`}}
                                 onChange={(e) => {
                                     const updatedData = data;
                                     updatedData.descripcion_nosotros = e.target.value;
