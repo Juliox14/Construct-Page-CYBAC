@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import { Container } from 'react-bootstrap';
 
-function Breadcrumb({ subTitle, title, desc }) {
+function Breadcrumb({ img, subTitle, title, desc }) {
     return (
-        <div className="page_banner__bg">
+        <div className="page_banner__bg" style={{
+            backgroundImage: `url("${img}")`,
+        }}>
             <Container>
                 <div className="page_content">
                     <span className="page_subtitle">{subTitle}</span>

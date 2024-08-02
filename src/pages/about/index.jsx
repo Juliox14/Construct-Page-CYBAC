@@ -37,6 +37,7 @@ function AboutPage({
                 />
             </Head>
             <Breadcrumb
+                img={aboutItems.imgTitulo}
                 subTitle={aboutItems.titulo_breadcrumb}
                 title={aboutItems.subtitulo_breadcrumb}
                 desc={aboutItems.descripcion_breadcrumb}

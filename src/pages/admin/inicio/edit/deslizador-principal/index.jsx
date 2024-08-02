@@ -19,8 +19,8 @@ function ServicioEdit({
 export async function getServerSideProps() {
     const response = await getElement('home');
     const dataImages = async() => {
-        const promise = response[0].map(async(item) => {
-            const url = await getImagesType('hero', item.id);
+        const promise = response[0].map(async(item, index) => {
+            const url = await getImagesType('hero', (index + 1));
             return url;
         });
         const image = await Promise.all(promise);

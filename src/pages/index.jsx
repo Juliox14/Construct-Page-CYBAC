@@ -36,7 +36,7 @@ export default function HomePage({
                 services={services}
             />
             <BannerTwo/>
-            <BrandOne clientes={brandItems} />
+            {/* <BrandOne clientes={brandItems} /> */}
             {/* <Newsletter newsletterItems={newsletterItems} /> */}
             <Footer footerItems={footerItems} services={servicesList}/>
         </>

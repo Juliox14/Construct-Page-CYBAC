@@ -31,6 +31,9 @@ export default async function aboutHandler(req, res){
                     clientes= ${data.clientes},
                     proyectos= ${data.proyectos},
                     titulo_equipo= "${data.titulo_equipo}",
+                    img1= "${data.img1}",
+                    img2= "${data.img2}",
+                    imgTitulo= "${data.imgTitulo}",
                     descripcion_equipo= "${data.descripcion_equipo}" WHERE id_nosotros = ${data.id_nosotros}`);
 
                 res.status(200).json({message: 'About updated successfully'});

@@ -13,18 +13,18 @@
         @include breakpoint(max-xl-device) {
             height: 610px;
         }
-        &-01 {
-            background-image: url('/images/hero/1.jpg');
-        }
-        &-02 {
-            background-image: url('/images/hero/2.jpg');
-        }
-        &-03 {
-            background-image: url('/images/hero/3.jpg');
-        }
-        &-04 {
-            background-image: url('/images/hero/4.png');
-        }
+        // &-01 {
+        //     background-image: url('/images/hero/1.jpg');
+        // }
+        // &-02 {
+        //     background-image: url('/images/hero/2.jpg');
+        // }
+        // &-03 {
+        //     background-image: url('/images/hero/3.jpg');
+        // }
+        // &-04 {
+        //     background-image: url('/images/hero/4.png');
+        // }
     }
 }
 .subtitle {

@@ -16,12 +16,10 @@ function Hero({ heroItems, settings }) {
     };
     return (
         <SwiperComps settings={settings} sliderCName="hero-slider">
-            {heroItems?.map((heroItem) => (
+            {heroItems?.map((heroItem, index) => (
                 <Slide
-                    className={`animation-style-01 ${heroItem.bg
-                        .split(' ')
-                        .map((item) => classes[item])
-                        .join(' ')}`}
+                    className={`animation-style-01 ${classes["slide-bg"]}`}
+                        style={{backgroundImage: `url('${heroItem.bg}')`}}
                     key={heroItem.id}
                 >
                     <div className="container">
