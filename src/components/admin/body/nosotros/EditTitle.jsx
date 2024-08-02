@@ -30,7 +30,7 @@ const EditTitle = ({dataSSR}) => {
             setMessage(['Por favor, llene todos los campos', 'error']);
             setInterval(() => {
                 setMessage(["", ""]);
-            }, 5000);
+            }, 4000);
         }
     }
 
@@ -56,10 +56,10 @@ const EditTitle = ({dataSSR}) => {
                 }, 10000);
             } else {
                 setConfirmationUpdate(false)
-                setMessage(['Error al actualizar', 'error']);
+                setMessage(['Error al actualizar los datos', 'error']);
                 setInterval(() => {
                     setMessage(["", ""]);
-                }, 5000);
+                }, 4000);
             }
         }
     }
@@ -121,7 +121,7 @@ const EditTitle = ({dataSSR}) => {
                         <div>
                             <div>
                                 <label htmlFor={`subtitulo_about_${data.subtitulo_breadcrumb}`}>Subtitulo</label>
-                                <textarea name="subtitulo_about" id={`subtitulo_about_${data.subtitulo_breadcrumb}`} rows={10} cols={40} style={{resize: "none"}}
+                                <textarea name="subtitulo_about" id={`subtitulo_about_${data.subtitulo_breadcrumb}`} rows={10} cols={40} style={{resize: "none", backgroundColor: theme.palette.mode === 'dark' ? "#222F3E" : "white", color: theme.palette.mode === 'dark' ? "white" : "black", transition: `background-color ${theme.transitions.duration.standard}ms`}}
                                 onChange={(e) => {
                                     const updatedData = data;
                                     updatedData.subtitulo_nosotros = e.target.value;
@@ -130,7 +130,7 @@ const EditTitle = ({dataSSR}) => {
                             </div>
                             <div>
                                 <label htmlFor={`title_about_${data.titulo_breadcrumb}`}>Título</label>
-                                <textarea name="title_about" id={`title_about_${data.titulo_breadcrumb}`} rows={10} cols={40} style={{resize: "none"}}
+                                <textarea name="title_about" id={`title_about_${data.titulo_breadcrumb}`} rows={10} cols={40} style={{resize: "none", backgroundColor: theme.palette.mode === 'dark' ? "#222F3E" : "white", color: theme.palette.mode === 'dark' ? "white" : "black", transition: `background-color ${theme.transitions.duration.standard}ms`}}
                                 onChange={(e) => {
                                     const updatedData = data;
                                     updatedData.titulo_breadcrumb = e.target.value;
@@ -139,7 +139,7 @@ const EditTitle = ({dataSSR}) => {
                             </div>
                             <div>
                                 <label htmlFor={`descripcion_about_${data.descripcion_breadcrumb}`}>Descripción</label>
-                                <textarea name="descripcion_about" id={`descripcion_about_${data.descripcion_breadcrumb}`} rows={10} cols={40} style={{resize: "none"}}
+                                <textarea name="descripcion_about" id={`descripcion_about_${data.descripcion_breadcrumb}`} rows={10} cols={40} style={{resize: "none", backgroundColor: theme.palette.mode === 'dark' ? "#222F3E" : "white", color: theme.palette.mode === 'dark' ? "white" : "black", transition: `background-color ${theme.transitions.duration.standard}ms`}}
                                 onChange={(e) => {
                                     const updatedData = data;
                                     updatedData.descripcion_breadcrumb = e.target.value;
