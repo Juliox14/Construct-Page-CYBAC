@@ -8,6 +8,7 @@ import HomePageServices from '../components/home-page/homepage-services';
 import LatestProject from '../components/home-page/latest-project';
 import Footer from '../components/layout/footer';
 import {getElement} from '../lib/items';
+import { clearConfig } from 'dompurify';
 
 export default function HomePage({
     heroItems,
