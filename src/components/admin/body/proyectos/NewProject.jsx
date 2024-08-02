@@ -1,10 +1,10 @@
-'use client'
 //Imports de react.
 import { useEffect, useState } from "react";
 
 //Imports de componentes de Material UI.
-import { Box, Button, CircularProgress, Alert, FormControlLabel, Checkbox } from "@mui/material";
+import { Box, Button, Alert, FormControlLabel, Checkbox, TextareaAutosize } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import InfoIcon from '@mui/icons-material/Info';
 
 //Imports de estilos.
 import classes from "../servicios/EditService.module.scss"
@@ -13,6 +13,7 @@ import classes from "../servicios/EditService.module.scss"
 import axios from "axios";
 import Ruta from "../items-util/ruta";
 import BotonFixed from "../items-util/botonFixed";
+import Image from "next/image";
 
 
 const NewProject = () => {
@@ -42,6 +43,27 @@ const NewProject = () => {
         imagen_overview: null,
     });
     const [message, setMessage] = useState('');
+    const [showTooltipRich, setShowTooltipRich] = useState(false);
+    const [showTooltipOver, setShowTooltipOver] = useState(false);
+
+    const handleRichMouseEnter = () => {
+        setShowTooltipRich(true);
+    };
+
+    const handleRichMouseLeave = () => {
+        setShowTooltipRich(false);
+    };
+
+
+    const handleOverMouseEnter = () => {
+        setShowTooltipOver(true);
+    };
+
+    const handleOverMouseLeave = () => {
+        setShowTooltipOver(false);
+    };
+
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -58,20 +80,20 @@ const NewProject = () => {
         if (proyectoData.use_richtexts === 1 && proyectoData.use_overview === 1) {
             response = await axios.post('/api/proyectos', proyectoData);
         } else if (proyectoData.use_richtexts === 1 && proyectoData.use_overview === 0) {
-            const {texto1_richtext, texto2_richtext, texto3_richtext, ruta_imagen_richtext, texto_final_richtext, ...data} = proyectoData;
+            const { texto1_richtext, texto2_richtext, texto3_richtext, ruta_imagen_richtext, texto_final_richtext, ...data } = proyectoData;
             setProyectoData(data);
             response = await axios.post('/api/proyectos', proyectoData);
-        }else if (proyectoData.use_richtexts === 0 && proyectoData.use_overview === 1) {
-            const {titulo_overview, descripcion_overview, imagen_overview, ...data} = proyectoData;
+        } else if (proyectoData.use_richtexts === 0 && proyectoData.use_overview === 1) {
+            const { titulo_overview, descripcion_overview, imagen_overview, ...data } = proyectoData;
             setProyectoData(data);
             response = await axios.post('/api/proyectos', proyectoData);
-        }else{
-            const {texto1_richtext, texto2_richtext, texto3_richtext, ruta_imagen_richtext, texto_final_richtext, titulo_overview, descripcion_overview, imagen_overview, ...data} = proyectoData;
+        } else {
+            const { texto1_richtext, texto2_richtext, texto3_richtext, ruta_imagen_richtext, texto_final_richtext, titulo_overview, descripcion_overview, imagen_overview, ...data } = proyectoData;
             setProyectoData(data);
             response = await axios.post('/api/proyectos', proyectoData);
         }
 
-        
+
 
         if (response.status === 200) {
             setMessage(response.data.message);
@@ -155,6 +177,7 @@ const NewProject = () => {
                                     name="cliente"
                                     value={proyectoData.cliente}
                                     onChange={handleInputChange}
+                                    required
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                 />
                             </div>
@@ -166,6 +189,7 @@ const NewProject = () => {
                                     name="ubicacion"
                                     value={proyectoData.ubicacion}
                                     onChange={handleInputChange}
+                                    required
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                 />
                             </div>
@@ -177,6 +201,7 @@ const NewProject = () => {
                                     name="estado"
                                     value={proyectoData.estado}
                                     onChange={handleInputChange}
+                                    required
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                 />
                             </div>
@@ -188,6 +213,7 @@ const NewProject = () => {
                                     name="tipo_obra"
                                     value={proyectoData.tipo_obra}
                                     onChange={handleInputChange}
+                                    required
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                 />
                             </div>
@@ -199,6 +225,7 @@ const NewProject = () => {
                                     name="importe"
                                     value={proyectoData.importe}
                                     onChange={handleInputChange}
+                                    required
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                 />
                             </div>
@@ -210,6 +237,7 @@ const NewProject = () => {
                                     name="ruta_imagen"
                                     value={proyectoData.ruta_imagen}
                                     onChange={handleInputChange}
+                                    required
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                 />
                                 {proyectoData.ruta_imagen && (
@@ -226,6 +254,7 @@ const NewProject = () => {
                                     name="fecha_inicio"
                                     value={proyectoData.fecha_inicio}
                                     onChange={handleInputChange}
+                                    required
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                 />
                             </div>
@@ -237,6 +266,7 @@ const NewProject = () => {
                                     name="fecha_final"
                                     value={proyectoData.fecha_final}
                                     onChange={handleInputChange}
+                                    required
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                 />
                             </div>
@@ -248,19 +278,21 @@ const NewProject = () => {
                                     name="nombre_proyecto"
                                     value={proyectoData.nombre_proyecto}
                                     onChange={handleInputChange}
+                                    required
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                 />
                             </div>
                             <div className={classes.formGroup}>
                                 <label htmlFor="descripcion_proyecto">Descripción del Proyecto</label>
-                                <textarea
+                                <TextareaAutosize
                                     id="descripcion_proyecto"
                                     name="descripcion_proyecto"
                                     value={proyectoData.descripcion_proyecto}
                                     onChange={handleInputChange}
+                                    required
                                     rows="4"
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                ></textarea>
+                                />
                             </div>
                             <div className={classes.formGroup_check}>
                                 <FormControlLabel label="¿Es destacado?" control={<Checkbox id="isDestacado"
@@ -325,18 +357,67 @@ const NewProject = () => {
                                     </div>
                                     <div className={classes.formGroup}>
                                         <label htmlFor="texto_final_richtext">Texto Final</label>
-                                        <textarea className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} id="texto_final_richtext" name="texto_final_richtext" value={proyectoData.texto_final_richtext} onChange={handleInputChange} rows="4"></textarea>
+                                        <TextareaAutosize className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} id="texto_final_richtext" name="texto_final_richtext" value={proyectoData.texto_final_richtext} onChange={handleInputChange} rows="4" />
                                     </div>
                                 </form>
                             ) : (
-                                <Button variant="contained" sx={{
-                                    bgcolor: '#014655', color: '#F1F1F1', height: 'max-content', "&:hover": {
-                                        backgroundColor: '#757254',
-                                        color: '#F1F1F1',
-                                    }
-                                }} type="button" onClick={() => handleRichtexts()}>
-                                    Agregar sección richtext
-                                </Button>
+                                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
+                                    <Button variant="contained" sx={{
+                                        bgcolor: '#014655', color: '#F1F1F1', height: 'max-content', "&:hover": {
+                                            backgroundColor: '#757254',
+                                            color: '#F1F1F1',
+                                        }
+                                    }} type="button" onClick={() => handleRichtexts()}>
+                                        Agregar sección richtext
+                                    </Button>
+                                    <div
+                                        style={{ position: 'relative' }}
+                                        onMouseEnter={handleRichMouseEnter}
+                                        onMouseLeave={handleRichMouseLeave}
+                                    >
+                                        <InfoIcon
+                                            color="disabled"
+                                            sx={{
+                                                fontSize: '20px',
+                                                cursor: 'pointer',
+                                                position: 'relative',
+                                            }}
+                                        />
+                                        {showTooltipRich && (
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '30px',
+                                                left: '50%',
+                                                transform: 'translateX(-50%)',
+                                                width: '400px',
+                                                padding: '10px',
+                                                backgroundColor: '#fff',
+                                                border: '1px solid #ccc',
+                                                borderRadius: '4px',
+                                                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                                                zIndex: 100,
+                                            }}>
+                                                <div style={{
+                                                    position: 'absolute',
+                                                    top: '-10px',
+                                                    left: '50%',
+                                                    transform: 'translateX(-50%)',
+                                                    width: '0',
+                                                    height: '0',
+                                                    borderLeft: '10px solid transparent',
+                                                    borderRight: '10px solid transparent',
+                                                    borderBottom: '10px solid #fff',
+                                                }}></div>
+                                                <Image src="/images/admin/projects/richtext_example.png" alt="Descripción de la imagen"
+                                                    layout="responsive"
+                                                    width={16}
+                                                    height={9}
+                                                    objectFit="cover"
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
                             )}
 
                         </Box>
@@ -370,7 +451,7 @@ const NewProject = () => {
 
                                     <div className={classes.formGroup}>
                                         <label htmlFor="descripcion_overview">Descripción</label>
-                                        <textarea className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} id="descripcion_overview" name="descripcion_overview" value={proyectoData.descripcion_overview} onChange={handleInputChange} rows="4"></textarea>
+                                        <TextareaAutosize className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} id="descripcion_overview" name="descripcion_overview" value={proyectoData.descripcion_overview} onChange={handleInputChange} rows="4" />
                                     </div>
 
                                     <div className={classes.formGroup}>
@@ -384,14 +465,63 @@ const NewProject = () => {
                                     </div>
                                 </form>
                             ) : (
-                                <Button variant="contained" sx={{
-                                    bgcolor: '#014655', color: '#F1F1F1', height: 'max-content', "&:hover": {
-                                        backgroundColor: '#757254',
-                                        color: '#F1F1F1',
-                                    }
-                                }} type="button" onClick={() => handleOverview()}>
-                                    Agregar sección overview
-                                </Button>
+                                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
+                                    <Button variant="contained" sx={{
+                                        bgcolor: '#014655', color: '#F1F1F1', height: 'max-content', "&:hover": {
+                                            backgroundColor: '#757254',
+                                            color: '#F1F1F1',
+                                        }
+                                    }} type="button" onClick={() => handleOverview()}>
+                                        Agregar sección overview
+                                    </Button>
+                                    <div
+                                        style={{ position: 'relative' }}
+                                        onMouseEnter={handleOverMouseEnter}
+                                        onMouseLeave={handleOverMouseLeave}
+                                    >
+                                        <InfoIcon
+                                            color="disabled"
+                                            sx={{
+                                                fontSize: '20px',
+                                                cursor: 'pointer',
+                                                position: 'relative',
+                                            }}
+                                        />
+                                        {showTooltipOver && (
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '30px',
+                                                left: '50%',
+                                                transform: 'translateX(-50%)',
+                                                width: '400px',
+                                                padding: '10px',
+                                                backgroundColor: '#fff',
+                                                border: '1px solid #ccc',
+                                                borderRadius: '4px',
+                                                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                                                zIndex: 100,
+                                            }}>
+                                                <div style={{
+                                                    position: 'absolute',
+                                                    top: '-10px',
+                                                    left: '50%',
+                                                    transform: 'translateX(-50%)',
+                                                    width: '0',
+                                                    height: '0',
+                                                    borderLeft: '10px solid transparent',
+                                                    borderRight: '10px solid transparent',
+                                                    borderBottom: '10px solid #fff',
+                                                }}></div>
+                                                <Image src="/images/admin/projects/overview_example.png" alt="Descripción de la imagen"
+                                                    layout="responsive"
+                                                    width={16}
+                                                    height={9}
+                                                    objectFit="cover"
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
                             )}
                         </Box>
                     </Box>

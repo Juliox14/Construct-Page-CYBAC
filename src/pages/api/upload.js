@@ -12,7 +12,7 @@ export default async function uploadHandler(req, res) {
         const buffer = Buffer.from(bytes);
 
         const filePath = path.join(process.cwd(), "public/images/servicios/", servicio);
-        await writeFile(filePath, buffer);pg
+        await writeFile(filePath, buffer);
         console.log(`open ${filePath} to see the uploaded file`);
 
         return NextResponse.json({ success: true });

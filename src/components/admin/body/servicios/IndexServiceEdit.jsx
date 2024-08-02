@@ -1,9 +1,18 @@
+// Imports de mui material
 import { Box, Alert } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+
+// Imports de estilos
 import classes from "./EditService.module.scss";
+
+// Imports de componentes propios
 import Ruta from "../items-util/ruta";
-import { useState } from "react";
 import BotonFixed from "../items-util/botonFixed";
+
+// Imports de react
+import { useState } from "react";
+
+// Imports de axios
 import axios from "axios";
 
 const IndexServiceEdit = ({ home_services }) => {
