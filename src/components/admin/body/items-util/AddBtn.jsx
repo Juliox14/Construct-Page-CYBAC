@@ -2,7 +2,8 @@ import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import {useTheme} from "@mui/material";
 
-const AddServiceBtn = () => {
+const AddBtn = ({obj}) => {
+    const {href, title} = obj;
     const theme = useTheme();
     return (
         <Button variant="contained" sx={
@@ -15,8 +16,8 @@ const AddServiceBtn = () => {
                 }
             }
         }
-        href="/admin/servicio/newService"><AddIcon /> Agregar servicio</Button>
+        href={href}><AddIcon /> {title}</Button>
     );
 }
 
-export default AddServiceBtn;
+export default AddBtn;

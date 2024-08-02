@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import imageExample from '../../../public/images/projects/nadro_tuxtlagtz/nadro_tuxtlagtz.jpg'
 function ProjectSlider({ project }) {
-    // const imagePath = `/images/projects/${project?.id_proyecto}/${project?.image}`;
     const linkPath = `/projects/${project?.id_proyecto}`;
     return (
         <div className="project-item">
             <Link href={linkPath} className="project-img">
-                <img src={imageExample.src} alt={project?.nombre_proyecto} />
+                <div style={{height: '400px'}}>
+                    <img style={{objectFit: 'cover', border: 'solid 1px white'}} src={project.ruta_imagen} alt={project?.nombre_proyecto} />
+                </div>
             </Link>
             <div className="project-content">
                 <span className="sub-title">{project?.tipo_obra}</span>

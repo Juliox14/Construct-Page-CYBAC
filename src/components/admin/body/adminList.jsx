@@ -12,7 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 // Elementos de react
 import { useState } from 'react';
 
-export default function AdminList({ nombre_elemento, descripcion, link, id, url, video, delete_button }) {
+export default function AdminList({ nombre_elemento, descripcion, link, id, url, video, delete_button, extra }) {
     const theme = useTheme();
     const [hover, setHover] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -31,12 +31,22 @@ export default function AdminList({ nombre_elemento, descripcion, link, id, url,
     }
 
     const handleDelete = async () => {
-        console.log('Si entra');
-        const response = await axios.delete(`/api/services/${id}`);
-        if (response.status === 200) {
-            window.location.reload();
-        } else {
-            alert("Error al eliminar el elemento, comuníquese con CYBAC TI");
+
+        if(extra === 'Agregar servicio'){
+            const response = await axios.delete(`/api/services/${id}`);
+            if (response.status === 200) {
+                window.location.reload();
+            } else {
+                alert("Error al eliminar el elemento, comuníquese con CYBAC TI");
+            }
+        }else if(extra === 'Agregar proyecto'){
+            console.log(id);
+            const response = await axios.delete(`/api/proyects/${id}`);
+            if (response.status === 200) {
+                window.location.reload();
+            } else {
+                alert("Error al eliminar el elemento, comuníquese con CYBAC TI");
+            }
         }
     }
 
@@ -144,7 +154,7 @@ export default function AdminList({ nombre_elemento, descripcion, link, id, url,
                             color: theme.palette.mode === 'dark' ? "white" : "#014655",
                             transition: `background-color ${theme.transitions.duration.standard}ms`,
                         }}>
-                            <div style={{ width: 'max-content', height: 'max-content' }}>
+                            <div style={{ width: 'max-content' , maxWidth: '32em', height: 'max-content' }}>
                                 <div>
                                     {video === undefined ? (
                                         <>
@@ -171,7 +181,7 @@ export default function AdminList({ nombre_elemento, descripcion, link, id, url,
                                     )}
                                 </div>
                             </div>
-                            <p><strong>{nombre_elemento}</strong></p>
+                            <p className={classes.nombre_elemento}><strong>{nombre_elemento}</strong></p>
                             <p className={classes.desc}>{descripcion}</p>
                         </Box>
                     </div>

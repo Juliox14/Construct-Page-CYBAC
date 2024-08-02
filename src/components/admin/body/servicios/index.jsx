@@ -1,6 +1,6 @@
 'use client'
 import Component from "..";
-import AddServiceBtn from "./AddService";
+import AddServiceBtn from "../items-util/AddBtn";
 import { getElement } from "../../../../lib/items";
 import { useEffect, useState } from "react";
 
@@ -33,7 +33,7 @@ const Servicios = () => {
 
     return (
         <>
-            <Component componentsInThePage={componentsInThePage} extra={true} delete_button={true} />
+            <Component componentsInThePage={componentsInThePage} extra={{title:'Agregar servicio', href: '/admin/servicio/newService'}} delete_button={true} />
         </>
     );
 }

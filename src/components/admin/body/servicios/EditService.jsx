@@ -1,21 +1,16 @@
 'use client'
 //Imports de react.
 import { useEffect, useState, useRef } from "react";
-import Link from "next/link";
 
 //Imports de componentes de Material UI.
-import { Box, Button, CircularProgress, Alert } from "@mui/material";
+import { Box, Button, CircularProgress, Alert, TextareaAutosize } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 //Imports de componentes externos.
 import { Editor } from '@tinymce/tinymce-react';
 
 //Imports de estilos.
 import classes from "./EditService.module.scss";
-
-//Imports de métodos y componentes propios.
-import { getItemsBy } from "../../../../lib/items";
 
 //Imports de librerias externas.
 import axios from "axios";
@@ -201,7 +196,7 @@ const EditService = ({ servicio }) => {
                             </Alert>
                         </div>
                     )}
-                    <Ruta rutas={rutas} />
+                    <Ruta titulo={'Editar servicio'} rutas={rutas} />
                     <Box sx={{
                         bgcolor: theme.palette.mode === 'dark' ? "#1C1C1C" : "#FFFFFF",
                         color: theme.palette.mode === 'dark' ? "white" : "#014655",
@@ -249,14 +244,14 @@ const EditService = ({ servicio }) => {
                                 </div>
                                 <div className={classes.formGroup}>
                                     <label htmlFor="descripcion_breadcrumb">Descripción Breadcrumb</label>
-                                    <textarea
+                                    <TextareaAutosize
                                         id="descripcion_breadcrumb"
                                         name="descripcion_breadcrumb"
                                         value={servicioData.descripcion_breadcrumb}
                                         onChange={handleInputChange}
                                         rows="4"
                                         className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                    ></textarea>
+                                    ></TextareaAutosize>
                                 </div>
                                 <div className={classes.formGroup}>
                                     <label htmlFor="titulo">Título</label>
@@ -287,7 +282,7 @@ const EditService = ({ servicio }) => {
                                 </div>
                                 <div className={classes.formGroup}>
                                     <label htmlFor="descripcion_breve">Descripción Breve</label>
-                                    <input
+                                    <TextareaAutosize
                                         type="text"
                                         id="descripcion_breve"
                                         name="descripcion_breve"
@@ -298,7 +293,7 @@ const EditService = ({ servicio }) => {
                                 </div>
                                 <div className={classes.formGroup}>
                                     <label htmlFor="descripcion">Descripción</label>
-                                    <textarea name="descripcion" id="descripcion" value={servicioData.descripcion} onChange={handleInputChange} className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} />
+                                    <TextareaAutosize name="descripcion" id="descripcion" value={servicioData.descripcion} onChange={handleInputChange} className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} />
                                 </div>
                                 <div className={classes.button}>
                                 </div>
