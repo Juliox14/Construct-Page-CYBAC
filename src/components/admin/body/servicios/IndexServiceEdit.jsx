@@ -71,8 +71,8 @@ const IndexServiceEdit = ({ home_services }) => {
             {message && (
                 <Alert variant="outlined" severity="success" sx={{
                     position: 'fixed',
-                    top: '40px',
-                    left: '80px',
+                    top: '60px',
+                    left: '430px',
                     width: 'auto',
                     height: 'auto',
                     bgcolor: '#26ca7032',
@@ -81,7 +81,7 @@ const IndexServiceEdit = ({ home_services }) => {
                     {message}
                 </Alert>
             )}
-            <Ruta rutas={rutas} />
+            <Ruta rutas={rutas} titulo={'Editar index de servicios'} />
             <div className={classes.formContainer}>
                 <Box sx={{
                     bgcolor: theme.palette.mode === 'dark' ? "#242424" : "#E3E3E3",
@@ -93,10 +93,11 @@ const IndexServiceEdit = ({ home_services }) => {
                     width: '800px',
                 }}>
                     <h3>Editar página principal</h3>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} id="edit-index-form">
                         <div className={classes.formGroup}>
                             <label htmlFor="titulo_breadcrumb">Título Breadcrumb</label>
                             <input
+                                required
                                 type="text"
                                 id="titulo_breadcrumb"
                                 name="titulo_breadcrumb"
@@ -108,6 +109,7 @@ const IndexServiceEdit = ({ home_services }) => {
                         <div className={classes.formGroup}>
                             <label htmlFor="subtitulo_breadcrumb">Subtítulo Breadcrumb</label>
                             <input
+                                required
                                 type="text"
                                 id="subtitulo_breadcrumb"
                                 name="subtitulo_breadcrumb"
@@ -119,6 +121,7 @@ const IndexServiceEdit = ({ home_services }) => {
                         <div className={classes.formGroup}>
                             <label htmlFor="descripcion_breadcrumb">Descripción Breadcrumb</label>
                             <TextareaAutosize
+                                required
                                 id="descripcion_breadcrumb"
                                 name="descripcion_breadcrumb"
                                 value={home_services_data.descripcion_breadcrumb}
@@ -130,6 +133,7 @@ const IndexServiceEdit = ({ home_services }) => {
                         <div className={classes.formGroup}>
                             <label htmlFor="titulo_about">Título</label>
                             <input
+                                required
                                 type="text"
                                 id="titulo_about"
                                 name="titulo_about"
@@ -141,6 +145,7 @@ const IndexServiceEdit = ({ home_services }) => {
                         <div className={classes.formGroup}>
                             <label htmlFor="subtitulo_about">Subtitulo</label>
                             <input
+                                required
                                 type="text"
                                 id="subtitulo_about"
                                 name="subtitulo_about"
@@ -152,6 +157,7 @@ const IndexServiceEdit = ({ home_services }) => {
                         <div className={classes.formGroup}>
                             <label htmlFor="imagen_url_about">Imagen</label>
                             <input
+                                required
                                 type="text"
                                 id="imagen_url_about"
                                 name="imagen_url_about"
@@ -166,6 +172,7 @@ const IndexServiceEdit = ({ home_services }) => {
                         <div className={classes.formGroup}>
                             <label htmlFor="descripcion_about">Descripción</label>
                             <TextareaAutosize
+                                required
                                 id="descripcion_about"
                                 name="descripcion_about"
                                 value={home_services_data.descripcion_about}
@@ -180,6 +187,7 @@ const IndexServiceEdit = ({ home_services }) => {
                                 <div key={index} className={classes.formGroup_bullets_bullet}>
                                     <label htmlFor={`bullet_${index}`}>Bullet {index + 1}</label>
                                     <input
+                                        required
                                         type="text"
                                         value={item}
                                         id={`bullet_${index}`}
@@ -189,7 +197,7 @@ const IndexServiceEdit = ({ home_services }) => {
                                 </div>
                             ))}
                         </div>
-                        <BotonFixed metodo={handleSubmit} />
+                        <BotonFixed metodo={() => document.getElementById('edit-index-form').requestSubmit()} />
                     </form>
                 </Box>
             </div>

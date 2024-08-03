@@ -45,7 +45,7 @@ const EditInformacion = ({ contacto }) => {
         e.preventDefault();
 
         const response = await axios.put(`/api/contact`, contactoData);
-        if (response.status === 200){
+        if (response.status === 200) {
             setMessage(response.data.message);
             setInterval(() => {
                 setMessage('');
@@ -95,154 +95,176 @@ const EditInformacion = ({ contacto }) => {
                     height: 'min-content',
                     width: '800px',
                 }}>
-                    <h3>Editar página de contacto</h3>
-                    <form onSubmit={handleSubmit}>
-                        <div className={classes.formGroup}>
-                            <label htmlFor="titulo_breadcrumb">Título Breadcrumb</label>
-                            <input
-                                type="text"
-                                id="titulo_breadcrumb"
-                                name="titulo_breadcrumb"
-                                value={contactoData.titulo_breadcrumb}
-                                onChange={handleInputChange}
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            />
+
+                    <form id="edit-contact-form" onSubmit={handleSubmit}>
+                        <div id='breadcrumb-id'>
+                            <h3>Editar página de contacto</h3>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="titulo_breadcrumb">Título Breadcrumb</label>
+                                <input
+                                    required
+                                    type="text"
+                                    id="titulo_breadcrumb"
+                                    name="titulo_breadcrumb"
+                                    value={contactoData.titulo_breadcrumb}
+                                    onChange={handleInputChange}
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            </div>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="subtitulo_breadcrumb">Subtítulo Breadcrumb</label>
+                                <input
+                                    required
+                                    type="text"
+                                    id="subtitulo_breadcrumb"
+                                    name="subtitulo_breadcrumb"
+                                    value={contactoData.subtitulo_breadcrumb}
+                                    onChange={handleInputChange}
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            </div>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="descripcion_breadcrumb">Descripción Breadcrumb</label>
+                                <TextareaAutosize
+                                    required
+                                    id="descripcion_breadcrumb"
+                                    name="descripcion_breadcrumb"
+                                    value={contactoData.descripcion_breadcrumb}
+                                    onChange={handleInputChange}
+                                    rows="4"
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            </div>
                         </div>
-                        <div className={classes.formGroup}>
-                            <label htmlFor="subtitulo_breadcrumb">Subtítulo Breadcrumb</label>
-                            <input
-                                type="text"
-                                id="subtitulo_breadcrumb"
-                                name="subtitulo_breadcrumb"
-                                value={contactoData.subtitulo_breadcrumb}
-                                onChange={handleInputChange}
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            />
+                        <hr style={{ marginBottom: '20px' }} />
+
+                        <div id='info-id'>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="titulo">Título</label>
+                                <input
+                                    required
+                                    type="text"
+                                    id="titulo"
+                                    name="titulo"
+                                    value={contactoData.titulo}
+                                    onChange={handleInputChange}
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            </div>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="subtitulo">Subtitulo</label>
+                                <input
+                                    required
+                                    type="text"
+                                    id="subtitulo"
+                                    name="subtitulo"
+                                    value={contactoData.subtitulo}
+                                    onChange={handleInputChange}
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            </div>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="descripcion">Descripción</label>
+                                <TextareaAutosize
+                                    required
+                                    id="descripcion"
+                                    name="descripcion"
+                                    value={contactoData.descripcion}
+                                    onChange={handleInputChange}
+                                    rows="4"
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            </div>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="direccion">Dirección</label>
+                                <input
+                                    required
+                                    type="text"
+                                    id="direccion"
+                                    name="direccion"
+                                    value={contactoData.direccion}
+                                    onChange={handleInputChange}
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            </div>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="telefono">Teléfono</label>
+                                <input
+                                    required
+                                    type="text"
+                                    id="telefono"
+                                    name="telefono"
+                                    value={contactoData.telefono}
+                                    onChange={handleInputChange}
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            </div>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="horario">Horario</label>
+                                <input
+                                    required
+                                    type="text"
+                                    id="horario"
+                                    name="horario"
+                                    value={contactoData.horario}
+                                    onChange={handleInputChange}
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            </div>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="whatsapp">WhatsApp</label>
+                                <input
+                                    required
+                                    type="text"
+                                    id="whatsapp"
+                                    name="whatsapp"
+                                    value={contactoData.whatsapp}
+                                    onChange={handleInputChange}
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            </div>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="email">Email</label>
+                                <input
+                                    required
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={contactoData.email}
+                                    onChange={handleInputChange}
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            </div>
                         </div>
-                        <div className={classes.formGroup}>
-                            <label htmlFor="descripcion_breadcrumb">Descripción Breadcrumb</label>
-                            <TextareaAutosize
-                                id="descripcion_breadcrumb"
-                                name="descripcion_breadcrumb"
-                                value={contactoData.descripcion_breadcrumb}
-                                onChange={handleInputChange}
-                                rows="4"
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            />
+                        <hr style={{ marginBottom: '20px' }} />
+
+                        <div id='form-id'>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="titulo_formulario">Título del Formulario</label>
+                                <input
+                                    required
+                                    type="text"
+                                    id="titulo_formulario"
+                                    name="titulo_formulario"
+                                    value={contactoData.titulo_formulario}
+                                    onChange={handleInputChange}
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            </div>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="descripcion_formulario">Descripción del Formulario</label>
+                                <TextareaAutosize
+                                    required
+                                    id="descripcion_formulario"
+                                    name="descripcion_formulario"
+                                    value={contactoData.descripcion_formulario}
+                                    onChange={handleInputChange}
+                                    rows="4"
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            </div>
                         </div>
-                        <hr style={{marginBottom: '20px'}}/>
-                        <div className={classes.formGroup}>
-                            <label htmlFor="titulo">Título</label>
-                            <input
-                                type="text"
-                                id="titulo"
-                                name="titulo"
-                                value={contactoData.titulo}
-                                onChange={handleInputChange}
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            />
-                        </div>
-                        <div className={classes.formGroup}>
-                            <label htmlFor="subtitulo">Subtitulo</label>
-                            <input
-                                type="text"
-                                id="subtitulo"
-                                name="subtitulo"
-                                value={contactoData.subtitulo}
-                                onChange={handleInputChange}
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            />
-                        </div>
-                        <div className={classes.formGroup}>
-                            <label htmlFor="descripcion">Descripción</label>
-                            <TextareaAutosize
-                                id="descripcion"
-                                name="descripcion"
-                                value={contactoData.descripcion}
-                                onChange={handleInputChange}
-                                rows="4"
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            />
-                        </div>
-                        <div className={classes.formGroup}>
-                            <label htmlFor="direccion">Dirección</label>
-                            <input
-                                type="text"
-                                id="direccion"
-                                name="direccion"
-                                value={contactoData.direccion}
-                                onChange={handleInputChange}
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            />
-                        </div>
-                        <div className={classes.formGroup}>
-                            <label htmlFor="telefono">Teléfono</label>
-                            <input
-                                type="text"
-                                id="telefono"
-                                name="telefono"
-                                value={contactoData.telefono}
-                                onChange={handleInputChange}
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            />
-                        </div>
-                        <div className={classes.formGroup}>
-                            <label htmlFor="horario">Horario</label>
-                            <input
-                                type="text"
-                                id="horario"
-                                name="horario"
-                                value={contactoData.horario}
-                                onChange={handleInputChange}
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            />
-                        </div>
-                        <div className={classes.formGroup}>
-                            <label htmlFor="whatsapp">WhatsApp</label>
-                            <input
-                                type="text"
-                                id="whatsapp"
-                                name="whatsapp"
-                                value={contactoData.whatsapp}
-                                onChange={handleInputChange}
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            />
-                        </div>
-                        <div className={classes.formGroup}>
-                            <label htmlFor="email">Email</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={contactoData.email}
-                                onChange={handleInputChange}
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            />
-                        </div>
-                        <hr style={{marginBottom: '20px'}}/>
-                        <div className={classes.formGroup}>
-                            <label htmlFor="titulo_formulario">Título del Formulario</label>
-                            <input
-                                type="text"
-                                id="titulo_formulario"
-                                name="titulo_formulario"
-                                value={contactoData.titulo_formulario}
-                                onChange={handleInputChange}
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            />
-                        </div>
-                        <div className={classes.formGroup}>
-                            <label htmlFor="descripcion_formulario">Descripción del Formulario</label>
-                            <TextareaAutosize
-                                id="descripcion_formulario"
-                                name="descripcion_formulario"
-                                value={contactoData.descripcion_formulario}
-                                onChange={handleInputChange}
-                                rows="4"
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            />
-                        </div>
-                        <BotonFixed metodo={handleSubmit} />
+                        <BotonFixed metodo={() => document.getElementById('edit-contact-form').requestSubmit()} />
                     </form>
                 </Box>
             </div>

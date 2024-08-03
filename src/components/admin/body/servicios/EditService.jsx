@@ -184,14 +184,17 @@ const EditService = ({ servicio }) => {
                 }}
                 >
                     {message && (
-                        <div style={{ position: 'absolute', top: '40px', left: '80px', width: 'auto', height: 'auto', zIndex: '1000' }}>
-                            <Alert variant="outlined" severity="success" sx={{
-                                position: 'fixed',
-
-                            }} >
-                                {message}
-                            </Alert>
-                        </div>
+                        <Alert variant="outlined" severity="success" sx={{
+                            position: 'fixed',
+                            top: '60px',
+                            left: '430px',
+                            width: 'auto',
+                            height: 'auto',
+                            bgcolor: '#26ca7032',
+                            zIndex: '1000',
+                        }} >
+                            {message}
+                        </Alert>
                     )}
                     <Ruta titulo={'Editar servicio'} rutas={rutas} />
                     <Box sx={{
@@ -398,7 +401,9 @@ const EditService = ({ servicio }) => {
                                                         toolbar:
                                                             'bold italic |' +
                                                             '| bullist numlist outdent indent | ',
-                                                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:12px }'
+                                                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:12px }',
+                                                        skin: theme.palette.mode === 'dark' ? 'oxide-dark' : 'oxide',
+                                                        content_css: theme.palette.mode === 'dark' ? 'dark' : 'default',
                                                     }}
                                                 />
                                             </div>
