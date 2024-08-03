@@ -5,6 +5,7 @@ import borrarBTN from "@/../../public/icons/borrar.png"
 import EditClient from "./editClient/index";
 import Alert from '@mui/material/Alert';
 import axios from "axios";
+import { Box, Button} from "@mui/material";
 
 export default function TableClientes({ data }) {
   const [values, setValues] = useState(data);
@@ -23,6 +24,23 @@ export default function TableClientes({ data }) {
     });
     setValues(copyValues);
   }, [data]);
+
+  const HandlerOnClickCreate = () =>{
+    console.log('first')
+    setInDataEdit({
+      id: '',
+      nombre: '',
+      clasificacion: '',
+      ruta_logo: '',
+      correo: '',
+      telefono: '',
+      alt: '',
+      visualizarLista: 1,
+      visualizarSlider: 0,
+      titulo: 'Crear Cliente',
+    });
+    setShowEdit(true);
+  }
 
   const HandlerOnClickEditClient = (id, event) => {
     const cliente = data.find(cliente => cliente.id_cliente === id);
@@ -43,7 +61,7 @@ export default function TableClientes({ data }) {
   };
 
   const HandlerOnClickDelete =  async (id) =>{
-    // await axios.post('/api/deleteClient', {id: id});
+    await axios.post('/api/deleteClient', {id: id});
     setAlertValue('Cliente Eliminado con éxito');
       setInterval(() => {
         window.location.reload();
@@ -129,6 +147,20 @@ export default function TableClientes({ data }) {
               ))}
             </tbody>
           </table>
+          <Button variant="contained" color="primary" onClick={HandlerOnClickCreate}
+                            sx={{
+                                width: "200px",
+                                height: "45px",
+                                bgcolor: "#014655",
+                                position: "absolute",
+                                top: "50px",
+                                left: "100px",
+                                ":hover": {
+                                    bgcolor: "#0d5c6c",
+                                }
+                            }}> 
+                            Crear Cliente
+                        </Button>
           {alertValue && <Alert severity="success" sx={{
                 position: 'absolute',
                 top: '50px',

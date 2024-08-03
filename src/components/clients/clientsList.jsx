@@ -7,15 +7,14 @@ function ClientsList({dataHomeClients}) {
     let clientes_municipio=[];
     let clientes_iniciativa_privada=[];
     let clientes_particular=[];
-    const [data_desc] = dataHomeClients[1];
-    for(let cliente of dataHomeClients[0]){
-        if(cliente.clasificacion_cliente==='Municipios' && cliente.ruta_logo_cliente==null){
+    for(let cliente of dataHomeClients){
+        if(cliente.clasificacion==='Municipios'){
             clientes_municipio.push(cliente);
         }
-        else if(cliente.clasificacion_cliente==='Iniciativa Privada' && cliente.ruta_logo_cliente==null){
+        else if(cliente.clasificacion==='Iniciativa Privada'){
             clientes_iniciativa_privada.push(cliente);
         }
-        else if(cliente.ruta_logo_cliente===null){
+        else{
             clientes_particular.push(cliente);
         }
     }
@@ -40,7 +39,7 @@ function ClientsList({dataHomeClients}) {
                     <h2>Municipios</h2>
                     <ul>
                         {clientes_municipio.map((client) => (
-                            <li key={client.id_cliente}>{client.nombre_cliente}</li>
+                            <li key={client.id_cliente}>{client.nombre}</li>
                         ))}
                     </ul>
                 </div>
@@ -48,7 +47,7 @@ function ClientsList({dataHomeClients}) {
                     <h2>Iniciativa Privada</h2>
                     <ul>
                         {clientes_iniciativa_privada.map((client) => (
-                            <li key={client.id_cliente}>{client.nombre_cliente}</li>
+                            <li key={client.id_cliente}>{client.nombre}</li>
                         ))}
                     </ul>
                 </div>
@@ -56,7 +55,7 @@ function ClientsList({dataHomeClients}) {
                     <h2>Particulares</h2>
                     <ul>
                         {clientes_particular.map((client) => (
-                            <li key={client.id_cliente}>{client.nombre_cliente}</li>
+                            <li key={client.id_cliente}>{client.nombre}</li>
                         ))}
                     </ul>
                 </div>
@@ -64,7 +63,6 @@ function ClientsList({dataHomeClients}) {
         </div>
     );
 }
-
 ClientsList.propTypes = {
     dataHomeClients: PropTypes.instanceOf(Object).isRequired
 };
