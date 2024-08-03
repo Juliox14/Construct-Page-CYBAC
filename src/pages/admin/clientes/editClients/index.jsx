@@ -8,7 +8,7 @@ const editClients = ({data_client}) => {
     return (
         <AdminLayout>
             <div className={classes.body}>
-                <Ruta rutas={rutas}></Ruta>
+                <Ruta rutas={rutas} titulo='Editar Clientes'></Ruta>
                 <Table data={data_client[0]}></Table>
             </div>
         </AdminLayout>

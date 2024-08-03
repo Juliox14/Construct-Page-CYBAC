@@ -6,12 +6,7 @@ import "../styles/globals.scss";
 import { ScrollToTop } from '../components/scroll';
 
 function MyApp({ Component, pageProps }) {
-<<<<<<< HEAD
-    const isTemplatePage = Component.name === 'AdminPage' || Component.name === 'fsdmihmv' || Component.name === 'Login' || Component.name === 'Inicio' || Component.name === 'Error404Page' || Component.name === 'ServicioEdit' || Component.name === 'newServicio' || Component.name === 'newProject';
-=======
-    const isTemplatePage = Component.name === 'AdminPage' || Component.name === 'editClients' || Component.name === 'Login' || Component.name === 'Inicio' || Component.name === 'Error404Page' || Component.name === 'ServicioEdit' || Component.name === 'newServicio';
->>>>>>> gestorClientes
-
+    const isTemplatePage = Component.name === 'AdminPage' || Component.name === 'fsdmihmv' || Component.name === 'Login' || Component.name === 'Inicio' || Component.name === 'Error404Page' || Component.name === 'ServicioEdit' || Component.name === 'newServicio' || Component.name === 'newProject' || Component.name === 'editClients';
     return isTemplatePage ? (
         <>
             <Component {...pageProps} />

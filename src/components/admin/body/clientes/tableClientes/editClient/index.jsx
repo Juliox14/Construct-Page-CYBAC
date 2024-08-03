@@ -20,6 +20,7 @@ export default function EditClient({inData, dataEditClient, showComponent = true
     const [check1, setCheck1] = useState(false);
     const [check2, setCheck2] = useState(false);
 
+    console.log(dataClient)
     useEffect(() => {
         if(dataClient.visualizarLista === 1){
             setCheck1(true);
@@ -58,7 +59,12 @@ export default function EditClient({inData, dataEditClient, showComponent = true
             visualizarLista: check1,
             visualizarSlider: check2,
         }
-        const response = await axios.post('/api/editClient', clientData);
+
+        if(dataClient.titulo){
+            await axios.post('/api/addClient', clientData);
+        } else{
+            await axios.post('/api/editClient', clientData);
+        }
         setSuccesAlert(true);
         setInterval(() => {
             setSuccesAlert(false);
@@ -121,7 +127,7 @@ export default function EditClient({inData, dataEditClient, showComponent = true
     return(
         <div className={classes.body}>
             <div className={classes.body2}>
-                <h1 className={classes.h1}>Editar Cliente</h1>
+                <h1 className={classes.h1}>{dataClient.titulo ? dataClient.titulo : 'Editar Cliente'}</h1>
                 <form id="basic-form" action="/submit" onSubmit={(e) => {HandlerOnClickSave(e)}} className={classes.form}>
                     <ReactInput
                         name="nombre"
@@ -185,7 +191,7 @@ export default function EditClient({inData, dataEditClient, showComponent = true
                                     bgcolor: "#0d5c6c",
                                 }
                             }}> 
-                            Guardar cambios 
+                            {dataClient.titulo ? dataClient.titulo : 'Guardar Cambios'} 
                         </Button>
                         <Button variant="contained" color="primary" onClick={HandlerOnClickCancel}
                             sx={{
@@ -212,7 +218,7 @@ export default function EditClient({inData, dataEditClient, showComponent = true
                 top: '50px',
                 left: '100px',
             }
-            }>Cliente Editado con éxito</Alert>}
+            }>{dataClient.titulo ? 'Cliente guardado con éxito' : 'Cliente editado con éxito'}</Alert>}
             {showLogo && <div className={classes.imagen}><img src={dataClient.ruta_logo} alt={dataClient.alt  || 'No se pudo encontrar la imagen'} /></div>}
         </div>
     );
