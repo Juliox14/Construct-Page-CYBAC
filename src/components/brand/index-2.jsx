@@ -12,7 +12,6 @@ function BrandTwo({settings, clientes}) {
     });
     settings = {
         pagination: false,
-        loop: true,
         navigation: {
             nextEl: '.brand-button-next',
             prevEl: '.brand-button-prev',
@@ -60,7 +59,7 @@ function BrandTwo({settings, clientes}) {
         },
     };
     //Obtener de forma dinámica el nombre del Tipo de clientes
-    const tipo = clientes[0].clasificacion_cliente
+    const tipo = clientes[0].clasificacion;
     return (
         <div className={`${classes.bg} ${classes.space__yaxis}`}>
             <div className={classes.title}><h1>{tipo}</h1></div>
@@ -71,13 +70,12 @@ function BrandTwo({settings, clientes}) {
                             <Link href="/" className={classes.item}>
                                 <div>
                                     <img
-                                        src={icon.src} 
-                                        alt='logo cliente'
-                                        // src={brandItem.ruta_logo_cliente}
-                                        // alt={brandItem.alt}
+                                        src={brandItem.ruta_logo} 
+                                        alt={brandItem.alt}
+                                        width={100}
                                     />
                                 </div>
-                                <div>{brandItem.nombre_cliente}</div>
+                                <div>{brandItem.nombre}</div>
                             </Link>
                         </Slide>
                     ))}
