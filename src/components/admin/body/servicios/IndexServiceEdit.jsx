@@ -1,5 +1,5 @@
 // Imports de mui material
-import { Box, Alert } from "@mui/material";
+import { Box, Alert, TextareaAutosize } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 // Imports de estilos
@@ -118,14 +118,14 @@ const IndexServiceEdit = ({ home_services }) => {
                         </div>
                         <div className={classes.formGroup}>
                             <label htmlFor="descripcion_breadcrumb">Descripción Breadcrumb</label>
-                            <textarea
+                            <TextareaAutosize
                                 id="descripcion_breadcrumb"
                                 name="descripcion_breadcrumb"
                                 value={home_services_data.descripcion_breadcrumb}
                                 onChange={handleInputChange}
                                 rows="4"
                                 className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            ></textarea>
+                            />
                         </div>
                         <div className={classes.formGroup}>
                             <label htmlFor="titulo_about">Título</label>
@@ -165,14 +165,14 @@ const IndexServiceEdit = ({ home_services }) => {
                         </div>
                         <div className={classes.formGroup}>
                             <label htmlFor="descripcion_about">Descripción</label>
-                            <textarea
+                            <TextareaAutosize
                                 id="descripcion_about"
                                 name="descripcion_about"
                                 value={home_services_data.descripcion_about}
                                 onChange={handleInputChange}
                                 rows="4"
                                 className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                            ></textarea>
+                            />
                         </div>
 
                         <div className={classes.formGroup_bullets}>
