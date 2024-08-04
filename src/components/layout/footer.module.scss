@@ -12,7 +12,17 @@
     padding-bottom: 20px;
     display: block;
 }
+
+.mobile{
+    @include breakpoint(max-md-device) {
+        display: none;
+    }
+}
 .desc {
+
+    @include breakpoint(max-md-device) {
+        display: none;
+    }
     margin-bottom: 25px;
     color: #cfe1ff;
     font-size: 16px;
@@ -34,6 +44,10 @@
 }
 .widget {
     &__item {
+
+        @include breakpoint(max-sm-device) {
+            margin-top: -80px;
+        }
         .widget {
             &_address,
             &_number {

@@ -8,7 +8,7 @@ import classes from './footer.module.scss';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-function Footer({ footerItems, services}) {
+function Footer({ footerItems, services }) {
     const [showAllServices, setShowAllServices] = useState(false);
 
     const toggleServices = () => {
@@ -21,7 +21,7 @@ function Footer({ footerItems, services}) {
         <footer>
             <Fragment key={footerItems?.footer.id_footer}>
                 <div className={`${classes.bg}`}>
-                    <Container style={{height: "380px"}}>
+                    <Container style={{ height: "380px" }}>
                         <Row>
                             <Col lg={{ span: 3 }}>
                                 <div className={classes.widget__item}>
@@ -49,82 +49,91 @@ function Footer({ footerItems, services}) {
                                     </div>
                                 </div>
                             </Col>
+
                             <Col
                                 xl={{ span: 3 }}
                                 lg={{ span: 2 }}
                                 sm={{ span: 6 }}
                                 className="ps-xl-80 pt-40 pt-lg-0"
                             >
-                                <div className={classes.widget__item}>
-                                    <h2 className={classes.widget__title}>
-                                        Servicios
-                                    </h2>
-                                    <ul className={classes.widget__list}>
-                                        {visibleServices?.map(
-                                            (item) => (
-                                                <li key={item.id_servicio}>
-                                                    <Link
-                                                        href={`/services/${item.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
-                                                    >
-                                                        {item.titulo}
-                                                    </Link>
-                                                </li>
-                                            )
-                                        )}
-                                    </ul>
+                                <div className={classes.mobile}>
+                                    <div className={classes.widget__item}>
+                                        <h2 className={classes.widget__title}>
+                                            Servicios
+                                        </h2>
+                                        <ul className={classes.widget__list}>
+                                            {visibleServices?.map(
+                                                (item) => (
+                                                    <li key={item.id_servicio}>
+                                                        <Link
+                                                            href={`/services/${item.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
+                                                        >
+                                                            {item.titulo}
+                                                        </Link>
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
 
-                                    <motion.ul className={classes.widget__list} style={{ marginTop: "15px", overflow: "hidden"}}
-                                    initial={{ height: "0px", display: "block"}}
-                                    variants={{ visible: { height: "auto"}, 
-                                                hidden: { height: "0px"}}}
-                                    animate={ showAllServices ? "visible" : "hidden" }>
-                                        {hiddenServices?.map(
-                                            (item, index) => (
+                                        <motion.ul className={classes.widget__list} style={{ marginTop: "15px", overflow: "hidden" }}
+                                            initial={{ height: "0px", display: "block" }}
+                                            variants={{
+                                                visible: { height: "auto" },
+                                                hidden: { height: "0px" }
+                                            }}
+                                            animate={showAllServices ? "visible" : "hidden"}>
+                                            {hiddenServices?.map(
+                                                (item, index) => (
                                                     <li
                                                         key={index}>
-                                                            <Link
+                                                        <Link
                                                             href={`/services/${item.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}>
-                                                                {item.titulo}
-                                                            </Link>
+                                                            {item.titulo}
+                                                        </Link>
                                                     </li>
-                                            )
-                                        )}
-                                    </motion.ul>
+                                                )
+                                            )}
+                                        </motion.ul>
 
-                                    {services.length > 5 && (
-                                        <span
-                                            className={classes.viewMore}
-                                            onClick={toggleServices}
-                                        >
-                                            {showAllServices ? 'Ver menos' : 'Ver más'}
-                                        </span>
-                                    )}
+                                        {services.length > 5 && (
+                                            <span
+                                                className={classes.viewMore}
+                                                onClick={toggleServices}
+                                            >
+                                                {showAllServices ? 'Ver menos' : 'Ver más'}
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
                             </Col>
+
                             <Col
                                 lg={{ span: 3 }}
                                 sm={{ span: 6 }}
                                 className="ps-lg-50 pt-40 pt-lg-0"
                             >
-                                <div className={classes.widget__item}>
-                                    <h2 className={classes.widget__title}>
-                                        Enlaces rápidos
-                                    </h2>
-                                    <ul className={classes.widget__list}>
-                                        {footerItems?.enlaces_rapidos?.map(
-                                            (item) => (
-                                                <li key={item.id_enlace}>
-                                                    <Link
-                                                        href={`${item.enlace}`}
-                                                    >
-                                                        {item.nombre_enlace}
-                                                    </Link>
-                                                </li>
-                                            )
-                                        )}
-                                    </ul>
+                                <div className={classes.mobile}>
+                                    <div className={classes.widget__item}>
+                                        <h2 className={classes.widget__title}>
+                                            Enlaces rápidos
+                                        </h2>
+                                        <ul className={classes.widget__list}>
+                                            {footerItems?.enlaces_rapidos?.map(
+                                                (item) => (
+                                                    <li key={item.id_enlace}>
+                                                        <Link
+                                                            href={`${item.enlace}`}
+                                                        >
+                                                            {item.nombre_enlace}
+                                                        </Link>
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    </div>
                                 </div>
                             </Col>
+
                             <Col
                                 xl={{ span: 3 }}
                                 lg={{ span: 4 }}
@@ -138,7 +147,7 @@ function Footer({ footerItems, services}) {
                                         className={`pb-25 ${classes.widget__info}`}
                                     >
                                         <p className={classes.widget_address}>
-                                            {`${footerItems?.footer.direccion} | C.P ${footerItems?.footer.codigo_postal} | `} 
+                                            {`${footerItems?.footer.direccion} | C.P ${footerItems?.footer.codigo_postal} | `}
                                             <span className='text-primary'>{footerItems?.footer.ubicacion}</span>
                                         </p>
                                         <span
@@ -169,7 +178,7 @@ function Footer({ footerItems, services}) {
                                             </li>
                                         );
                                     })}
-                                </ul>   
+                                </ul>
                             </Col>
                             <Col md={{ span: 6 }} sm={{ span: 8 }}>
                                 <div className={classes.copyright}>
