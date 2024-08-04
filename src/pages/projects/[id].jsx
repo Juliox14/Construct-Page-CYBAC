@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-import BannerFive from '../../components/banner/index-5';
 import Breadcrumb from '../../components/breadcrumb';
-import Newsletter from '../../components/newsletter/newsletter';
 import ProjectDetail from '../../components/projects/project-detail';
 import Footer from '../../components/layout/footer';
 import { getItemsBy, getElement } from '../../lib/items';

@@ -49,10 +49,11 @@ function HomePageServices({ services, settings }) {
                         <Link href="tel:+528123404908">
                             <h3
                                 className={classes.info}
-                                dangerouslySetInnerHTML={{
-                                    __html: '¿Tienes proyectos? <span>+52 81 2340 4908</span>',
-                                }}
-                            />
+                                
+                            >
+                                ¿Tienes un proyecto en mente?<br/>
+                                <span>+52 81 2340 4908</span>
+                            </h3>
                         </Link>
                     </div>
                 </div>

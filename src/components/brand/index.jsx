@@ -70,8 +70,6 @@ function BrandTwo({settings, clientes}) {
                                     <img
                                         src={icon.src} 
                                         alt='logo cliente'
-                                        // src={brandItem.ruta_logo_cliente}
-                                        // alt={brandItem.alt}
                                     />
                                 </div>
                                 <div>{brandItem.nombre_cliente}</div>

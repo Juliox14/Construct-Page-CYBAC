@@ -99,8 +99,14 @@
     }
     &_banner {
         position: relative;
+
+        @include breakpoint(max-sm-device) {
+            height: 80px;
+            display: flex;
+        }
+
         @include breakpoint(min-lg-device) {
-            width: calc(100% - 480px);
+            width: calc(100% - 200px);
             align-self: center;
         }
         &:before {
@@ -121,8 +127,11 @@
             padding: 30px;
             line-height: 1.3;
             margin-bottom: 0;
+
             @include breakpoint(max-sm-device) {
-                font-size: 20px;
+                font-size: medium;
+                position: absolute;
+                padding: 20px;
             }
             span {
                 color: $primary;
@@ -132,7 +141,7 @@
                 margin-left: 5px;
                 vertical-align: middle;
                 @include breakpoint(max-sm-device) {
-                    font-size: 25px;
+                    font-size: medium;
                 }
             }
         }

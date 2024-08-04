@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'react-bootstrap';
 import * as FaIcons from 'react-icons/fa';
 import classes from './about.module.scss';
-import TimeLine from '../timeline/timeline';
 import DOMPurify from 'dompurify';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
