@@ -22,6 +22,7 @@ const AdminLayout = ({ children }) => {
     // Lee la preferencia del modo desde las cookies
     const cookieMode = Cookies.get("darkMode") || "light";
     setMode(cookieMode);
+    const dataAdmin = Cookies.get("auth");
   }, []);
 
     const colorMode = useMemo(
@@ -56,14 +57,11 @@ const AdminLayout = ({ children }) => {
         }),
         [mode],
     );
-
-
   return (
     <>
       <Head>
         <title>Admin Dashboard</title>
       </Head>
-
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <div className={classes.boxHeaderMain}>

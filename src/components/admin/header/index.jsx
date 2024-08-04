@@ -47,18 +47,28 @@ export default function NavAdmin() {
            setHidden(true);
         }
     }
-
     const [backgroundNavBar, setBackgroundNavBar] = useState(null);
     const [lockCookie, setLockCookie] = useState(null);
-
+    
     useEffect(() => {
         const darkMode = Cookies.get("darkMode") === 'dark';
         const lock = Cookies.get("lock") === 'true';
+        const dataAdmin = Cookies.get("auth");
         setLockCookie(lock);
         setHidden(!lock);
         setLock(lock);
         setBackgroundNavBar(darkMode ? "#171717" : "#014655");
     }, []);
+
+    //Decodificar token 
+    const secretKey = 'JcGnCa-18-13-08';
+
+    try {
+        const decoded = jwt.verify(dataClient, secretKey);
+        console.log(decoded);
+    } catch (err) {
+        console.error('Token inválido:', err);
+    }
 
     if (backgroundNavBar === null && lockCookie === null) return null;
     
@@ -324,3 +334,7 @@ export default function NavAdmin() {
         </>
     )
 }
+import { SignJWT, jwtVerify } from 'jose';
+export async function getServerSideProps(){
+    console.log('first')
+};

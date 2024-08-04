@@ -6,12 +6,16 @@ import EditClient from "./editClient/index";
 import Alert from '@mui/material/Alert';
 import axios from "axios";
 import { Box, Button} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 export default function TableClientes({ data }) {
   const [values, setValues] = useState(data);
   const [inDataEdit, setInDataEdit] = useState({});
   const [showEdit, setShowEdit] = useState(false);
   const [alertValue, setAlertValue] = useState('');
+  const [confirmationUpdate, setConfirmationUpdate] = useState(false);
+  const [idActual, setIdActual] = useState(0);
+  const theme = useTheme();
   useEffect(() => {
     const copyValues = values.map((cliente) => {
       if (cliente.visualizarLista && cliente.visualizarSlider) {
@@ -61,7 +65,11 @@ export default function TableClientes({ data }) {
   };
 
   const HandlerOnClickDelete =  async (id) =>{
-    await axios.post('/api/deleteClient', {id: id});
+    setConfirmationUpdate(true);
+    setIdActual(id);
+  }
+  const HandlerOnClickConfirm =  async (id) =>{
+    await axios.post('/api/deleteClient', {id: idActual});
     setAlertValue('Cliente Eliminado con éxito');
       setInterval(() => {
         window.location.reload();
@@ -81,6 +89,34 @@ export default function TableClientes({ data }) {
         </div>
       ) : (
         <div className={classes.table}>
+          {confirmationUpdate && (
+            <Box sx={{
+                position: 'fixed',
+                top: '0',
+                left: '0',
+                width: '100%',
+                height: '100%',
+                bgcolor: 'rgba(0, 0, 0, 0.5)',
+                zIndex: '1000',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }} component="form" onSubmit={()=> HandlerOnClickConfirm()}>
+                <Box sx={{
+                    bgcolor: theme.palette.mode === 'dark' ? "#242424" : "#E3E3E3",
+                    color: theme.palette.mode === 'dark' ? "white" : "#014655",
+                    transition: `background-color ${theme.transitions.duration.standard}ms`,
+                    borderRadius: '10px',
+                    padding: '20px',
+                }}>
+                    <h2>¿Estás seguro de actualizar sobre nosotros?</h2>
+                    <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+                        <Button variant="contained" color="primary" type="submit">Confirmar</Button>
+                        <Button variant="contained" color="primary" onClick={() => setConfirmationUpdate(false)}>Cancelar</Button>
+                    </div>
+                </Box>
+            </Box>
+        )}
           <table>
             <thead>
               <tr>
