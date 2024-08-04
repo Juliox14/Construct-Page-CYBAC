@@ -28,6 +28,8 @@ function Error404Page({ newsletterItems, footerItems }) {
     );
 }
 
+
+
 export function getStaticProps() {
     const newsletterItems = getAllItems('newsletter');
     const footerItems = getAllItems('footer');
