@@ -16,11 +16,14 @@ const getUnreadEmailsCount = (imap) => {
             imap.openBox('INBOX', true, function (err, box) {
                 if (err) return reject(err);
 
-                imap.search(['UNSEEN', ['FROM', email]], function (err, results) {
-                    if (err) return reject(err);
-                    resolve(results.length);
-                    imap.end();
-                });
+                imap.search(
+                    ['UNSEEN', ['FROM', email]],
+                    function (err, results) {
+                        if (err) return reject(err);
+                        resolve(results.length);
+                        imap.end();
+                    }
+                );
             });
         });
 

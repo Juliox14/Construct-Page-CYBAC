@@ -9,60 +9,36 @@ function BannerThree({ bannerThreeItems }) {
         <div className="banner_area">
             <Container>
                 <Row className="g-30">
-                    <Col
-                        lg={{ span: 4 }}
-                        md={{ span: 6 }}
-                    >
+                    <Col lg={{ span: 4 }} md={{ span: 6 }}>
                         <div
                             className={`${classes.item} ${classes.secondary__bg}`}
                         >
-                            <div
-                                className={classes.content}
-                                data-count='01'
-                            >
-                                <h2 className={classes.title}>
-                                    Misión
-                                </h2>
+                            <div className={classes.content} data-count="01">
+                                <h2 className={classes.title}>Misión</h2>
                                 <p className={classes.desc}>
                                     {bannerThreeItems?.mision}
                                 </p>
                             </div>
                         </div>
                     </Col>
-                    <Col
-                        lg={{ span: 4 }}
-                        md={{ span: 6 }}
-                    >
+                    <Col lg={{ span: 4 }} md={{ span: 6 }}>
                         <div
                             className={`${classes.item} ${classes.primary__bg}`}
                         >
-                            <div
-                                className={classes.content}
-                                data-count='02'
-                            >
-                                <h2 className={classes.title}>
-                                    Visión
-                                </h2>
+                            <div className={classes.content} data-count="02">
+                                <h2 className={classes.title}>Visión</h2>
                                 <p className={classes.desc}>
                                     {bannerThreeItems?.vision}
                                 </p>
                             </div>
                         </div>
                     </Col>
-                    <Col
-                        lg={{ span: 4 }}
-                        md={{ span: 6 }}
-                    >
+                    <Col lg={{ span: 4 }} md={{ span: 6 }}>
                         <div
                             className={`${classes.item} ${classes.secondary__bg}`}
                         >
-                            <div
-                                className={classes.content}
-                                data-count='03'
-                            >
-                                <h2 className={classes.title}>
-                                    Valores
-                                </h2>
+                            <div className={classes.content} data-count="03">
+                                <h2 className={classes.title}>Valores</h2>
                                 <p className={classes.desc}>
                                     {bannerThreeItems?.valores}
                                 </p>

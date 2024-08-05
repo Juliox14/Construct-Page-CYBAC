@@ -1,52 +1,59 @@
-import { useEffect, useState } from "react";
-import classes from "./styleEditClient.module.css"
-import ReactInput from "../../../../../login/reactInput"
+import { useEffect, useState } from 'react';
+import classes from './styleEditClient.module.css';
+import ReactInput from '../../../../../login/reactInput';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import axios from "axios";
-import { Box, Button} from "@mui/material";
+import axios from 'axios';
+import { Box, Button } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
-export default function EditClient({inData, dataEditClient, showComponent = true}){
-    const [showComponentFromEditClient, setShowComponentFromEditClient] = useState(showComponent);
+export default function EditClient({
+    inData,
+    dataEditClient,
+    showComponent = true,
+}) {
+    const [showComponentFromEditClient, setShowComponentFromEditClient] =
+        useState(showComponent);
     const [dataClient, setDataClient] = useState(dataEditClient);
-    const [showLogo, setShowLogo] = useState(dataClient.ruta_logo ? true : false);
+    const [showLogo, setShowLogo] = useState(
+        dataClient.ruta_logo ? true : false
+    );
     const [alert, setAlert] = useState(false);
     const [alertValue, setAlertValue] = useState('Algo Salió mal');
-    const [succesAlert,setSuccesAlert] =  useState(false);
+    const [succesAlert, setSuccesAlert] = useState(false);
     const [check1, setCheck1] = useState(false);
     const [check2, setCheck2] = useState(false);
 
-    console.log(dataClient)
+    console.log(dataClient);
     useEffect(() => {
-        if(dataClient.visualizarLista === 1){
+        if (dataClient.visualizarLista === 1) {
             setCheck1(true);
         }
-        if(dataClient.visualizarSlider === 1){
+        if (dataClient.visualizarSlider === 1) {
             setCheck2(true);
         }
-    },[dataEditClient]);
+    }, [dataEditClient]);
 
     //Mui materials
     const currencies = [
         {
-          value: 'Municipios',
-          label: 'Municipios',
+            value: 'Municipios',
+            label: 'Municipios',
         },
         {
-          value: 'Particulares',
-          label: 'Particulares',
+            value: 'Particulares',
+            label: 'Particulares',
         },
         {
-          value: 'Iniciativa Privada',
-          label: 'Iniciativa Privada',
+            value: 'Iniciativa Privada',
+            label: 'Iniciativa Privada',
         },
-      ];
+    ];
 
-    async function HandlerOnClickSave(e){
+    async function HandlerOnClickSave(e) {
         e.preventDefault();
         const clientData = {
             id: dataClient.id,
@@ -58,11 +65,11 @@ export default function EditClient({inData, dataEditClient, showComponent = true
             alt: dataClient.alt,
             visualizarLista: check1,
             visualizarSlider: check2,
-        }
+        };
 
-        if(dataClient.titulo){
+        if (dataClient.titulo) {
             await axios.post('/api/addClient', clientData);
-        } else{
+        } else {
             await axios.post('/api/editClient', clientData);
         }
         setSuccesAlert(true);
@@ -71,64 +78,80 @@ export default function EditClient({inData, dataEditClient, showComponent = true
             setShowComponentFromEditClient(false);
             inData(showComponentFromEditClient);
             window.location.reload();
-        },2000);
+        }, 2000);
     }
 
-    function HandlerOnClickCancel(){
+    function HandlerOnClickCancel() {
         setShowComponentFromEditClient(false);
         inData(showComponentFromEditClient);
     }
 
     const callBackOnInputChange = (name, value) => {
-        const data = {...dataClient};
-        if(name === 'ruta_logo'){
-            if(value == '' && showLogo === true){
+        const data = { ...dataClient };
+        if (name === 'ruta_logo') {
+            if (value == '' && showLogo === true) {
                 setShowLogo(false);
             }
-            if(value != '' && showLogo === false){
+            if (value != '' && showLogo === false) {
                 setShowLogo(true);
             }
         }
-        data[name]=value;
+        data[name] = value;
         setDataClient(data);
-
     };
 
-    function onCheckedChange1(){
-        if(check2 === false && check1 === true){
-            setAlertValue('Tienes que seleccionar al menos un sitio para mostrar al cliente');
+    function onCheckedChange1() {
+        if (check2 === false && check1 === true) {
+            setAlertValue(
+                'Tienes que seleccionar al menos un sitio para mostrar al cliente'
+            );
             setAlert(true);
             setInterval(() => {
-                setAlert(false)
-            },3000);
-        }else{
+                setAlert(false);
+            }, 3000);
+        } else {
             setCheck1(!check1);
         }
     }
-    function onCheckedChange2(){
-        if((dataClient.ruta_logo === '' || dataClient.ruta_logo == undefined) && check2 === false){
-            setAlertValue('Tienes que tener un logo para poder colocar el cliente en el Slider');
+    function onCheckedChange2() {
+        if (
+            (dataClient.ruta_logo === '' ||
+                dataClient.ruta_logo == undefined) &&
+            check2 === false
+        ) {
+            setAlertValue(
+                'Tienes que tener un logo para poder colocar el cliente en el Slider'
+            );
             setAlert(true);
             setInterval(() => {
-                setAlert(false)
-            },3000);
-
-        }else if(check1 === false && check2 === true){
-            setAlertValue('Tienes que seleccionar al menos un sitio para mostrar al cliente');
+                setAlert(false);
+            }, 3000);
+        } else if (check1 === false && check2 === true) {
+            setAlertValue(
+                'Tienes que seleccionar al menos un sitio para mostrar al cliente'
+            );
             setAlert(true);
             setInterval(() => {
-                setAlert(false)
-            },3000);
-        }
-        else{
+                setAlert(false);
+            }, 3000);
+        } else {
             setCheck2(!check2);
         }
     }
-    return(
+    return (
         <div className={classes.body}>
             <div className={classes.body2}>
-                <h1 className={classes.h1}>{dataClient.titulo ? dataClient.titulo : 'Editar Cliente'}</h1>
-                <form id="basic-form" action="/submit" onSubmit={(e) => {HandlerOnClickSave(e)}} className={classes.form}>
+                <h1 className={classes.h1}>
+                    {dataClient.titulo ? dataClient.titulo : 'Editar Cliente'}
+                </h1>
+                <form
+                    id="basic-form"
+                    action="/submit"
+                    onSubmit={(e) => {
+                        HandlerOnClickSave(e);
+                    }}
+                    className={classes.form}
+                >
                     <ReactInput
                         name="nombre"
                         placeHolder="Nombre"
@@ -136,21 +159,28 @@ export default function EditClient({inData, dataEditClient, showComponent = true
                         callBackOnInputChange={callBackOnInputChange}
                         isRequired={true}
                     />
-                    <div className={classes.divInputOptions}> 
-                    <TextField
-                        id="outlined-select-currency"
-                        isRequired
-                        select
-                        label="Select"
-                        defaultValue={dataClient.clasificacion}
-                        sx={{width: '400px', marginTop: '15px', borderBlockColor: 'red'}}
+                    <div className={classes.divInputOptions}>
+                        <TextField
+                            id="outlined-select-currency"
+                            isRequired
+                            select
+                            label="Select"
+                            defaultValue={dataClient.clasificacion}
+                            sx={{
+                                width: '400px',
+                                marginTop: '15px',
+                                borderBlockColor: 'red',
+                            }}
                         >
-                        {currencies.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
+                            {currencies.map((option) => (
+                                <MenuItem
+                                    key={option.value}
+                                    value={option.value}
+                                >
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
                     </div>
                     <ReactInput
                         name="ruta_logo"
@@ -178,48 +208,101 @@ export default function EditClient({inData, dataEditClient, showComponent = true
                         isRequired={true}
                     />
                     <FormGroup className={classes.divInputCheck}>
-                        <FormControlLabel control={<Checkbox checked={check1} onChange={onCheckedChange1} sx={{ '& .MuiSvgIcon-root': { fontSize: 20 } }}/>} label="Mostrar en tabla" />
-                        <FormControlLabel control={<Checkbox checked={check2} onChange={onCheckedChange2} sx={{ '& .MuiSvgIcon-root': { fontSize: 20 } }}/>} label="Mostrar en Slider" />
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={check1}
+                                    onChange={onCheckedChange1}
+                                    sx={{
+                                        '& .MuiSvgIcon-root': { fontSize: 20 },
+                                    }}
+                                />
+                            }
+                            label="Mostrar en tabla"
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={check2}
+                                    onChange={onCheckedChange2}
+                                    sx={{
+                                        '& .MuiSvgIcon-root': { fontSize: 20 },
+                                    }}
+                                />
+                            }
+                            label="Mostrar en Slider"
+                        />
                     </FormGroup>
                     <div className={classes.btns}>
-                        <Button variant="contained" color="primary" type='submit'
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            type="submit"
                             sx={{
-                                width: "200px",
-                                height: "50px",
-                                bgcolor: "#014655",
-                                ":hover": {
-                                    bgcolor: "#0d5c6c",
-                                }
-                            }}> 
-                            {dataClient.titulo ? dataClient.titulo : 'Guardar Cambios'} 
+                                width: '200px',
+                                height: '50px',
+                                bgcolor: '#014655',
+                                ':hover': {
+                                    bgcolor: '#0d5c6c',
+                                },
+                            }}
+                        >
+                            {dataClient.titulo
+                                ? dataClient.titulo
+                                : 'Guardar Cambios'}
                         </Button>
-                        <Button variant="contained" color="primary" onClick={HandlerOnClickCancel}
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={HandlerOnClickCancel}
                             sx={{
-                                width: "200px",
-                                height: "50px",
-                                bgcolor: "#014655",
-                                ":hover": {
-                                    bgcolor: "#0d5c6c",
-                                }
-                            }}> 
+                                width: '200px',
+                                height: '50px',
+                                bgcolor: '#014655',
+                                ':hover': {
+                                    bgcolor: '#0d5c6c',
+                                },
+                            }}
+                        >
                             Cancelar
                         </Button>
                     </div>
                 </form>
             </div>
-            {alert && <Alert severity="warning" sx={{
-                position: 'absolute',
-                top: '50px',
-                left: '100px',
-            }
-            }>{alertValue}</Alert>}
-            {succesAlert && <Alert severity="success" sx={{
-                position: 'absolute',
-                top: '50px',
-                left: '100px',
-            }
-            }>{dataClient.titulo ? 'Cliente guardado con éxito' : 'Cliente editado con éxito'}</Alert>}
-            {showLogo && <div className={classes.imagen}><img src={dataClient.ruta_logo} alt={dataClient.alt  || 'No se pudo encontrar la imagen'} /></div>}
+            {alert && (
+                <Alert
+                    severity="warning"
+                    sx={{
+                        position: 'absolute',
+                        top: '50px',
+                        left: '100px',
+                    }}
+                >
+                    {alertValue}
+                </Alert>
+            )}
+            {succesAlert && (
+                <Alert
+                    severity="success"
+                    sx={{
+                        position: 'absolute',
+                        top: '50px',
+                        left: '100px',
+                    }}
+                >
+                    {dataClient.titulo
+                        ? 'Cliente guardado con éxito'
+                        : 'Cliente editado con éxito'}
+                </Alert>
+            )}
+            {showLogo && (
+                <div className={classes.imagen}>
+                    <img
+                        src={dataClient.ruta_logo}
+                        alt={dataClient.alt || 'No se pudo encontrar la imagen'}
+                    />
+                </div>
+            )}
         </div>
     );
 }

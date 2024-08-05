@@ -1,24 +1,24 @@
-.ruta{
+.ruta {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 10px;
     font-family: 'Yantramanav', sans-serif;
 
-    h1{
+    h1 {
         margin-bottom: 0px;
     }
-    p{
+    p {
         color: #596c71;
         margin-right: 5px;
     }
-    a{
-        color: #ADA479;
+    a {
+        color: #ada479;
         text-decoration: none;
         font-size: 14px;
 
-        :hover{
-            color: #19180f;  
+        :hover {
+            color: #19180f;
         }
     }
 }

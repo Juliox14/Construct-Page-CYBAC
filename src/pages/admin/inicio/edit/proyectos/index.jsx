@@ -4,7 +4,7 @@ import EditHome from '../../../../../components/admin/body/inicio/EditHome';
 function ServicioEdit() {
     return (
         <AdminLayout>
-            <EditHome servicio={"Arquitectura"} />
+            <EditHome servicio={'Arquitectura'} />
         </AdminLayout>
     );
 }

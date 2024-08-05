@@ -1,21 +1,20 @@
-import AdminLayout from "../../../components/admin";
-import Proyectos from "../../../components/admin/body/proyectos";
-import { getElement } from "../../../lib/items";
+import AdminLayout from '../../../components/admin';
+import Proyectos from '../../../components/admin/body/proyectos';
+import { getElement } from '../../../lib/items';
 
-
-const Inicio = ({proyectos}) => {
+const Inicio = ({ proyectos }) => {
     return (
         <AdminLayout>
-            <Proyectos proyectos={proyectos}/>
+            <Proyectos proyectos={proyectos} />
         </AdminLayout>
-    )
-}
+    );
+};
 
-export async function getServerSideProps(){
+export async function getServerSideProps() {
     const proyectos = await getElement('proyectos');
     return {
         props: {
-            proyectos: proyectos
+            proyectos: proyectos,
         },
     };
 }

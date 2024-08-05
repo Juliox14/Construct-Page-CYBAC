@@ -7,13 +7,13 @@ import classes from './project.module.scss';
 import ProjectFullwidthItem from './fullwidth-item';
 import Filter from './filter';
 
-function  ProjectFullwidthGrid({ projects }) {
+function ProjectFullwidthGrid({ projects }) {
     const [noOfElement, setNoOfElement] = useState(3);
     const [open, setOpen] = useState(true);
     const [filterProyects, setFilterProyects] = useState([]);
     let slice = projects.slice(0, noOfElement);
 
-    if(filterProyects.length > 0){
+    if (filterProyects.length > 0) {
         slice = filterProyects.slice(0, noOfElement);
     }
 
@@ -35,37 +35,47 @@ function  ProjectFullwidthGrid({ projects }) {
             <Container>
                 <div className={classes.filtro_boxBtnFiltro}>
                     <Stack>
-                        <Button variant="contained" onClick={()=> {setOpen(prevState => !prevState)}}
-                        style={{backgroundColor: "#014655"}}>Filtro</Button>
+                        <Button
+                            variant="contained"
+                            onClick={() => {
+                                setOpen((prevState) => !prevState);
+                            }}
+                            style={{ backgroundColor: '#014655' }}
+                        >
+                            Filtro
+                        </Button>
                     </Stack>
                 </div>
-                <Filter open={open} handleFilterUpdate={handleFilterUpdate}/>
-                <Row className="g-4" style={{marginTop: "5px"}}>
+                <Filter open={open} handleFilterUpdate={handleFilterUpdate} />
+                <Row className="g-4" style={{ marginTop: '5px' }}>
                     {slice.map((project, index) => (
-                        <ProjectFullwidthItem
-                            key={index}
-                            project={project}
-                        />
+                        <ProjectFullwidthItem key={index} project={project} />
                     ))}
                 </Row>
-                {noOfElement < projects.length && (filterProyects.length > 0 ? (noOfElement < filterProyects.length) : true) && (
-                    <div className={classes.project_btn__wrap}>
-                        <button
-                            type="button"
-                            className={classes.loadmore_btn}
-                            onClick={loadMore}
-                        >
-                            Cargar más
-                        </button>
-                    </div>
-                )}
-                {noOfElement > projects.length && (filterProyects.length > 0 ? (noOfElement > filterProyects.length) : true) && (
-                    <div className={classes.project_btn__wrap}>
-                        <span className={classes.loadedText}>
-                            Todos los proyectos cargados!
-                        </span>
-                    </div>
-                )}
+                {noOfElement < projects.length &&
+                    (filterProyects.length > 0
+                        ? noOfElement < filterProyects.length
+                        : true) && (
+                        <div className={classes.project_btn__wrap}>
+                            <button
+                                type="button"
+                                className={classes.loadmore_btn}
+                                onClick={loadMore}
+                            >
+                                Cargar más
+                            </button>
+                        </div>
+                    )}
+                {noOfElement > projects.length &&
+                    (filterProyects.length > 0
+                        ? noOfElement > filterProyects.length
+                        : true) && (
+                        <div className={classes.project_btn__wrap}>
+                            <span className={classes.loadedText}>
+                                Todos los proyectos cargados!
+                            </span>
+                        </div>
+                    )}
             </Container>
         </div>
     );

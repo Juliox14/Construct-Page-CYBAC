@@ -1,4 +1,4 @@
-import db from "../../../../database/config/db"
+import db from '../../../../database/config/db';
 
 //Hola api clientes te quiero mucho <3
 export default async function clientsHandler(req, res) {
@@ -12,4 +12,4 @@ export default async function clientsHandler(req, res) {
     } else {
         res.status(405).json({ message: 'Método no permitido' });
     }
-};
+}

@@ -24,15 +24,15 @@ export function validateUser(username) {
 
 export function validatePassword(password, confirmPassword) {
     const specialChars = /[!@#$%^&*(),.?":{}|<>]/;
-    const containsSpecialChar = [...password].find(char => specialChars.test(char));
+    const containsSpecialChar = [...password].find((char) =>
+        specialChars.test(char)
+    );
     if (confirmPassword) {
         if (password != confirmPassword) {
             return 'Las contraseñas deben ser iguales';
-        }
-        else if (password.length < 8) {
+        } else if (password.length < 8) {
             return 'La contraseña debe tener al menos 8 caracteres';
-        }
-        else if (!containsSpecialChar) {
+        } else if (!containsSpecialChar) {
             return `La contraseña debe tener al menos un carácter especial (${specialChars})`;
         }
     }
@@ -44,23 +44,26 @@ export async function guardarDatos(values) {
         var response = '';
         if (validateUser(values.username) != true) {
             response = validateUser(values.username);
-            return response
+            return response;
         }
-        if (validatePassword(values.password,values.confirmPassword) != true) {
-            response = validatePassword(values.password,values.confirmPassword)
-            return response
+        if (validatePassword(values.password, values.confirmPassword) != true) {
+            response = validatePassword(
+                values.password,
+                values.confirmPassword
+            );
+            return response;
         }
         const formData = {
-            username:values.username,
-            password:values.password,
-        }
+            username: values.username,
+            password: values.password,
+        };
         response = await axios.post('/api/register', formData);
-        if(response.status === 409){
+        if (response.status === 409) {
             return response.data.message;
         }
         return true;
     } catch (error) {
-        console.error(error)
+        console.error(error);
         return 'Salio mal';
     }
 }

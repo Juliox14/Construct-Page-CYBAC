@@ -2,12 +2,10 @@ import AdminLayout from '../../../../../components/admin';
 import EditAbout from '../../../../../components/admin/body/nosotros/EditAbout';
 import { getElement } from '../../../../../lib/items';
 
-function ServicioEdit({
-    dataAbout
-}) {
+function ServicioEdit({ dataAbout }) {
     return (
         <AdminLayout>
-            <EditAbout dataSSR={dataAbout}/>
+            <EditAbout dataSSR={dataAbout} />
         </AdminLayout>
     );
 }
@@ -19,6 +17,6 @@ export async function getServerSideProps() {
     return {
         props: {
             dataAbout: aboutItems,
-        }
-    }
+        },
+    };
 }

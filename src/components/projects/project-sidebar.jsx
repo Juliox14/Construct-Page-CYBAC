@@ -13,25 +13,36 @@ function ProjectSidebar({ projectsSidebar }) {
                     </h2>
                     <ul className={classes.sidebar_list}>
                         <li>
-                            <strong>Cliente: </strong>{`${projectsSidebar.cliente || ''}`}
+                            <strong>Cliente: </strong>
+                            {`${projectsSidebar.cliente || ''}`}
                         </li>
                         <li>
-                            <strong>Ubicación: </strong>{`${projectsSidebar.ubicacion || ''}, ${projectsSidebar.estado || ''}`}
+                            <strong>Ubicación: </strong>
+                            {`${projectsSidebar.ubicacion || ''}, ${
+                                projectsSidebar.estado || ''
+                            }`}
                         </li>
                         <li>
-                            <strong>Tipo de obra: </strong>{`${projectsSidebar.tipo_obra || ''}`}
+                            <strong>Tipo de obra: </strong>
+                            {`${projectsSidebar.tipo_obra || ''}`}
                         </li>
                         <li>
-                            <strong>Coste de la obra: </strong>{`$${projectsSidebar.importe || ''}`}
+                            <strong>Coste de la obra: </strong>
+                            {`$${projectsSidebar.importe || ''}`}
                         </li>
                         <li>
-                            <strong>Fecha de inicio: </strong>{`${projectsSidebar.fecha_inicio || ''}`}
+                            <strong>Fecha de inicio: </strong>
+                            {`${projectsSidebar.fecha_inicio || ''}`}
                         </li>
                         <li>
-                            <strong>Fecha de finalización: </strong> {`${projectsSidebar.fecha_final || ''}`}
+                            <strong>Fecha de finalización: </strong>{' '}
+                            {`${projectsSidebar.fecha_final || ''}`}
                         </li>
                         <li>
-                            <strong>Duración de la obra: </strong>{`${projectsSidebar.duracion || ''} ${projectsSidebar.duracion > 1 ? 'meses' : 'mes'}`}
+                            <strong>Duración de la obra: </strong>
+                            {`${projectsSidebar.duracion || ''} ${
+                                projectsSidebar.duracion > 1 ? 'meses' : 'mes'
+                            }`}
                         </li>
                     </ul>
                 </div>

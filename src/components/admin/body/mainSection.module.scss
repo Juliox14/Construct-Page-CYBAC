@@ -1,19 +1,19 @@
 @import '../../../styles/abstract/custom-variables';
 @import '../../../styles/abstract/custom-mixins';
 
-.boxFather{
+.boxFather {
     width: 80%;
     flex: 1;
     font-family: $rajdhani;
-    @include breakpoint(md-device){
+    @include breakpoint(md-device) {
         width: 100%;
     }
 
-    @include breakpoint(lm-device){
+    @include breakpoint(lm-device) {
         width: 100%;
     }
 
-    @include breakpoint(s-device){
+    @include breakpoint(s-device) {
         width: 100%;
     }
 }

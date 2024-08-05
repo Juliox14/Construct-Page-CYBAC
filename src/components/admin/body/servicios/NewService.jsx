@@ -1,26 +1,37 @@
 // Imports de mui material
-import { Box, Button, Alert, TextareaAutosize} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { Box, Button, Alert, TextareaAutosize } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 // Import de estilos
-import classes from "./EditService.module.scss";
+import classes from './EditService.module.scss';
 
 // Imports de react
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 // Imports de axios
-import axios from "axios";
+import axios from 'axios';
 
 // Imports de tinymce
-import { Editor } from "@tinymce/tinymce-react";
+import { Editor } from '@tinymce/tinymce-react';
 
 // Imports de componentes propios
-import Ruta from "../items-util/ruta";
+import Ruta from '../items-util/ruta';
 
 const NewServiceForm = () => {
     const theme = useTheme();
-    const [servicioData, setServicioData] = useState({ titulo_breadcrumb: '', subtitulo_breadcrumb: '', descripcion_breadcrumb: '', titulo: '', ruta_imagen: '', descripcion_breve: '', descripcion: '' });
-    const [newSubservicioData, setNewSubservicioData] = useState([{ titulo_subservicio: '', descripcion_subservicio: '' }, { titulo_subservicio: '', descripcion_subservicio: '' }]);
+    const [servicioData, setServicioData] = useState({
+        titulo_breadcrumb: '',
+        subtitulo_breadcrumb: '',
+        descripcion_breadcrumb: '',
+        titulo: '',
+        ruta_imagen: '',
+        descripcion_breve: '',
+        descripcion: '',
+    });
+    const [newSubservicioData, setNewSubservicioData] = useState([
+        { titulo_subservicio: '', descripcion_subservicio: '' },
+        { titulo_subservicio: '', descripcion_subservicio: '' },
+    ]);
     const [auxWidth, setAuxWidth] = useState(false);
     const [message, setMessage] = useState(false);
 
@@ -39,11 +50,16 @@ const NewServiceForm = () => {
     };
 
     const addSubservice = () => {
-        setNewSubservicioData([...newSubservicioData, { titulo_subservicio: '', descripcion_subservicio: '' }]);
+        setNewSubservicioData([
+            ...newSubservicioData,
+            { titulo_subservicio: '', descripcion_subservicio: '' },
+        ]);
     };
 
     const deleteNewSubservice = () => {
-        setNewSubservicioData(newSubservicioData.slice(0, newSubservicioData.length - 1));
+        setNewSubservicioData(
+            newSubservicioData.slice(0, newSubservicioData.length - 1)
+        );
     };
 
     const handleInputNewSubserviceChange = (index, e) => {
@@ -57,7 +73,7 @@ const NewServiceForm = () => {
         const { name, value } = e.target;
         setServicioData({
             ...servicioData,
-            [name]: value
+            [name]: value,
         });
     };
 
@@ -93,8 +109,14 @@ const NewServiceForm = () => {
 
     const handleSubmitSubservicio = async (id_servicio) => {
         try {
-            const subserviciosWithId = newSubservicioData.map((item) => ({ ...item, id_servicio }));
-            const response = await axios.post(`/api/subservices`, subserviciosWithId);
+            const subserviciosWithId = newSubservicioData.map((item) => ({
+                ...item,
+                id_servicio,
+            }));
+            const response = await axios.post(
+                `/api/subservices`,
+                subserviciosWithId
+            );
             if (response.status === 200) {
                 setMessage(response.data.message);
                 setTimeout(() => {
@@ -126,55 +148,77 @@ const NewServiceForm = () => {
         }
     };
 
-    const rutas = [{ nombre: 'Inicio', link: '/admin' }, { nombre: 'Servicios', link: '/admin/servicio' }, { nombre: 'Nuevo servicio', link: '/admin/servicio/newService' }];
+    const rutas = [
+        { nombre: 'Inicio', link: '/admin' },
+        { nombre: 'Servicios', link: '/admin/servicio' },
+        { nombre: 'Nuevo servicio', link: '/admin/servicio/newService' },
+    ];
     return (
-        <Box sx={{
-            bgcolor: theme.palette.mode === 'dark' ? "#1C1C1C" : "#FFFFFF",
-            color: theme.palette.mode === 'dark' ? "white" : "#014655",
-            transition: `background-color ${theme.transitions.duration.standard}ms`,
-            height: 'auto',
-            width: 'auto',
-            padding: '50px',
-            display: 'block',
-        }}>
-            <Ruta rutas={rutas} titulo={'Agregar servicio'} />
-            <Box sx={{
-                bgcolor: theme.palette.mode === 'dark' ? "#1C1C1C" : "#FFFFFF",
-                color: theme.palette.mode === 'dark' ? "white" : "#014655",
+        <Box
+            sx={{
+                bgcolor: theme.palette.mode === 'dark' ? '#1C1C1C' : '#FFFFFF',
+                color: theme.palette.mode === 'dark' ? 'white' : '#014655',
                 transition: `background-color ${theme.transitions.duration.standard}ms`,
-                display: 'flex',
-                flexDirection: 'row',
-                width: 'auto',
                 height: 'auto',
-                justifyContent: auxWidth === true ? 'space-between' : 'center',
-                gap: '3rem',
-            }}>
+                width: 'auto',
+                padding: '50px',
+                display: 'block',
+            }}
+        >
+            <Ruta rutas={rutas} titulo={'Agregar servicio'} />
+            <Box
+                sx={{
+                    bgcolor:
+                        theme.palette.mode === 'dark' ? '#1C1C1C' : '#FFFFFF',
+                    color: theme.palette.mode === 'dark' ? 'white' : '#014655',
+                    transition: `background-color ${theme.transitions.duration.standard}ms`,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    width: 'auto',
+                    height: 'auto',
+                    justifyContent:
+                        auxWidth === true ? 'space-between' : 'center',
+                    gap: '3rem',
+                }}
+            >
                 {message && (
-                    <Alert variant="outlined" severity="success" sx={{
-                        position: 'fixed',
-                        top: '40px',
-                        left: '80px',
-                        width: 'auto',
-                        height: 'auto',
-                        bgcolor: '#26ca7032',
-                        zIndex: '1000',
-                    }} >
+                    <Alert
+                        variant="outlined"
+                        severity="success"
+                        sx={{
+                            position: 'fixed',
+                            top: '40px',
+                            left: '80px',
+                            width: 'auto',
+                            height: 'auto',
+                            bgcolor: '#26ca7032',
+                            zIndex: '1000',
+                        }}
+                    >
                         {message}
                     </Alert>
                 )}
-                <Box sx={{
-                    bgcolor: theme.palette.mode === 'dark' ? "#242424" : "#E3E3E3",
-                    color: theme.palette.mode === 'dark' ? "white" : "#014655",
-                    transition: `background-color ${theme.transitions.duration.standard}ms`,
-                    borderRadius: '10px',
-                    padding: '20px',
-                    height: 'min-content',
-                    minWidth: 'min-content',
-                }}>
+                <Box
+                    sx={{
+                        bgcolor:
+                            theme.palette.mode === 'dark'
+                                ? '#242424'
+                                : '#E3E3E3',
+                        color:
+                            theme.palette.mode === 'dark' ? 'white' : '#014655',
+                        transition: `background-color ${theme.transitions.duration.standard}ms`,
+                        borderRadius: '10px',
+                        padding: '20px',
+                        height: 'min-content',
+                        minWidth: 'min-content',
+                    }}
+                >
                     <h3>Editar Servicio</h3>
                     <form onSubmit={handleSubmit}>
                         <div className={classes.formGroup}>
-                            <label htmlFor="titulo_breadcrumb">Título Breadcrumb</label>
+                            <label htmlFor="titulo_breadcrumb">
+                                Título Breadcrumb
+                            </label>
                             <input
                                 type="text"
                                 id="titulo_breadcrumb"
@@ -182,11 +226,17 @@ const NewServiceForm = () => {
                                 value={servicioData.titulo_breadcrumb}
                                 onChange={handleInputChange}
                                 required
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                className={
+                                    theme.palette.mode === 'dark'
+                                        ? classes.formControlDark
+                                        : classes.formControl
+                                }
                             />
                         </div>
                         <div className={classes.formGroup}>
-                            <label htmlFor="subtitulo_breadcrumb">Subtítulo Breadcrumb</label>
+                            <label htmlFor="subtitulo_breadcrumb">
+                                Subtítulo Breadcrumb
+                            </label>
                             <input
                                 type="text"
                                 id="subtitulo_breadcrumb"
@@ -194,11 +244,17 @@ const NewServiceForm = () => {
                                 value={servicioData.subtitulo_breadcrumb}
                                 onChange={handleInputChange}
                                 required
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                className={
+                                    theme.palette.mode === 'dark'
+                                        ? classes.formControlDark
+                                        : classes.formControl
+                                }
                             />
                         </div>
                         <div className={classes.formGroup}>
-                            <label htmlFor="descripcion_breadcrumb">Descripción Breadcrumb</label>
+                            <label htmlFor="descripcion_breadcrumb">
+                                Descripción Breadcrumb
+                            </label>
                             <TextareaAutosize
                                 id="descripcion_breadcrumb"
                                 name="descripcion_breadcrumb"
@@ -206,7 +262,11 @@ const NewServiceForm = () => {
                                 onChange={handleInputChange}
                                 required
                                 rows="4"
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                className={
+                                    theme.palette.mode === 'dark'
+                                        ? classes.formControlDark
+                                        : classes.formControl
+                                }
                             />
                         </div>
                         <div className={classes.formGroup}>
@@ -217,7 +277,11 @@ const NewServiceForm = () => {
                                 name="titulo"
                                 value={servicioData.titulo}
                                 onChange={handleInputChange}
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                className={
+                                    theme.palette.mode === 'dark'
+                                        ? classes.formControlDark
+                                        : classes.formControl
+                                }
                             />
                         </div>
                         <div className={classes.formGroup}>
@@ -228,28 +292,58 @@ const NewServiceForm = () => {
                                 id="imagen"
                                 name="imagen"
                                 onChange={handleImageUpload}
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                className={
+                                    theme.palette.mode === 'dark'
+                                        ? classes.formControlDark
+                                        : classes.formControl
+                                }
                             />
                             {servicioData.ruta_imagen && (
-                                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px', marginTop: '10px' }}>
-                                    <img src={`/images/servicios/${servicioData.ruta_imagen}`} alt="Imagen del servicio" style={{ width: '200px' }} />
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        marginBottom: '10px',
+                                        marginTop: '10px',
+                                    }}
+                                >
+                                    <img
+                                        src={`/images/servicios/${servicioData.ruta_imagen}`}
+                                        alt="Imagen del servicio"
+                                        style={{ width: '200px' }}
+                                    />
                                 </div>
                             )}
                         </div>
                         <div className={classes.formGroup}>
-                            <label htmlFor="descripcion_breve">Descripción Breve</label>
+                            <label htmlFor="descripcion_breve">
+                                Descripción Breve
+                            </label>
                             <input
                                 type="text"
                                 id="descripcion_breve"
                                 name="descripcion_breve"
                                 value={servicioData.descripcion_breve}
                                 onChange={handleInputChange}
-                                className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                className={
+                                    theme.palette.mode === 'dark'
+                                        ? classes.formControlDark
+                                        : classes.formControl
+                                }
                             />
                         </div>
                         <div className={classes.formGroup}>
                             <label htmlFor="descripcion">Descripción</label>
-                            <TextareaAutosize name="descripcion" defaultValue={servicioData.descripcion} onChange={handleInputChange} className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} />
+                            <TextareaAutosize
+                                name="descripcion"
+                                defaultValue={servicioData.descripcion}
+                                onChange={handleInputChange}
+                                className={
+                                    theme.palette.mode === 'dark'
+                                        ? classes.formControlDark
+                                        : classes.formControl
+                                }
+                            />
                         </div>
                         <Button
                             type="submit"
@@ -262,10 +356,10 @@ const NewServiceForm = () => {
                                 bottom: '20px',
                                 right: '20px',
                                 zIndex: '999',
-                                "&:hover": {
+                                '&:hover': {
                                     backgroundColor: '#757254',
-                                    color: '#F1F1F1'
-                                }
+                                    color: '#F1F1F1',
+                                },
                             }}
                             onClick={handleBothSubmits}
                         >
@@ -274,61 +368,131 @@ const NewServiceForm = () => {
                     </form>
                 </Box>
 
-                <Box sx={{
-                    bgcolor: theme.palette.mode === 'dark' ? "#242424" : "#E3E3E3",
-                    color: theme.palette.mode === 'dark' ? "white" : "#014655",
-                    transition: `background-color ${theme.transitions.duration.standard}ms`,
-                    borderRadius: '10px',
-                    padding: '20px',
-                    minWidth: '10%',
-                    height: 'min-content',
-                }}>
-                    <form style={{ display: 'block', maxHeight: 'max-content' }} >
+                <Box
+                    sx={{
+                        bgcolor:
+                            theme.palette.mode === 'dark'
+                                ? '#242424'
+                                : '#E3E3E3',
+                        color:
+                            theme.palette.mode === 'dark' ? 'white' : '#014655',
+                        transition: `background-color ${theme.transitions.duration.standard}ms`,
+                        borderRadius: '10px',
+                        padding: '20px',
+                        minWidth: '10%',
+                        height: 'min-content',
+                    }}
+                >
+                    <form
+                        style={{ display: 'block', maxHeight: 'max-content' }}
+                    >
                         <div className={classes.formSubservicio}>
                             {newSubservicioData.map((item, index) => (
-                                <div className={classes.subservicioInd} key={index}>
+                                <div
+                                    className={classes.subservicioInd}
+                                    key={index}
+                                >
                                     <div className={classes.subservicioHead}>
                                         <h3>Nuevo subservicio</h3>
-                                        <button type="button" onClick={() => deleteNewSubservice()}>
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a80505" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                deleteNewSubservice()
+                                            }
+                                        >
+                                            <svg
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="#a80505"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            >
                                                 <path d="M3 6h18" />
                                                 <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
                                                 <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-                                                <line x1="10" x2="10" y1="11" y2="17" />
-                                                <line x1="14" x2="14" y1="11" y2="17" />
+                                                <line
+                                                    x1="10"
+                                                    x2="10"
+                                                    y1="11"
+                                                    y2="17"
+                                                />
+                                                <line
+                                                    x1="14"
+                                                    x2="14"
+                                                    y1="11"
+                                                    y2="17"
+                                                />
                                             </svg>
                                         </button>
                                     </div>
                                     <div className={classes.formGroup}>
-                                        <label htmlFor={`titulo_new_subservicio_${index}`}>Título</label>
+                                        <label
+                                            htmlFor={`titulo_new_subservicio_${index}`}
+                                        >
+                                            Título
+                                        </label>
                                         <input
                                             type="text"
                                             id={`titulo_new_subservicio_${index}`}
                                             name="titulo_subservicio"
                                             value={item.titulo_subservicio}
-                                            onChange={(e) => handleInputNewSubserviceChange(index, e)}
-                                            className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                            onChange={(e) =>
+                                                handleInputNewSubserviceChange(
+                                                    index,
+                                                    e
+                                                )
+                                            }
+                                            className={
+                                                theme.palette.mode === 'dark'
+                                                    ? classes.formControlDark
+                                                    : classes.formControl
+                                            }
                                         />
                                     </div>
                                     <div className={classes.formGroup}>
-                                        <label htmlFor={`descripcion_new_subservicio_${index}`}>Descripción</label>
+                                        <label
+                                            htmlFor={`descripcion_new_subservicio_${index}`}
+                                        >
+                                            Descripción
+                                        </label>
                                         <Editor
                                             id={`descripcion_new_subservicio_${index}`}
-                                            className={theme.palette.mode === 'dark' ? classes.editorTinyDark : ''}
-                                            apiKey='r48129s2w0duaojj9z6uw4tdb23f7owjsaalkbsy8awlmc86'
+                                            className={
+                                                theme.palette.mode === 'dark'
+                                                    ? classes.editorTinyDark
+                                                    : ''
+                                            }
+                                            apiKey="r48129s2w0duaojj9z6uw4tdb23f7owjsaalkbsy8awlmc86"
                                             value={item.descripcion_subservicio}
-                                            onEditorChange={(content) => handleNewSubservicioEditorChange(index, content)}
+                                            onEditorChange={(content) =>
+                                                handleNewSubservicioEditorChange(
+                                                    index,
+                                                    content
+                                                )
+                                            }
                                             init={{
                                                 menubar: false,
                                                 plugins: [
-                                                    'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
-                                                    'anchor', 'searchreplace', 'visualblocks', 'fullscreen',
-                                                    'wordcount'
+                                                    'advlist',
+                                                    'autolink',
+                                                    'lists',
+                                                    'link',
+                                                    'charmap',
+                                                    'preview',
+                                                    'anchor',
+                                                    'searchreplace',
+                                                    'visualblocks',
+                                                    'fullscreen',
+                                                    'wordcount',
                                                 ],
                                                 toolbar:
                                                     'bold italic |' +
                                                     '| bullist numlist outdent indent | ',
-                                                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:12px }'
+                                                content_style:
+                                                    'body { font-family:Helvetica,Arial,sans-serif; font-size:12px }',
                                             }}
                                         />
                                     </div>
@@ -336,21 +500,28 @@ const NewServiceForm = () => {
                             ))}
                         </div>
                         <div className={classes.buttonsSubSer}>
-                            <Button variant="contained" sx={{
-                                bgcolor: '#014655', color: '#F1F1F1', height: 'max-content', "&:hover": {
-                                    backgroundColor: '#757254',
-                                    color: '#F1F1F1'
-                                }
-                            }} onClick={addSubservice} type="button">
+                            <Button
+                                variant="contained"
+                                sx={{
+                                    bgcolor: '#014655',
+                                    color: '#F1F1F1',
+                                    height: 'max-content',
+                                    '&:hover': {
+                                        backgroundColor: '#757254',
+                                        color: '#F1F1F1',
+                                    },
+                                }}
+                                onClick={addSubservice}
+                                type="button"
+                            >
                                 Agregar subservicio
                             </Button>
                         </div>
-
                     </form>
                 </Box>
             </Box>
         </Box>
-    )
-}
+    );
+};
 
 export default NewServiceForm;

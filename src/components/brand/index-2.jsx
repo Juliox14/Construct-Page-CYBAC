@@ -4,9 +4,9 @@ import dynamic from 'next/dynamic';
 import { Container } from 'react-bootstrap';
 import classes from './brand.module.scss';
 import { Slide } from '../swiper';
-import icon from '../../../public/images/brand/5.png'
+import icon from '../../../public/images/brand/5.png';
 
-function BrandTwo({settings, clientes}) {
+function BrandTwo({ settings, clientes }) {
     const SwiperComps = dynamic(() => import('../swiper'), {
         ssr: false,
     });
@@ -62,15 +62,20 @@ function BrandTwo({settings, clientes}) {
     const tipo = clientes[0].clasificacion;
     return (
         <div className={`${classes.bg} ${classes.space__yaxis}`}>
-            <div className={classes.title}><h1>{tipo}</h1></div>
+            <div className={classes.title}>
+                <h1>{tipo}</h1>
+            </div>
             <Container className={classes.aux}>
                 <SwiperComps settings={settings} className={classes.aux3}>
                     {clientes.map((brandItem) => (
-                        <Slide key={brandItem.id_cliente} className={classes.aux2}>
+                        <Slide
+                            key={brandItem.id_cliente}
+                            className={classes.aux2}
+                        >
                             <Link href="/" className={classes.item}>
                                 <div>
                                     <img
-                                        src={brandItem.ruta_logo} 
+                                        src={brandItem.ruta_logo}
                                         alt={brandItem.alt}
                                         width={100}
                                     />

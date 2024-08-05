@@ -18,8 +18,8 @@ function Hero({ heroItems, settings }) {
         <SwiperComps settings={settings} sliderCName="hero-slider">
             {heroItems?.map((heroItem, index) => (
                 <Slide
-                    className={`animation-style-01 ${classes["slide-bg"]}`}
-                        style={{backgroundImage: `url('${heroItem.bg}')`}}
+                    className={`animation-style-01 ${classes['slide-bg']}`}
+                    style={{ backgroundImage: `url('${heroItem.bg}')` }}
                     key={heroItem.id}
                 >
                     <div className="container">
@@ -29,8 +29,7 @@ function Hero({ heroItems, settings }) {
                                 dangerouslySetInnerHTML={{
                                     __html: heroItem.subtitle,
                                 }}
-                            >
-                            </span>
+                            ></span>
                             <div
                                 className={`title-animation ${classes.title}`}
                                 dangerouslySetInnerHTML={{

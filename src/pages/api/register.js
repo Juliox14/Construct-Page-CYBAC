@@ -15,11 +15,11 @@ export default async function registerHandler(req, res) {
         return res.status(405).json({ message: 'Método no permitido' });
     }
     try {
-        console.log('Hola')
+        console.log('Hola');
         const { username, password } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
         const result = await insertAdmin(username, hashedPassword);
-        console.log(result)
+        console.log(result);
         if (result == 0) {
             console.log(res.status(409).json({ message: 'Usuario existente' }));
             return res.status(201).json({ message: 'Usuario existente' });
@@ -30,7 +30,10 @@ export default async function registerHandler(req, res) {
             // .setIssuedAt()
             // .setExpirationTime('1h')
             // .sign(superTokenSecretKey);
-            return res.status(201).json({ message: 'Usuario insertado correctamente', id: result });
+            return res.status(201).json({
+                message: 'Usuario insertado correctamente',
+                id: result,
+            });
         }
     } catch (error) {
         console.error('Error al insertar administrador:', error);
@@ -39,7 +42,10 @@ export default async function registerHandler(req, res) {
 }
 const insertAdmin = async (username, password) => {
     try {
-        const [rows] = await db.query('SET @result = NULL; CALL insert_admin(?, ?, @result); SELECT @result;', [username, password]);
+        const [rows] = await db.query(
+            'SET @result = NULL; CALL insert_admin(?, ?, @result); SELECT @result;',
+            [username, password]
+        );
         const result = rows[2][0]['@result'];
         return result;
     } catch (error) {

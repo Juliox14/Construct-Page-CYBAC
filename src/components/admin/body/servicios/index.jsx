@@ -1,8 +1,8 @@
-'use client'
-import Component from "..";
-import AddServiceBtn from "../items-util/AddBtn";
-import { getElement } from "../../../../lib/items";
-import { useEffect, useState } from "react";
+'use client';
+import Component from '..';
+import AddServiceBtn from '../items-util/AddBtn';
+import { getElement } from '../../../../lib/items';
+import { useEffect, useState } from 'react';
 
 const Servicios = () => {
     const [componentsInThePage, setComponentsInThePage] = useState([]);
@@ -15,15 +15,15 @@ const Servicios = () => {
                 description: `Información sobre el servicio ${service.titulo}`,
                 link: `/admin/servicio/edit/${service.titulo}`,
                 id: service.id_servicio,
-                url: service.imagen_url
+                url: service.imagen_url,
             }));
 
             const initialComponent = {
                 title: 'Index de servicios',
                 description: 'Página general de servicios',
                 link: '/admin/servicio/edit/index',
-                id: "frame1",
-                url: '/images/admin/services/title.png'
+                id: 'frame1',
+                url: '/images/admin/services/title.png',
             };
 
             setComponentsInThePage([initialComponent, ...updatedComponents]);
@@ -33,9 +33,16 @@ const Servicios = () => {
 
     return (
         <>
-            <Component componentsInThePage={componentsInThePage} extra={{title:'Agregar servicio', href: '/admin/servicio/newService'}} delete_button={true} />
+            <Component
+                componentsInThePage={componentsInThePage}
+                extra={{
+                    title: 'Agregar servicio',
+                    href: '/admin/servicio/newService',
+                }}
+                delete_button={true}
+            />
         </>
     );
-}
+};
 
 export default Servicios;

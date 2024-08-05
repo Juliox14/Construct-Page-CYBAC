@@ -13,13 +13,12 @@
     display: block;
 }
 
-.mobile{
+.mobile {
     @include breakpoint(max-md-device) {
         display: none;
     }
 }
 .desc {
-
     @include breakpoint(max-md-device) {
         display: none;
     }
@@ -44,7 +43,6 @@
 }
 .widget {
     &__item {
-
         @include breakpoint(max-sm-device) {
             margin-top: -80px;
         }
@@ -142,8 +140,8 @@
     }
 }
 
-.viewMore{
-    color: #ADA479;
+.viewMore {
+    color: #ada479;
     font-size: small;
     margin-top: 20px;
     &:hover {

@@ -1,19 +1,21 @@
 import db from '../../../database/config/db';
 
-export default async function aboutHandler(req, res){
-    switch(req.method){
+export default async function aboutHandler(req, res) {
+    switch (req.method) {
         case 'GET':
-            try{
+            try {
                 const [rows] = await db.query('SELECT * FROM nosotros');
                 res.status(200).json(rows);
-            }catch(error){
-                console.error(error)
-                return res.status(500).json({message: 'Internal server error'})
+            } catch (error) {
+                console.error(error);
+                return res
+                    .status(500)
+                    .json({ message: 'Internal server error' });
             }
             break;
 
         case 'PUT':
-            try{
+            try {
                 const data = req.body;
 
                 await db.query(`UPDATE nosotros SET titulo_breadcrumb= "${data.titulo_breadcrumb}",
@@ -36,13 +38,15 @@ export default async function aboutHandler(req, res){
                     imgTitulo= "${data.imgTitulo}",
                     descripcion_equipo= "${data.descripcion_equipo}" WHERE id_nosotros = ${data.id_nosotros}`);
 
-                res.status(200).json({message: 'About updated successfully'});
-            }catch(error){
-                return res.status(500).json({message: 'Internal server error'})
+                res.status(200).json({ message: 'About updated successfully' });
+            } catch (error) {
+                return res
+                    .status(500)
+                    .json({ message: 'Internal server error' });
             }
             break;
         default:
-            return res.status(405).json({message: 'Method not allowed'})
+            return res.status(405).json({ message: 'Method not allowed' });
     }
 }
 
@@ -60,4 +64,4 @@ const parseData = (data) => {
         }
     });
     return string;
-}
+};

@@ -103,10 +103,11 @@ function Header() {
                             <Col xl={6} lg={4} sm={6}>
                                 <div className={classes.right}>
                                     <div
-                                        className={`${search
-                                            ? 'search-show'
-                                            : 'search-hide'
-                                            } d-block d-lg-none search-holder`}
+                                        className={`${
+                                            search
+                                                ? 'search-show'
+                                                : 'search-hide'
+                                        } d-block d-lg-none search-holder`}
                                     >
                                         <button
                                             className={classes.search__btn}
@@ -170,13 +171,31 @@ function Header() {
                                                     classes.dropdown_menu
                                                 }
                                             >
-                                                {titulosServicios.map((servicio) => (
-                                                    <li key={servicio.id_servicio}>
-                                                        <Link href={`/services/${servicio.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}>
-                                                            {servicio.titulo}
-                                                        </Link>
-                                                    </li>
-                                                ))}
+                                                {titulosServicios.map(
+                                                    (servicio) => (
+                                                        <li
+                                                            key={
+                                                                servicio.id_servicio
+                                                            }
+                                                        >
+                                                            <Link
+                                                                href={`/services/${servicio.titulo
+                                                                    .toLowerCase()
+                                                                    .normalize(
+                                                                        'NFD'
+                                                                    )
+                                                                    .replace(
+                                                                        /[\u0300-\u036f]/g,
+                                                                        ''
+                                                                    )}`}
+                                                            >
+                                                                {
+                                                                    servicio.titulo
+                                                                }
+                                                            </Link>
+                                                        </li>
+                                                    )
+                                                )}
                                             </ul>
                                         </li>
                                         <li>
@@ -196,9 +215,7 @@ function Header() {
                                         </li>
                                         <li>
                                             <a href="/admin">
-                                                <span>
-                                                    Portal
-                                                </span>
+                                                <span>Portal</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -243,17 +260,18 @@ function Header() {
                                 return (
                                     <li
                                         key={item.id}
-                                        className={`${item.cName}${submenuOpenId[item.id.toString()]
-                                            ? ' active'
-                                            : ''
-                                            }`}
+                                        className={`${item.cName}${
+                                            submenuOpenId[item.id.toString()]
+                                                ? ' active'
+                                                : ''
+                                        }`}
                                         onClick={
                                             submenu
                                                 ? () =>
-                                                    showSubmenuClickHandler(
-                                                        item.id
-                                                    )
-                                                : () => { }
+                                                      showSubmenuClickHandler(
+                                                          item.id
+                                                      )
+                                                : () => {}
                                         }
                                     >
                                         <Link

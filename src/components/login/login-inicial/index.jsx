@@ -1,7 +1,7 @@
-'use client'
-import classes from './loginStyles.module.css'
+'use client';
+import classes from './loginStyles.module.css';
 import Image from 'next/image';
-import perfil from '../../../../public/images/logo/favicon_reichstag_color.png'
+import perfil from '../../../../public/images/logo/favicon_reichstag_color.png';
 import Button from '@mui/material/Button';
 import ReactInput from '../reactInput';
 import { userAccess, createToken } from './loginLogic.JS';
@@ -14,7 +14,7 @@ export default function LoginInicial() {
     const [alertValue, setAlertValue] = useState('');
     const [success, setSuccessValue] = useState(false);
     const callBackOnInputChange = (name, value) => {
-        setValues(prevValues => ({
+        setValues((prevValues) => ({
             ...prevValues,
             [name]: value,
         }));
@@ -25,16 +25,15 @@ export default function LoginInicial() {
     async function HandlerClick(event) {
         event.preventDefault();
         const response = await userAccess(values);
-        if(response.status === 201){
+        if (response.status === 201) {
             setValues({});
             setSuccessValue(true);
-            window.location.href = "/admin"
+            window.location.href = '/admin';
         }
-        if(response.status === 202){
+        if (response.status === 202) {
             setAlertValue(response.data);
             setAlert(true);
-        }
-        else{
+        } else {
             setAlertValue(response);
             setAlert(true);
         }
@@ -62,9 +61,27 @@ export default function LoginInicial() {
                     callBackOnInputChange={callBackOnInputChange}
                     isRequired={true}
                 />
-                {alert && <Alert severity="warning" sx={{width:'400px', marginTop: '15px'}}>{alertValue}</Alert>}
-                {success && <Alert severity="success" sx={{width:'400px', marginTop: '15px'}}>Usuario Ingresado Exitosamente</Alert>}
-                <Button variant="outlined" className={classes.btn_pc} onClick={HandlerClick}>
+                {alert && (
+                    <Alert
+                        severity="warning"
+                        sx={{ width: '400px', marginTop: '15px' }}
+                    >
+                        {alertValue}
+                    </Alert>
+                )}
+                {success && (
+                    <Alert
+                        severity="success"
+                        sx={{ width: '400px', marginTop: '15px' }}
+                    >
+                        Usuario Ingresado Exitosamente
+                    </Alert>
+                )}
+                <Button
+                    variant="outlined"
+                    className={classes.btn_pc}
+                    onClick={HandlerClick}
+                >
                     Iniciar Sesión
                 </Button>
             </form>

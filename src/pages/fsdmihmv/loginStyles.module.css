@@ -1,24 +1,24 @@
-.bg_pc{
-    background-color: #F9F9F9;
+.bg_pc {
+    background-color: #f9f9f9;
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.reactInput_pc{
-        width: 600px;
-        height: 50px;
-        border-radius: 12px;
-        border-style: solid;
-        border-color: #E6E6E6;
-        border-width: 1px;
-        margin-bottom: 2em;
-        padding-inline: 1em;
-        font-weight: 530;
-        color: #4E4E4E;
+.reactInput_pc {
+    width: 600px;
+    height: 50px;
+    border-radius: 12px;
+    border-style: solid;
+    border-color: #e6e6e6;
+    border-width: 1px;
+    margin-bottom: 2em;
+    padding-inline: 1em;
+    font-weight: 530;
+    color: #4e4e4e;
 }
-.mi_div{
+.mi_div {
     width: 40px;
     background-color: black;
     height: 400px;

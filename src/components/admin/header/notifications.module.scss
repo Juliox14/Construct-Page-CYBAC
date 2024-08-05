@@ -1,65 +1,63 @@
 @import '../../../styles/abstract/custom-variables';
 @import '../../../styles/abstract/custom-mixins';
 
-.notis{
-    :hover{
+.notis {
+    :hover {
         cursor: pointer;
     }
 }
 
-
-.containerEmails{
-  background-color: #f6f4f4; 
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1; 
-  position: absolute; 
-  padding: 10px;
-  left: 22%;
-  transform: translateX(-20%);
-  height: auto;
-  width: auto;
-  border-radius: 8px;
-  margin-top: 10px;
+.containerEmails {
+    background-color: #f6f4f4;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    position: absolute;
+    padding: 10px;
+    left: 22%;
+    transform: translateX(-20%);
+    height: auto;
+    width: auto;
+    border-radius: 8px;
+    margin-top: 10px;
 }
 .emailsPreview {
     padding: 10px;
     width: 250px;
     height: 200px;
     overflow: hidden;
-    
 
-    &:hover{
+    &:hover {
         overflow: auto;
         scrollbar-width: thin;
     }
-    
-    .emailPreview {
-      background-color: #f6f4f4; 
-      margin-bottom: 10px; /* Espaciado entre correos */
-      border-bottom: 2px solid #cccbcb82; /* Línea separadora entre correos */
-      padding-bottom: 10px; /* Espaciado inferior */
-      
-      .emailPreview_email {
-        font-weight: bold; /* Texto del remitente en negrita */
-        color: #333; /* Color del texto */
-      }
-  
-      .emailPreview_asunto {
-        margin-top: 5px; /* Espaciado superior */
-        font-style: italic; /* Estilo de fuente cursiva para el asunto */
-        color: #666; /* Color del texto del asunto */
-      }
-  
-      .emailPreview_texto {
-        display: flex;
-        margin-top: 5px; /* Espaciado superior */
-        color: #444; /* Color del texto del mensaje */
 
-        svg{
-          margin-top: 4px;
-          margin-right: 5px;
+    .emailPreview {
+        background-color: #f6f4f4;
+        margin-bottom: 10px; /* Espaciado entre correos */
+        border-bottom: 2px solid #cccbcb82; /* Línea separadora entre correos */
+        padding-bottom: 10px; /* Espaciado inferior */
+
+        .emailPreview_email {
+            font-weight: bold; /* Texto del remitente en negrita */
+            color: #333; /* Color del texto */
         }
-      }
+
+        .emailPreview_asunto {
+            margin-top: 5px; /* Espaciado superior */
+            font-style: italic; /* Estilo de fuente cursiva para el asunto */
+            color: #666; /* Color del texto del asunto */
+        }
+
+        .emailPreview_texto {
+            display: flex;
+            margin-top: 5px; /* Espaciado superior */
+            color: #444; /* Color del texto del mensaje */
+
+            svg {
+                margin-top: 4px;
+                margin-right: 5px;
+            }
+        }
     }
-  }
+}

@@ -41,17 +41,15 @@ function HomePageServices({ services, settings }) {
                         <span>SERVICIOS</span>
                         <h2
                             dangerouslySetInnerHTML={{
-                                __html: 'Calidad<br/> en cada uno<br/> de nuestros servicios'
+                                __html: 'Calidad<br/> en cada uno<br/> de nuestros servicios',
                             }}
                         />
                     </div>
                     <div className={classes.section_banner}>
                         <Link href="tel:+528123404908">
-                            <h3
-                                className={classes.info}
-                                
-                            >
-                                ¿Tienes un proyecto en mente?<br/>
+                            <h3 className={classes.info}>
+                                ¿Tienes un proyecto en mente?
+                                <br />
                                 <span>+52 81 2340 4908</span>
                             </h3>
                         </Link>
@@ -82,8 +80,8 @@ function HomePageServices({ services, settings }) {
                         </Col>
                     </Row>
                 </div>
-            </Container >
-        </div >
+            </Container>
+        </div>
     );
 }
 

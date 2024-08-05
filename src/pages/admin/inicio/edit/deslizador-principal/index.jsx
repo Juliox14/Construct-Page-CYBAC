@@ -5,35 +5,31 @@ import { getElement } from '../../../../../lib/items';
 // import { getElement } from '../../../../../lib/items';
 // import { htmlToText } from 'html-to-text';
 
-function ServicioEdit({
-    data,
-    images,
-}) {
+function ServicioEdit({ data, images }) {
     return (
         <AdminLayout>
-            <EditHome hero={data} srcImages={images}/>
+            <EditHome hero={data} srcImages={images} />
         </AdminLayout>
     );
 }
 
 export async function getServerSideProps() {
     const response = await getElement('home');
-    const dataImages = async() => {
-        const promise = response[0].map(async(item, index) => {
-            const url = await getImagesType('hero', (index + 1));
+    const dataImages = async () => {
+        const promise = response[0].map(async (item, index) => {
+            const url = await getImagesType('hero', index + 1);
             return url;
         });
         const image = await Promise.all(promise);
         return image;
-    }
-    
-    return{
+    };
+
+    return {
         props: {
             data: response[0],
             images: await dataImages(),
-        }
-    }
-
+        },
+    };
 }
 
 // export async function getServerSideProps() {
@@ -51,7 +47,7 @@ export async function getServerSideProps() {
 //     });
 
 //     console.log(textContent);
-    
+
 //     return {
 //         props: {
 //             textContent,

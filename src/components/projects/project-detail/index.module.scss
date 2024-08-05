@@ -56,17 +56,14 @@
     }
 }
 
-
 .titulo_imagen {
     @include breakpoint(min-xl-device) {
         margin-top: -100px;
     }
 }
 
-.flex_imagen{
-    
-    
-    img{
+.flex_imagen {
+    img {
         border-radius: 5px;
         max-width: 80%;
     }

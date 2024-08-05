@@ -4,13 +4,9 @@ import Breadcrumb from '../../components/breadcrumb';
 import BannerTwo from '../../components/banner/index-2';
 import Footer from '../../components/layout/footer';
 import ProjectFullwidth from '../../components/projects/fullwidth';
-import {getElement} from '../../lib/items';
+import { getElement } from '../../lib/items';
 
-function ProjectFullwidthPage({
-    projects,
-    servicesList,
-    footerItems,
-}) {
+function ProjectFullwidthPage({ projects, servicesList, footerItems }) {
     return (
         <>
             <Head>
@@ -23,7 +19,7 @@ function ProjectFullwidthPage({
                 desc="Conoce todos nuestros proyectos y date una idea de las cosas increíbles que podremos lograr trabajando contigo"
             />
             <ProjectFullwidth projects={projects} />
-            <BannerTwo/>
+            <BannerTwo />
             <Footer footerItems={footerItems} services={servicesList} />
         </>
     );

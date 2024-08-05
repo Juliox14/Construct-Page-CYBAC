@@ -1,5 +1,5 @@
-.homeEdit{
-    &_formSubservicio{
+.homeEdit {
+    &_formSubservicio {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -10,17 +10,17 @@
             padding: 20px;
             border-radius: 15px;
 
-            > :first-child{
+            > :first-child {
                 width: 100%;
                 display: flex;
                 margin-bottom: 10px;
 
-                :first-child{
+                :first-child {
                     position: relative;
                     width: 200px;
                     height: 100px;
                 }
-                
+
                 > :nth-child(2) {
                     width: 100%;
                     display: flex;
@@ -28,21 +28,22 @@
                     justify-content: center;
                     margin-left: 10px;
 
-                    label{
+                    label {
                         height: min-content;
                     }
                 }
             }
         }
 
-        .formControl, .formControlDark{
+        .formControl,
+        .formControlDark {
             width: 55%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
 
-        &_editGroup{
+        &_editGroup {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -52,23 +53,23 @@
                 margin-bottom: 0px;
                 position: relative;
                 z-index: 0;
-            
+
                 h3 {
                     margin-bottom: 0px;
                 }
-            
-                label{
+
+                label {
                     display: block;
                     margin-bottom: 5px;
                 }
-            
-                input{
+
+                input {
                     margin-bottom: 10px;
                 }
             }
         }
-        
-        &_updateAlert{
+
+        &_updateAlert {
             position: fixed;
             bottom: 3%;
             display: flex;
@@ -76,8 +77,8 @@
             align-items: center;
             gap: 20px;
 
-            button{
-                z-index: 1000!important;
+            button {
+                z-index: 1000 !important;
             }
         }
     }
@@ -85,4 +86,4 @@
 
 .tox.tox-tinymce {
     z-index: 1 !important;
-  }
+}

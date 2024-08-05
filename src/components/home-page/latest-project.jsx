@@ -32,8 +32,9 @@ function LatestProject({ projects, settings }) {
     };
     //Relleno de arreglo con los proyectos destacados basado en su propiedad isDestacado
     const proyectos_destacados_array = [];
-    for(let proyectos_destacados of projects){
-        proyectos_destacados.isDestacado && proyectos_destacados_array.push(proyectos_destacados);
+    for (let proyectos_destacados of projects) {
+        proyectos_destacados.isDestacado &&
+            proyectos_destacados_array.push(proyectos_destacados);
     }
     return (
         <div>
@@ -51,13 +52,15 @@ function LatestProject({ projects, settings }) {
                         <div className={classes.section_area}>
                             <div className={classes.section_with__navigation}>
                                 <div className={classes.section_title__wrap}>
-                                        <div className={classes.section_title}>
-                                            <span>Proyectos</span>
-                                            <h2>Nuestros proyectos destacados</h2>
-                                        </div>
+                                    <div className={classes.section_title}>
+                                        <span>Proyectos</span>
+                                        <h2>Nuestros proyectos destacados</h2>
+                                    </div>
                                 </div>
                                 <div className={classes.section_navigation}>
-                                    <div className={`${classes.button_next} project-button-next`}>
+                                    <div
+                                        className={`${classes.button_next} project-button-next`}
+                                    >
                                         <FaChevronLeft />
                                     </div>
                                     <div
@@ -71,7 +74,10 @@ function LatestProject({ projects, settings }) {
                         <div className={classes.slider}>
                             <SwiperComps settings={settings}>
                                 {proyectos_destacados_array.map((project) => (
-                                    <Slide className={classes.item} key={project.id_proyecto}>
+                                    <Slide
+                                        className={classes.item}
+                                        key={project.id_proyecto}
+                                    >
                                         <ProjectSlider project={project} />
                                     </Slide>
                                 ))}

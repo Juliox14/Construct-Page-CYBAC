@@ -4,13 +4,13 @@
     --background-default: #ffffff;
     --background-paper: #f5f5f5;
     --text-primary: #000000;
-  }
-  
-  .dark {
+}
+
+.dark {
     --background-default: #1c1c1c;
-    --background-paper: #2F2F2F;
+    --background-paper: #2f2f2f;
     --text-primary: #ffffff;
-  }
+}
 
 html {
     scroll-behavior: smooth;
@@ -76,7 +76,7 @@ iframe {
     border: 0;
 }
 ::selection {
-    background-color: $primary!important;
+    background-color: $primary !important;
     color: $white;
 }
 .align-self-center {
@@ -223,7 +223,7 @@ iframe {
         z-index: 2;
     }
     &-input {
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15)!important;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15) !important;
         padding-right: 70px;
         padding-left: 20px;
         color: $secondary;
@@ -232,7 +232,7 @@ iframe {
     }
     &-inner {
         &__btn {
-            background-color: $secondary!important;
+            background-color: $secondary !important;
             color: $white;
             border: 0;
             position: absolute;
@@ -255,7 +255,7 @@ iframe {
         &.is-sticky {
             animation: 800ms ease-in-out 0s normal none 1 running slideInDown;
             box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
-            background-color: $secondary!important;
+            background-color: $secondary !important;
             position: fixed;
             z-index: 99;
             top: 0;
@@ -269,7 +269,7 @@ iframe {
 .offcanvas {
     &-menu {
         transition: all 500ms linear;
-        background-color: #333333!important;
+        background-color: #333333 !important;
         padding-top: 50px;
         padding-left: 50px;
         padding-right: 50px;

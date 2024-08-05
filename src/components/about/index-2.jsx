@@ -3,7 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import * as FaIcons from 'react-icons/fa';
 import classes from './about-2.module.scss';
 
-function AboutTwo({aboutItemsTwo}) {
+function AboutTwo({ aboutItemsTwo }) {
     return (
         <div className={classes.area}>
             <Container key={aboutItemsTwo.id_home_service}>
@@ -13,17 +13,17 @@ function AboutTwo({aboutItemsTwo}) {
                             <div className={classes.pattern}>
                                 <img
                                     className="img-full"
-                                    src='/images/about/pattern.png'
-                                    alt='Pattern'
+                                    src="/images/about/pattern.png"
+                                    alt="Pattern"
                                 />
                             </div>
-                            
+
                             <div className={classes.group__img}>
                                 <div className={classes.single_img}>
                                     <img
                                         className="img-full"
                                         src={aboutItemsTwo?.imagen_url_about}
-                                        alt='About Single Image'
+                                        alt="Single"
                                     />
                                 </div>
                             </div>
@@ -41,22 +41,24 @@ function AboutTwo({aboutItemsTwo}) {
                                 {aboutItemsTwo?.descripcion_about}
                             </p>
                             <ul className={classes.list__item}>
-                                {(aboutItemsTwo?.bullets_about).split(',').map((item, index) => {
-                                    const CheckIcon = FaIcons['FaCheck'];
-                                    return (
-                                        <li
-                                            className={classes.list}
-                                            key={index}
-                                        >
-                                            <div className={classes.icon}>
-                                                <CheckIcon />
-                                            </div>
-                                            <div className={classes.text}>
-                                                {item}
-                                            </div>
-                                        </li>
-                                    );
-                                })}
+                                {aboutItemsTwo?.bullets_about
+                                    ?.split(',')
+                                    .map((item, index) => {
+                                        const CheckIcon = FaIcons.FaCheck;
+                                        return (
+                                            <li
+                                                className={classes.list}
+                                                key={index}
+                                            >
+                                                <div className={classes.icon}>
+                                                    <CheckIcon />
+                                                </div>
+                                                <div className={classes.text}>
+                                                    {item}
+                                                </div>
+                                            </li>
+                                        );
+                                    })}
                             </ul>
                         </div>
                     </Col>

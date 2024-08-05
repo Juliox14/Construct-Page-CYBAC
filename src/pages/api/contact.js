@@ -14,8 +14,12 @@ export default async function handler(req, res) {
             try {
                 const contacto = req.body;
                 const parseContacto = parseData(contacto);
-                await db.query(`UPDATE contacto SET ${parseContacto} WHERE id_contacto = ${contacto.id_contacto}`);
-                res.status(200).json({ message: 'Información actualizada con éxito' });
+                await db.query(
+                    `UPDATE contacto SET ${parseContacto} WHERE id_contacto = ${contacto.id_contacto}`
+                );
+                res.status(200).json({
+                    message: 'Información actualizada con éxito',
+                });
             } catch (error) {
                 console.error(error);
                 res.status(500).json({ message: 'Internal server error' });
@@ -31,14 +35,15 @@ const parseData = (data) => {
     let string = '';
     Object.keys(data).forEach((key, index) => {
         if (index !== 0) {
-            string += `${key}= ${typeof (data[key]) === true ? data[key] : `"${data[key]}"`}`;
+            string += `${key}= ${
+                typeof data[key] === true ? data[key] : `"${data[key]}"`
+            }`;
             if (index !== Object.keys(data).length - 1) {
                 string += ', ';
-            }
-            else {
+            } else {
                 string += '';
             }
         }
     });
     return string;
-}
+};

@@ -6,7 +6,7 @@ import fs from 'fs';
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY_CLOUDINARY,
-    api_secret: process.env.API_SECRET_CLOUDINARY
+    api_secret: process.env.API_SECRET_CLOUDINARY,
 });
 
 export const config = {
@@ -17,7 +17,7 @@ export const config = {
 
 export default async function HandleImage(req, res) {
     switch (req.method) {
-        case "POST":
+        case 'POST':
             const form = formidable({});
             let fields;
             let files;
@@ -26,10 +26,11 @@ export default async function HandleImage(req, res) {
             } catch (err) {
                 // example to check for a very specific error
                 if (err.code === formidableErrors.maxFieldsExceeded) {
-
                 }
                 console.error(err);
-                res.writeHead(err.httpCode || 400, { 'Content-Type': 'text/plain' });
+                res.writeHead(err.httpCode || 400, {
+                    'Content-Type': 'text/plain',
+                });
                 res.end(String(err));
                 return;
             }
@@ -44,28 +45,32 @@ export default async function HandleImage(req, res) {
                 const buffer = await fileToBuffer(file[0]);
 
                 const response = await new Promise((resolve, reject) => {
-                    cloudinary.uploader.upload_stream({}, (error, result) => {
-                        if (error) {
-                            reject(error);
-                        }
-                        resolve(result);
-                    }).end(buffer);
+                    cloudinary.uploader
+                        .upload_stream({}, (error, result) => {
+                            if (error) {
+                                reject(error);
+                            }
+                            resolve(result);
+                        })
+                        .end(buffer);
                 });
 
-                arrayKeys.push({ id: parseInt(number[0], 10), file: response.secure_url });
+                arrayKeys.push({
+                    id: parseInt(number[0], 10),
+                    file: response.secure_url,
+                });
             });
 
             await Promise.all(promises);
 
             res.status(200).json({
-                message: "Imagen subida",
+                message: 'Imagen subida',
                 url: arrayKeys,
             });
             break;
         default:
             res.status(405).json({ message: 'Method Not Allowed' });
     }
-
 }
 
 const fileToBuffer = async (file) => {

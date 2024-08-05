@@ -4,11 +4,7 @@ import ServiceSidebar from '../service-sidebar';
 import classes from './index.module.scss';
 import ServiceContent from './service-content';
 
-function ServiceDetail({
-    service,
-    sidebarList,
-    ourServices,
-}) {
+function ServiceDetail({ service, sidebarList, ourServices }) {
     return (
         <div className={classes.area}>
             <Container>
@@ -17,9 +13,7 @@ function ServiceDetail({
                         service={service}
                         ourServices={ourServices}
                     />
-                    <ServiceSidebar
-                        sidebarList={sidebarList}
-                    />
+                    <ServiceSidebar sidebarList={sidebarList} />
                 </Row>
             </Container>
         </div>

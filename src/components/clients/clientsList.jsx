@@ -2,19 +2,17 @@ import PropTypes from 'prop-types';
 import classes from './clientsList.module.scss';
 import axios from 'axios';
 
-function ClientsList({dataHomeClients}) { 
-    console.log(dataHomeClients)
-    let clientes_municipio=[];
-    let clientes_iniciativa_privada=[];
-    let clientes_particular=[];
-    for(let cliente of dataHomeClients){
-        if(cliente.clasificacion==='Municipios'){
+function ClientsList({ dataHomeClients }) {
+    console.log(dataHomeClients);
+    let clientes_municipio = [];
+    let clientes_iniciativa_privada = [];
+    let clientes_particular = [];
+    for (let cliente of dataHomeClients) {
+        if (cliente.clasificacion === 'Municipios') {
             clientes_municipio.push(cliente);
-        }
-        else if(cliente.clasificacion==='Iniciativa Privada'){
+        } else if (cliente.clasificacion === 'Iniciativa Privada') {
             clientes_iniciativa_privada.push(cliente);
-        }
-        else{
+        } else {
             clientes_particular.push(cliente);
         }
     }
@@ -64,7 +62,7 @@ function ClientsList({dataHomeClients}) {
     );
 }
 ClientsList.propTypes = {
-    dataHomeClients: PropTypes.instanceOf(Object).isRequired
+    dataHomeClients: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ClientsList;

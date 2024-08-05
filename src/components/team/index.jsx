@@ -52,7 +52,7 @@ function Team({ teamItems, teamSectionItems, settings }) {
             default:
                 return '';
         }
-    }
+    };
     return (
         <div className={classes.area}>
             <Container>
@@ -63,9 +63,7 @@ function Team({ teamItems, teamSectionItems, settings }) {
                             <h2>{teamSectionItems?.titulo}</h2>
                         </div>
                         <div className={classes.section_desc}>
-                            <p>
-                                {teamSectionItems?.descripcion}
-                            </p>
+                            <p>{teamSectionItems?.descripcion}</p>
                         </div>
                     </div>
                 </div>
@@ -131,7 +129,11 @@ function Team({ teamItems, teamSectionItems, settings }) {
                                         </div>
                                         <div className={classes.content}>
                                             <h3 className={classes.title}>
-                                                {gradoAbreviado(teamItem?.grado)} {teamItem?.nombre_empleado}<br />
+                                                {gradoAbreviado(
+                                                    teamItem?.grado
+                                                )}{' '}
+                                                {teamItem?.nombre_empleado}
+                                                <br />
                                                 {teamItem?.apellido_empleado}
                                             </h3>
                                             <span

@@ -1,13 +1,12 @@
-import AdminLayout from "../../../components/admin";
-import NewProject from "../../../components/admin/body/proyectos/NewProject";
-
+import AdminLayout from '../../../components/admin';
+import NewProject from '../../../components/admin/body/proyectos/NewProject';
 
 const newProject = () => {
     return (
         <AdminLayout>
-            <NewProject/>
+            <NewProject />
         </AdminLayout>
-    )
-}
+    );
+};
 
 export default newProject;

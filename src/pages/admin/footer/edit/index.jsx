@@ -1,24 +1,24 @@
-import AdminLayout from "../../../../components/admin";
-import EditFooter from "../../../../components/admin/body/footer/EditFooter";
-import { getElement } from "../../../../lib/items";
+import AdminLayout from '../../../../components/admin';
+import EditFooter from '../../../../components/admin/body/footer/EditFooter';
+import { getElement } from '../../../../lib/items';
 
-const editFooter = ({footer}) => {
+const editFooter = ({ footer }) => {
     return (
         <>
             <AdminLayout>
-                <EditFooter footer={footer}/>
+                <EditFooter footer={footer} />
             </AdminLayout>
         </>
     );
-}
+};
 
 export async function getServerSideProps() {
     const footer = await getElement('footer');
     return {
         props: {
             footer,
-        }
-    }
+        },
+    };
 }
 
 export default editFooter;

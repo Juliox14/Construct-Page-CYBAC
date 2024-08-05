@@ -15,12 +15,12 @@ function ServiceContent({ service, ourServices }) {
             </div>
             <div className={classes.content}>
                 <h2 className={classes.title}>{service?.titulo}</h2>
-                <h3 className={classes.subtitle}>{service?.descripcion_breve}</h3>
+                <h3 className={classes.subtitle}>
+                    {service?.descripcion_breve}
+                </h3>
                 <p className={classes.desc}>{service?.descripcion}</p>
             </div>
-            <OurServices
-                ourServices={ourServices}
-            />
+            <OurServices ourServices={ourServices} />
         </Col>
     );
 }

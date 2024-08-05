@@ -1,5 +1,5 @@
-.homeEdit{
-    &_formSubservicio{
+.homeEdit {
+    &_formSubservicio {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -12,33 +12,32 @@
             margin-top: 40px;
             gap: 20px;
 
-            > div{
+            > div {
                 display: flex;
                 flex-direction: column;
-                box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.30);
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
                 padding: 25px;
                 border-radius: 15px;
             }
         }
 
-        &_updateAlert{
+        &_updateAlert {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 10vh;
 
-            button{
+            button {
                 position: fixed;
                 bottom: 3%;
                 z-index: 5;
             }
         }
-    }    
+    }
 
-    &_aboutSection{
-
-        &_formSubservicio{
+    &_aboutSection {
+        &_formSubservicio {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -51,33 +50,34 @@
                 width: 90%;
                 padding: 20px;
                 border-radius: 15px;
-                box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.30);
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
             }
 
-            .formControl, .formControlDark{
+            .formControl,
+            .formControlDark {
                 width: 100%;
                 padding: 10px;
                 border: 1px solid #ccc;
                 border-radius: 4px;
             }
-    
-            .formControlDark{
+
+            .formControlDark {
                 background-color: #333;
                 color: white;
             }
 
-            > :first-child{
+            > :first-child {
                 display: grid;
                 grid-template-columns: 2fr 1fr 2fr;
                 justify-items: center;
-                
-                label{
+
+                label {
                     display: block;
                     margin-bottom: 10px;
                 }
             }
 
-            &_updateAlert{
+            &_updateAlert {
                 position: fixed;
                 right: 50%;
                 transform: translateX(50%);
@@ -86,31 +86,31 @@
                 justify-content: center;
                 align-items: center;
                 gap: 20px;
-    
-                button{
+
+                button {
                     z-index: 5;
                 }
             }
         }
     }
 
-    &_direccionSection{ 
-        &_formSubservicio{
+    &_direccionSection {
+        &_formSubservicio {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
 
-            > :first-child{
+            > :first-child {
                 display: flex;
                 gap: 20px;
                 padding: 20px;
                 border-radius: 15px;
-                box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.30);
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 
-                > div{
-                    label{
+                > div {
+                    label {
                         width: 100%;
                         display: block;
                         text-align: center;
@@ -118,13 +118,13 @@
                 }
             }
 
-            &_updateAlert{
+            &_updateAlert {
                 position: relative;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-    
-                button{
+
+                button {
                     position: fixed;
                     bottom: 3%;
                     z-index: 5;
@@ -133,39 +133,39 @@
         }
     }
 
-    &_teamSection{
-        &_formSubservicio{
+    &_teamSection {
+        &_formSubservicio {
             display: flex;
             flex-direction: column;
             padding: 20px 40px;
             gap: 30px;
             border-radius: 15px;
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.30);
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 
-            > :first-child{
-                > div{
+            > :first-child {
+                > div {
                     display: flex;
                     flex-direction: column;
 
-                    > label{
+                    > label {
                         width: 100%;
                         display: block;
                         text-align: center;
                     }
 
-                    > textarea{
+                    > textarea {
                         width: 500px;
                     }
                 }
             }
 
-            &_updateAlert{
+            &_updateAlert {
                 position: relative;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-    
-                button{
+
+                button {
                     position: fixed;
                     bottom: 3%;
                     z-index: 5;
@@ -174,9 +174,6 @@
         }
     }
 
-    &_sliderTeamSection{
-        
+    &_sliderTeamSection {
     }
-
-
 }

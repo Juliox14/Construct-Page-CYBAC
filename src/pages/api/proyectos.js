@@ -8,17 +8,29 @@ export default async function handler(req, res) {
                 res.status(200).json(rows);
             } catch (error) {
                 console.error('Error en GET /api/proyectos:', error);
-                res.status(500).json({ message: 'Error en el servidor', error });
+                res.status(500).json({
+                    message: 'Error en el servidor',
+                    error,
+                });
             }
             break;
         case 'POST':
             try {
                 const proyecto = constructSetString(req.body);
-                const [result] = await db.execute(`INSERT INTO proyectos SET ${proyecto.setString};`, [...proyecto.values]);
-                res.status(200).json({ message: 'Proyecto creado', id: result.insertId });
+                const [result] = await db.execute(
+                    `INSERT INTO proyectos SET ${proyecto.setString};`,
+                    [...proyecto.values]
+                );
+                res.status(200).json({
+                    message: 'Proyecto creado',
+                    id: result.insertId,
+                });
             } catch (error) {
                 console.error('Error en POST /api/proyectos:', error);
-                res.status(500).json({ message: 'Error en el servidor', error });
+                res.status(500).json({
+                    message: 'Error en el servidor',
+                    error,
+                });
             }
             break;
         default:
@@ -29,7 +41,9 @@ export default async function handler(req, res) {
 
 const constructSetString = (data) => {
     const keys = Object.keys(data);
-    const setString = keys.map(key => `${key} = ?`).join(', ');
-    const values = keys.map(key => data[key] === undefined ? null : data[key]);
+    const setString = keys.map((key) => `${key} = ?`).join(', ');
+    const values = keys.map((key) =>
+        data[key] === undefined ? null : data[key]
+    );
     return { setString, values };
 };

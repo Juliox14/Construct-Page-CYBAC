@@ -1,5 +1,4 @@
-
-.body{
+.body {
     padding-top: 10px;
     width: 100%;
     height: 100%;
@@ -13,50 +12,48 @@
     border-color: #f3efef;
     border-style: solid;
 }
-.imagen{
+.imagen {
     border-inline-style: solid;
     border-inline-width: 1.5px;
     border-inline-color: #f3efef;
     margin-right: 70px;
     margin-bottom: 10px;
 }
-.body2{
+.body2 {
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-items: center;
 }
-.h1{
-    margin:0;
-    padding:0;
+.h1 {
+    margin: 0;
+    padding: 0;
     text-align: center;
     font-size: 25px;
 }
-.form{
+.form {
     display: flex;
     flex-direction: column;
-    margin:0;
+    margin: 0;
     justify-content: center;
     align-items: center;
 }
-.btns{
+.btns {
     display: flex;
     gap: 30px;
-    margin:20px
+    margin: 20px;
 }
 /* 
 .divInputNormal{
 
 }*/
-.divInputCheck{
+.divInputCheck {
     margin-top: 15px;
     display: flex;
     flex-direction: row;
-    gap:40px;
+    gap: 40px;
 }
-
-
 
 /*
 .divInputOptions{

@@ -9,20 +9,20 @@ import axios from 'axios';
 const EditInformacion = ({ contacto }) => {
     const [contactoData, setContactoData] = useState({
         id_contacto: 0,
-        titulo_breadcrumb: "",
-        subtitulo_breadcrumb: "",
-        descripcion_breadcrumb: "",
-        ruta_imagen: "",
-        titulo: "",
-        subtitulo: "",
-        descripcion: "",
-        direccion: "",
-        telefono: "",
-        horario: "",
-        whatsapp: "",
-        email: "",
-        titulo_formulario: "",
-        descripcion_formulario: ""
+        titulo_breadcrumb: '',
+        subtitulo_breadcrumb: '',
+        descripcion_breadcrumb: '',
+        ruta_imagen: '',
+        titulo: '',
+        subtitulo: '',
+        descripcion: '',
+        direccion: '',
+        telefono: '',
+        horario: '',
+        whatsapp: '',
+        email: '',
+        titulo_formulario: '',
+        descripcion_formulario: '',
     });
 
     useEffect(() => {
@@ -35,9 +35,9 @@ const EditInformacion = ({ contacto }) => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setContactoData(prevState => ({
+        setContactoData((prevState) => ({
             ...prevState,
-            [name]: value
+            [name]: value,
         }));
     };
 
@@ -50,8 +50,7 @@ const EditInformacion = ({ contacto }) => {
             setInterval(() => {
                 setMessage('');
             }, 10000);
-        }
-        else {
+        } else {
             setMessage('Error al actualizar la información de contacto');
             setInterval(() => {
                 setMessage('');
@@ -60,47 +59,67 @@ const EditInformacion = ({ contacto }) => {
         window.location.reload();
     };
 
-    const rutas = [{ nombre: 'Inicio', link: '/admin' }, { nombre: 'Contacto', link: '/admin/contacto' }, { nombre: 'Editar Información', link: '/admin/contacto/edit/informacion' }];
+    const rutas = [
+        { nombre: 'Inicio', link: '/admin' },
+        { nombre: 'Contacto', link: '/admin/contacto' },
+        {
+            nombre: 'Editar Información',
+            link: '/admin/contacto/edit/informacion',
+        },
+    ];
 
     return (
-        <Box sx={{
-            bgcolor: theme.palette.mode === 'dark' ? "#1C1C1C" : "#FFFFFF",
-            color: theme.palette.mode === 'dark' ? "white" : "#014655",
-            transition: `background-color ${theme.transitions.duration.standard}ms`,
-            height: 'auto',
-            width: 'auto',
-            padding: '50px',
-            display: 'block',
-            position: 'relative',
-        }}>
+        <Box
+            sx={{
+                bgcolor: theme.palette.mode === 'dark' ? '#1C1C1C' : '#FFFFFF',
+                color: theme.palette.mode === 'dark' ? 'white' : '#014655',
+                transition: `background-color ${theme.transitions.duration.standard}ms`,
+                height: 'auto',
+                width: 'auto',
+                padding: '50px',
+                display: 'block',
+                position: 'relative',
+            }}
+        >
             {message && (
-                <Alert variant="outlined" severity="success" sx={{
-                    position: 'fixed',
-                    top: '20px',
-                    left: '100px',
-                    bgcolor: '#26ca7032',
-                    zIndex: '1000',
-                }}>
+                <Alert
+                    variant="outlined"
+                    severity="success"
+                    sx={{
+                        position: 'fixed',
+                        top: '20px',
+                        left: '100px',
+                        bgcolor: '#26ca7032',
+                        zIndex: '1000',
+                    }}
+                >
                     {message}
                 </Alert>
             )}
             <Ruta titulo={'Editar información de contacto'} rutas={rutas} />
             <div className={classes.formContainer}>
-                <Box sx={{
-                    bgcolor: theme.palette.mode === 'dark' ? "#242424" : "#E3E3E3",
-                    color: theme.palette.mode === 'dark' ? "white" : "#014655",
-                    transition: `background-color ${theme.transitions.duration.standard}ms`,
-                    borderRadius: '10px',
-                    padding: '20px',
-                    height: 'min-content',
-                    width: '800px',
-                }}>
-
+                <Box
+                    sx={{
+                        bgcolor:
+                            theme.palette.mode === 'dark'
+                                ? '#242424'
+                                : '#E3E3E3',
+                        color:
+                            theme.palette.mode === 'dark' ? 'white' : '#014655',
+                        transition: `background-color ${theme.transitions.duration.standard}ms`,
+                        borderRadius: '10px',
+                        padding: '20px',
+                        height: 'min-content',
+                        width: '800px',
+                    }}
+                >
                     <form id="edit-contact-form" onSubmit={handleSubmit}>
-                        <div id='breadcrumb-id'>
+                        <div id="breadcrumb-id">
                             <h3>Editar página de contacto</h3>
                             <div className={classes.formGroup}>
-                                <label htmlFor="titulo_breadcrumb">Título Breadcrumb</label>
+                                <label htmlFor="titulo_breadcrumb">
+                                    Título Breadcrumb
+                                </label>
                                 <input
                                     required
                                     type="text"
@@ -108,11 +127,17 @@ const EditInformacion = ({ contacto }) => {
                                     name="titulo_breadcrumb"
                                     value={contactoData.titulo_breadcrumb}
                                     onChange={handleInputChange}
-                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    className={
+                                        theme.palette.mode === 'dark'
+                                            ? classes.formControlDark
+                                            : classes.formControl
+                                    }
                                 />
                             </div>
                             <div className={classes.formGroup}>
-                                <label htmlFor="subtitulo_breadcrumb">Subtítulo Breadcrumb</label>
+                                <label htmlFor="subtitulo_breadcrumb">
+                                    Subtítulo Breadcrumb
+                                </label>
                                 <input
                                     required
                                     type="text"
@@ -120,11 +145,17 @@ const EditInformacion = ({ contacto }) => {
                                     name="subtitulo_breadcrumb"
                                     value={contactoData.subtitulo_breadcrumb}
                                     onChange={handleInputChange}
-                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    className={
+                                        theme.palette.mode === 'dark'
+                                            ? classes.formControlDark
+                                            : classes.formControl
+                                    }
                                 />
                             </div>
                             <div className={classes.formGroup}>
-                                <label htmlFor="descripcion_breadcrumb">Descripción Breadcrumb</label>
+                                <label htmlFor="descripcion_breadcrumb">
+                                    Descripción Breadcrumb
+                                </label>
                                 <TextareaAutosize
                                     required
                                     id="descripcion_breadcrumb"
@@ -132,13 +163,17 @@ const EditInformacion = ({ contacto }) => {
                                     value={contactoData.descripcion_breadcrumb}
                                     onChange={handleInputChange}
                                     rows="4"
-                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    className={
+                                        theme.palette.mode === 'dark'
+                                            ? classes.formControlDark
+                                            : classes.formControl
+                                    }
                                 />
                             </div>
                         </div>
                         <hr style={{ marginBottom: '20px' }} />
 
-                        <div id='info-id'>
+                        <div id="info-id">
                             <div className={classes.formGroup}>
                                 <label htmlFor="titulo">Título</label>
                                 <input
@@ -148,7 +183,11 @@ const EditInformacion = ({ contacto }) => {
                                     name="titulo"
                                     value={contactoData.titulo}
                                     onChange={handleInputChange}
-                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    className={
+                                        theme.palette.mode === 'dark'
+                                            ? classes.formControlDark
+                                            : classes.formControl
+                                    }
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -160,7 +199,11 @@ const EditInformacion = ({ contacto }) => {
                                     name="subtitulo"
                                     value={contactoData.subtitulo}
                                     onChange={handleInputChange}
-                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    className={
+                                        theme.palette.mode === 'dark'
+                                            ? classes.formControlDark
+                                            : classes.formControl
+                                    }
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -172,7 +215,11 @@ const EditInformacion = ({ contacto }) => {
                                     value={contactoData.descripcion}
                                     onChange={handleInputChange}
                                     rows="4"
-                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    className={
+                                        theme.palette.mode === 'dark'
+                                            ? classes.formControlDark
+                                            : classes.formControl
+                                    }
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -184,7 +231,11 @@ const EditInformacion = ({ contacto }) => {
                                     name="direccion"
                                     value={contactoData.direccion}
                                     onChange={handleInputChange}
-                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    className={
+                                        theme.palette.mode === 'dark'
+                                            ? classes.formControlDark
+                                            : classes.formControl
+                                    }
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -196,7 +247,11 @@ const EditInformacion = ({ contacto }) => {
                                     name="telefono"
                                     value={contactoData.telefono}
                                     onChange={handleInputChange}
-                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    className={
+                                        theme.palette.mode === 'dark'
+                                            ? classes.formControlDark
+                                            : classes.formControl
+                                    }
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -208,7 +263,11 @@ const EditInformacion = ({ contacto }) => {
                                     name="horario"
                                     value={contactoData.horario}
                                     onChange={handleInputChange}
-                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    className={
+                                        theme.palette.mode === 'dark'
+                                            ? classes.formControlDark
+                                            : classes.formControl
+                                    }
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -220,7 +279,11 @@ const EditInformacion = ({ contacto }) => {
                                     name="whatsapp"
                                     value={contactoData.whatsapp}
                                     onChange={handleInputChange}
-                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    className={
+                                        theme.palette.mode === 'dark'
+                                            ? classes.formControlDark
+                                            : classes.formControl
+                                    }
                                 />
                             </div>
                             <div className={classes.formGroup}>
@@ -232,15 +295,21 @@ const EditInformacion = ({ contacto }) => {
                                     name="email"
                                     value={contactoData.email}
                                     onChange={handleInputChange}
-                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    className={
+                                        theme.palette.mode === 'dark'
+                                            ? classes.formControlDark
+                                            : classes.formControl
+                                    }
                                 />
                             </div>
                         </div>
                         <hr style={{ marginBottom: '20px' }} />
 
-                        <div id='form-id'>
+                        <div id="form-id">
                             <div className={classes.formGroup}>
-                                <label htmlFor="titulo_formulario">Título del Formulario</label>
+                                <label htmlFor="titulo_formulario">
+                                    Título del Formulario
+                                </label>
                                 <input
                                     required
                                     type="text"
@@ -248,11 +317,17 @@ const EditInformacion = ({ contacto }) => {
                                     name="titulo_formulario"
                                     value={contactoData.titulo_formulario}
                                     onChange={handleInputChange}
-                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    className={
+                                        theme.palette.mode === 'dark'
+                                            ? classes.formControlDark
+                                            : classes.formControl
+                                    }
                                 />
                             </div>
                             <div className={classes.formGroup}>
-                                <label htmlFor="descripcion_formulario">Descripción del Formulario</label>
+                                <label htmlFor="descripcion_formulario">
+                                    Descripción del Formulario
+                                </label>
                                 <TextareaAutosize
                                     required
                                     id="descripcion_formulario"
@@ -260,11 +335,21 @@ const EditInformacion = ({ contacto }) => {
                                     value={contactoData.descripcion_formulario}
                                     onChange={handleInputChange}
                                     rows="4"
-                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    className={
+                                        theme.palette.mode === 'dark'
+                                            ? classes.formControlDark
+                                            : classes.formControl
+                                    }
                                 />
                             </div>
                         </div>
-                        <BotonFixed metodo={() => document.getElementById('edit-contact-form').requestSubmit()} />
+                        <BotonFixed
+                            metodo={() =>
+                                document
+                                    .getElementById('edit-contact-form')
+                                    .requestSubmit()
+                            }
+                        />
                     </form>
                 </Box>
             </div>

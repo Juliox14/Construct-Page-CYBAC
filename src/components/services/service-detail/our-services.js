@@ -11,9 +11,11 @@ function OurService({ ourServices }) {
     useEffect(() => {
         if (typeof window !== 'undefined') {
             // Sanitizar el HTML solo en el cliente
-            const sanitized = ourServices.map(service => ({
+            const sanitized = ourServices.map((service) => ({
                 ...service,
-                descripcion_subservicio: DOMPurify.sanitize(service.descripcion_subservicio)
+                descripcion_subservicio: DOMPurify.sanitize(
+                    service.descripcion_subservicio
+                ),
             }));
             setSanitizedServices(sanitized);
         }
@@ -29,7 +31,12 @@ function OurService({ ourServices }) {
                                 <h2 className={classes.title}>
                                     {ourService?.titulo_subservicio}
                                 </h2>
-                                <p className={classes.desc} dangerouslySetInnerHTML={{ __html: ourService.descripcion_subservicio }}/>
+                                <p
+                                    className={classes.desc}
+                                    dangerouslySetInnerHTML={{
+                                        __html: ourService.descripcion_subservicio,
+                                    }}
+                                />
                             </div>
                         </Col>
                     ))}

@@ -3,7 +3,15 @@ import classes from './inputStyle.module.css';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-export default function ReactInput({ name, isRequired, type = 'text', placeHolder = 'Lorem Ipsum', ancho = '400px', callBackOnInputChange, value='' }) {
+export default function ReactInput({
+    name,
+    isRequired,
+    type = 'text',
+    placeHolder = 'Lorem Ipsum',
+    ancho = '400px',
+    callBackOnInputChange,
+    value = '',
+}) {
     // Estilos reactivos
     const [inputState, setInputState] = useState(
         value ? 'relleno' : 'desactivo'
@@ -29,13 +37,28 @@ export default function ReactInput({ name, isRequired, type = 'text', placeHolde
 
     // Cuando se desenfoque el input
     const handleBlur = () => {
-        inputValue === '' ? setInputState('desactivo') : setInputState('relleno');
+        inputValue === ''
+            ? setInputState('desactivo')
+            : setInputState('relleno');
     };
 
     // VariantesLabel
     const variantsLabel = {
-        activo: { top: 6, left: '10px', color: '#012730', fontSize: '14px', fontWeight: '500', paddingInline: '3px' },
-        relleno: { top: 6, left: '10px', color: '#8b8989', fontSize: '14px', paddingInline: '3px' },
+        activo: {
+            top: 6,
+            left: '10px',
+            color: '#012730',
+            fontSize: '14px',
+            fontWeight: '500',
+            paddingInline: '3px',
+        },
+        relleno: {
+            top: 6,
+            left: '10px',
+            color: '#8b8989',
+            fontSize: '14px',
+            paddingInline: '3px',
+        },
         desactivo: { top: 25, color: '#8b8989' },
     };
 

@@ -3,31 +3,34 @@ import PropTypes, { array } from 'prop-types';
 import BrandTwo from '../../components/brand/index-2';
 import Breadcrumb from '../../components/breadcrumb';
 import Footer from '../../components/layout/footer';
-import {getElement} from '../../lib/items';
+import { getElement } from '../../lib/items';
 import ClientsList from '../../components/clients/clientsList';
 
-function OurClients({
-    dataHomeClients,
-    servicesList,
-    footerItems
-}) {
-    console.log(dataHomeClients)
-    let clientes_municipio=[];
-    let clientes_iniciativa_privada=[];
-    let clientes_particular=[];
+function OurClients({ dataHomeClients, servicesList, footerItems }) {
+    console.log(dataHomeClients);
+    let clientes_municipio = [];
+    let clientes_iniciativa_privada = [];
+    let clientes_particular = [];
     let clientes_lista = [];
     const [data_desc] = dataHomeClients[1];
-    for(let cliente of dataHomeClients[0]){
-        if(cliente.clasificacion==='Municipios' && cliente.visualizarSlider){
+    for (let cliente of dataHomeClients[0]) {
+        if (
+            cliente.clasificacion === 'Municipios' &&
+            cliente.visualizarSlider
+        ) {
             clientes_municipio.push(cliente);
-        }
-        else if(cliente.clasificacion_cliente==='Iniciativa Privada' && cliente.visualizarSlider){
+        } else if (
+            cliente.clasificacion_cliente === 'Iniciativa Privada' &&
+            cliente.visualizarSlider
+        ) {
             clientes_iniciativa_privada.push(cliente);
-        }
-        else if(cliente.clasificacion === 'Particulares' && cliente.visualizarSlider){
+        } else if (
+            cliente.clasificacion === 'Particulares' &&
+            cliente.visualizarSlider
+        ) {
             clientes_particular.push(cliente);
         }
-        if(cliente.visualizarLista){
+        if (cliente.visualizarLista) {
             clientes_lista.push(cliente);
         }
     }
@@ -47,10 +50,16 @@ function OurClients({
                 title="Clientes Satifechos"
                 desc="Construction of itself, because it is pain some proper style design occur are pleasure"
             />
-            <ClientsList dataHomeClients={clientes_lista}/>
-            {(clientes_municipio.length != 0) && <BrandTwo clientes={clientes_municipio}/>}
-            {(clientes_iniciativa_privada.length != 0) && <BrandTwo clientes={clientes_iniciativa_privada}/>}
-            {(clientes_particular.length != 0) && <BrandTwo clientes={clientes_particular}/>}
+            <ClientsList dataHomeClients={clientes_lista} />
+            {clientes_municipio.length != 0 && (
+                <BrandTwo clientes={clientes_municipio} />
+            )}
+            {clientes_iniciativa_privada.length != 0 && (
+                <BrandTwo clientes={clientes_iniciativa_privada} />
+            )}
+            {clientes_particular.length != 0 && (
+                <BrandTwo clientes={clientes_particular} />
+            )}
             <Footer footerItems={footerItems} services={servicesList} />
         </>
     );

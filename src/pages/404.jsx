@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Error404 from '../components/error-404';
 
-
 function Error404Page() {
     return (
         <>

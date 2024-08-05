@@ -3,14 +3,17 @@ import { Container } from 'react-bootstrap';
 
 function Breadcrumb({ img, subTitle, title, desc }) {
     return (
-        <div className="page_banner__bg" style={{
-            backgroundImage: `url("${img}")`,
-        }}>
+        <div
+            className="page_banner__bg"
+            style={{
+                backgroundImage: `url("${img}")`,
+            }}
+        >
             <Container>
                 <div className="page_content">
                     <span className="page_subtitle">{subTitle}</span>
                     <h1 className="page_title">{title}</h1>
-                    <p style={{maxWidth: '800px'}}>{desc}</p>
+                    <p style={{ maxWidth: '800px' }}>{desc}</p>
                 </div>
             </Container>
         </div>

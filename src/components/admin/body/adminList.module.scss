@@ -1,25 +1,24 @@
 @import '../../../styles/abstract/custom-variables';
 @import '../../../styles//abstract/custom-mixins';
 
-.adminList{
+.adminList {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     column-gap: 3em;
 
-    > :hover{
+    > :hover {
         transform: scale(1.02);
         transition: 0.3s ease;
-        
     }
 
-    &_boxFatherItemList{
+    &_boxFatherItemList {
         width: 35em;
         border-radius: 20px;
         padding: 1em 1em;
         margin-bottom: 25px;
 
-        .deleteConfirm{
+        .deleteConfirm {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -33,28 +32,28 @@
             cursor: pointer;
             transition: 0.3s ease;
 
-            &:hover{
+            &:hover {
                 background-color: rgba(255, 0, 0, 0.4);
             }
         }
-    
-        @include breakpoint(s-device){
+
+        @include breakpoint(s-device) {
             width: 95%;
         }
 
-        > a{
-            position: absolute; 
-            top: 0; 
+        > a {
+            position: absolute;
+            top: 0;
             left: 0;
-            width: 100%; 
-            height: 100%; 
-            padding: 1em 1em; 
-            border-radius: 20px; 
+            width: 100%;
+            height: 100%;
+            padding: 1em 1em;
+            border-radius: 20px;
             background-color: transparent;
             z-index: 3;
         }
 
-        &_editBox{
+        &_editBox {
             position: absolute;
             display: flex;
             justify-content: center;
@@ -69,7 +68,7 @@
         }
     }
 
-    &_itemList{
+    &_itemList {
         display: flex;
         position: relative;
         flex-direction: column;
@@ -79,7 +78,7 @@
         align-items: center;
         gap: 1em;
 
-        &_circularProgress{
+        &_circularProgress {
             display: flex;
             width: 100%;
             height: 100%;
@@ -87,30 +86,30 @@
             align-items: center;
         }
 
-        > div{
+        > div {
             width: 100%;
             border: 1px solid rgba(151, 151, 151, 0.137);
             border-radius: 20px;
 
-            > div{
+            > div {
                 position: relative;
                 width: 100%;
                 height: 16.4em;
                 border-radius: 20px;
-                @include breakpoint(s-device){
+                @include breakpoint(s-device) {
                     height: 8.4em;
                 }
             }
         }
 
-        p{
+        p {
             font-size: medium;
             font-weight: 500;
             margin: 0;
         }
     }
-    
-    .textos{
+
+    .textos {
         display: flex;
         width: 90%;
         justify-content: space-between;
@@ -119,52 +118,51 @@
         gap: 1em;
         opacity: 0.4;
 
-        p{
+        p {
             font-size: 1em;
             margin: 0;
         }
     }
 }
 
-.desc{
-    font-size: small!important;
+.desc {
+    font-size: small !important;
 }
 
-
-.adminServiceList{
+.adminServiceList {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     column-gap: 3em;
 
-    > :hover{
+    > :hover {
         transform: scale(1.02);
         transition: 0.3s ease;
     }
 
-    &_boxFatherItemList{
+    &_boxFatherItemList {
         width: 35em;
         border-radius: 20px;
         padding: 1em 1em;
         margin-bottom: 25px;
-    
-        @include breakpoint(s-device){
+
+        @include breakpoint(s-device) {
             width: 95%;
         }
 
-        > a{
-            position: absolute; 
-            top: 0; 
+        > a {
+            position: absolute;
+            top: 0;
             left: 0;
-            width: 100%; 
-            height: 100%; 
-            padding: 1em 1em; 
-            border-radius: 20px; 
+            width: 100%;
+            height: 100%;
+            padding: 1em 1em;
+            border-radius: 20px;
             background-color: transparent;
             z-index: 3;
         }
 
-        &_editBox{
+        &_editBox {
             position: absolute;
             display: flex;
             justify-content: center;
@@ -179,7 +177,7 @@
         }
     }
 
-    &_itemList{
+    &_itemList {
         display: flex;
         position: relative;
         flex-direction: column;
@@ -189,7 +187,7 @@
         align-items: center;
         gap: 1em;
 
-        &_circularProgress{
+        &_circularProgress {
             display: flex;
             width: 100%;
             height: 100%;
@@ -197,30 +195,30 @@
             align-items: center;
         }
 
-        > div{
+        > div {
             width: 100%;
             border: 1px solid rgba(151, 151, 151, 0.137);
             border-radius: 20px;
 
-            > div{
+            > div {
                 position: relative;
                 width: 100%;
                 height: 16.4em;
                 border-radius: 20px;
-                @include breakpoint(s-device){
+                @include breakpoint(s-device) {
                     height: 8.4em;
                 }
             }
         }
 
-        p{
+        p {
             font-size: medium;
             font-weight: 500;
             margin: 0;
         }
     }
-    
-    .textos{
+
+    .textos {
         display: flex;
         width: 90%;
         justify-content: space-between;
@@ -229,14 +227,14 @@
         gap: 1em;
         opacity: 0.4;
 
-        p{
+        p {
             font-size: 1em;
             margin: 0;
         }
     }
 }
 
-.nombre_elemento{
+.nombre_elemento {
     max-width: 80%;
     font-size: 1.5em;
     font-weight: 500;

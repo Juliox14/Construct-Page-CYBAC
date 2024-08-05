@@ -8,22 +8,16 @@ import Footer from '../../components/layout/footer';
 import Team from '../../components/team';
 import { getElement } from '../../lib/items';
 
-function AboutPage({
-    aboutItems,
-    teamItems,
-    footerItems,
-    services,
-})
-{
+function AboutPage({ aboutItems, teamItems, footerItems, services }) {
     const bannerThreeItems = {
         mision: aboutItems.mision,
         vision: aboutItems.vision,
-        valores: aboutItems.valores
+        valores: aboutItems.valores,
     };
 
     const teamSectionItems = {
         titulo: aboutItems.titulo_equipo,
-        descripcion: aboutItems.descripcion_equipo
+        descripcion: aboutItems.descripcion_equipo,
     };
     return (
         <>
@@ -44,8 +38,11 @@ function AboutPage({
             />
             <AboutOne aboutItem={aboutItems} />
             <BannerThree bannerThreeItems={bannerThreeItems} />
-            <CounterTwo proyectos={aboutItems.proyectos} clientes={aboutItems.clientes} />
-            <Team teamItems={teamItems} teamSectionItems={teamSectionItems}/>
+            <CounterTwo
+                proyectos={aboutItems.proyectos}
+                clientes={aboutItems.clientes}
+            />
+            <Team teamItems={teamItems} teamSectionItems={teamSectionItems} />
             <Footer footerItems={footerItems} services={services} />
         </>
     );

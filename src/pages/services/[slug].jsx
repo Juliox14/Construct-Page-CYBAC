@@ -3,19 +3,15 @@ import PropTypes from 'prop-types';
 import Breadcrumb from '../../components/breadcrumb';
 import Footer from '../../components/layout/footer';
 import ServiceDetail from '../../components/services/service-detail';
-import {getElement, getItemsBy} from '../../lib/items';
+import { getElement, getItemsBy } from '../../lib/items';
 
-function ServiceDetailsPage({
-    servicesList,
-    footerItems,
-    services,
-})
-{;
+function ServiceDetailsPage({ servicesList, footerItems, services }) {
     return (
         <>
             <Head>
                 <title>
-                    {services.servicios.titulo} - Reichstag, Edificaciones S.A. de C.V.
+                    {services.servicios.titulo} - Reichstag, Edificaciones S.A.
+                    de C.V.
                 </title>
                 <meta
                     name="description"
@@ -40,7 +36,7 @@ function ServiceDetailsPage({
 export async function getServerSideProps(context) {
     const { params } = context;
     const { slug } = params;
-    
+
     const services = await getItemsBy('services', slug);
     const servicesList = await getElement('titulo_servicios');
     const footerItems = await getElement('footer');

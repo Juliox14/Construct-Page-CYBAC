@@ -5,11 +5,7 @@ import ProjectDetail from '../../components/projects/project-detail';
 import Footer from '../../components/layout/footer';
 import { getItemsBy, getElement } from '../../lib/items';
 
-function ProjectDetailPage({
-    project,
-    footerItems,
-    servicesList
-}) {
+function ProjectDetailPage({ project, footerItems, servicesList }) {
     return (
         <>
             <Head>
@@ -19,15 +15,12 @@ function ProjectDetailPage({
                     content="Reichstag Edificaciones es una empresa constructora con más de 20 años de experiencia en el mercado, especializada en la construcción de edificaciones residenciales, comerciales e industriales."
                 />
             </Head>
-            <Breadcrumb 
-                title={project.nombre_proyecto} 
+            <Breadcrumb
+                title={project.nombre_proyecto}
                 subTitle={project.tipo_obra}
                 desc={`Informacion del proyecto ${project.nombre_proyecto}`}
             />
-            <ProjectDetail
-                project={project}
-                projectsSidebar={project}
-            />
+            <ProjectDetail project={project} projectsSidebar={project} />
             <Footer footerItems={footerItems} services={servicesList} />
         </>
     );

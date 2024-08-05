@@ -1,6 +1,6 @@
-import { Button } from "@mui/material"
+import { Button } from '@mui/material';
 
-const BotonFixed = ( {metodo} ) => {
+const BotonFixed = ({ metodo }) => {
     return (
         <Button
             type="submit"
@@ -13,16 +13,16 @@ const BotonFixed = ( {metodo} ) => {
                 bottom: '20px',
                 right: '20px',
                 zIndex: '999',
-                "&:hover": {
+                '&:hover': {
                     backgroundColor: '#757254',
-                    color: '#F1F1F1'
-                }
+                    color: '#F1F1F1',
+                },
             }}
             onClick={(e) => metodo(e)}
         >
             Guardar Cambios
         </Button>
-    )
-}
+    );
+};
 
 export default BotonFixed;

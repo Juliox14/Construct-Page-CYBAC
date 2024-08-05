@@ -156,11 +156,11 @@
         }
     }
 
-    &_asunto{
+    &_asunto {
         margin-top: 1rem;
         margin-bottom: 1rem;
 
-        select{
+        select {
             width: 100%;
             height: 60px;
             font-family: $yantramanav;
@@ -185,11 +185,11 @@
         padding-right: 1rem;
         margin-top: 1rem;
         margin-left: 1rem;
-        background-color: #FEE2E2;
-        color: #B91C1C;
+        background-color: #fee2e2;
+        color: #b91c1c;
         border-radius: 0.25rem;
         border-width: 1px;
-        border-color: #F87171;
+        border-color: #f87171;
     }
 
     strong {
@@ -202,14 +202,12 @@
         @media (min-width: 640px) {
             display: inline;
         }
-
     }
 }
 
 .sended {
-
     margin-top: 2rem;
-    
+
     &_container {
         padding-top: 0.75rem;
         padding-bottom: 0.75rem;
@@ -218,7 +216,8 @@
         border-bottom-right-radius: 0.25rem;
         border-bottom-left-radius: 0.25rem;
         border-top-width: 4px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
 
     &_content {
@@ -236,7 +235,7 @@
 
         svg {
             width: 2em;
-        }	
+        }
     }
 
     &_text {

@@ -16,13 +16,13 @@ function Contact({ contactItems }) {
                                     <img
                                         className="img-full"
                                         src={contactItems?.ruta_imagen}
-                                        alt='Imagen contactanos Reichstag Edificaciones S.A. de C.V.'
+                                        alt="Imagen contactanos Reichstag Edificaciones S.A. de C.V."
                                     />
                                 </div>
                                 <div className={classes.pattern}>
                                     <img
-                                        src='/images/contact/pattern.png'
-                                        alt='Patrón contactanos Reichstag Edificaciones S.A. de C.V.'
+                                        src="/images/contact/pattern.png"
+                                        alt="Patrón contactanos Reichstag Edificaciones S.A. de C.V."
                                     />
                                 </div>
                             </div>
@@ -51,31 +51,40 @@ function Contact({ contactItems }) {
                                         Información de Contacto
                                     </h3>
                                     <ul className={classes.info_list}>
-                                        <li className='classes.infoContact'>
-                                            Teléfono: 
-                                            <Link href={`tel://${contactItems.telefono}`}>
+                                        <li className="classes.infoContact">
+                                            Teléfono:
+                                            <Link
+                                                href={`tel://${contactItems.telefono}`}
+                                            >
                                                 {contactItems.telefono}
                                             </Link>
                                         </li>
                                         <li>
-                                            Whatsapp: 
-                                            <Link href={`https://wa.me/${contactItems.whatsapp.replaceAll(' ', '')}`} target='_blank'>
+                                            Whatsapp:
+                                            <Link
+                                                href={`https://wa.me/${contactItems.whatsapp.replaceAll(
+                                                    ' ',
+                                                    ''
+                                                )}`}
+                                                target="_blank"
+                                            >
                                                 {contactItems.whatsapp}
                                             </Link>
                                         </li>
                                         <li>
-                                            Horario de Atención: 
-                                            <span style={{marginLeft: '4px'}}>
+                                            Horario de Atención:
+                                            <span style={{ marginLeft: '4px' }}>
                                                 {contactItems.horario}
-                                            </span> 
+                                            </span>
                                         </li>
                                         <li>
-                                            Email: 
-                                            <Link href={`mailto:${contactItems.email}`}>
+                                            Email:
+                                            <Link
+                                                href={`mailto:${contactItems.email}`}
+                                            >
                                                 {contactItems.email}
                                             </Link>
                                         </li>
-                                        
                                     </ul>
                                 </div>
                             </div>
@@ -91,7 +100,7 @@ function Contact({ contactItems }) {
                             <p className={`${classes.form_desc} mb-0`}>
                                 {contactItems?.descripcion_formulario}
                             </p>
-                            <FormContact/>
+                            <FormContact />
                         </Col>
                         <Col lg={{ span: 6 }} className="ps-lg-50">
                             <div className="map_with__pattern">
@@ -102,8 +111,8 @@ function Contact({ contactItems }) {
                                 />
                                 <div className="map_pattern">
                                     <img
-                                        src='/images/contact/pattern.png'
-                                        alt='Patrón contactanos Reichstag Edificaciones S.A. de C.V.'
+                                        src="/images/contact/pattern.png"
+                                        alt="Patrón contactanos Reichstag Edificaciones S.A. de C.V."
                                     />
                                 </div>
                             </div>

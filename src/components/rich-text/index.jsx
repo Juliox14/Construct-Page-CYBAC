@@ -22,13 +22,9 @@ function RichText({ richTexts }) {
                 <Col lg={{ span: 8 }}>
                     <div className={`${classes.group_image} pb-20`}>
                         <div className={`${classes.single_image} pe-20`}>
-                            <img
-                                src={richTexts.ruta_imagen}
-                                alt='Rich Image'
-                            />
+                            <img src={richTexts.ruta_imagen} alt="Rich Image" />
                         </div>
                     </div>
-
                 </Col>
                 <Col xs={{ span: 12 }}>
                     <p className={`${classes.desc} mb-0`}>

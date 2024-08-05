@@ -4,14 +4,9 @@ import AboutTwo from '../../components/about/index-2';
 import Footer from '../../components/layout/footer';
 import Breadcrumb from '../../components/breadcrumb';
 import HomePageServices from '../../components/home-page/homepage-services';
-import {getElement } from '../../lib/items';
+import { getElement } from '../../lib/items';
 
-function ServicePage({
-    aboutItemsTwo,
-    services,
-    servicesList,
-    footerItems,
-}) {
+function ServicePage({ aboutItemsTwo, services, servicesList, footerItems }) {
     return (
         <>
             <Head>
@@ -27,10 +22,8 @@ function ServicePage({
                 desc={aboutItemsTwo.descripcion_breadcrumb}
             />
             <AboutTwo aboutItemsTwo={aboutItemsTwo} />
-            <HomePageServices
-                services={services}
-            />
-            <Footer footerItems={footerItems} services={servicesList}/>
+            <HomePageServices services={services} />
+            <Footer footerItems={footerItems} services={servicesList} />
         </>
     );
 }
@@ -47,7 +40,6 @@ export async function getServerSideProps() {
             services: AllServices,
             servicesList,
             footerItems,
-          
         },
     };
 }

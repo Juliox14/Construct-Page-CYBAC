@@ -5,8 +5,15 @@ function ProjectSlider({ project }) {
     return (
         <div className="project-item">
             <Link href={linkPath} className="project-img">
-                <div style={{height: '400px'}}>
-                    <img style={{objectFit: 'cover', border: 'solid 1px white'}} src={project.ruta_imagen} alt={project?.nombre_proyecto} />
+                <div style={{ height: '400px' }}>
+                    <img
+                        style={{
+                            objectFit: 'cover',
+                            border: 'solid 1px white',
+                        }}
+                        src={project.ruta_imagen}
+                        alt={project?.nombre_proyecto}
+                    />
                 </div>
             </Link>
             <div className="project-content">

@@ -5,7 +5,7 @@ import CountUp from 'react-countup';
 import { InView } from 'react-intersection-observer';
 import classes from './counter.module.scss';
 
-function CounterTwo({proyectos, clientes}) {
+function CounterTwo({ proyectos, clientes }) {
     const [focus, setFocus] = useState(false);
     const visibleChangeHandler = (isVisible) => {
         if (isVisible) {
@@ -18,8 +18,11 @@ function CounterTwo({proyectos, clientes}) {
     return (
         <div className={`${classes.area} ${classes.pb__140}`}>
             <Container>
-                <Row className={classes.max_md_g_y__80} style={{justifyContent: "center"}}>
-                    <Col lg={{ span: 3 }} className='mx-auto'>
+                <Row
+                    className={classes.max_md_g_y__80}
+                    style={{ justifyContent: 'center' }}
+                >
+                    <Col lg={{ span: 3 }} className="mx-auto">
                         <CountUp
                             start={focus ? 0 : null}
                             end={proyectos}

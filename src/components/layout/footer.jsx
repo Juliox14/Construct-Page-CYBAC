@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'react-bootstrap';
 import * as FaIcons from 'react-icons/fa';
@@ -21,14 +21,14 @@ function Footer({ footerItems, services }) {
         <footer>
             <Fragment key={footerItems?.footer.id_footer}>
                 <div className={`${classes.bg}`}>
-                    <Container style={{ height: "380px" }}>
+                    <Container style={{ height: '380px' }}>
                         <Row>
                             <Col lg={{ span: 3 }}>
                                 <div className={classes.widget__item}>
                                     <Link href="/" className={classes.logo}>
                                         <img
                                             src={footerItems?.footer.ruta_logo}
-                                            alt='Logo Reichstag'
+                                            alt="Logo Reichstag"
                                         />
                                     </Link>
                                     <p className={classes.desc}>
@@ -40,9 +40,7 @@ function Footer({ footerItems, services }) {
                                         </h2>
                                         <Link
                                             href={`tel://${footerItems?.footer.telefono}`}
-                                            className={
-                                                classes.inquary_number
-                                            }
+                                            className={classes.inquary_number}
                                         >
                                             {footerItems?.footer.telefono}
                                         </Link>
@@ -62,32 +60,57 @@ function Footer({ footerItems, services }) {
                                             Servicios
                                         </h2>
                                         <ul className={classes.widget__list}>
-                                            {visibleServices?.map(
-                                                (item) => (
-                                                    <li key={item.id_servicio}>
-                                                        <Link
-                                                            href={`/services/${item.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
-                                                        >
-                                                            {item.titulo}
-                                                        </Link>
-                                                    </li>
-                                                )
-                                            )}
+                                            {visibleServices?.map((item) => (
+                                                <li key={item.id_servicio}>
+                                                    <Link
+                                                        href={`/services/${item.titulo
+                                                            .toLowerCase()
+                                                            .normalize('NFD')
+                                                            .replace(
+                                                                /[\u0300-\u036f]/g,
+                                                                ''
+                                                            )}`}
+                                                    >
+                                                        {item.titulo}
+                                                    </Link>
+                                                </li>
+                                            ))}
                                         </ul>
 
-                                        <motion.ul className={classes.widget__list} style={{ marginTop: "15px", overflow: "hidden" }}
-                                            initial={{ height: "0px", display: "block" }}
-                                            variants={{
-                                                visible: { height: "auto" },
-                                                hidden: { height: "0px" }
+                                        <motion.ul
+                                            className={classes.widget__list}
+                                            style={{
+                                                marginTop: '15px',
+                                                overflow: 'hidden',
                                             }}
-                                            animate={showAllServices ? "visible" : "hidden"}>
+                                            initial={{
+                                                height: '0px',
+                                                display: 'block',
+                                            }}
+                                            variants={{
+                                                visible: { height: 'auto' },
+                                                hidden: { height: '0px' },
+                                            }}
+                                            animate={
+                                                showAllServices
+                                                    ? 'visible'
+                                                    : 'hidden'
+                                            }
+                                        >
                                             {hiddenServices?.map(
                                                 (item, index) => (
-                                                    <li
-                                                        key={index}>
+                                                    <li key={index}>
                                                         <Link
-                                                            href={`/services/${item.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}>
+                                                            href={`/services/${item.titulo
+                                                                .toLowerCase()
+                                                                .normalize(
+                                                                    'NFD'
+                                                                )
+                                                                .replace(
+                                                                    /[\u0300-\u036f]/g,
+                                                                    ''
+                                                                )}`}
+                                                        >
                                                             {item.titulo}
                                                         </Link>
                                                     </li>
@@ -100,7 +123,9 @@ function Footer({ footerItems, services }) {
                                                 className={classes.viewMore}
                                                 onClick={toggleServices}
                                             >
-                                                {showAllServices ? 'Ver menos' : 'Ver más'}
+                                                {showAllServices
+                                                    ? 'Ver menos'
+                                                    : 'Ver más'}
                                             </span>
                                         )}
                                     </div>
@@ -148,13 +173,11 @@ function Footer({ footerItems, services }) {
                                     >
                                         <p className={classes.widget_address}>
                                             {`${footerItems?.footer.direccion} | C.P ${footerItems?.footer.codigo_postal} | `}
-                                            <span className='text-primary'>{footerItems?.footer.ubicacion}</span>
+                                            <span className="text-primary">
+                                                {footerItems?.footer.ubicacion}
+                                            </span>
                                         </p>
-                                        <span
-                                            className={
-                                                classes.widget_number
-                                            }
-                                        >
+                                        <span className={classes.widget_number}>
                                             {footerItems?.footer.telefono}
                                         </span>
                                     </div>
@@ -168,24 +191,29 @@ function Footer({ footerItems, services }) {
                         <Row>
                             <Col md={{ span: 6 }} sm={{ span: 4 }}>
                                 <ul className={classes.social}>
-                                    {footerItems?.redes_sociales?.map((item) => {
-                                        const Social = FaIcons[item.icono_red_social];
-                                        return (
-                                            <li key={item.id_red_social}>
-                                                <Link href={`${item.enlace_red_social}`} target='_blank'>
-                                                    <Social />
-                                                </Link>
-                                            </li>
-                                        );
-                                    })}
+                                    {footerItems?.redes_sociales?.map(
+                                        (item) => {
+                                            const Social =
+                                                FaIcons[item.icono_red_social];
+                                            return (
+                                                <li key={item.id_red_social}>
+                                                    <Link
+                                                        href={`${item.enlace_red_social}`}
+                                                        target="_blank"
+                                                    >
+                                                        <Social />
+                                                    </Link>
+                                                </li>
+                                            );
+                                        }
+                                    )}
                                 </ul>
                             </Col>
                             <Col md={{ span: 6 }} sm={{ span: 8 }}>
                                 <div className={classes.copyright}>
                                     <span className={classes.text}>
-                                        © {new Date().getFullYear()}{' '}
-                                        Reichstag Todos los Derechos
-                                        Reservados.
+                                        © {new Date().getFullYear()} Reichstag
+                                        Todos los Derechos Reservados.
                                     </span>
                                 </div>
                             </Col>

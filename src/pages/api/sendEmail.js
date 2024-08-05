@@ -1,10 +1,9 @@
-import { transporter, mailOptions } from "../../../config/nodemailer";
+import { transporter, mailOptions } from '../../../config/nodemailer';
 
 export default async function emailHandler(req, res) {
     if (req.method !== 'POST') {
-        return res.status(405).json({ message: 'Method not allowed' })
-    }
-    else {
+        return res.status(405).json({ message: 'Method not allowed' });
+    } else {
         try {
             const { nombre, email, mensaje, asunto } = req.body;
             const htmlContent = `
@@ -22,12 +21,12 @@ export default async function emailHandler(req, res) {
                 ...mailOptions,
                 subject: `Nuevo mensaje desde formulario web - ${asunto}`,
                 text: `Nombre: ${nombre} - Email: ${email} - Mensaje: ${mensaje}`,
-                html: htmlContent
-            })
-            return res.status(200).json({ message: 'Email sent successfully' })
+                html: htmlContent,
+            });
+            return res.status(200).json({ message: 'Email sent successfully' });
         } catch (error) {
-            console.error(error)
-            return res.status(500).json({ message: 'Internal server error' })
+            console.error(error);
+            return res.status(500).json({ message: 'Internal server error' });
         }
     }
 }

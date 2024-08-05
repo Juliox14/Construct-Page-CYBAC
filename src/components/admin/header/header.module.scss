@@ -4,25 +4,24 @@
 // index:
 // - header
 
-
-.boxHeaderMain{
+.boxHeaderMain {
     display: block;
     height: 100%;
-    @include breakpoint(min-lg-device){
+    @include breakpoint(min-lg-device) {
         display: flex;
     }
 }
 
 // Path: movilDropdown
 
-.movilHeaderElement{
+.movilHeaderElement {
     height: 10vh;
 
-    @include breakpoint(min-lg-device){
+    @include breakpoint(min-lg-device) {
         display: none;
     }
 
-    &_boxContainerOfNavAdmin{
+    &_boxContainerOfNavAdmin {
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -31,70 +30,70 @@
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
 
-        &_iconNav{
+        &_iconNav {
             margin-right: 10px;
-            color: $primary!important;
+            color: $primary !important;
         }
     }
 }
 
-.desktopFalseBoxHeader{
+.desktopFalseBoxHeader {
     display: none;
     position: relative;
     font-family: $rajdhani;
 
-    @include breakpoint(lg-device){
+    @include breakpoint(lg-device) {
         display: block;
     }
 
-    @include breakpoint(xl-device){
+    @include breakpoint(xl-device) {
         display: block;
     }
 
-    @include breakpoint(xxl-device){
+    @include breakpoint(xxl-device) {
         display: block;
     }
 
-    @include breakpoint(2xxl-device){
+    @include breakpoint(2xxl-device) {
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 }
 
-.desktopHeaderElement{
+.desktopHeaderElement {
     height: 100vh;
     position: fixed;
 
-    &_boxContainerOfNavAdmin{
+    &_boxContainerOfNavAdmin {
         position: fixed;
         color: white;
         text-decoration: none;
 
-        > div{
+        > div {
             margin-top: 35px;
 
-            > div{
+            > div {
                 display: flex;
                 justify-content: center;
                 gap: 15px;
             }
         }
 
-        &_boxHeader{
+        &_boxHeader {
             display: flex;
             flex-direction: column;
             align-items: center;
             box-sizing: content-box;
 
-            &_imgUser{
+            &_imgUser {
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
                 margin-top: 20px;
             }
 
-            h3{
+            h3 {
                 text-align: center;
                 position: absolute;
                 opacity: 0;
@@ -102,41 +101,41 @@
             }
         }
 
-        &_boxIcons{
+        &_boxIcons {
             margin-top: 10px;
             opacity: 0;
         }
 
-        ::-webkit-scrollbar{
+        ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
         }
 
-        ::-webkit-scrollbar-track{
+        ::-webkit-scrollbar-track {
             background-color: #025567;
             border-radius: 15px;
         }
 
-        ::-webkit-scrollbar-thumb{
+        ::-webkit-scrollbar-thumb {
             background-color: #8a8a8a92;
             border-radius: 15px;
         }
 
-        &_boxUl{
+        &_boxUl {
             width: 100%;
-            max-height: 27.1em!important;
+            max-height: 27.1em !important;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 8px;
             overflow: auto;
 
-            > :hover{
+            > :hover {
                 background-color: $primary;
                 transition: all 0.3s ease 0s;
             }
 
-            a{
+            a {
                 width: 80%;
                 min-height: 55px;
                 display: flex;
@@ -150,14 +149,13 @@
                 color: white;
                 box-sizing: border-box;
 
-                li{
+                li {
                     margin-left: 10px;
                     opacity: 0;
                 }
-
             }
 
-            &_liActive{
+            &_liActive {
                 background-color: $primary;
             }
         }

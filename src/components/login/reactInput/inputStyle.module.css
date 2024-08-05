@@ -1,37 +1,36 @@
-.div{
+.div {
     display: flex;
     flex-direction: column;
-    position:relative;
+    position: relative;
     width: 400px;
     height: 60px;
     justify-content: end;
     min-width: 115px;
 }
-.div:hover{
-    border-color: #C0C0C0;
+.div:hover {
+    border-color: #c0c0c0;
 }
-.input{
+.input {
     width: 100%;
     height: 45px;
     border-radius: 12px;
     border-style: solid;
-    border-color: #E6E6E6;
+    border-color: #e6e6e6;
     border-width: 2px;
     padding-inline: 1.3em;
     font-size: 15px;
-    color: #4E4E4E;
+    color: #4e4e4e;
     overflow: hidden;
     text-overflow: ellipsis;
-
 }
 .input:focus {
-    border-color: #014655; 
-    outline:bluenone;
+    border-color: #014655;
+    outline: bluenone;
 }
 /* No se usa actualmente, favor de quitar el comentario en caso de usarlo */
 .input:disabled {
-    background-color: #F0F0F0; 
-    border-color: #D0D0D0;
+    background-color: #f0f0f0;
+    border-color: #d0d0d0;
     cursor: not-allowed;
 }
 .input:-webkit-autofill,
@@ -39,11 +38,11 @@
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px #ffff inset !important; /* Cambiar 'white' al color de fondo deseado */
-    -webkit-text-fill-color: #4E4E4E !important; /* Cambiar el color del texto si es necesario */
+    -webkit-text-fill-color: #4e4e4e !important; /* Cambiar el color del texto si es necesario */
 }
-.my_label{
+.my_label {
     text-align: center;
-    position:absolute;
+    position: absolute;
     bottom: 15px;
     left: 15px;
     color: #8b8989;

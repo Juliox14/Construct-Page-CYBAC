@@ -5,17 +5,12 @@ import ProjectSidebar from '../project-sidebar';
 import ProjectContent from './project-content';
 import RichText from '../../rich-text';
 
-function ProjectDetail({
-    project,
-    projectsSidebar,
-}) {
+function ProjectDetail({ project, projectsSidebar }) {
     return (
         <div className={classes.area}>
             <Container>
                 <Row>
-                    <ProjectContent
-                        project={project}
-                    />
+                    <ProjectContent project={project} />
                     <ProjectSidebar projectsSidebar={projectsSidebar} />
                 </Row>
             </Container>

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'react-bootstrap';
 import * as FaIcons from 'react-icons/fa';
@@ -13,19 +13,21 @@ function AboutOne({ aboutItem }) {
         if (typeof window !== 'undefined') {
             const sanitized = {
                 ...aboutItem,
-                descripcion2San_nosotros: DOMPurify.sanitize(aboutItem.descripcion2_nosotros)
+                descripcion2San_nosotros: DOMPurify.sanitize(
+                    aboutItem.descripcion2_nosotros
+                ),
             };
             setSanitizedItem(sanitized);
         }
     }, [aboutItem]);
 
     const imageLoader1 = () => {
-        return `${aboutItem.img1}`
-    }
+        return `${aboutItem.img1}`;
+    };
 
     const imageLoader2 = () => {
-        return `${aboutItem.img2}`
-    }
+        return `${aboutItem.img2}`;
+    };
     return (
         <div className={classes.area}>
             <Container key={aboutItem.id_nosotros}>
@@ -45,15 +47,15 @@ function AboutOne({ aboutItem }) {
                         <div className={classes.img__wrap}>
                             <div className={classes.pattern}>
                                 <img
-                                    src='/images/about/pattern.png'
-                                    alt='pattern'
+                                    src="/images/about/pattern.png"
+                                    alt="pattern"
                                 />
                             </div>
                             <div className={classes.img}>
                                 <Image
                                     loader={imageLoader2}
                                     src="/images/about"
-                                    alt='Nosotros'
+                                    alt="Nosotros"
                                     className="img-full"
                                     width={650}
                                     height={530}
@@ -66,11 +68,7 @@ function AboutOne({ aboutItem }) {
                     <Col lg={{ span: 6 }}>
                         <div className={classes.content}>
                             <div className={classes.experience}>
-                                <div
-                                    className={
-                                        classes.experience_content
-                                    }
-                                >
+                                <div className={classes.experience_content}>
                                     <span className={classes.year}>
                                         {aboutItem?.anios_experiencia}
                                     </span>
@@ -81,8 +79,8 @@ function AboutOne({ aboutItem }) {
                                 <div className={classes.experience_img}>
                                     <Image
                                         loader={imageLoader1}
-                                        src='/images/about/avatar.png'
-                                        alt='años de experiencia'
+                                        src="/images/about/avatar.png"
+                                        alt="años de experiencia"
                                         width={80}
                                         height={85}
                                         priority
@@ -92,7 +90,12 @@ function AboutOne({ aboutItem }) {
                             <h3 className={classes.subtitle}>
                                 {aboutItem?.titulo2_nosotros}
                             </h3>
-                            <p className={classes.desc} dangerouslySetInnerHTML={{ __html:sanitizedItem.descripcion2San_nosotros}}/>
+                            <p
+                                className={classes.desc}
+                                dangerouslySetInnerHTML={{
+                                    __html: sanitizedItem.descripcion2San_nosotros,
+                                }}
+                            />
                         </div>
                     </Col>
                 </Row>

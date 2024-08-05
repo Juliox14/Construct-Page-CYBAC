@@ -43,7 +43,7 @@ export async function getServerSideProps() {
 ContactPage.propTypes = {
     contactItems: PropTypes.instanceOf(Object).isRequired,
     footerItems: PropTypes.instanceOf(Object).isRequired,
-    services: PropTypes.instanceOf(Object).isRequired
+    services: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ContactPage;

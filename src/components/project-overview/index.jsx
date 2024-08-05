@@ -11,7 +11,10 @@ function ProjectOverview({ projectsOverview }) {
                     <h2 className={classes.title}>{projectsOverview.title}</h2>
                     <p className={classes.desc}>{projectsOverview.desc}</p>
                     <div className={classes.image}>
-                        <img src={projectsOverview.image} alt='Imagen proyecto overview' />
+                        <img
+                            src={projectsOverview.image}
+                            alt="Imagen proyecto overview"
+                        />
                     </div>
                 </Col>
             </Row>
