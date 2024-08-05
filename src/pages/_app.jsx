@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Layout from '../components/layout/layout';
-import Footer from '../components/layout/footer';
 import "../styles/globals.scss";
 import { ScrollToTop } from '../components/scroll';
 

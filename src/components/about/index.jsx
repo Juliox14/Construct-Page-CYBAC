@@ -11,7 +11,6 @@ function AboutOne({ aboutItem }) {
     const [sanitizedItem, setSanitizedItem] = useState([]);
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            // Sanitizar el HTML solo en el cliente
             const sanitized = {
                 ...aboutItem,
                 descripcion2San_nosotros: DOMPurify.sanitize(aboutItem.descripcion2_nosotros)
@@ -54,7 +53,7 @@ function AboutOne({ aboutItem }) {
                                 <Image
                                     loader={imageLoader2}
                                     src="/images/about"
-                                    alt='about image'
+                                    alt='Nosotros'
                                     className="img-full"
                                     width={650}
                                     height={530}

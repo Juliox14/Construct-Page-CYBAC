@@ -16,22 +16,4 @@ function Error404Page() {
         </>
     );
 }
-
-export function getStaticProps() {
-    const newsletterItems = getAllItems('newsletter');
-    const footerItems = getAllItems('footer');
-
-    return {
-        props: {
-            newsletterItems,
-            footerItems,
-        },
-    };
-}
-
-Error404Page.propTypes = {
-    newsletterItems: PropTypes.instanceOf(Object).isRequired,
-    footerItems: PropTypes.instanceOf(Object).isRequired,
-};
-
 export default Error404Page;
