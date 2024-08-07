@@ -1,6 +1,6 @@
 import Component from '..';
 
-const Footer = () => {
+export default function Footer() {
     const componentsInThePage = [
         {
             title: 'Footer',
@@ -11,10 +11,6 @@ const Footer = () => {
         },
     ];
     return (
-        <>
-            <Component componentsInThePage={componentsInThePage} />
-        </>
+        <Component componentsInThePage={componentsInThePage} />
     );
 };
-
-export default Footer;

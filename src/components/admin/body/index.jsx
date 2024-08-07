@@ -1,29 +1,29 @@
-import classes from './adminList.module.scss';
+// React
+import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import PropTypes from 'prop-types';
 
 // Componentes personalizados
 import SearchBar from './searchBar';
 import AdminList from './adminList';
 
-// React
-import { useState, useEffect } from 'react';
 
 // Elementos de MUI material
 import { Box, useTheme } from '@mui/material';
+import classes from './adminList.module.scss';
 
-const Component = ({ componentsInThePage, extra, delete_button }) => {
+export default function Component({ componentsInThePage, extra, deleteButton }) {
     const theme = useTheme();
     const [filterSearch, setFilterSearch] = useState(componentsInThePage);
 
     const handleSearch = (search) => {
         setFilterSearch(
-            componentsInThePage.filter((component) => {
-                return component.title
-                    .toLowerCase()
-                    .includes(search.title.toLowerCase());
-            })
+            componentsInThePage.filter((component) =>
+                component.title.toLowerCase().includes(search.title.toLowerCase())
+            )
         );
     };
+
 
     useEffect(() => {
         setFilterSearch(componentsInThePage);
@@ -53,28 +53,42 @@ const Component = ({ componentsInThePage, extra, delete_button }) => {
                     transition: `background-color ${theme.transitions.duration.standard}ms`,
                 }}
             >
-                {filterSearch &&
-                    filterSearch.map((component, index) => (
-                        <AdminList
-                            key={index}
-                            nombre_elemento={component.title}
-                            descripcion={component.description}
-                            link={component.link}
-                            id={component.id}
-                            url={component.url}
-                            video={component.video}
-                            delete_button={
-                                component.title !== 'Index de proyectos' &&
+                {filterSearch.map((component) => (
+                    <AdminList
+                        key={component.id}
+                        nombreElemento={component.title}
+                        descripcion={component.description}
+                        link={component.link}
+                        id={component.id}
+                        url={component.url}
+                        video={component.video}
+                        deleteButton={
+                            component.title !== 'Index de proyectos' &&
                                 component.title !== 'Index de servicios'
-                                    ? delete_button
-                                    : false
-                            }
-                            extra={extra !== undefined ? extra.title : ''}
-                        />
-                    ))}
+                                ? deleteButton
+                                : false
+                        }
+                        extra={extra !== undefined ? extra.title : ''}
+                    />
+                ))}
             </Box>
         </>
     );
 };
 
-export default Component;
+Component.propTypes = {
+    componentsInThePage: PropTypes.arrayOf(
+        PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired,
+            link: PropTypes.string.isRequired,
+            id: PropTypes.number.isRequired,
+            url: PropTypes.string.isRequired,
+            video: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    extra: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+    }),
+    deleteButton: PropTypes.bool,
+};

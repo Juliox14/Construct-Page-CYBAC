@@ -1,6 +1,6 @@
 import Component from '..';
 
-const AdminPageMain = () => {
+export default function AdminPageMain() {
     const componentsInThePage = [
         {
             title: 'Deslizador principal',
@@ -43,5 +43,3 @@ const AdminPageMain = () => {
 
     return <Component componentsInThePage={componentsInThePage} />;
 };
-
-export default AdminPageMain;

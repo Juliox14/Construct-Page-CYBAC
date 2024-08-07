@@ -1,6 +1,6 @@
-import Component from '..';
+import Component from "..";
 
-const Clientes = () => {
+export default function Clientes() {
     const componentsInThePage = [
         {
             title: 'Titulo',
@@ -20,10 +20,7 @@ const Clientes = () => {
     ];
 
     return (
-        <>
-            <Component componentsInThePage={componentsInThePage} />
-        </>
+        <Component componentsInThePage={componentsInThePage} />
     );
-};
+}
 
-export default Clientes;

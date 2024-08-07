@@ -1,19 +1,20 @@
 'use client';
-//Imports de react.
+
+//  Imports de react.
 import { useEffect, useRef, useState } from 'react';
 
-//Imports de componentes de Material UI.
+//  Imports de componentes de Material UI.
 import { Box, Button, Alert } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-//Imports de estilos.
-import classes from './EditService.module.scss';
-
-//Imports de librerias externas.
+//  Imports de librerias externas.
 import axios from 'axios';
 
-const EditTitle = ({ dataSSR }) => {
-    console.log(dataSSR);
+//  Imports de estilos.
+import classes from './EditService.module.scss';
+
+
+export default function EditTitle({ dataSSR }) {
     const theme = useTheme();
 
     const [data, setData] = useState(dataSSR);
@@ -105,8 +106,8 @@ const EditTitle = ({ dataSSR }) => {
                         }}
                     >
                         <h2>
-                            ¿Estás seguro de actualizar el título de "Sobre
-                            nosotros"?
+                            ¿Estás seguro de actualizar el título de &quot;Sobre
+                            nosotros&quot;?
                         </h2>
                         <div
                             style={{
@@ -162,7 +163,7 @@ const EditTitle = ({ dataSSR }) => {
                         backgroundColor:
                             theme.palette.mode === 'dark' ? '#333' : '#f5f5f5',
                     }}
-                ></Box>
+                />
                 <form
                     className={classes.homeEdit_formSubservicio}
                     onSubmit={handleSubmit}
@@ -280,8 +281,9 @@ const EditTitle = ({ dataSSR }) => {
                                 accept="image/*"
                                 name="imagen2"
                                 onChange={(e) => {
+                                    const {files} = e.target;
                                     const updatedData = data;
-                                    updatedData.imgTitulo = e.target.files[0];
+                                    updatedData.imgTitulo = files[0];
                                     setData(updatedData);
                                 }}
                                 className={
@@ -320,4 +322,6 @@ const EditTitle = ({ dataSSR }) => {
     );
 };
 
-export default EditTitle;
+EditTeam.propTypes = {
+    dataSSR: PropTypes.object,
+};

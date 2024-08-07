@@ -214,7 +214,7 @@ function Header() {
                                             </Link>
                                         </li>
                                         <li>
-                                            <a href="/admin">
+                                            <a href="/admin/inicio">
                                                 <span>Portal</span>
                                             </a>
                                         </li>

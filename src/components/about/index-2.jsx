@@ -41,24 +41,22 @@ function AboutTwo({ aboutItemsTwo }) {
                                 {aboutItemsTwo?.descripcion_about}
                             </p>
                             <ul className={classes.list__item}>
-                                {aboutItemsTwo?.bullets_about
-                                    ?.split(',')
-                                    .map((item, index) => {
-                                        const CheckIcon = FaIcons.FaCheck;
-                                        return (
-                                            <li
-                                                className={classes.list}
-                                                key={index}
-                                            >
-                                                <div className={classes.icon}>
-                                                    <CheckIcon />
-                                                </div>
-                                                <div className={classes.text}>
-                                                    {item}
-                                                </div>
-                                            </li>
-                                        );
-                                    })}
+                                {aboutItemsTwo?.bullets_about?.split(',').map((item, index) => {
+                                    const CheckIcon = FaIcons.FaCheck;
+                                    return (
+                                        <li
+                                            className={classes.list}
+                                            key={`${item}-${index}`}
+                                        >
+                                            <div className={classes.icon}>
+                                                <CheckIcon />
+                                            </div>
+                                            <div className={classes.text}>
+                                                {item}
+                                            </div>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </div>
                     </Col>

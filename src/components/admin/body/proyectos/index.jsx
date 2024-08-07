@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Component from '..';
 
-const Proyectos = ({ proyectos }) => {
+export default function Proyectos({ proyectos }) {
     const [componentsInThePage, setComponentsInThePage] = useState([proyectos]);
 
     useEffect(() => {
@@ -22,19 +23,26 @@ const Proyectos = ({ proyectos }) => {
         };
 
         setComponentsInThePage([initialComponent, ...updatedComponents]);
-    }, []);
+    }, [proyectos]);
     return (
-        <>
-            <Component
-                componentsInThePage={componentsInThePage}
-                extra={{
-                    title: 'Agregar proyecto',
-                    href: '/admin/proyecto/newProject',
-                }}
-                delete_button={true}
-            />
-        </>
+        <Component
+            componentsInThePage={componentsInThePage}
+            extra={{
+                title: 'Agregar proyecto',
+                href: '/admin/proyecto/newProject',
+            }}
+            deleteButton
+        />
     );
 };
 
-export default Proyectos;
+Proyectos.propTypes = {
+    proyectos: PropTypes.arrayOf(
+        PropTypes.shape({
+            id_proyecto: PropTypes.number.isRequired,
+            nombre_proyecto: PropTypes.string.isRequired,
+            cliente: PropTypes.string.isRequired,
+            ruta_imagen: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+};

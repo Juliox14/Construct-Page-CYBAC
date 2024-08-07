@@ -1,11 +1,12 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Box, Button, Alert, TextareaAutosize } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Ruta from '../items-util/ruta';
 import classes from './EditFooter.module.scss';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types'; 
 
-const EditFooter = ({ footer }) => {
+export default function EditFooter ({ footer }) {
     const theme = useTheme();
     const [footerData, setFooterData] = useState({
         id_footer: 0,
@@ -15,7 +16,7 @@ const EditFooter = ({ footer }) => {
         codigo_postal: null,
         ubicacion: '',
     });
-    const [redes_sociales, setRedesSociales] = useState([
+    const [redesSociales, setRedesSociales] = useState([
         {
             id_red_social: 0,
             red_social: '',
@@ -54,10 +55,10 @@ const EditFooter = ({ footer }) => {
 
     const handleInputRedSocialChange = (e, index) => {
         const { name, value } = e.target;
-        const newRedes = redes_sociales;
+        const newRedes = redesSociales;
         newRedes[index][name] = value;
-        setRedesSociales([...redes_sociales], newRedes);
-        console.log(redes_sociales);
+        setRedesSociales([...redesSociales], newRedes);
+        console.log(redesSociales);
     };
 
     const handleInputNewRedSocialChange = (index, e) => {
@@ -114,7 +115,7 @@ const EditFooter = ({ footer }) => {
 
             const response2 = await axios.put(
                 '/api/redes_sociales',
-                redes_sociales
+                redesSociales
             );
             if (response2.status === 200) {
                 setMessage(response.data.message);
@@ -128,10 +129,9 @@ const EditFooter = ({ footer }) => {
                 }, 3000);
             }
         } else {
-            console.log(redes_sociales);
             const response = await axios.put(
                 '/api/redes_sociales',
-                redes_sociales
+                redesSociales
             );
             if (response.status === 200) {
                 setMessage(response.data.message);
@@ -213,9 +213,8 @@ const EditFooter = ({ footer }) => {
                         bgcolor: '#26ca7032',
                         zIndex: '1000',
                     }}
-                >
-                    {message}
-                </Alert>
+                    children={message}
+                />       
             )}
             <Ruta titulo={'Editar footer'} rutas={rutas} />
             <Box
@@ -386,16 +385,18 @@ const EditFooter = ({ footer }) => {
                         >
                             <h3>Redes sociales</h3>
                             <div className={classes.formSubservicio}>
-                                {redes_sociales.map((redSocial, index) => (
+                                {redesSociales.map((redSocial, index) => (
                                     <div
                                         className={classes.subservicioInd}
-                                        key={index}
+                                        key={`${redSocial.id_red_social}_${index}`}
                                     >
                                         <div
                                             className={classes.subservicioHead}
                                         >
                                             <h3>Editar red social</h3>
+                                            <label htmlFor={"deletedRedSocial"} style={{display: 'none'}}/>
                                             <button
+                                                id="deleteRedSocial"
                                                 type="button"
                                                 onClick={() =>
                                                     deleteRedSocial(
@@ -505,13 +506,15 @@ const EditFooter = ({ footer }) => {
                                 {newRedSocial.map((redSocial, index) => (
                                     <div
                                         className={classes.subservicioInd}
-                                        key={index}
+                                        key={`${redSocial.red_social}_${index}`}
                                     >
                                         <div
                                             className={classes.subservicioHead}
                                         >
                                             <h3>Añadir red social</h3>
+                                            <label htmlFor={"deletedNewRedSocial"} style={{display: 'none'}}/>
                                             <button
+                                                id="deleteNewRedSocial"
                                                 type="button"
                                                 onClick={() =>
                                                     deleteNewRedSocial()
@@ -661,7 +664,7 @@ const EditFooter = ({ footer }) => {
                     <form onSubmit={(e) => handleSubmiteEnlacesRapidos(e)}>
                         <h3>Enlaces rápidos</h3>
                         {enlacesRapidos.map((enlace, index) => (
-                            <div key={index} className={classes.formGroup}>
+                            <div key={`${enlace.nombre_enlace}_${index}`} className={classes.formGroup}>
                                 <label htmlFor={`nombre_enlace${index}`}>
                                     Nombre del enlace
                                 </label>
@@ -735,4 +738,29 @@ const EditFooter = ({ footer }) => {
     );
 };
 
-export default EditFooter;
+EditFooter.propTypes = {
+    footer: PropTypes.shape({
+        footer: PropTypes.shape({
+            id_footer: PropTypes.number.isRequired,
+            eslogan: PropTypes.string.isRequired,
+            telefono: PropTypes.string.isRequired,
+            direccion: PropTypes.string.isRequired,
+            codigo_postal: PropTypes.string.isRequired,
+            ubicacion: PropTypes.string.isRequired,
+        }).isRequired,
+        redes_sociales: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number.isRequired,
+                icono: PropTypes.string.isRequired,
+                enlace: PropTypes.string.isRequired,
+            })
+        ).isRequired,
+        enlaces_rapidos: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number.isRequired,
+                nombre: PropTypes.string.isRequired,
+                enlace: PropTypes.string.isRequired,
+            })
+        ).isRequired,
+    }).isRequired,
+};

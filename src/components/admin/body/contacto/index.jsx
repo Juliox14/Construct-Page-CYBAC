@@ -1,6 +1,6 @@
 import Component from '..';
 
-const Contacto = () => {
+export default function Contacto() {
     const componentsInThePage = [
         {
             title: 'Breadcrumb',
@@ -27,10 +27,6 @@ const Contacto = () => {
     ];
 
     return (
-        <>
-            <Component componentsInThePage={componentsInThePage} />
-        </>
+        <Component componentsInThePage={componentsInThePage} />
     );
 };
-
-export default Contacto;

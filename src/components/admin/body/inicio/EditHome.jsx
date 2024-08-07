@@ -1,10 +1,11 @@
 'use client';
 
-import sliderImage from '../../../../../public/images/admin/slider.png';
-//Imports de react.
+//  Imports de react.
 import { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 
-//Imports de componentes de Material UI.
+
+//  Imports de componentes de Material UI.
 import {
     Box,
     Button,
@@ -15,28 +16,30 @@ import {
 import { useTheme } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-//Imports de estilos.
+//  Imports de librerias externas.
+import axios from 'axios';
+import PropTypes from 'prop-types';
+import { Editor } from '@tinymce/tinymce-react';
+
+//  Imports de estilos.
+import sliderImage from '../../../../../public/images/admin/slider.png';
 import classes from './EditService.module.scss';
 
-//Imports de librerias externas.
-import axios from 'axios';
-import { Editor } from '@tinymce/tinymce-react';
-import Image from 'next/image';
-
-const EditHome = ({ hero, srcImages }) => {
+export default function EditHome({ hero, srcImages }) {
     const theme = useTheme();
 
-    const [dataSlider, setDataSlider] = useState(hero),
-        [newDataSlider, setnewDataSlider] = useState([]),
-        [editState, setEditState] = useState(false),
-        [disableButton, setDisableButton] = useState(false),
-        [message, setMessage] = useState(['', '']),
-        [confirmationUpdateDelete, setConfirmationUpdateDelete] = useState([
-            false,
-            false,
-        ]),
-        [deleteState, setDeleteState] = useState(undefined),
-        refForm = useRef(null);
+    const [dataSlider, setDataSlider] = useState(hero);
+    const [newDataSlider, setnewDataSlider] = useState([]);
+    const [editState, setEditState] = useState(false);
+    const [disableButton, setDisableButton] = useState(false);
+    const [message, setMessage] = useState(['', '']);
+    const [confirmationUpdateDelete, setConfirmationUpdateDelete] = useState([
+        false,
+        false,
+    ]);
+    const [deleteState, setDeleteState] = useState(undefined);
+    const refForm = useRef(null);
+
 
     useEffect(() => {
         if (dataSlider.length >= 10) {
@@ -82,11 +85,11 @@ const EditHome = ({ hero, srcImages }) => {
         const compareObjects = (obj1, obj2) => {
             if (obj1.length !== obj2.length) return false;
             if (obj1 === null || obj2 === null) return false;
-            for (let key in obj1) {
+            for (const key of Object.keys(obj1)) {
                 if (obj1[key] !== obj2[key]) {
                     return false;
                 }
-            }
+            }            
             return true;
         };
 
@@ -139,10 +142,11 @@ const EditHome = ({ hero, srcImages }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        dataSlider.map((item, index) => {
+
+        dataSlider.forEach((item) => {
             formData.append(`file${item.id}`, item.bg);
         });
-
+    
         const responseImageUrl = await axios.post('/api/upload', formData);
 
         const vida = responseImageUrl.data.url.filter((item) =>
@@ -207,7 +211,7 @@ const EditHome = ({ hero, srcImages }) => {
                         position: 'relative',
                     }}
                 >
-                    <CircularProgress size={'50px'} />
+                    <CircularProgress size='50px' />
                 </Box>
             )}
             {confirmationUpdateDelete[0] && (
@@ -307,8 +311,6 @@ const EditHome = ({ hero, srcImages }) => {
                         </h2>
                         <p style={{ textAlign: 'center' }}>
                             Esta acción no se puede deshacer
-                            <br />
-                            <span></span>
                         </p>
                         <div
                             style={{
@@ -409,16 +411,16 @@ const EditHome = ({ hero, srcImages }) => {
                                         name="imagen"
                                         onChange={(e) => {
                                             const updatedData = [...dataSlider];
-                                            updatedData[index].bg =
-                                                e.target.files[0];
+                                            const { files } = e.target;
+                                            updatedData[index].bg = files[0];
                                             setDataSlider(updatedData);
-                                        }}
+                                        }}                                        
                                         className={
                                             theme.palette.mode === 'dark'
                                                 ? classes.formControlDark
                                                 : classes.formControl
                                         }
-                                        required={heroItem.bg ? false : true}
+                                        required={Boolean(heroItem.bg)}
                                     />
                                 </div>
                             </div>
@@ -642,4 +644,7 @@ const EditHome = ({ hero, srcImages }) => {
     );
 };
 
-export default EditHome;
+EditHome.propTypes = {
+    hero: PropTypes.string.isRequired,
+    srcImages: PropTypes.arrayOf(PropTypes.string).isRequired,
+};

@@ -39,7 +39,7 @@ const Servicios = () => {
                     title: 'Agregar servicio',
                     href: '/admin/servicio/newService',
                 }}
-                delete_button={true}
+                deleteButton={true}
             />
         </>
     );

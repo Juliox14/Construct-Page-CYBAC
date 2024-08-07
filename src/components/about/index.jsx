@@ -1,14 +1,16 @@
 'use client';
+
 import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'react-bootstrap';
 import * as FaIcons from 'react-icons/fa';
-import classes from './about.module.scss';
+import Image from 'next/image';
 import DOMPurify from 'dompurify';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import classes from './about.module.scss';
 
 function AboutOne({ aboutItem }) {
     const [sanitizedItem, setSanitizedItem] = useState([]);
+
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const sanitized = {
@@ -21,13 +23,9 @@ function AboutOne({ aboutItem }) {
         }
     }, [aboutItem]);
 
-    const imageLoader1 = () => {
-        return `${aboutItem.img1}`;
-    };
+    const imageLoader1 = () => `${aboutItem.img1}`;
+    const imageLoader2 = () => `${aboutItem.img2}`;
 
-    const imageLoader2 = () => {
-        return `${aboutItem.img2}`;
-    };
     return (
         <div className={classes.area}>
             <Container key={aboutItem.id_nosotros}>

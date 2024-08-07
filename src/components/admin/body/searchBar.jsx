@@ -1,5 +1,6 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import {
     Box,
     Autocomplete,
@@ -21,14 +22,16 @@ export default function SearchBar({ top100Films, callBack, extra }) {
 
     const handleFocusSearch = () => {
         searchRef.current.focus();
-        console.log('focus');
     };
 
     useEffect(() => {
-        if (value === null) return callBack({ title: '' });
-        callBack(value);
-    }, [value]);
-
+        if (value === null) {
+            callBack({ title: '' });
+        } else {
+            callBack(value);
+        }
+    }, [value, callBack]);
+    
     return (
         <Box
             sx={{
@@ -91,3 +94,9 @@ export default function SearchBar({ top100Films, callBack, extra }) {
         </Box>
     );
 }
+
+SearchBar.propTypes = {
+    top100Films: PropTypes.array.isRequired,
+    callBack: PropTypes.func.isRequired,
+    extra: PropTypes.object,
+};

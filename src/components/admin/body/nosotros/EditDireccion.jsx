@@ -1,4 +1,5 @@
 'use client';
+
 //Imports de react.
 import { useEffect, useRef, useState } from 'react';
 
@@ -6,14 +7,15 @@ import { useEffect, useRef, useState } from 'react';
 import { Box, Button, CircularProgress, Alert, TextField } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-//Imports de estilos.
-import classes from './EditService.module.scss';
-
 //Imports de librerias externas.
 import axios from 'axios';
 import { Editor } from '@tinymce/tinymce-react';
 
-const EditTitle = ({ dataSSR }) => {
+//Imports de estilos.
+import classes from './EditService.module.scss';
+
+
+export default function EditTitle({ dataSSR }) {
     const theme = useTheme();
 
     const [data, setData] = useState(dataSSR);
@@ -133,7 +135,7 @@ const EditTitle = ({ dataSSR }) => {
                         position: 'relative',
                     }}
                 >
-                    <CircularProgress size={'50px'} />
+                    <CircularProgress size='50px' />
                 </Box>
             )}
             <Box
@@ -175,7 +177,7 @@ const EditTitle = ({ dataSSR }) => {
                                 id={`mision_about_${data.mision}`}
                                 initialValue={data.mision}
                                 onEditorChange={(content) => {
-                                    let updatedData = data;
+                                    const updatedData = data;
                                     updatedData.mision = content;
                                     setData(updatedData);
                                 }}
@@ -321,4 +323,10 @@ const EditTitle = ({ dataSSR }) => {
     );
 };
 
-export default EditTitle;
+EditTitle.defaultProps = {
+    dataSSR: {
+        mision: '',
+        vision: '',
+        valores: '',
+    },
+};

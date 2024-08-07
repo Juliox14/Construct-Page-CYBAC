@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Box, TextareaAutosize, Alert } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import Ruta from '../../items-util/ruta';
 import BotonFixed from '../../items-util/botonFixed';
 import classes from './EditContact.module.scss';
-import { useTheme } from '@mui/material/styles';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
-const EditInformacion = ({ contacto }) => {
+
+export default function EditInformacion({ contacto }) {
     const [contactoData, setContactoData] = useState({
         id_contacto: 0,
         titulo_breadcrumb: '',
@@ -92,10 +94,10 @@ const EditInformacion = ({ contacto }) => {
                         bgcolor: '#26ca7032',
                         zIndex: '1000',
                     }}
-                >
-                    {message}
-                </Alert>
+                    children={message}
+                />
             )}
+
             <Ruta titulo={'Editar información de contacto'} rutas={rutas} />
             <div className={classes.formContainer}>
                 <Box
@@ -356,5 +358,22 @@ const EditInformacion = ({ contacto }) => {
         </Box>
     );
 };
-
-export default EditInformacion;
+EditInformacion.propTypes = {
+    contacto: PropTypes.shape({
+        id_contacto: PropTypes.number,
+        titulo_breadcrumb: PropTypes.string,
+        subtitulo_breadcrumb: PropTypes.string,
+        descripcion_breadcrumb: PropTypes.string,
+        ruta_imagen: PropTypes.string,
+        titulo: PropTypes.string,
+        subtitulo: PropTypes.string,
+        descripcion: PropTypes.string,
+        direccion: PropTypes.string,
+        telefono: PropTypes.string,
+        horario: PropTypes.string,
+        whatsapp: PropTypes.string,
+        email: PropTypes.string,
+        titulo_formulario: PropTypes.string,
+        descripcion_formulario: PropTypes.string,
+    }).isRequired,
+};

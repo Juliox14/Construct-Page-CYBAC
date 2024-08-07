@@ -1,7 +1,12 @@
-//Imports de react.
+//  Imports de react.
 import { useEffect, useState, useRef } from 'react';
 
-//Imports de componentes de Material UI.
+//  Imports de librerias externas.
+import axios from 'axios';
+import Ruta from '../items-util/ruta';
+import BotonFixed from '../items-util/botonFixed';
+
+//  Imports de componentes de Material UI.
 import {
     Box,
     Button,
@@ -11,18 +16,14 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-//Imports de componentes externos.
+//  Imports de componentes externos.
 import { Editor } from '@tinymce/tinymce-react';
 
-//Imports de estilos.
+//  Imports de estilos.
 import classes from './EditService.module.scss';
 
-//Imports de librerias externas.
-import axios from 'axios';
-import Ruta from '../items-util/ruta';
-import BotonFixed from '../items-util/botonFixed';
 
-const EditService = ({ servicio }) => {
+export default function EditService({ servicio }) {
     const theme = useTheme();
     const [servicioData, setServicioData] = useState({
         id_servicio: 0,
@@ -729,5 +730,3 @@ const EditService = ({ servicio }) => {
         </>
     );
 };
-
-export default EditService;

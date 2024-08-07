@@ -14,12 +14,14 @@ export default async function handler(req, res) {
                 });
             }
             break;
+
         case 'POST':
             try {
-                const proyecto = constructSetString(req.body);
+                const proyecto = convertKeysToSnake(req.body);
+                const proyectoSetString = constructSetString(proyecto);
                 const [result] = await db.execute(
-                    `INSERT INTO proyectos SET ${proyecto.setString};`,
-                    [...proyecto.values]
+                    `INSERT INTO proyectos SET ${proyectoSetString.setString};`,
+                    [...proyectoSetString.values]
                 );
                 res.status(200).json({
                     message: 'Proyecto creado',
@@ -47,3 +49,12 @@ const constructSetString = (data) => {
     );
     return { setString, values };
 };
+
+const camelToSnake = (str) =>
+    str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+
+const convertKeysToSnake = (obj) =>
+    Object.keys(obj).reduce((acc, key) => {
+        acc[camelToSnake(key)] = obj[key];
+        return acc;
+    }, {});

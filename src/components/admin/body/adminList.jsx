@@ -1,4 +1,4 @@
-import classes from './adminList.module.scss';
+import PropTypes from 'prop-types'; // Módulos externos
 import Link from 'next/link';
 import axios from 'axios';
 
@@ -12,14 +12,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 // Elementos de react
 import { useState } from 'react';
 
+// Estilos
+import classes from './adminList.module.scss';
+
+
 export default function AdminList({
-    nombre_elemento,
+    nombreElemento,
     descripcion,
     link,
     id,
     url,
     video,
-    delete_button,
+    deleteButton,
     extra,
 }) {
     const theme = useTheme();
@@ -63,8 +67,8 @@ export default function AdminList({
     };
 
     return (
-        <>
-            {delete_button === false || delete_button === undefined ? (
+        <div>
+            {deleteButton === false || deleteButton === undefined ? (
                 <Box
                     component="section"
                     className={classes.adminList_boxFatherItemList}
@@ -85,6 +89,8 @@ export default function AdminList({
                         href={link}
                         onMouseOver={handleOver}
                         onMouseOut={handleOut}
+                        onFocus={handleOver}
+                        onBlur={handleOut}
                     />
                     {hover && (
                         <div
@@ -136,7 +142,7 @@ export default function AdminList({
                                         <Image
                                             key={id}
                                             src={url}
-                                            alt={nombre_elemento}
+                                            alt={nombreElemento}
                                             fill
                                             style={{ borderRadius: '20px' }}
                                             onLoad={() => handleOutProgress()}
@@ -165,7 +171,7 @@ export default function AdminList({
                             </div>
                         </div>
                         <p>
-                            <strong>{nombre_elemento}</strong>
+                            <strong>{nombreElemento}</strong>
                         </p>
                         <p className={classes.desc}>{descripcion}</p>
                     </Box>
@@ -203,6 +209,7 @@ export default function AdminList({
                         }}
                     >
                         <Button
+                            type="button"
                             variant="contained"
                             sx={{
                                 backgroundColor: '#d32f2f',
@@ -217,6 +224,7 @@ export default function AdminList({
                             Eliminar
                         </Button>
                         <Button
+                            type="button"
                             variant="contained"
                             sx={{
                                 backgroundColor: 'gray',
@@ -275,7 +283,9 @@ export default function AdminList({
                                         }}
                                     />
                                 </Link>
+                                <label htmlFor="delete" style={{ display: 'none' }} />
                                 <button
+                                    type="button"
                                     onClick={() => setDeleteConfirm(true)}
                                     style={{
                                         border: 'none',
@@ -283,6 +293,7 @@ export default function AdminList({
                                         padding: '0',
                                         cursor: 'pointer',
                                     }}
+                                    id="delete"
                                 >
                                     <DeleteIcon
                                         fontSize="large"
@@ -333,7 +344,7 @@ export default function AdminList({
                                                 <img
                                                     key={id}
                                                     src={url}
-                                                    alt={nombre_elemento}
+                                                    alt={nombreElemento}
                                                     style={{
                                                         borderRadius: '20px',
                                                         maxWidth: '100%',
@@ -367,14 +378,25 @@ export default function AdminList({
                                     )}
                                 </div>
                             </div>
-                            <p className={classes.nombre_elemento}>
-                                <strong>{nombre_elemento}</strong>
+                            <p className={classes.nombreElemento}>
+                                <strong>{nombreElemento}</strong>
                             </p>
                             <p className={classes.desc}>{descripcion}</p>
                         </Box>
                     </div>
                 </Box>
             )}
-        </>
+        </div>
     );
 }
+
+AdminList.propTypes = {
+    nombreElemento: PropTypes.string.isRequired,
+    descripcion: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    video: PropTypes.string,
+    deleteButton: PropTypes.bool,
+    extra: PropTypes.string,
+};

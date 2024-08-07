@@ -1,8 +1,8 @@
-import { Button } from '@mui/material';
+import PropTypes from 'prop-types';
+import { Button, useTheme } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { useTheme } from '@mui/material';
 
-const AddBtn = ({ obj }) => {
+export default function AddBtn ({ obj }) {
     const { href, title } = obj;
     const theme = useTheme();
     return (
@@ -24,4 +24,9 @@ const AddBtn = ({ obj }) => {
     );
 };
 
-export default AddBtn;
+AddBtn.propTypes = {
+    obj: PropTypes.shape({
+        href: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+    }).isRequired,
+};

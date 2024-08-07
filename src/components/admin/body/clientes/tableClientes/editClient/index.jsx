@@ -1,33 +1,30 @@
 import { useEffect, useState } from 'react';
-import classes from './styleEditClient.module.css';
-import ReactInput from '../../../../../login/reactInput';
+import axios from 'axios';
+import { Box, Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import axios from 'axios';
-import { Box, Button } from '@mui/material';
 import Alert from '@mui/material/Alert';
+import ReactInput from '../../../../../login/reactInput';
+import classes from './styleEditClient.module.css';
+import PropTypes from 'prop-types';
 
 export default function EditClient({
     inData,
     dataEditClient,
     showComponent = true,
 }) {
-    const [showComponentFromEditClient, setShowComponentFromEditClient] =
-        useState(showComponent);
+    const [showComponentFromEditClient, setShowComponentFromEditClient] = useState(showComponent);
     const [dataClient, setDataClient] = useState(dataEditClient);
-    const [showLogo, setShowLogo] = useState(
-        dataClient.ruta_logo ? true : false
-    );
+    const [showLogo, setShowLogo] = useState(Boolean(dataClient.ruta_logo));
     const [alert, setAlert] = useState(false);
     const [alertValue, setAlertValue] = useState('Algo Salió mal');
     const [succesAlert, setSuccesAlert] = useState(false);
     const [check1, setCheck1] = useState(false);
     const [check2, setCheck2] = useState(false);
 
-    console.log(dataClient);
     useEffect(() => {
         if (dataClient.visualizarLista === 1) {
             setCheck1(true);
@@ -35,22 +32,13 @@ export default function EditClient({
         if (dataClient.visualizarSlider === 1) {
             setCheck2(true);
         }
-    }, [dataEditClient]);
+    }, [dataClient.visualizarLista, dataClient.visualizarSlider]);
 
-    //Mui materials
+    // Mui materials
     const currencies = [
-        {
-            value: 'Municipios',
-            label: 'Municipios',
-        },
-        {
-            value: 'Particulares',
-            label: 'Particulares',
-        },
-        {
-            value: 'Iniciativa Privada',
-            label: 'Iniciativa Privada',
-        },
+        { value: 'Municipios', label: 'Municipios' },
+        { value: 'Particulares', label: 'Particulares' },
+        { value: 'Iniciativa Privada', label: 'Iniciativa Privada' },
     ];
 
     async function HandlerOnClickSave(e) {
@@ -73,7 +61,7 @@ export default function EditClient({
             await axios.post('/api/editClient', clientData);
         }
         setSuccesAlert(true);
-        setInterval(() => {
+        setTimeout(() => {
             setSuccesAlert(false);
             setShowComponentFromEditClient(false);
             inData(showComponentFromEditClient);
@@ -89,12 +77,7 @@ export default function EditClient({
     const callBackOnInputChange = (name, value) => {
         const data = { ...dataClient };
         if (name === 'ruta_logo') {
-            if (value == '' && showLogo === true) {
-                setShowLogo(false);
-            }
-            if (value != '' && showLogo === false) {
-                setShowLogo(true);
-            }
+            setShowLogo(value !== '');
         }
         data[name] = value;
         setDataClient(data);
@@ -102,42 +85,34 @@ export default function EditClient({
 
     function onCheckedChange1() {
         if (check2 === false && check1 === true) {
-            setAlertValue(
-                'Tienes que seleccionar al menos un sitio para mostrar al cliente'
-            );
+            setAlertValue('Tienes que seleccionar al menos un sitio para mostrar al cliente');
             setAlert(true);
-            setInterval(() => {
+            setTimeout(() => {
                 setAlert(false);
             }, 3000);
         } else {
             setCheck1(!check1);
         }
     }
+
     function onCheckedChange2() {
-        if (
-            (dataClient.ruta_logo === '' ||
-                dataClient.ruta_logo == undefined) &&
-            check2 === false
-        ) {
-            setAlertValue(
-                'Tienes que tener un logo para poder colocar el cliente en el Slider'
-            );
+        if ((dataClient.ruta_logo === '' || dataClient.ruta_logo === undefined) && check2 === false) {
+            setAlertValue('Tienes que tener un logo para poder colocar el cliente en el Slider');
             setAlert(true);
-            setInterval(() => {
+            setTimeout(() => {
                 setAlert(false);
             }, 3000);
         } else if (check1 === false && check2 === true) {
-            setAlertValue(
-                'Tienes que seleccionar al menos un sitio para mostrar al cliente'
-            );
+            setAlertValue('Tienes que seleccionar al menos un sitio para mostrar al cliente');
             setAlert(true);
-            setInterval(() => {
+            setTimeout(() => {
                 setAlert(false);
             }, 3000);
         } else {
             setCheck2(!check2);
         }
     }
+
     return (
         <div className={classes.body}>
             <div className={classes.body2}>
@@ -147,9 +122,7 @@ export default function EditClient({
                 <form
                     id="basic-form"
                     action="/submit"
-                    onSubmit={(e) => {
-                        HandlerOnClickSave(e);
-                    }}
+                    onSubmit={HandlerOnClickSave}
                     className={classes.form}
                 >
                     <ReactInput
@@ -157,12 +130,11 @@ export default function EditClient({
                         placeHolder="Nombre"
                         value={dataClient.nombre}
                         callBackOnInputChange={callBackOnInputChange}
-                        isRequired={true}
+                        isRequired
                     />
                     <div className={classes.divInputOptions}>
                         <TextField
                             id="outlined-select-currency"
-                            isRequired
                             select
                             label="Select"
                             defaultValue={dataClient.clasificacion}
@@ -173,10 +145,7 @@ export default function EditClient({
                             }}
                         >
                             {currencies.map((option) => (
-                                <MenuItem
-                                    key={option.value}
-                                    value={option.value}
-                                >
+                                <MenuItem key={option.value} value={option.value}>
                                     {option.label}
                                 </MenuItem>
                             ))}
@@ -205,7 +174,7 @@ export default function EditClient({
                         placeHolder="Alt imagen"
                         value={dataClient.alt}
                         callBackOnInputChange={callBackOnInputChange}
-                        isRequired={true}
+                        isRequired
                     />
                     <FormGroup className={classes.divInputCheck}>
                         <FormControlLabel
@@ -213,9 +182,7 @@ export default function EditClient({
                                 <Checkbox
                                     checked={check1}
                                     onChange={onCheckedChange1}
-                                    sx={{
-                                        '& .MuiSvgIcon-root': { fontSize: 20 },
-                                    }}
+                                    sx={{ '& .MuiSvgIcon-root': { fontSize: 20 } }}
                                 />
                             }
                             label="Mostrar en tabla"
@@ -225,9 +192,7 @@ export default function EditClient({
                                 <Checkbox
                                     checked={check2}
                                     onChange={onCheckedChange2}
-                                    sx={{
-                                        '& .MuiSvgIcon-root': { fontSize: 20 },
-                                    }}
+                                    sx={{ '& .MuiSvgIcon-root': { fontSize: 20 } }}
                                 />
                             }
                             label="Mostrar en Slider"
@@ -242,14 +207,10 @@ export default function EditClient({
                                 width: '200px',
                                 height: '50px',
                                 bgcolor: '#014655',
-                                ':hover': {
-                                    bgcolor: '#0d5c6c',
-                                },
+                                ':hover': { bgcolor: '#0d5c6c' },
                             }}
                         >
-                            {dataClient.titulo
-                                ? dataClient.titulo
-                                : 'Guardar Cambios'}
+                            {dataClient.titulo ? dataClient.titulo : 'Guardar Cambios'}
                         </Button>
                         <Button
                             variant="contained"
@@ -259,9 +220,7 @@ export default function EditClient({
                                 width: '200px',
                                 height: '50px',
                                 bgcolor: '#014655',
-                                ':hover': {
-                                    bgcolor: '#0d5c6c',
-                                },
+                                ':hover': { bgcolor: '#0d5c6c' },
                             }}
                         >
                             Cancelar
@@ -272,11 +231,7 @@ export default function EditClient({
             {alert && (
                 <Alert
                     severity="warning"
-                    sx={{
-                        position: 'absolute',
-                        top: '50px',
-                        left: '100px',
-                    }}
+                    sx={{ position: 'absolute', top: '50px', left: '100px' }}
                 >
                     {alertValue}
                 </Alert>
@@ -284,15 +239,9 @@ export default function EditClient({
             {succesAlert && (
                 <Alert
                     severity="success"
-                    sx={{
-                        position: 'absolute',
-                        top: '50px',
-                        left: '100px',
-                    }}
+                    sx={{ position: 'absolute', top: '50px', left: '100px' }}
                 >
-                    {dataClient.titulo
-                        ? 'Cliente guardado con éxito'
-                        : 'Cliente editado con éxito'}
+                    {dataClient.titulo ? 'Cliente guardado con éxito' : 'Cliente editado con éxito'}
                 </Alert>
             )}
             {showLogo && (
@@ -306,3 +255,9 @@ export default function EditClient({
         </div>
     );
 }
+
+EditClient.propTypes = {
+    inData: PropTypes.func,
+    dataEditClient: PropTypes.object,
+    showComponent: PropTypes.bool,
+};

@@ -1,18 +1,20 @@
 'use client';
-//Imports de react.
-import { useEffect, useRef, useState } from 'react';
 
-//Imports de componentes de Material UI.
-import { Box, Button, CircularProgress, Alert, TextField } from '@mui/material';
+//  Imports de react.
+import { useRef, useState } from 'react';
+
+//  Imports de componentes de Material UI.
+import { Box, Button, Alert } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-//Imports de estilos.
-import classes from './EditService.module.scss';
-
-//Imports de librerias externas.
+//  Imports de librerias externas.
 import axios from 'axios';
 
-const EditTeam = ({ dataSSR }) => {
+//  Imports de estilos.
+import classes from './EditService.module.scss';
+
+
+export default function EditTeam({ dataSSR }) {
     const theme = useTheme();
 
     const [data, setData] = useState(dataSSR);
@@ -239,4 +241,6 @@ const EditTeam = ({ dataSSR }) => {
     );
 };
 
-export default EditTeam;
+EditTeam.propTypes = {
+    dataSSR: PropTypes.object,
+};

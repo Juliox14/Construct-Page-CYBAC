@@ -1,19 +1,21 @@
 'use client';
-//Imports de react.
+
+//  Imports de react.
 import { useEffect, useRef, useState } from 'react';
 
-//Imports de componentes de Material UI.
+//  Imports de componentes de Material UI.
 import { Box, Button, CircularProgress, Alert, TextField } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-//Imports de estilos.
-import classes from './EditService.module.scss';
-
-//Imports de librerias externas.
+//  Imports de librerias externas.
 import axios from 'axios';
 import { Editor } from '@tinymce/tinymce-react';
 
-const EditAbout = ({ dataSSR }) => {
+//  Imports de estilos.
+import classes from './EditService.module.scss';
+
+
+export default function EditAbout({ dataSSR }) {
     const theme = useTheme();
 
     const [data, setData] = useState(dataSSR);
@@ -146,7 +148,7 @@ const EditAbout = ({ dataSSR }) => {
                         position: 'relative',
                     }}
                 >
-                    <CircularProgress size={'50px'} />
+                    <CircularProgress size='50px' />
                 </Box>
             )}
             <Box
@@ -292,7 +294,7 @@ const EditAbout = ({ dataSSR }) => {
                                 onChange={(e) => {
                                     const updatedData = data;
                                     updatedData.anios_experiencia = parseInt(
-                                        e.target.value
+                                        e.target.value, 10
                                     );
                                     setData(updatedData);
                                 }}
@@ -308,8 +310,9 @@ const EditAbout = ({ dataSSR }) => {
                                 accept="image/*"
                                 name="imagen"
                                 onChange={(e) => {
+                                    const {files} = e.target;
                                     const updatedData = data;
-                                    updatedData.img1 = e.target.files[0];
+                                    updatedData.img1 = files[0];
                                     setData(updatedData);
                                 }}
                                 required
@@ -330,8 +333,9 @@ const EditAbout = ({ dataSSR }) => {
                                 accept="image/*"
                                 name="imagen2"
                                 onChange={(e) => {
+                                    const {files} = e.target;
                                     const updatedData = data;
-                                    updatedData.img2 = e.target.files[0];
+                                    updatedData.img2 = files[0];
                                     setData(updatedData);
                                 }}
                                 required
@@ -458,5 +462,3 @@ const EditAbout = ({ dataSSR }) => {
         </>
     );
 };
-
-export default EditAbout;

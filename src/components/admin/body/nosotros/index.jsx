@@ -1,6 +1,6 @@
 import Component from '..';
 
-const Nosotros = () => {
+export default function Nosotros() {
     const componentsInThePage = [
         {
             title: 'Titulo',
@@ -42,11 +42,5 @@ const Nosotros = () => {
         },
     ];
 
-    return (
-        <>
-            <Component componentsInThePage={componentsInThePage} />
-        </>
-    );
+    return <Component componentsInThePage={componentsInThePage} />;
 };
-
-export default Nosotros;

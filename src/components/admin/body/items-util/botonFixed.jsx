@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
 
-const BotonFixed = ({ metodo }) => {
+export default function BotonFixed({ metodo }){
     return (
         <Button
             type="submit"
@@ -18,11 +19,13 @@ const BotonFixed = ({ metodo }) => {
                     color: '#F1F1F1',
                 },
             }}
-            onClick={(e) => metodo(e)}
+            onClick={(e) => {return metodo(e)}}
         >
             Guardar Cambios
         </Button>
     );
 };
 
-export default BotonFixed;
+BotonFixed.propTypes = {
+    metodo: PropTypes.func.isRequired,
+};

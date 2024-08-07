@@ -1,9 +1,10 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useTheme } from '@mui/material';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import classes from './ruta.module.scss';
 
-const Ruta = ({ rutas, titulo }) => {
+export default function Ruta ({ rutas, titulo }){
     const theme = useTheme();
     return (
         <div className={classes.ruta}>
@@ -46,7 +47,7 @@ const Ruta = ({ rutas, titulo }) => {
                     }}
                 >
                     {rutas.map((ruta, index) => (
-                        <span>
+                        <span key={`${ruta.nombre}_${index}`}>
                             <Link href={ruta.link}>{ruta.nombre}</Link>
                             {rutas.length - index > 1 ? (
                                 <span>{' > '} </span>
@@ -61,4 +62,12 @@ const Ruta = ({ rutas, titulo }) => {
     );
 };
 
-export default Ruta;
+Ruta.propTypes = {
+    rutas: PropTypes.arrayOf(
+        PropTypes.shape({
+            link: PropTypes.string.isRequired,
+            nombre: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    titulo: PropTypes.string.isRequired,
+};
