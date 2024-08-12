@@ -464,7 +464,7 @@ export default function NewProject() {
                                         id="button_richtext"
                                         type="button"
                                         onClick={() => handleRichtexts()}
-                                        arial-label="Cerrar sección Richtext"
+                                        aria-label="Cerrar sección Richtext"
                                     >
                                         <svg
                                             width="24"
@@ -710,7 +710,7 @@ export default function NewProject() {
                                         id="button_overview"
                                         type="button"
                                         onClick={() => handleOverview()}
-                                        arial-label="Cerrar sección Overview"
+                                        aria-label="Cerrar sección Overview"
                                     >
                                         <svg
                                             width="24"

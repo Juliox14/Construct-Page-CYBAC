@@ -22,7 +22,6 @@ import BotonFixed from '../items-util/botonFixed';
 
 //  Imports de estilos.
 import classes from './EditService.module.scss';
-import { Edit } from '@mui/icons-material';
 
 
 export default function EditService({ servicio }) {
@@ -58,16 +57,17 @@ export default function EditService({ servicio }) {
     }, [servicio]);
 
     const addSubservice = () => {
-        const id_servicio = servicioData.id_servicio;
+        const { id_servicio: idServicio } = servicioData;
         setNewSubservicioData([
             ...newSubservicioData,
             {
-                id_servicio: id_servicio,
+                id_servicio: idServicio,
                 titulo_subservicio: '',
                 descripcion_subservicio: '',
             },
         ]);
     };
+    
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -164,9 +164,9 @@ export default function EditService({ servicio }) {
         }
     };
 
-    const deleteSubservice = async (id_subservicio) => {
+    const deleteSubservice = async (idSubservicio) => {
         const response = await axios.delete('/api/subservices', {
-            data: { id_subservicio },
+            data: { id_subservicio: idSubservicio },
         });
         if (response.status === 200) {
             setMessage(response.data.message);
@@ -198,7 +198,7 @@ export default function EditService({ servicio }) {
     ];
 
     return (
-        <>
+        <div>
             {servicioData.descripcion === '' ? (
                 <Box
                     sx={{
@@ -217,7 +217,7 @@ export default function EditService({ servicio }) {
                         position: 'relative',
                     }}
                 >
-                    <CircularProgress size={'50px'} />
+                    <CircularProgress size='50px' />
                 </Box>
             ) : (
                 <Box
@@ -253,7 +253,7 @@ export default function EditService({ servicio }) {
                             {message}
                         </Alert>
                     )}
-                    <Ruta titulo={'Editar servicio'} rutas={rutas} />
+                    <Ruta titulo='Editar servicio' rutas={rutas} />
                     <Box
                         sx={{
                             bgcolor:
@@ -346,7 +346,7 @@ export default function EditService({ servicio }) {
                                                 ? classes.formControlDark
                                                 : classes.formControl
                                         }
-                                    ></TextareaAutosize>
+                                    />
                                 </div>
                                 <div className={classes.formGroup}>
                                     <label htmlFor="titulo">Título</label>
@@ -427,7 +427,7 @@ export default function EditService({ servicio }) {
                                         }
                                     />
                                 </div>
-                                <div className={classes.button}></div>
+                                <div className={classes.button}/>
                             </form>
                         </Box>
                         <Box
@@ -451,7 +451,7 @@ export default function EditService({ servicio }) {
                                 <div className={classes.formSubservicio}>
                                     {subServiciosData.map((item, index) => (
                                         <div
-                                            key={index}
+                                            key={item.id_subservicio}
                                             className={classes.subservicioInd}
                                         >
                                             <div
@@ -470,6 +470,7 @@ export default function EditService({ servicio }) {
                                                             item.id_subservicio
                                                         )
                                                     }
+                                                    aria-label='Eliminar subservicio'
                                                 >
                                                     <svg
                                                         width="24"
@@ -577,7 +578,7 @@ export default function EditService({ servicio }) {
                                     {newSubservicioData.map((item, index) => (
                                         <div
                                             className={classes.subservicioInd}
-                                            key={index}
+                                            key={item.titulo_subservicio}
                                         >
                                             <div
                                                 className={
@@ -590,6 +591,7 @@ export default function EditService({ servicio }) {
                                                     onClick={() =>
                                                         deleteNewSubservice()
                                                     }
+                                                    aria-label='Eliminar nuevo subservicio'
                                                 >
                                                     <svg
                                                         width="24"
@@ -730,7 +732,7 @@ export default function EditService({ servicio }) {
                     <BotonFixed metodo={handleBothSubmits} />
                 </Box>
             )}
-        </>
+        </div>
     );
 };
 

@@ -2,19 +2,19 @@ import AdminLayout from '../../../../../components/admin';
 import IndexServiceEdit from '../../../../../components/admin/body/servicios/IndexServiceEdit';
 import { getElement } from '../../../../../lib/items';
 
-function ServicioEdit({ home_services }) {
+function ServicioEdit({ homeServices }) {
     return (
         <AdminLayout>
-            <IndexServiceEdit home_services={home_services} />
+            <IndexServiceEdit homeServices={homeServices} />
         </AdminLayout>
     );
 }
 
 export async function getServerSideProps() {
-    const home_services = await getElement('home_services');
+    const homeServices = await getElement('home_services');
     return {
         props: {
-            home_services: home_services[0],
+            homeServices: homeServices[0],
         },
     };
 }

@@ -1,3 +1,9 @@
+// Imports de react
+import { useState } from 'react';
+
+// Imports de axios
+import axios from 'axios';
+
 // Imports de mui material
 import { Box, Alert, TextareaAutosize } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -9,25 +15,19 @@ import classes from './EditService.module.scss';
 import Ruta from '../items-util/ruta';
 import BotonFixed from '../items-util/botonFixed';
 
-// Imports de react
-import { useState } from 'react';
-
-// Imports de axios
-import axios from 'axios';
-
-const IndexServiceEdit = ({ home_services }) => {
+export default function IndexServiceEdit({ homeServices }){
     const theme = useTheme();
-    const [home_services_data, setHome_services_data] = useState(home_services);
+    const [homeServicesData, sethomeServicesData] = useState(homeServices);
     const [message, setMessage] = useState('');
-    const [bullets, setBullets] = useState(home_services.bullets_about || '');
+    const [bullets, setBullets] = useState(homeServices.bullets_about || '');
 
     const handleBulletsChange = (index, value) => {
         const bulletsArray = bullets.split(',');
         bulletsArray[index] = value;
         const newBullets = bulletsArray.join(',');
         setBullets(newBullets);
-        setHome_services_data({
-            ...home_services_data,
+        sethomeServicesData({
+            ...homeServicesData,
             bullets_about: newBullets,
         });
     };
@@ -40,8 +40,8 @@ const IndexServiceEdit = ({ home_services }) => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setHome_services_data({
-            ...home_services_data,
+        sethomeServicesData({
+            ...homeServicesData,
             [name]: value,
         });
     };
@@ -50,7 +50,7 @@ const IndexServiceEdit = ({ home_services }) => {
         e.preventDefault();
         const response = await axios.put(
             `/api/home_services`,
-            home_services_data
+            homeServicesData
         );
         if (response.status === 200) {
             setMessage(response.data.message);
@@ -94,7 +94,7 @@ const IndexServiceEdit = ({ home_services }) => {
                     {message}
                 </Alert>
             )}
-            <Ruta rutas={rutas} titulo={'Editar index de servicios'} />
+            <Ruta rutas={rutas} titulo='Editar index de servicios' />
             <div className={classes.formContainer}>
                 <Box
                     sx={{
@@ -122,7 +122,7 @@ const IndexServiceEdit = ({ home_services }) => {
                                 type="text"
                                 id="titulo_breadcrumb"
                                 name="titulo_breadcrumb"
-                                value={home_services_data.titulo_breadcrumb}
+                                value={homeServicesData.titulo_breadcrumb}
                                 onChange={handleInputChange}
                                 className={
                                     theme.palette.mode === 'dark'
@@ -140,7 +140,7 @@ const IndexServiceEdit = ({ home_services }) => {
                                 type="text"
                                 id="subtitulo_breadcrumb"
                                 name="subtitulo_breadcrumb"
-                                value={home_services_data.subtitulo_breadcrumb}
+                                value={homeServicesData.subtitulo_breadcrumb}
                                 onChange={handleInputChange}
                                 className={
                                     theme.palette.mode === 'dark'
@@ -158,7 +158,7 @@ const IndexServiceEdit = ({ home_services }) => {
                                 id="descripcion_breadcrumb"
                                 name="descripcion_breadcrumb"
                                 value={
-                                    home_services_data.descripcion_breadcrumb
+                                    homeServicesData.descripcion_breadcrumb
                                 }
                                 onChange={handleInputChange}
                                 rows="4"
@@ -176,7 +176,7 @@ const IndexServiceEdit = ({ home_services }) => {
                                 type="text"
                                 id="titulo_about"
                                 name="titulo_about"
-                                value={home_services_data.titulo_about}
+                                value={homeServicesData.titulo_about}
                                 onChange={handleInputChange}
                                 className={
                                     theme.palette.mode === 'dark'
@@ -192,7 +192,7 @@ const IndexServiceEdit = ({ home_services }) => {
                                 type="text"
                                 id="subtitulo_about"
                                 name="subtitulo_about"
-                                value={home_services_data.subtitulo_about}
+                                value={homeServicesData.subtitulo_about}
                                 onChange={handleInputChange}
                                 className={
                                     theme.palette.mode === 'dark'
@@ -208,7 +208,7 @@ const IndexServiceEdit = ({ home_services }) => {
                                 type="text"
                                 id="imagen_url_about"
                                 name="imagen_url_about"
-                                value={home_services_data.imagen_url_about}
+                                value={homeServicesData.imagen_url_about}
                                 onChange={handleInputChange}
                                 className={
                                     theme.palette.mode === 'dark'
@@ -218,7 +218,7 @@ const IndexServiceEdit = ({ home_services }) => {
                             />
                             <div className={classes.imagePreview}>
                                 <img
-                                    src={home_services_data.imagen_url_about}
+                                    src={homeServicesData.imagen_url_about}
                                     alt="Imagen del servicio"
                                 />
                             </div>
@@ -231,7 +231,7 @@ const IndexServiceEdit = ({ home_services }) => {
                                 required
                                 id="descripcion_about"
                                 name="descripcion_about"
-                                value={home_services_data.descripcion_about}
+                                value={homeServicesData.descripcion_about}
                                 onChange={handleInputChange}
                                 rows="4"
                                 className={
@@ -245,7 +245,7 @@ const IndexServiceEdit = ({ home_services }) => {
                         <div className={classes.formGroup_bullets}>
                             {bullets.split(',').map((item, index) => (
                                 <div
-                                    key={index}
+                                    key={item}
                                     className={classes.formGroup_bullets_bullet}
                                 >
                                     <label htmlFor={`bullet_${index}`}>
@@ -285,4 +285,17 @@ const IndexServiceEdit = ({ home_services }) => {
     );
 };
 
-export default IndexServiceEdit;
+IndexServiceEdit.propTypes = {
+    homeServices: PropTypes.shape({
+        id_home_service: PropTypes.number,
+        titulo_breadcrumb: PropTypes.string,
+        subtitulo_breadcrumb: PropTypes.string,
+        descripcion_breadcrumb: PropTypes.string,
+        titulo_about: PropTypes.string,
+        subtitulo_about: PropTypes.string,
+        imagen_url_about: PropTypes.string,
+        descripcion_about: PropTypes.string,
+        bullets_about: PropTypes.string,
+        imagen_breadcrumb: PropTypes.string,
+    }),
+};

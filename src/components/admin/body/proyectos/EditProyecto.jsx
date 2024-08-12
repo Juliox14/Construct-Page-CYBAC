@@ -705,7 +705,7 @@ export default function EditProyecto({ proyecto }) {
                                                 use_overview: 0,
                                             })
                                         }
-                                        arial-label="Cerrar sección overview"
+                                        aria-label="Cerrar sección overview"
                                     >
                                         <svg
                                             width="24"

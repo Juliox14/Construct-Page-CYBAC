@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import axios from 'axios';
-import EditClient from './editClient/index';
-import classes from './tableClientsStyle.module.css'; // Importar después de @mui/material
 import editarBTN from '@/../../public/icons/boton-editar.png';
 import borrarBTN from '@/../../public/icons/borrar.png';
+import EditClient from './editClient/index';
+import classes from './tableClientsStyle.module.css'; // Importar después de @mui/material
 
 export default function TableClientes({ data }) {
     const [values, setValues] = useState(data);
@@ -91,7 +91,7 @@ export default function TableClientes({ data }) {
                         <th>Teléfono</th>
                         <th>Alt Imagen</th>
                         <th>Lugar de visualización</th>
-                        <th></th>
+                        <th aria-label="Espacio vacío"/>
                     </tr>
                 </thead>
                 <tbody>

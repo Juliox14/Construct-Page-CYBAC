@@ -8,6 +8,7 @@ import { Box, Button, Alert } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 //  Imports de librerias externas.
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 //  Imports de estilos.
@@ -282,9 +283,9 @@ export default function EditTitle({ dataSSR }) {
                                 accept="image/*"
                                 name="imagen2"
                                 onChange={(e) => {
-                                    const {files} = e.target;
-                                    const updatedData = data;
-                                    updatedData.imgTitulo = files[0];
+                                    const { files } = e.target;
+                                    const [file] = files;
+                                    const updatedData = { ...data, imgTitulo: file };
                                     setData(updatedData);
                                 }}
                                 className={
