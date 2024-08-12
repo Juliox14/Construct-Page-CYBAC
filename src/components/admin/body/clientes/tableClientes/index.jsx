@@ -6,6 +6,7 @@ import editarBTN from '@/../../public/icons/boton-editar.png';
 import borrarBTN from '@/../../public/icons/borrar.png';
 import EditClient from './editClient/index';
 import classes from './tableClientsStyle.module.css'; // Importar después de @mui/material
+import PropTypes from 'prop-types';
 
 export default function TableClientes({ data }) {
     const [values, setValues] = useState(data);
