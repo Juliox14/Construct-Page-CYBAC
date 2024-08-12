@@ -48,6 +48,7 @@ const EditProyecto = ({ proyecto }) => {
         descripcion_overview: '',
         imagen_overview: null,
     });
+
     const [message, setMessage] = useState('');
     const [showTooltipRich, setShowTooltipRich] = useState(false);
     const [showTooltipOver, setShowTooltipOver] = useState(false);
@@ -107,18 +108,39 @@ const EditProyecto = ({ proyecto }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await axios.put(`/api/proyects/${proyectoData.id_proyecto}`, proyectoData);
+        const formData = new FormData();
 
-        if (response.status === 200) {
-            setMessage(response.data.message);
-            setInterval(() => {
-                setMessage('');
-            }, 5000);
-        } else {
-            setMessage('Error al actualizar el proyecto');
-            setInterval(() => {
-                setMessage('');
-            }, 5000);
+        formData.append(`file${1}` , proyectoData.ruta_imagen);
+        formData.append(`file${2}` , proyectoData.ruta_imagen_richtext);
+        formData.append(`file${3}` , proyectoData.imagen_overview);
+
+        const responseImageUrl = await axios.post("/api/upload", formData);
+
+        const url_ruta_imagen = responseImageUrl.data.url.find((url) => url.id === 1);
+        const url_ruta_imagen_richtext = responseImageUrl.data.url.find((url) => url.id === 2);
+        const url_imagen_overview = responseImageUrl.data.url.find((url) => url.id === 3);
+
+        const updatedDataWithImg = { 
+            ...proyectoData,
+            ruta_imagen: url_ruta_imagen !== undefined ? url_ruta_imagen.file : proyectoData.ruta_imagen,
+            ruta_imagen_richtext: url_ruta_imagen_richtext !== undefined ? url_ruta_imagen_richtext.file : proyectoData.ruta_imagen_richtext,
+            imagen_overview: url_imagen_overview !== undefined ? url_imagen_overview.file : proyectoData.imagen_overview,
+        }
+
+        if(responseImageUrl.status === 200){
+            const response = await axios.put(`/api/proyects/${proyectoData.id_proyecto}`, updatedDataWithImg);
+
+            if (response.status === 200) {
+                setMessage(response.data.message);
+                setInterval(() => {
+                    setMessage('');
+                }, 5000);
+            } else {
+                setMessage('Error al actualizar el proyecto');
+                setInterval(() => {
+                    setMessage('');
+                }, 5000);
+            }
         }
     };
 
@@ -242,15 +264,19 @@ const EditProyecto = ({ proyecto }) => {
                                 />
                             </div>
                             <div className={classes.formGroup}>
-                                <label htmlFor="ruta_imagen">Ruta de la Imagen</label>
+                                <label htmlFor="imagen">Imagen proyecto - (1280 x 720)</label>
                                 <input
-                                    type="text"
-                                    id="ruta_imagen"
-                                    name="ruta_imagen"
-                                    value={proyectoData.ruta_imagen}
-                                    onChange={handleInputChange}
+                                    id="imagen"
+                                    type="file"
+                                    accept="image/*"
+                                    name="imagen"
+                                    onChange={(e) => {
+                                        const updatedData = proyectoData;
+                                        updatedData.ruta_imagen = e.target.files[0];
+                                        setProyectoData(updatedData);
+                                    }}
+                                    required={proyectoData.ruta_imagen ? false : true}
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                    required
                                 />
                                 {proyectoData.ruta_imagen && (
                                     <div className={classes.imagePreview}>
@@ -360,11 +386,27 @@ const EditProyecto = ({ proyecto }) => {
                                         <TextareaAutosize className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} type="text" id="texto3_richtext" name="texto3_richtext" value={proyectoData.texto3_richtext} onChange={handleInputChange} />
                                     </div>
                                     <div className={classes.formGroup}>
-                                        <label htmlFor="ruta_imagen_richtext">Ruta de la Imagen</label>
-                                        <input className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} type="text" id="ruta_imagen_richtext" name="ruta_imagen_richtext" value={proyectoData.ruta_imagen_richtext} onChange={handleInputChange} />
-                                        {proyectoData.ruta_imagen_richtext && (
+                                        <label htmlFor="ruta_imagen_richtext">Imagen richtext - (265 x 185)</label>
+                                        <input
+                                            id="ruta_imagen_richtext"
+                                            type="file"
+                                            accept="image/*"
+                                            name="imagen"
+                                            onChange={(e) => {
+                                                const updatedData = proyectoData;
+                                                updatedData.ruta_imagen_richtext = e.target.files[0];
+                                                setProyectoData(updatedData);
+                                            }}
+                                            required={proyectoData.ruta_imagen_richtext ? false : true}
+                                            className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                        />
+                                        {(proyectoData.ruta_imagen_richtext !== "" && proyectoData.ruta_imagen_richtext !== null) ? (
                                             <div className={classes.imagePreview}>
                                                 <img src={proyectoData.ruta_imagen_richtext} alt="Imagen del proyecto" />
+                                            </div>
+                                        ): (
+                                            <div className={classes.imagePreview}>
+                                                <img src="https://res.cloudinary.com/dazdbiunw/image/upload/v1723482510/1-1-265x185_m1h917.jpg" alt="Imagen del proyecto" />
                                             </div>
                                         )}
                                     </div>
@@ -468,11 +510,27 @@ const EditProyecto = ({ proyecto }) => {
                                     </div>
 
                                     <div className={classes.formGroup}>
-                                        <label htmlFor="imagen_overview">Ruta de la Imagen</label>
-                                        <input className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} type="text" id="imagen_overview" name="imagen_overview" value={proyectoData.imagen_overview} onChange={handleInputChange} />
+                                        <label htmlFor="imagen_overview">Imagen overview - (837 x 425)</label>
+                                        <input
+                                            id="imagen_overview"
+                                            type="file"
+                                            accept="image/*"
+                                            name="imagen"
+                                            onChange={(e) => {
+                                                const updatedData = proyectoData;
+                                                updatedData.imagen_overview = e.target.files[0];
+                                                setProyectoData(updatedData);
+                                            }}
+                                            required={proyectoData.imagen_overview ? false : true}
+                                            className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                        />
                                         {proyectoData.imagen_overview && (
                                             <div className={classes.imagePreview}>
-                                                <img src={proyectoData.imagen_overview} alt="Imagen del proyecto" />
+                                                {(proyectoData.imagen_overview !== "" && proyectoData.imagen_overview !== null) ? (
+                                                    <img src={proyectoData.imagen_overview} alt="Imagen del proyecto" />
+                                                ): (
+                                                    <img src="https://res.cloudinary.com/dazdbiunw/image/upload/v1723482415/1-837x425_y0fmgk.jpg" alt="Imagen del proyecto" />
+                                                )}
                                             </div>
                                         )}
                                     </div>

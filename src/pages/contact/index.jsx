@@ -16,6 +16,7 @@ function ContactPage({ contactItems, footerItems, services }) {
                 />
             </Head>
             <Breadcrumb
+                img={contactItems.imagen_breadcrumb}
                 subTitle={contactItems.subtitulo_breadcrumb}
                 title={contactItems.titulo_breadcrumb}
                 desc={contactItems.descripcion_breadcrumb}

@@ -3,12 +3,15 @@ import { useTheme } from "@mui/material/styles";
 import Ruta from "../items-util/ruta";
 import classes from './EditFooter.module.scss';
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import axios from "axios";
 
 const EditFooter = ({ footer }) => {
     const theme = useTheme();
     const [footerData, setFooterData] = useState({
         id_footer: 0,
+        ruta_logo: '',
+        imagen_fondo: '',
         eslogan: '',
         telefono: '',
         direccion: '',
@@ -21,7 +24,7 @@ const EditFooter = ({ footer }) => {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        setFooterData({ id_footer: footer.footer.id_footer, eslogan: footer.footer.eslogan, telefono: footer.footer.telefono, direccion: footer.footer.direccion, codigo_postal: footer.footer.codigo_postal, ubicacion: footer.footer.ubicacion });
+        setFooterData({ id_footer: footer.footer.id_footer, ruta_logo: footer.footer.ruta_logo, imagen_fondo: footer.footer.imagen_fondo, eslogan: footer.footer.eslogan, telefono: footer.footer.telefono, direccion: footer.footer.direccion, codigo_postal: footer.footer.codigo_postal, ubicacion: footer.footer.ubicacion });
         setRedesSociales(footer.redes_sociales);
         setEnlacesRapidos(footer.enlaces_rapidos);
 
@@ -45,7 +48,6 @@ const EditFooter = ({ footer }) => {
         const newRedes = redes_sociales;
         newRedes[index][name] = value;
         setRedesSociales([...redes_sociales], newRedes);
-        console.log(redes_sociales);
     };
 
     const handleInputNewRedSocialChange = (index, e) => {
@@ -53,7 +55,6 @@ const EditFooter = ({ footer }) => {
         const newRedes = newRedSocial;
         newRedes[index][name] = value;
         setNewRedSocial(newRedes);
-        console.log(newRedSocial);
     };
 
 
@@ -109,7 +110,6 @@ const EditFooter = ({ footer }) => {
                 }, 3000);
             }
         } else {
-            console.log(redes_sociales);
             const response = await axios.put('/api/redes_sociales', redes_sociales);
             if (response.status === 200) {
                 setMessage(response.data.message);
@@ -127,21 +127,39 @@ const EditFooter = ({ footer }) => {
         window.location.reload();
     };
 
-    const handleSubmitFooter = async () => {
-        const response = await axios.put('/api/footer', footerData);
-        if (response.status === 200) {
-            setMessage(response.data.message);
-            setInterval(() => {
-                setMessage('');
-            }, 3000);
+    const handleSubmitFooter = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+
+        formData.append(`file${1}` , footerData.ruta_logo);
+        formData.append(`file${2}` , footerData.imagen_fondo);
+
+        const responseImageUrl = await axios.post("/api/upload", formData);
+
+        const url_ruta_logo = responseImageUrl.data.url.find((url) => url.id === 1);
+        const url_imagen_fondo = responseImageUrl.data.url.find((url) => url.id === 2);
+
+        const updatedDataWithImg = { 
+            ...footerData,
+            ruta_logo: url_ruta_logo !== undefined ? url_ruta_logo.file : footerData.ruta_logo,
+            imagen_fondo: url_imagen_fondo !== undefined ? url_imagen_fondo.file : footerData.imagen_fondo,
         }
-        else {
-            setMessage(response.data.message);
-            setInterval(() => {
-                setMessage('');
-            }, 3000);
+
+        if(responseImageUrl.status === 200){
+            const response = await axios.put('/api/footer', updatedDataWithImg);
+            if (response.status === 200) {
+                setMessage(response.data.message);
+                setInterval(() => {
+                    setMessage('');
+                }, 3000);
+            }
+            else {
+                setMessage(response.data.message);
+                setInterval(() => {
+                    setMessage('');
+                }, 3000);
+            }
         }
-        window.location.reload();
     };
 
     const handleSubmiteEnlacesRapidos = async (e) => {
@@ -214,9 +232,53 @@ const EditFooter = ({ footer }) => {
                         width: '100%'
                     }}>
 
-
                         <form onSubmit={(e) => handleSubmitFooter(e)}>
                             <h3>Información</h3>
+
+                            <div className={classes.formGroup}>
+                                <label htmlFor="logo">Logo de la empresa - (189 x 47)</label>
+                                    <input
+                                        id="logo"
+                                        type="file"
+                                        accept="image/*"
+                                        name="logo"
+                                        onChange={(e) => {
+                                            const updatedData = footerData;
+                                            updatedData.ruta_logo = e.target.files[0];
+                                            setFooterData(updatedData);
+                                        }}
+                                        required={footerData.ruta_logo ? false : true}
+                                        className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    />
+                                {footerData.ruta_logo && (
+                                    <div className={classes.imagePreview}>
+                                        <Image src={footerData.ruta_logo} loader={() => footerData.ruta_logo} width={300} height={200} alt="Logo blanco de la empresa" />
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className={classes.formGroup}>
+                                <label htmlFor="imagen_de_fondo">Imagen de fondo  - (1920 x 454)</label>
+                                    <input
+                                        id="imagen_de_fondo"
+                                        type="file"
+                                        accept="image/*"
+                                        name="imagen_de_fondo"
+                                        onChange={(e) => {
+                                            const updatedData = footerData;
+                                            updatedData.imagen_fondo = e.target.files[0];
+                                            setFooterData(updatedData);
+                                        }}
+                                        required={footerData.imagen_fondo ? false : true}
+                                        className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    />
+                                {footerData.imagen_fondo && (
+                                    <div className={classes.imagePreview}>
+                                        <Image src={footerData.imagen_fondo} loader={() => footerData.imagen_fondo} width={300} height={200} alt="Logo blanco de la empresa" />
+                                    </div>
+                                )}
+                            </div>
+
                             <div className={classes.formGroup}>
                                 <label htmlFor="eslogan">Eslogan</label>
                                 <TextareaAutosize required className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl} type="text" id="eslogan" name="eslogan" value={footerData.eslogan} onChange={handleInputChange} />

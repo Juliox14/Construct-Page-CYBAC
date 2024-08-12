@@ -43,22 +43,39 @@ const EditInformacion = ({ contacto }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append(`file${1}` , contactoData.imagen_breadcrumb);
+        formData.append(`file${2}` , contactoData.ruta_imagen);
 
-        const response = await axios.put(`/api/contact`, contactoData);
-        if (response.status === 200) {
-            setMessage(response.data.message);
-            setInterval(() => {
-                setMessage('');
-            }, 10000);
+        const responseImageUrl = await axios.post("/api/upload", formData);
+
+        const imagen_imagen_breadcrumb = responseImageUrl.data.url.find((url) => url.id === 1);
+        const imagen_ruta_imagen = responseImageUrl.data.url.find((url) => url.id === 2);
+
+        const updatedDataWithImg = { 
+            ...contactoData,
+            imagen_breadcrumb: imagen_imagen_breadcrumb !== undefined ? imagen_imagen_breadcrumb.file : contactoData.imagen_breadcrumb,
+            ruta_imagen: imagen_ruta_imagen !== undefined ? imagen_ruta_imagen.file : contactoData.ruta_imagen,
         }
-        else {
-            setMessage('Error al actualizar la información de contacto');
-            setInterval(() => {
-                setMessage('');
-            }, 5000);
+
+        if(responseImageUrl.status === 200){
+            const response = await axios.put(`/api/contact`, updatedDataWithImg);
+            if (response.status === 200) {
+                setMessage(response.data.message);
+                setInterval(() => {
+                    setMessage('');
+                }, 10000);
+            }
+            else {
+                setMessage('Error al actualizar la información de contacto');
+                setInterval(() => {
+                    setMessage('');
+                }, 5000);
+            }
         }
-        window.location.reload();
     };
+
+    console.log(contactoData);
 
     const rutas = [{ nombre: 'Inicio', link: '/admin' }, { nombre: 'Contacto', link: '/admin/contacto' }, { nombre: 'Editar Información', link: '/admin/contacto/edit/informacion' }];
 
@@ -112,6 +129,27 @@ const EditInformacion = ({ contacto }) => {
                                 />
                             </div>
                             <div className={classes.formGroup}>
+                                <label htmlFor="imagenBreadcrumb">Imagen breadcrumb - (1920 x 470)</label>
+                                <input
+                                    id="imagenBreadcrumb"
+                                    type="file"
+                                    accept="image/*"
+                                    name="imagen"
+                                    onChange={(e) => {
+                                        const updatedData = contactoData;
+                                        updatedData.imagen_breadcrumb = e.target.files[0];
+                                        setContactoData(updatedData);
+                                    }}
+                                    required={contactoData.imagen_breadcrumb ? false : true}
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                                {contactoData.imagen_breadcrumb && (
+                                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px', marginTop: '10px' }}>
+                                        <img src={contactoData.imagen_breadcrumb} alt="Imagen del servicio" style={{ width: '200px' }} />
+                                    </div>
+                                )}
+                            </div>
+                            <div className={classes.formGroup}>
                                 <label htmlFor="subtitulo_breadcrumb">Subtítulo Breadcrumb</label>
                                 <input
                                     required
@@ -150,6 +188,27 @@ const EditInformacion = ({ contacto }) => {
                                     onChange={handleInputChange}
                                     className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                 />
+                            </div>
+                            <div className={classes.formGroup}>
+                                <label htmlFor="imagen">Imagen - (510 x 587)</label>
+                                <input
+                                        id="imagen"
+                                        type="file"
+                                        accept="image/*"
+                                        name="imagen"
+                                        onChange={(e) => {
+                                            const updatedData = contactoData;
+                                            updatedData.ruta_imagen = e.target.files[0];
+                                            setContactoData(updatedData);
+                                        }}
+                                        required={contactoData.ruta_imagen ? false : true}
+                                        className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    />
+                                {contactoData.ruta_imagen && (
+                                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px', marginTop: '10px' }}>
+                                        <img src={contactoData.ruta_imagen} alt="Imagen del servicio" style={{ width: '200px' }} />
+                                    </div>
+                                )}
                             </div>
                             <div className={classes.formGroup}>
                                 <label htmlFor="subtitulo">Subtitulo</label>
@@ -264,7 +323,7 @@ const EditInformacion = ({ contacto }) => {
                                 />
                             </div>
                         </div>
-                        <BotonFixed metodo={() => document.getElementById('edit-contact-form').requestSubmit()} />
+                        <BotonFixed metodo={() => document.getElementById('edit-contact-form').requestSubmit} />
                     </form>
                 </Box>
             </div>

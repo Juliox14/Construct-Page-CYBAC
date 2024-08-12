@@ -99,6 +99,7 @@ const EditTitle = ({dataSSR}) => {
                     transition: `background-color ${theme.transitions.duration.standard}ms`,
                     borderRadius: '10px',
                     padding: '20px',
+                    height: '100vh',
                     // maxWidth: '70%',
                 }}>
                     {message[0] !== "" && (
@@ -111,12 +112,6 @@ const EditTitle = ({dataSSR}) => {
                             {message[0]}
                         </Alert>
                     )}
-                    <Box sx={{
-                        width: '100%',
-                        height: '400px',
-                        backgroundColor: theme.palette.mode === 'dark' ? "#333" : "#f5f5f5",
-                    }}>
-                    </Box>
                     <form className={classes.homeEdit_formSubservicio} onSubmit={handleSubmit} ref={refForm}>
                         <div>
                             <div>
@@ -147,8 +142,9 @@ const EditTitle = ({dataSSR}) => {
                                 }}>{data.descripcion_breadcrumb}</textarea>
                             </div>
                             <div>
-                                <label htmlFor="imagen2" style={{marginBottom: 0}}>Imagen 2</label>
+                                <label htmlFor="imagenTitulo" style={{marginBottom: 0}}>Imagen titulo - (1920 x 470)</label>
                                 <input
+                                    id="imagenTitulo"
                                     type="file"
                                     accept="image/*"
                                     name="imagen2"

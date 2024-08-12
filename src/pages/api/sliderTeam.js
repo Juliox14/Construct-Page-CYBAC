@@ -29,7 +29,6 @@ export default async function HomeHandler(req,res){
         case "PUT":
             try{
                 const [data, newData] = req.body;
-                console.log(data);
                 const depuredNewData = newData.map(item => {
                     const { id_empleado, ...rest } = item;
                     return rest;
@@ -38,8 +37,6 @@ export default async function HomeHandler(req,res){
                 if(depuredNewData.length !== 0){
                     depuredNewData.map( async(item) => {
                         const { setString, values } = constructSetString(item);
-                        console.log(setString);
-                        console.log(values);
                         const sql = `INSERT INTO empleados SET ${setString}`;
                         try{
                             await db.execute(sql, [...values]);

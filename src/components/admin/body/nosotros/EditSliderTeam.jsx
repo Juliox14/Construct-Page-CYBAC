@@ -55,7 +55,7 @@ function descendingComparator(a, b, orderBy) {
       id: 'ruta_imagen',
       numeric: false,
       disablePadding: true,
-      label: 'Imagen',
+      label: 'Imagen - (211 x 342)',
     },
     {
       id: 'nombre_empleado',

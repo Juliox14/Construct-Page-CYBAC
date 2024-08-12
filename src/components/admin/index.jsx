@@ -57,6 +57,15 @@ const AdminLayout = ({ children }) => {
         [mode],
     );
 
+    const [backgroundNavBar, setBackgroundNavBar] = useState(null);
+
+    useEffect(() => {
+        const darkMode = Cookies.get("darkMode") === 'dark';
+        setBackgroundNavBar(darkMode ? "#1c1c1c" : "white");
+    }, []);
+
+    if (backgroundNavBar === null) return null;
+
 
   return (
     <>
@@ -72,7 +81,8 @@ const AdminLayout = ({ children }) => {
               sx={{
                 bgcolor: 'background.default',
                 color: 'text.primary',
-                transition: `background-color ${theme.transitions.duration.standard}ms`,
+                height: '100vh',
+                transition: `background-color ${theme.transitions.duration.standard}ms`
               }}
             >
               {children}

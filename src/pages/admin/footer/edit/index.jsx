@@ -14,6 +14,7 @@ const editFooter = ({footer}) => {
 
 export async function getServerSideProps() {
     const footer = await getElement('footer');
+
     return {
         props: {
             footer,

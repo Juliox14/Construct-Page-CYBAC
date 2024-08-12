@@ -178,7 +178,7 @@ const EditAbout = ({dataSSR}) => {
                                         shrink: true,
                                     }}
                                 />
-                                <label htmlFor="imagen" style={{marginBottom: 0}}>Imagen</label>
+                                <label htmlFor="imagen" style={{marginBottom: 0}}>Imagen 1 - (84 x 85)</label>
                                     <input
                                         type="file"
                                         accept="image/*"
@@ -191,7 +191,7 @@ const EditAbout = ({dataSSR}) => {
                                         required
                                         className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
                                     />
-                                <label htmlFor="imagen2" style={{marginBottom: 0}}>Imagen 2</label>
+                                <label htmlFor="imagen2" style={{marginBottom: 0}}>Imagen 2 - (506 x 547)</label>
                                     <input
                                         type="file"
                                         accept="image/*"

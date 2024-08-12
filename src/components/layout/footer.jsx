@@ -20,7 +20,10 @@ function Footer({ footerItems, services }) {
     return (
         <footer>
             <Fragment key={footerItems?.footer.id_footer}>
-                <div className={`${classes.bg}`}>
+                <div className={`${classes.bg}`}
+                style={{
+                    backgroundImage: `url(${footerItems?.footer.imagen_fondo})`
+                }}>
                     <Container style={{ height: "380px" }}>
                         <Row>
                             <Col lg={{ span: 3 }}>

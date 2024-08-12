@@ -194,13 +194,7 @@ function Header() {
                                                 <span>Contacto</span>
                                             </Link>
                                         </li>
-                                        <li>
-                                            <a href="/admin">
-                                                <span>
-                                                    Portal
-                                                </span>
-                                            </a>
-                                        </li>
+                                        <li></li>
                                     </ul>
                                 </nav>
                             </Col>

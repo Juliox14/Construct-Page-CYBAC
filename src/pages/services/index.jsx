@@ -22,6 +22,7 @@ function ServicePage({
                 />
             </Head>
             <Breadcrumb
+                img={aboutItemsTwo.imagen_breadcrumb}
                 subTitle={aboutItemsTwo.titulo_breadcrumb}
                 title={aboutItemsTwo.subtitulo_breadcrumb}
                 desc={aboutItemsTwo.descripcion_breadcrumb}

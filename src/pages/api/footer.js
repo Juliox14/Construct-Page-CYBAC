@@ -17,7 +17,6 @@ export default async function handler(req, res) {
             } catch (error) {
                 return res.status(500).json({ message: 'Error en el servidor' });
             }
-            break;
 
         case 'PUT':
             try {
@@ -30,7 +29,6 @@ export default async function handler(req, res) {
             } catch (error) {
                 return res.status(500).json({ message: 'Error en el servidor' });
             }
-            break;
 
         default:
             res.status(405).json({ message: 'Método no permitido' });

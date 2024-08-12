@@ -267,7 +267,7 @@ const EditHome = ({hero}) => {
                                     )}
                                 </div>
                                 <div>
-                                    <label htmlFor="imagen">Imagen</label>
+                                    <label htmlFor="imagen">Imagen - (1920 x 786)</label>
                                     <input
                                         type="file"
                                         accept="image/*"

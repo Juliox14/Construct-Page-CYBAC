@@ -32,7 +32,8 @@ const EditService = ({ servicio }) => {
             titulo: servicio.servicios.titulo || '',
             imagen_url: servicio.servicios.imagen_url || '',
             descripcion_breve: servicio.servicios.descripcion_breve || '',
-            descripcion: servicio.servicios.descripcion || ''
+            descripcion: servicio.servicios.descripcion || '',
+            imagen_breadcrumb: servicio.servicios.imagen_breadcrumb || '',
         });
         setSubServiciosData(servicio.get_servicio || []);
 
@@ -65,8 +66,6 @@ const EditService = ({ servicio }) => {
         setNewSubservicioData(updatedNewSubServicios);
     };
 
-
-
     const handleSubservicioEditorChange = (index, content) => {
         const updatedSubServicios = [...subServiciosData];
         updatedSubServicios[index].descripcion_subservicio = content;
@@ -82,15 +81,32 @@ const EditService = ({ servicio }) => {
     const handleBothSubmits = async () => {
         try {
             // Enviar datos del servicio
-            const responseService = await axios.put(`/api/services/${servicio}`, servicioData);
-            if (responseService.status === 200) {
-                setMessage(responseService.data.message);
-                setInterval(() => {
-                    setMessage('');
-                }, 1500);
-            } else {
-                setMessage('Error al actualizar el servicio');
-                return; // Detener si falla
+            const formData = new FormData();
+            formData.append(`file${1}` , servicioData.imagen_url);
+            formData.append(`file${2}` , servicioData.imagen_breadcrumb);
+
+            const responseImageUrl = await axios.post("/api/upload", formData);
+
+            const imagen_url_servicio = responseImageUrl.data.url.find((url) => url.id === 1);
+            const imagen_breadcrumb_servicio = responseImageUrl.data.url.find((url) => url.id === 2);
+
+            const updatedDataWithImg = { 
+                ...servicioData,
+                imagen_url: imagen_url_servicio !== undefined ? imagen_url_servicio.file : servicioData.imagen_url,
+                imagen_breadcrumb: imagen_breadcrumb_servicio !== undefined ? imagen_breadcrumb_servicio.file : servicioData.imagen_breadcrumb,
+            }
+
+            if(responseImageUrl.status === 200){
+                const responseService = await axios.put(`/api/services/${servicio}`, updatedDataWithImg);
+                if (responseService.status === 200) {
+                    setMessage(responseService.data.message);
+                    setInterval(() => {
+                        setMessage('');
+                    }, 1500);
+                } else {
+                    setMessage('Error al actualizar el servicio');
+                    return; // Detener si falla
+                }
             }
 
             // Enviar datos de los subservicios existentes
@@ -232,6 +248,27 @@ const EditService = ({ servicio }) => {
                                     />
                                 </div>
                                 <div className={classes.formGroup}>
+                                    <label htmlFor="imagenBreadcrumb">Imagen breadcrumb - (1920 x 470)</label>
+                                    <input
+                                        id="imagenBreadcrumb"
+                                        type="file"
+                                        accept="image/*"
+                                        name="imagen"
+                                        onChange={(e) => {
+                                            const updatedData = servicioData;
+                                            updatedData.imagen_breadcrumb = e.target.files[0];
+                                            setServicioData(updatedData);
+                                        }}
+                                        required={servicioData.imagen_breadcrumb ? false : true}
+                                        className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                    />
+                                    {servicioData.imagen_breadcrumb && (
+                                        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px', marginTop: '10px' }}>
+                                            <img src={servicioData.imagen_breadcrumb} alt="Imagen del servicio" style={{ width: '200px' }} />
+                                        </div>
+                                    )}
+                                </div>
+                                <div className={classes.formGroup}>
                                     <label htmlFor="subtitulo_breadcrumb">Subtítulo Breadcrumb</label>
                                     <input
                                         type="text"
@@ -265,14 +302,19 @@ const EditService = ({ servicio }) => {
                                     />
                                 </div>
                                 <div className={classes.formGroup}>
-                                    <label htmlFor="imagen">URL imagen</label>
+                                    <label htmlFor="imagen">Imagen servicio - (846 x 565)</label>
                                     <input
-                                        type="text"
                                         id="imagen"
-                                        name="imagen_url"
-                                        onChange={handleInputChange}
+                                        type="file"
+                                        accept="image/*"
+                                        name="imagen"
+                                        onChange={(e) => {
+                                            const updatedData = servicioData;
+                                            updatedData.imagen_url = e.target.files[0];
+                                            setServicioData(updatedData);
+                                        }}
+                                        required={servicioData.imagen_url ? false : true}
                                         className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
-                                        value={servicioData.imagen_url}
                                     />
                                     {servicioData.imagen_url && (
                                         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px', marginTop: '10px' }}>

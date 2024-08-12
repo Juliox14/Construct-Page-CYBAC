@@ -4,6 +4,7 @@ import Component from "..";
 const Proyectos = ({proyectos}) => {
 
     const [componentsInThePage, setComponentsInThePage] = useState([proyectos]);
+    console.log(proyectos);
 
     useEffect(() => {
             const updatedComponents = proyectos.map((proyecto) => ({

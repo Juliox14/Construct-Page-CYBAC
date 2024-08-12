@@ -29,7 +29,6 @@ export default async function HomeHandler(req,res){
         case "PUT":
             try{
                 const [data, newData] = req.body;
-                console.log(data);
                 const depuredNewData = newData.map(item => {
                     const { id, ...rest } = item;
                     return rest;
