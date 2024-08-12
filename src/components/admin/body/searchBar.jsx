@@ -96,7 +96,15 @@ export default function SearchBar({ top100Films, callBack, extra }) {
 }
 
 SearchBar.propTypes = {
-    top100Films: PropTypes.array.isRequired,
+    top100Films: PropTypes.arrayOf(
+        PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired,
+            link: PropTypes.string.isRequired,
+            id: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired,
+        })
+    ).isRequired,
     callBack: PropTypes.func.isRequired,
-    extra: PropTypes.object,
+    extra: PropTypes.bool,
 };

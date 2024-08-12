@@ -19,7 +19,7 @@ export default function BotonFixed({ metodo }){
                     color: '#F1F1F1',
                 },
             }}
-            onClick={(e) => {return metodo(e)}}
+            onClick={(e) => metodo(e)}
         >
             Guardar Cambios
         </Button>

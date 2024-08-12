@@ -1,21 +1,23 @@
 'use client';
 
-//Imports de react.
+//  Imports de react.
 import { useEffect, useRef, useState } from 'react';
 
-//Imports de componentes de Material UI.
+//  Imports de componentes de Material UI.
 import { Box, Button, CircularProgress, Alert, TextField } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-//Imports de librerias externas.
+//  Imports de librerias externas.
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Editor } from '@tinymce/tinymce-react';
 
-//Imports de estilos.
+
+//  Imports de estilos.
 import classes from './EditService.module.scss';
 
 
-export default function EditTitle({ dataSSR }) {
+export default function EditDireccion({ dataSSR }) {
     const theme = useTheme();
 
     const [data, setData] = useState(dataSSR);
@@ -323,10 +325,27 @@ export default function EditTitle({ dataSSR }) {
     );
 };
 
-EditTitle.defaultProps = {
-    dataSSR: {
-        mision: '',
-        vision: '',
-        valores: '',
-    },
+EditDireccion.propTypes = {
+    dataSSR: PropTypes.shape({
+        id_nosotros: PropTypes.number.isRequired,
+        titulo_breadcrumb: PropTypes.string.isRequired,
+        subtitulo_breadcrumb: PropTypes.string.isRequired,
+        descripcion_breadcrumb: PropTypes.string.isRequired,
+        titulo_nosotros: PropTypes.string.isRequired,
+        subtitulo_nosotros: PropTypes.string.isRequired,
+        descripcion_nosotros: PropTypes.string.isRequired,
+        anios_experiencia: PropTypes.number.isRequired,
+        titulo2_nosotros: PropTypes.string.isRequired,
+        descripcion2_nosotros: PropTypes.string.isRequired,
+        mision: PropTypes.string.isRequired,
+        vision: PropTypes.string.isRequired,
+        valores: PropTypes.string.isRequired,
+        clientes: PropTypes.number.isRequired,
+        proyectos: PropTypes.number.isRequired,
+        titulo_equipo: PropTypes.string.isRequired,
+        descripcion_equipo: PropTypes.string.isRequired,
+        img1: PropTypes.string.isRequired,
+        img2: PropTypes.string.isRequired,
+        imgTitulo: PropTypes.string.isRequired,
+    }).isRequired,
 };

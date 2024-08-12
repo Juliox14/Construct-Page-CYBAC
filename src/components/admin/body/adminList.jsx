@@ -257,7 +257,7 @@ export default function AdminList({
                         transition: `background-color ${theme.transitions.duration.standard}ms`,
                     }}
                 >
-                    <div onMouseOver={handleOver} onMouseOut={handleOut}>
+                    <div onMouseOver={handleOver} onMouseOut={handleOut} onFocus={handleOver} onBlur={handleOut}>
                         {hover && (
                             <div
                                 className={
@@ -283,7 +283,6 @@ export default function AdminList({
                                         }}
                                     />
                                 </Link>
-                                <label htmlFor="delete" style={{ display: 'none' }} />
                                 <button
                                     type="button"
                                     onClick={() => setDeleteConfirm(true)}
@@ -294,6 +293,7 @@ export default function AdminList({
                                         cursor: 'pointer',
                                     }}
                                     id="delete"
+                                    aria-label="Eliminar elemento"
                                 >
                                     <DeleteIcon
                                         fontSize="large"

@@ -460,11 +460,11 @@ export default function NewProject() {
                             <form>
                                 <div className={classes.subservicioHead}>
                                     <h3>Sección Richtext</h3>
-                                    <label htmlFor="button_richtext" style={{ display: 'none' }}/>
                                     <button
                                         id="button_richtext"
                                         type="button"
                                         onClick={() => handleRichtexts()}
+                                        arial-label="Cerrar sección Richtext"
                                     >
                                         <svg
                                             width="24"
@@ -706,11 +706,11 @@ export default function NewProject() {
                             <form>
                                 <div className={classes.subservicioHead}>
                                     <h3>Sección Overview</h3>
-                                    <label htmlFor="button_overview" style={{display: 'none'}}/>
                                     <button
                                         id="button_overview"
                                         type="button"
                                         onClick={() => handleOverview()}
+                                        arial-label="Cerrar sección Overview"
                                     >
                                         <svg
                                             width="24"

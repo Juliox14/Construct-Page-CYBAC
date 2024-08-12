@@ -1,7 +1,7 @@
 'use client';
 
 //  Imports de react.
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 //  Imports de componentes de Material UI.
 import { Box, Button, CircularProgress, Alert, TextField } from '@mui/material';
@@ -9,6 +9,7 @@ import { useTheme } from '@mui/material/styles';
 
 //  Imports de librerias externas.
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Editor } from '@tinymce/tinymce-react';
 
 //  Imports de estilos.
@@ -309,11 +310,12 @@ export default function EditAbout({ dataSSR }) {
                                 type="file"
                                 accept="image/*"
                                 name="imagen"
-                                onChange={(e) => {
-                                    const {files} = e.target;
-                                    const updatedData = data;
-                                    updatedData.img1 = files[0];
-                                    setData(updatedData);
+                                onChange={({ target: { files } }) => {
+                                    const [file] = files;
+                                    setData(prevData => ({
+                                        ...prevData,
+                                        img1: file
+                                    }));
                                 }}
                                 required
                                 className={
@@ -332,12 +334,13 @@ export default function EditAbout({ dataSSR }) {
                                 type="file"
                                 accept="image/*"
                                 name="imagen2"
-                                onChange={(e) => {
-                                    const {files} = e.target;
-                                    const updatedData = data;
-                                    updatedData.img2 = files[0];
-                                    setData(updatedData);
-                                }}
+                                onChange={({ target: { files } }) => {
+                                    const [file] = files;
+                                    setData(prevData => ({
+                                        ...prevData,
+                                        img2: file
+                                    }));
+                                }}                                
                                 required
                                 className={
                                     theme.palette.mode === 'dark'
@@ -461,4 +464,29 @@ export default function EditAbout({ dataSSR }) {
             </Box>
         </>
     );
+};
+
+EditAbout.propTypes = {
+    dataSSR: PropTypes.shape({
+        id_nosotros: PropTypes.number.isRequired,
+        titulo_breadcrumb: PropTypes.string.isRequired,
+        subtitulo_breadcrumb: PropTypes.string.isRequired,
+        descripcion_breadcrumb: PropTypes.string.isRequired,
+        titulo_nosotros: PropTypes.string.isRequired,
+        subtitulo_nosotros: PropTypes.string.isRequired,
+        descripcion_nosotros: PropTypes.string.isRequired,
+        anios_experiencia: PropTypes.number.isRequired,
+        titulo2_nosotros: PropTypes.string.isRequired,
+        descripcion2_nosotros: PropTypes.string.isRequired,
+        mision: PropTypes.string.isRequired,
+        vision: PropTypes.string.isRequired,
+        valores: PropTypes.string.isRequired,
+        clientes: PropTypes.number.isRequired,
+        proyectos: PropTypes.number.isRequired,
+        titulo_equipo: PropTypes.string.isRequired,
+        descripcion_equipo: PropTypes.string.isRequired,
+        img1: PropTypes.string.isRequired,
+        img2: PropTypes.string.isRequired,
+        imgTitulo: PropTypes.string.isRequired,
+    }).isRequired,
 };

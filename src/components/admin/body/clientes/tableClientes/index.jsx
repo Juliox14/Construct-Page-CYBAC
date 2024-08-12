@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import classes from './tableClientsStyle.module.css';
-import editarBTN from '@/../../public/icons/boton-editar.png';
-import borrarBTN from '@/../../public/icons/borrar.png';
-import EditClient from './editClient/index';
+import { Button } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import axios from 'axios';
-import { Box, Button } from '@mui/material';
+import EditClient from './editClient/index';
+import classes from './tableClientsStyle.module.css'; // Importar después de @mui/material
+import editarBTN from '@/../../public/icons/boton-editar.png';
+import borrarBTN from '@/../../public/icons/borrar.png';
 
 export default function TableClientes({ data }) {
     const [values, setValues] = useState(data);
     const [inDataEdit, setInDataEdit] = useState({});
     const [showEdit, setShowEdit] = useState(false);
     const [alertValue, setAlertValue] = useState('');
+
     useEffect(() => {
         const copyValues = values.map((cliente) => {
             if (cliente.visualizarLista && cliente.visualizarSlider) {
                 return { ...cliente, visualizarEn: 'Lista/Slider' };
-            } else if (cliente.visualizarLista) {
+            }
+            if (cliente.visualizarLista) {
                 return { ...cliente, visualizarEn: 'Lista' };
             }
             return { ...cliente, visualizarEn: 'Slider' };
-
         });
         setValues(copyValues);
     }, [data]);
@@ -128,6 +129,7 @@ export default function TableClientes({ data }) {
                                         src={editarBTN.src}
                                         alt="icono editar"
                                         width="20"
+                                        aria-label="Editar Cliente"
                                         onClick={() =>
                                             HandlerOnClickEditClient(cliente.id_cliente)
                                         }
@@ -135,8 +137,9 @@ export default function TableClientes({ data }) {
                                     <img
                                         id={cliente.id_cliente}
                                         src={borrarBTN.src}
-                                        alt="icono editar"
+                                        alt="icono borrar"
                                         width="20"
+                                        aria-label="Eliminar Cliente"
                                         onClick={() =>
                                             HandlerOnClickDelete(cliente.id_cliente)
                                         }

@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
 
+// Elementos de MUI material
+import { Box, useTheme } from '@mui/material';
+
 // Componentes personalizados
 import SearchBar from './searchBar';
 import AdminList from './adminList';
 
-
-// Elementos de MUI material
-import { Box, useTheme } from '@mui/material';
 import classes from './adminList.module.scss';
 
 export default function Component({ componentsInThePage, extra, deleteButton }) {

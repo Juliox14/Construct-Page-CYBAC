@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Box, TextareaAutosize, Alert } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 import Ruta from '../../items-util/ruta';
 import BotonFixed from '../../items-util/botonFixed';
 import classes from './EditContact.module.scss';
-import PropTypes from 'prop-types';
 
 
 export default function EditInformacion({ contacto }) {
@@ -83,7 +83,7 @@ export default function EditInformacion({ contacto }) {
                 position: 'relative',
             }}
         >
-            {message && (
+            {message && 
                 <Alert
                     variant="outlined"
                     severity="success"
@@ -94,11 +94,11 @@ export default function EditInformacion({ contacto }) {
                         bgcolor: '#26ca7032',
                         zIndex: '1000',
                     }}
-                    children={message}
-                />
-            )}
-
-            <Ruta titulo={'Editar información de contacto'} rutas={rutas} />
+                >
+                    {message}
+                </Alert>
+            }
+            <Ruta titulo='Editar información de contacto' rutas={rutas} />
             <div className={classes.formContainer}>
                 <Box
                     sx={{

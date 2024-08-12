@@ -66,15 +66,11 @@ export default function EditHome({ hero, srcImages }) {
 
         let clientData = null;
         let data = [...dataSlider];
-
         data = data.filter((item) => item.id !== deleteState);
-        console.log(data);
         setDataSlider(data);
 
         let newData = [...newDataSlider];
-        console.log([...newDataSlider]);
         newData = newData.filter((item) => item.id !== deleteState);
-        console.log(newData);
         setnewDataSlider(newData);
 
         const compareElement = (item, item2) => item.id === item2.id;
@@ -85,12 +81,12 @@ export default function EditHome({ hero, srcImages }) {
         const compareObjects = (obj1, obj2) => {
             if (obj1.length !== obj2.length) return false;
             if (obj1 === null || obj2 === null) return false;
-            for (const key of Object.keys(obj1)) {
-                if (obj1[key] !== obj2[key]) {
-                    return false;
-                }
-            }            
-            return true;
+
+            const entries1 = Object.entries(obj1);
+            const entries2 = Object.entries(obj2);
+
+            return entries1.every(([key, value]) => obj2[key] === value) &&
+                entries2.every(([key, value]) => obj1[key] === value);
         };
 
         if (
@@ -98,22 +94,31 @@ export default function EditHome({ hero, srcImages }) {
             compareObjects([...newDataSlider], newData)
         ) {
             setConfirmationUpdateDelete([false, false]);
-            const response = await axios.post(`/api/home`, { deleteState });
-            if (response.status === 200) {
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
-            } else {
+            try {
+                const response = await axios.post(`/api/home`, { deleteState });
+                if (response.status === 200) {
+                    setMessage(['Elemento eliminado correctamente', 'info']);
+                    setTimeout(() => {
+                        setMessage(['', '']);
+                        window.location.reload();
+                    }, 1000);
+                } else {
+                    setMessage(['Error al eliminar el elemento', 'error']);
+                    setTimeout(() => {
+                        setMessage(['', '']);
+                    }, 5000);
+                }
+            } catch (error) {
                 setConfirmationUpdateDelete([false, false]);
-                setMessage(['Error al elmiminar el elemento', 'error']);
-                setInterval(() => {
+                setMessage(['Error al eliminar el elemento', 'error']);
+                setTimeout(() => {
                     setMessage(['', '']);
                 }, 5000);
             }
         } else {
             setConfirmationUpdateDelete([false, false]);
             setMessage(['Elemento eliminado correctamente', 'info']);
-            setInterval(() => {
+            setTimeout(() => {
                 setMessage(['', '']);
             }, 10000);
         }
@@ -146,7 +151,7 @@ export default function EditHome({ hero, srcImages }) {
         dataSlider.forEach((item) => {
             formData.append(`file${item.id}`, item.bg);
         });
-    
+
         const responseImageUrl = await axios.post('/api/upload', formData);
 
         const vida = responseImageUrl.data.url.filter((item) =>
@@ -375,7 +380,7 @@ export default function EditHome({ hero, srcImages }) {
                             className={
                                 classes.homeEdit_formSubservicio_firstBox
                             }
-                            key={index}
+                            key={heroItem.id}
                             style={{
                                 boxShadow:
                                     theme.palette.mode === 'dark'
@@ -412,15 +417,18 @@ export default function EditHome({ hero, srcImages }) {
                                         onChange={(e) => {
                                             const updatedData = [...dataSlider];
                                             const { files } = e.target;
-                                            updatedData[index].bg = files[0];
-                                            setDataSlider(updatedData);
-                                        }}                                        
+                                            const [file] = files;
+                                            if (file) {
+                                                updatedData[index].bg = file;
+                                                setDataSlider(updatedData);
+                                            }
+                                        }}
                                         className={
                                             theme.palette.mode === 'dark'
                                                 ? classes.formControlDark
                                                 : classes.formControl
                                         }
-                                        required={Boolean(heroItem.bg)}
+                                        required={heroItem.bg === ''}
                                     />
                                 </div>
                             </div>

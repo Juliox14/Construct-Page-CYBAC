@@ -162,10 +162,11 @@ export default function EditProyecto({ proyecto }) {
                         bgcolor: '#26ca7032',
                         zIndex: '1000',
                     }}
-                    children={message}
-                />
+                >
+                    {message}
+                </Alert>
             )}
-            <Ruta rutas={rutas} titulo={'Editar proyecto'} />
+            <Ruta rutas={rutas} titulo='Editar proyecto' />
             <Box
                 sx={{
                     bgcolor:
@@ -439,7 +440,6 @@ export default function EditProyecto({ proyecto }) {
                             <form>
                                 <div className={classes.subservicioHead}>
                                     <h3>Sección Richtext</h3>
-                                    <label htmlFor="button_richtext" style={{display: 'none'}}/>
                                     <button
                                         id='button_richtext'
                                         type="button"
@@ -449,6 +449,7 @@ export default function EditProyecto({ proyecto }) {
                                                 use_richtexts: 0,
                                             })
                                         }
+                                        aria-label="Cerrar sección richtext"
                                     >
                                         <svg
                                             width="24"
@@ -695,7 +696,6 @@ export default function EditProyecto({ proyecto }) {
                             <form>
                                 <div className={classes.subservicioHead}>
                                     <h3>Sección Overview</h3>
-                                    <label htmlFor="button_overview" style={{display: 'none'}}/>
                                     <button
                                         id="button_overview"
                                         type="button"
@@ -705,6 +705,7 @@ export default function EditProyecto({ proyecto }) {
                                                 use_overview: 0,
                                             })
                                         }
+                                        arial-label="Cerrar sección overview"
                                     >
                                         <svg
                                             width="24"

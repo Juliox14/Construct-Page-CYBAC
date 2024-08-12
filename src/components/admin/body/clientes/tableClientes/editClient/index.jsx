@@ -1,15 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
-import { Box, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Alert from '@mui/material/Alert';
+import PropTypes from 'prop-types';
 import ReactInput from '../../../../../login/reactInput';
 import classes from './styleEditClient.module.css';
-import PropTypes from 'prop-types';
+
+const dataEditClientShape = {
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    nombre: PropTypes.string.isRequired,
+    clasificacion: PropTypes.string.isRequired,
+    ruta_logo: PropTypes.string,
+    correo: PropTypes.string,
+    telefono: PropTypes.string,
+    alt: PropTypes.string,
+    visualizarLista: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+    visualizarSlider: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+    titulo: PropTypes.string,
+};
 
 export default function EditClient({
     inData,
@@ -69,10 +82,10 @@ export default function EditClient({
         }, 2000);
     }
 
-    function HandlerOnClickCancel() {
+    const HandlerOnClickCancel = useCallback(() => {
         setShowComponentFromEditClient(false);
         inData(showComponentFromEditClient);
-    }
+    }, [setShowComponentFromEditClient, inData, showComponentFromEditClient]);
 
     const callBackOnInputChange = (name, value) => {
         const data = { ...dataClient };
@@ -83,7 +96,7 @@ export default function EditClient({
         setDataClient(data);
     };
 
-    function onCheckedChange1() {
+    const onCheckedChange1 = useCallback(() => {
         if (check2 === false && check1 === true) {
             setAlertValue('Tienes que seleccionar al menos un sitio para mostrar al cliente');
             setAlert(true);
@@ -93,9 +106,9 @@ export default function EditClient({
         } else {
             setCheck1(!check1);
         }
-    }
-
-    function onCheckedChange2() {
+    }, [check1, check2]);
+    
+    const onCheckedChange2 = useCallback(() => {
         if ((dataClient.ruta_logo === '' || dataClient.ruta_logo === undefined) && check2 === false) {
             setAlertValue('Tienes que tener un logo para poder colocar el cliente en el Slider');
             setAlert(true);
@@ -111,7 +124,7 @@ export default function EditClient({
         } else {
             setCheck2(!check2);
         }
-    }
+    }, [check1, check2, dataClient]);
 
     return (
         <div className={classes.body}>
@@ -257,7 +270,7 @@ export default function EditClient({
 }
 
 EditClient.propTypes = {
-    inData: PropTypes.func,
-    dataEditClient: PropTypes.object,
+    inData: PropTypes.func.isRequired,
+    dataEditClient: PropTypes.shape(dataEditClientShape).isRequired,
     showComponent: PropTypes.bool,
 };

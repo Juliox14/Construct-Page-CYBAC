@@ -46,7 +46,7 @@ function AboutTwo({ aboutItemsTwo }) {
                                     return (
                                         <li
                                             className={classes.list}
-                                            key={`${item}-${index}`}
+                                            key={item}
                                         >
                                             <div className={classes.icon}>
                                                 <CheckIcon />

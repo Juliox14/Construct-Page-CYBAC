@@ -3,8 +3,8 @@ import { useEffect, useState, useRef } from 'react';
 
 //  Imports de librerias externas.
 import axios from 'axios';
-import Ruta from '../items-util/ruta';
-import BotonFixed from '../items-util/botonFixed';
+import PropTypes from 'prop-types';
+import { Editor } from '@tinymce/tinymce-react';
 
 //  Imports de componentes de Material UI.
 import {
@@ -17,14 +17,17 @@ import {
 import { useTheme } from '@mui/material/styles';
 
 //  Imports de componentes externos.
-import { Editor } from '@tinymce/tinymce-react';
+import Ruta from '../items-util/ruta';
+import BotonFixed from '../items-util/botonFixed';
 
 //  Imports de estilos.
 import classes from './EditService.module.scss';
+import { Edit } from '@mui/icons-material';
 
 
 export default function EditService({ servicio }) {
     const theme = useTheme();
+    console.log(servicio);
     const [servicioData, setServicioData] = useState({
         id_servicio: 0,
         titulo_breadcrumb: '',
@@ -729,4 +732,26 @@ export default function EditService({ servicio }) {
             )}
         </>
     );
+};
+
+EditService.propTypes = {
+    servicio: PropTypes.shape({
+        servicios: PropTypes.shape({
+            id_servicio: PropTypes.number.isRequired,
+            titulo_breadcrumb: PropTypes.string.isRequired,
+            subtitulo_breadcrumb: PropTypes.string.isRequired,
+            descripcion_breadcrumb: PropTypes.string.isRequired,
+            titulo: PropTypes.string.isRequired,
+            imagen_url: PropTypes.string.isRequired,
+            descripcion_breve: PropTypes.string.isRequired,
+            descripcion: PropTypes.string.isRequired,
+        }),
+        get_servicio: PropTypes.arrayOf(
+            PropTypes.shape({
+                id_subservicio: PropTypes.number.isRequired,
+                titulo_subservicio: PropTypes.string.isRequired,
+                descripcion_subservicio: PropTypes.string.isRequired,
+            })
+        ),
+    }).isRequired,
 };

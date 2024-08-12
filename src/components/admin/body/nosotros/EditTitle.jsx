@@ -12,6 +12,7 @@ import axios from 'axios';
 
 //  Imports de estilos.
 import classes from './EditService.module.scss';
+import EditTeam from './EditTeam';
 
 
 export default function EditTitle({ dataSSR }) {
@@ -323,5 +324,26 @@ export default function EditTitle({ dataSSR }) {
 };
 
 EditTeam.propTypes = {
-    dataSSR: PropTypes.object,
+    dataSSR: PropTypes.shape({
+        id_nosotros: PropTypes.number.isRequired,
+        titulo_breadcrumb: PropTypes.string.isRequired,
+        subtitulo_breadcrumb: PropTypes.string.isRequired,
+        descripcion_breadcrumb: PropTypes.string.isRequired,
+        titulo_nosotros: PropTypes.string.isRequired,
+        subtitulo_nosotros: PropTypes.string.isRequired,
+        descripcion_nosotros: PropTypes.string.isRequired,
+        anios_experiencia: PropTypes.number.isRequired,
+        titulo2_nosotros: PropTypes.string.isRequired,
+        descripcion2_nosotros: PropTypes.string.isRequired,
+        mision: PropTypes.string.isRequired,
+        vision: PropTypes.string.isRequired,
+        valores: PropTypes.string.isRequired,
+        clientes: PropTypes.number.isRequired,
+        proyectos: PropTypes.number.isRequired,
+        titulo_equipo: PropTypes.string.isRequired,
+        descripcion_equipo: PropTypes.string.isRequired,
+        img1: PropTypes.string.isRequired,
+        img2: PropTypes.string.isRequired,
+        imgTitulo: PropTypes.string.isRequired,
+    }).isRequired,
 };

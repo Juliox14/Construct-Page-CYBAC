@@ -47,7 +47,7 @@ export default function Ruta ({ rutas, titulo }){
                     }}
                 >
                     {rutas.map((ruta, index) => (
-                        <span key={`${ruta.nombre}_${index}`}>
+                        <span key={ruta.nombre}>
                             <Link href={ruta.link}>{ruta.nombre}</Link>
                             {rutas.length - index > 1 ? (
                                 <span>{' > '} </span>
