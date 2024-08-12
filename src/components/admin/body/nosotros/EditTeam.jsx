@@ -9,6 +9,7 @@ import { useTheme } from '@mui/material/styles';
 
 //  Imports de librerias externas.
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 //  Imports de estilos.
 import classes from './EditService.module.scss';
