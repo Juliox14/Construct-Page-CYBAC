@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 // Imports de axios
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 // Imports de mui material
 import { Box, Alert, TextareaAutosize } from '@mui/material';
