@@ -29,7 +29,6 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import PeopleIcon from '@mui/icons-material/People';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import ExploreIcon from '@mui/icons-material/Explore';
 import CallToActionIcon from '@mui/icons-material/CallToAction';
 import Cookies from "js-cookie";
 
@@ -199,7 +198,7 @@ export default function NavAdmin() {
                                 marginTop: "35px",
                             }}}
                             animate={hidden ? "hidden" : "visible"}>
-                            <a href="http://localhost:3000/admin/inicio" style={{ backgroundColor: pathname === "/admin" ? "#ADA479" : ""}}>
+                            <a href="http://localhost:3000/admin/inicio" style={{ backgroundColor: pathname.startsWith("/admin/inicio") ? "#ADA479" : ""}}>
                                     <HomeIcon />
                                     <motion.li 
                                     initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
@@ -216,7 +215,7 @@ export default function NavAdmin() {
                                         Inicio
                                     </motion.li>
                             </a>
-                            <a href="http://localhost:3000/admin/nosotros" style={{ backgroundColor: pathname === "/admin/nosotros" ? "#ADA479" : ""}}>
+                            <a href="http://localhost:3000/admin/nosotros" style={{ backgroundColor: pathname.startsWith("/admin/nosotros") ? "#ADA479" : ""}}>
                                     <InfoIcon />
                                     <motion.li 
                                     initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
@@ -233,7 +232,7 @@ export default function NavAdmin() {
                                         Nosotros
                                     </motion.li>
                             </a>
-                            <a href="http://localhost:3000/admin/servicio" style={{ backgroundColor: pathname === "/admin/servicio" ? "#ADA479" : ""}}>
+                            <a href="http://localhost:3000/admin/servicio" style={{ backgroundColor: pathname.startsWith("/admin/servicio") ? "#ADA479" : ""}}>
                                     <InventoryIcon />
                                     <motion.li 
                                     initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
@@ -250,7 +249,7 @@ export default function NavAdmin() {
                                         Servicio
                                     </motion.li>
                             </a>
-                            <a href="http://localhost:3000/admin/proyecto" style={{ backgroundColor: pathname === "/admin/proyecto" ? "#ADA479" : ""}}>
+                            <a href="http://localhost:3000/admin/proyecto" style={{ backgroundColor: pathname.startsWith("/admin/proyecto") ? "#ADA479" : ""}}>
                                     <PrecisionManufacturingIcon />
                                     <motion.li 
                                     initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
@@ -267,7 +266,7 @@ export default function NavAdmin() {
                                         Proyecto
                                     </motion.li>
                             </a>
-                            <a href="http://localhost:3000/admin/clientes" style={{ backgroundColor: pathname === "/admin/clientes" ? "#ADA479" : ""}}>
+                            <a href="http://localhost:3000/admin/clientes" style={{ backgroundColor: pathname.startsWith("/admin/clientes") ? "#ADA479" : ""}}>
                                     <ContactsIcon />
                                     <motion.li 
                                     initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
@@ -284,7 +283,7 @@ export default function NavAdmin() {
                                         Clientes
                                     </motion.li>
                             </a>
-                            <a href="http://localhost:3000/admin/contacto" style={{ backgroundColor: pathname === "/admin/contacto" ? "#ADA479" : ""}}>
+                            <a href="http://localhost:3000/admin/contacto" style={{ backgroundColor: pathname.startsWith("/admin/contacto") ? "#ADA479" : ""}}>
                                     <PeopleIcon />
                                     <motion.li
                                     initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
@@ -301,7 +300,7 @@ export default function NavAdmin() {
                                         Contacto
                                     </motion.li>
                             </a>
-                            <a href="http://localhost:3000/admin/footer" style={{ backgroundColor: pathname === "/admin/footer" ? "#ADA479" : ""}}>
+                            <a href="http://localhost:3000/admin/footer" style={{ backgroundColor: pathname.startsWith("/admin/footer") ? "#ADA479" : ""}}>
                                     <CallToActionIcon />
                                     <motion.li 
                                     initial={{ opacity: Cookies.get("lock") === "true" ? 1 : 0 }}
