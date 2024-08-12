@@ -4,9 +4,9 @@ import formidable, {errors as formidableErrors} from 'formidable';
 import fs from 'fs';
 
 cloudinary.config({ 
-    cloud_name: 'dazdbiunw', 
-    api_key: '572179226472142', 
-    api_secret: "ny3P9oDQRBFwPyY8ypNhFUCoy-g"
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.API_KEY_CLOUDINARY, 
+    api_secret: process.env.API_SECRET_CLOUDINARY
 });
 
 export const config = {

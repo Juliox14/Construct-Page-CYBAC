@@ -174,9 +174,28 @@
         }
     }
 
-    &_sliderTeamSection{
-        
+    &_sliderTeamSection {
+        &_formSubservicio {
+            width: 100%;
+            height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+
+            > form {
+                width: 95%;
+                height: 87%;
+                overflow-y: auto;
+            }
+
+            &_updateAlert{
+                position: fixed;
+                bottom: 2%;
+                display: flex;
+                gap: 20px;
+            }
+        }
     }
-
-
 }

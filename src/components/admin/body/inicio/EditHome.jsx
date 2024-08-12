@@ -1,6 +1,5 @@
 'use client'
 
-import sliderImage from "../../../../../public/images/admin/slider.png";
 //Imports de react.
 import { useEffect, useState, useRef} from "react";
 
@@ -17,7 +16,7 @@ import axios from "axios";
 import { Editor } from "@tinymce/tinymce-react";
 import Image from "next/image";
 
-const EditHome = ({hero, srcImages}) => {
+const EditHome = ({hero}) => {
     const theme = useTheme();
 
     const [dataSlider , setDataSlider] = useState(hero), [newDataSlider , setnewDataSlider] = useState([]),
@@ -55,13 +54,10 @@ const EditHome = ({hero, srcImages}) => {
         let data = [...dataSlider];
 
         data = data.filter((item) => item.id !== deleteState);
-        console.log(data);
         setDataSlider(data);
 
         let newData = [...newDataSlider];
-        console.log([...newDataSlider]);
         newData = newData.filter((item) => item.id !== deleteState);
-        console.log(newData);
         setnewDataSlider(newData);
 
         const compareElement = (item, item2) => item.id === item2.id;
@@ -165,6 +161,8 @@ const EditHome = ({hero, srcImages}) => {
         }
     };
 
+
+
     return (
         <div className={classes.homeEdit}>
             {!editState && (
@@ -259,14 +257,13 @@ const EditHome = ({hero, srcImages}) => {
                     )}
                     <form className={classes.homeEdit_formSubservicio} ref={refForm} onSubmit={(e) => {handleSubmit(e)}}>
                         {dataSlider.map((heroItem, index) => (
-                        <div className={classes.homeEdit_formSubservicio_firstBox} key={index}
-                        style={{boxShadow: theme.palette.mode === "dark" ? "0px 0px 0px 0px white" : "0px 0px 20px 0px #ccc"}}>
+                        <div className={classes.homeEdit_formSubservicio_firstBox} key={index}>
                             <div>
                                 <div>
-                                    {srcImages && srcImages[index] !== '' ? (
-                                        <Image src={srcImages[index]} alt={`Imagen ${index + 1}`} sizes="(max-width: 768px) 100vw, 33vw" fill priority />
+                                    {heroItem.bg !== '' ? (
+                                        <Image loader={() => heroItem.bg} src={heroItem.bg} alt={`Imagen ${index + 1}`} sizes="(max-width: 768px) 100vw, 33vw" fill priority />
                                     ) : (
-                                        <Image src={sliderImage.src} alt={`Imagen ${index + 1}`} sizes="(max-width: 768px) 100vw, 33vw" fill priority />
+                                        <Image loader={() => heroItem.bg} src={""} alt={`Imagen ${index + 1}`} sizes="(max-width: 768px) 100vw, 33vw" fill priority />
                                     )}
                                 </div>
                                 <div>
