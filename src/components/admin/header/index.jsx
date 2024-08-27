@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 import { useTheme } from '@mui/material/styles';
 
 // Importanciones de imagenes e iconos
-import AdminLogo from "../../../../public/Admin.jpeg";
+import AdminLogo from "../../../../public/images/team/medium-size/1-1-210x341.jpg";
 import AdminHeader from "../../../../public/images/logo/white_golden.png";
 import SearchIcon from '@mui/icons-material/Search';
 import LockIcon from '@mui/icons-material/Lock';
@@ -153,7 +153,7 @@ export default function NavAdmin() {
                                         }}}
                                         animate={hidden ? "hidden" : "visible"}>
                                             
-                                            Gunther Nettel
+                                            Aleff
                                         
                                     </motion.h3>
                                 </div>
