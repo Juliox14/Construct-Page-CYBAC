@@ -1,6 +1,6 @@
 import classes from './loginStyles.module.css';
 import Image from 'next/image';
-import perfil from '../../../../public/img/favicon/profile-1.jpg';
+import perfil from '../../../../public/img/logo/favicon_reichstag_color.png'
 import Button from '@mui/material/Button';
 import ReactInput from '../reactInput';
 

@@ -1,9 +1,9 @@
+import axios from 'axios';
+
 export async function getItemsBy(type, slug) {
     try {
-        const response = (
-            await fetch(`http://localhost:3000/api/${type}/${slug}`)
-        ).json();
-        return response;
+        const response = await axios.get(`/api/${type}/${slug}`);
+        return response.data;
     } catch (error) {
         return null;
     }
@@ -11,10 +11,8 @@ export async function getItemsBy(type, slug) {
 
 export async function getElement(type) {
     try {
-        const response = (
-            await fetch(`http://localhost:3000/api/${type}`)
-        ).json();
-        return response;
+        const response = await axios.get(`/api/${type}`);
+        return response.data;
     } catch (error) {
         return null;
     }

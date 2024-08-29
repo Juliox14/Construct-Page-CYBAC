@@ -22,6 +22,7 @@ export default function IndexServiceEdit({ homeServices }){
     const [message, setMessage] = useState('');
     const [bullets, setBullets] = useState(homeServices.bullets_about || '');
 
+
     const handleBulletsChange = (index, value) => {
         const bulletsArray = bullets.split(',');
         bulletsArray[index] = value;
@@ -49,20 +50,34 @@ export default function IndexServiceEdit({ homeServices }){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await axios.put(
-            `/api/home_services`,
-            homeServicesData
-        );
-        if (response.status === 200) {
-            setMessage(response.data.message);
-            setInterval(() => {
-                setMessage('');
-            }, 10000);
-        } else {
-            setMessage('Error al actualizar el servicio');
-            setInterval(() => {
-                setMessage('');
-            }, 5000);
+        const formData = new FormData();
+        formData.append(`file${1}` , home_services_data.imagen_url_about);
+        formData.append(`file${2}` , home_services_data.imagen_breadcrumb);
+        
+        const responseImageUrl = await axios.post("/api/upload", formData);
+
+        const file_about = responseImageUrl.data.url.find(file => file.id === 1);
+        const file_breadcrumb = responseImageUrl.data.url.find(file => file.id === 2);
+
+        const updatedDataWithImg = { 
+            ...home_services_data,
+            imagen_url_about: file_about !== undefined ? file_about.file : home_services_data.imagen_url_about,
+            imagen_breadcrumb: file_breadcrumb !== undefined ? file_breadcrumb.file : home_services_data.imagen_breadcrumb
+        }
+
+        if(responseImageUrl.status === 200){
+            const response = await axios.put(`/api/home_services`, updatedDataWithImg);
+            if (response.status === 200) {
+                setMessage(response.data.message);
+                setInterval(() => {
+                    setMessage('');
+                }, 10000);
+            } else {
+                setMessage('Error al actualizar el servicio');
+                setInterval(() => {
+                    setMessage('');
+                }, 5000);
+            }
         }
     };
 
@@ -133,9 +148,26 @@ export default function IndexServiceEdit({ homeServices }){
                             />
                         </div>
                         <div className={classes.formGroup}>
-                            <label htmlFor="subtitulo_breadcrumb">
-                                Subtítulo Breadcrumb
-                            </label>
+                            <label htmlFor="imagen_url_about_breadcrumb">Imagen breadcrumb - (1920 x 470)</label>
+                                <input
+                                    id="imagen_url_about_breadcrumb"
+                                    type="file"
+                                    accept="image/*"
+                                    name="imagen"
+                                    onChange={(e) => {
+                                        const updatedData = home_services_data;
+                                        updatedData.imagen_breadcrumb = e.target.files[0];
+                                        setHome_services_data(updatedData);
+                                    }}
+
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
+                            <div className={classes.imagePreview}>
+                                <img src={home_services_data.imagen_breadcrumb} alt="Imagen del servicio" />
+                            </div>
+                        </div>
+                        <div className={classes.formGroup}>
+                            <label htmlFor="subtitulo_breadcrumb">Subtítulo Breadcrumb</label>
                             <input
                                 required
                                 type="text"
@@ -203,20 +235,20 @@ export default function IndexServiceEdit({ homeServices }){
                             />
                         </div>
                         <div className={classes.formGroup}>
-                            <label htmlFor="imagen_url_about">Imagen</label>
-                            <input
-                                required
-                                type="text"
-                                id="imagen_url_about"
-                                name="imagen_url_about"
-                                value={homeServicesData.imagen_url_about}
-                                onChange={handleInputChange}
-                                className={
-                                    theme.palette.mode === 'dark'
-                                        ? classes.formControlDark
-                                        : classes.formControl
-                                }
-                            />
+                            <label htmlFor="imagen_url_about">Imagen - aproximadamente (1024 x 1024)</label>
+                                <input
+                                    id="imagen_url_about"
+                                    type="file"
+                                    accept="image/*"
+                                    name="imagen"
+                                    onChange={(e) => {
+                                        const updatedData = home_services_data;
+                                        updatedData.imagen_url_about = e.target.files[0];
+                                        setHome_services_data(updatedData);
+                                    }}
+                                    required={home_services_data.imagen_url_about ? false : true}
+                                    className={theme.palette.mode === 'dark' ? classes.formControlDark : classes.formControl}
+                                />
                             <div className={classes.imagePreview}>
                                 <img
                                     src={homeServicesData.imagen_url_about}
@@ -272,13 +304,7 @@ export default function IndexServiceEdit({ homeServices }){
                                 </div>
                             ))}
                         </div>
-                        <BotonFixed
-                            metodo={() =>
-                                document
-                                    .getElementById('edit-index-form')
-                                    .requestSubmit()
-                            }
-                        />
+                        <BotonFixed metodo={() => document.getElementById('edit-index-form').requestSubmit} />
                     </form>
                 </Box>
             </div>

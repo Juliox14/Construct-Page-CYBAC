@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Breadcrumb from '../../components/breadcrumb';
+import { Container } from 'react-bootstrap';
 import Footer from '../../components/layout/footer';
 import ServiceDetail from '../../components/services/service-detail';
 import { getElement, getItemsBy } from '../../lib/items';
@@ -19,10 +20,12 @@ function ServiceDetailsPage({ servicesList, footerItems, services }) {
                 />
             </Head>
             <Breadcrumb
+                img={services.servicios.imagen_breadcrumb}
                 subTitle={services.servicios.subtitulo_breadcrumb}
                 title={services.servicios.titulo_breadcrumb}
                 desc={services.servicios.descripcion_breadcrumb}
             />
+            
             <ServiceDetail
                 sidebarList={servicesList}
                 service={services.servicios}

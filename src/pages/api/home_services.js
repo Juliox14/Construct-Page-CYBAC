@@ -18,8 +18,9 @@ export default async function handler(req, res) {
             try {
                 const home_services = req.body;
 
-                await db.execute(
-                    `
+                console.log(home_services);
+
+                await db.execute(`
                     UPDATE home_services 
                     SET 
                         titulo_breadcrumb = ?, 
@@ -29,22 +30,22 @@ export default async function handler(req, res) {
                         subtitulo_about = ?, 
                         imagen_url_about = ?, 
                         descripcion_about = ?, 
-                        bullets_about = ?
+                        bullets_about = ?,
+                        imagen_breadcrumb = ?
                     WHERE 
                         id_home_service = ?
-                `,
-                    [
-                        home_services.titulo_breadcrumb,
-                        home_services.subtitulo_breadcrumb,
-                        home_services.descripcion_breadcrumb,
-                        home_services.titulo_about,
-                        home_services.subtitulo_about,
-                        home_services.imagen_url_about,
-                        home_services.descripcion_about,
-                        home_services.bullets_about,
-                        home_services.id_home_service,
-                    ]
-                );
+                `, [
+                    home_services.titulo_breadcrumb,
+                    home_services.subtitulo_breadcrumb,
+                    home_services.descripcion_breadcrumb,
+                    home_services.titulo_about,
+                    home_services.subtitulo_about,
+                    home_services.imagen_url_about,
+                    home_services.descripcion_about,
+                    home_services.bullets_about,
+                    home_services.imagen_breadcrumb,
+                    home_services.id_home_service
+                ]);
 
                 res.status(200).json({
                     message: 'Página actualizada correctamente',

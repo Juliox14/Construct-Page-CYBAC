@@ -9,6 +9,7 @@
             position: relative;
             padding: 20px;
             border-radius: 15px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.30);
 
             > :first-child {
                 width: 100%;
@@ -77,13 +78,9 @@
             align-items: center;
             gap: 20px;
 
-            button {
-                z-index: 1000 !important;
+            button{
+                z-index: 5;
             }
         }
     }
-}
-
-.tox.tox-tinymce {
-    z-index: 1 !important;
 }

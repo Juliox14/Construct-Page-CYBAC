@@ -15,6 +15,7 @@ export async function getServerSideProps(context) {
     const { servicio } = params;
 
     const services = await getItemsBy('services', servicio);
+
     return {
         props: {
             servicio: services,

@@ -1,8 +1,7 @@
 'use client';
 
-//  Imports de react.
-import { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
+//Imports de react.
+import { useEffect, useState, useRef} from "react";
 
 
 //  Imports de componentes de Material UI.
@@ -25,7 +24,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import sliderImage from '../../../../../public/images/admin/slider.png';
 import classes from './EditService.module.scss';
 
-export default function EditHome({ hero, srcImages }) {
+const EditHome = ({hero}) => {
     const theme = useTheme();
 
     const [dataSlider, setDataSlider] = useState(hero);
@@ -196,6 +195,8 @@ export default function EditHome({ hero, srcImages }) {
         }
     };
 
+
+
     return (
         <div className={classes.homeEdit}>
             {!editState && (
@@ -363,53 +364,23 @@ export default function EditHome({ hero, srcImages }) {
                             width: 'auto',
                             height: 'auto',
                             zIndex: '1000',
-                        }}
-                    >
-                        {message[0]}
-                    </Alert>
-                )}
-                <form
-                    className={classes.homeEdit_formSubservicio}
-                    ref={refForm}
-                    onSubmit={(e) => {
-                        handleSubmit(e);
-                    }}
-                >
-                    {dataSlider.map((heroItem, index) => (
-                        <div
-                            className={
-                                classes.homeEdit_formSubservicio_firstBox
-                            }
-                            key={heroItem.id}
-                            style={{
-                                boxShadow:
-                                    theme.palette.mode === 'dark'
-                                        ? '0px 0px 0px 0px white'
-                                        : '0px 0px 20px 0px #ccc',
-                            }}
-                        >
+                        }} >
+                            {message[0]}
+                        </Alert>
+                    )}
+                    <form className={classes.homeEdit_formSubservicio} ref={refForm} onSubmit={(e) => {handleSubmit(e)}}>
+                        {dataSlider.map((heroItem, index) => (
+                        <div className={classes.homeEdit_formSubservicio_firstBox} key={index}>
                             <div>
                                 <div>
-                                    {srcImages && srcImages[index] !== '' ? (
-                                        <Image
-                                            src={srcImages[index]}
-                                            alt={`Imagen ${index + 1}`}
-                                            sizes="(max-width: 768px) 100vw, 33vw"
-                                            fill
-                                            priority
-                                        />
+                                    {heroItem.bg !== '' ? (
+                                        <Image loader={() => heroItem.bg} src={heroItem.bg} alt={`Imagen ${index + 1}`} sizes="(max-width: 768px) 100vw, 33vw" fill priority />
                                     ) : (
-                                        <Image
-                                            src={sliderImage.src}
-                                            alt={`Imagen ${index + 1}`}
-                                            sizes="(max-width: 768px) 100vw, 33vw"
-                                            fill
-                                            priority
-                                        />
+                                        <Image loader={() => heroItem.bg} src={""} alt={`Imagen ${index + 1}`} sizes="(max-width: 768px) 100vw, 33vw" fill priority />
                                     )}
                                 </div>
                                 <div>
-                                    <label htmlFor="imagen">Imagen</label>
+                                    <label htmlFor="imagen">Imagen - (1920 x 786)</label>
                                     <input
                                         type="file"
                                         accept="image/*"

@@ -11,6 +11,7 @@ import {
 import { IoAddOutline } from 'react-icons/io5';
 import classes from './team.module.scss';
 import { Slide } from '../swiper';
+import Image from 'next/image';
 
 //TODO: Agregar redes sociales de los empleados
 
@@ -75,10 +76,13 @@ function Team({ teamItems, teamSectionItems, settings }) {
                                 <Slide key={teamItem.id_empleado}>
                                     <div className={classes.item}>
                                         <div className={classes.img}>
-                                            <img
+                                            <Image
+                                                loader={() => teamItem?.ruta_imagen}
                                                 src={`/images/team/medium-size/${teamItem?.ruta_imagen}`}
                                                 alt={`Imagen de ${teamItem?.nombre_empleado}`}
                                                 className="img-full"
+                                                width={211}
+                                                height={345}
                                             />
                                             <ul className={classes.add__action}>
                                                 <li

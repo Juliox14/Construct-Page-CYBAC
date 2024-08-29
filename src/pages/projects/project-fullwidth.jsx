@@ -14,6 +14,7 @@ function ProjectFullwidthPage({ projects, servicesList, footerItems }) {
                 <meta name="description" content="Projects FullWidth" />
             </Head>
             <Breadcrumb
+                img="https://res.cloudinary.com/dazdbiunw/image/upload/v1723442543/an8vzcv7nesexaru3pub.jpg"
                 subTitle="Nuestros proyectos"
                 title="Proyectos"
                 desc="Conoce todos nuestros proyectos y date una idea de las cosas increíbles que podremos lograr trabajando contigo"

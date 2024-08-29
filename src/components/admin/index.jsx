@@ -57,31 +57,41 @@ const AdminLayout = ({ children }) => {
         [mode]
     );
 
-    return (
-        <>
-            <Head>
-                <title>Admin Dashboard</title>
-            </Head>
+    const [backgroundNavBar, setBackgroundNavBar] = useState(null);
 
-            <ColorModeContext.Provider value={colorMode}>
-                <ThemeProvider theme={theme}>
-                    <div className={classes.boxHeaderMain}>
-                        <NavAdmin />
-                        <Box
-                            className={classesMain.boxFather}
-                            sx={{
-                                bgcolor: 'background.default',
-                                color: 'text.primary',
-                                transition: `background-color ${theme.transitions.duration.standard}ms`,
-                            }}
-                        >
-                            {children}
-                        </Box>
-                    </div>
-                </ThemeProvider>
-            </ColorModeContext.Provider>
-        </>
-    );
+    useEffect(() => {
+        const darkMode = Cookies.get("darkMode") === 'dark';
+        setBackgroundNavBar(darkMode ? "#1c1c1c" : "white");
+    }, []);
+
+    if (backgroundNavBar === null) return null;
+
+
+  return (
+    <>
+      <Head>
+        <title>Admin Dashboard</title>
+      </Head>
+
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <div className={classes.boxHeaderMain}>
+            <NavAdmin />
+            <Box className={classesMain.boxFather}
+              sx={{
+                bgcolor: 'background.default',
+                color: 'text.primary',
+                height: '100vh',
+                transition: `background-color ${theme.transitions.duration.standard}ms`
+              }}
+            >
+              {children}
+            </Box>
+          </div>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </>
+  );
 };
 
 export default AdminLayout;

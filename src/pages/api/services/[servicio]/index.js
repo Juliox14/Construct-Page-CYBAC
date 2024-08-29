@@ -22,22 +22,16 @@ export default async function servicesHandler(req, res) {
 
             res.status(200).json(allData);
         } catch (error) {
-            console.error(error);
             res.status(500).json({ message: 'Internal Server Error', error });
         }
     } else if (req.method === 'PUT') {
         try {
-            const { servicio } = req.query;
             const servicioData = req.body;
-            const parseServicioData = parseData(servicioData);
-            await db.execute(
-                `UPDATE servicios SET ${parseServicioData} WHERE titulo = "${servicio}"`
-            );
-            res.status(200).json({
-                message: 'Servicio actualizado correctamente',
-            });
+            const {id_servicio, ...rest} = servicioData;
+            const parseServicioData = parseData(rest);
+            await db.execute(`UPDATE servicios SET ${parseServicioData} WHERE id_servicio = "${id_servicio}"`);
+            res.status(200).json({ message: 'Servicio actualizado correctamente' });
         } catch (error) {
-            console.error(error);
             res.status(500).json({ message: 'Internal Server Error', error });
         }
     } else if (req.method === 'DELETE') {
@@ -50,7 +44,6 @@ export default async function servicesHandler(req, res) {
                 message: 'Servicio eliminado correctamente',
             });
         } catch (error) {
-            console.error(error);
             res.status(500).json({ message: 'Internal Server Error', error });
         }
     } else {
