@@ -1,0 +1,113 @@
+---
+data :
+    [
+        {
+            id: 'our-service-01',
+            projectContentTitle: 'Diseño Arquitectónico',
+            projectContentDesc: 'Sumérjase en la excelencia del diseño con nuestro equipo de arquitectos altamente cualificados. Transformamos espacios en experiencias visuales y funcionales, fusionando innovación, estética y funcionalidad. Desde la conceptualización hasta la implementación, cada proyecto refleja nuestro compromiso con la calidad y la atención meticulosa a los detalles. En Reichstag, creamos no solo estructuras, sino también ambientes que inspiran y perduran.',
+            listItem:
+                [
+                    {
+                        id: 'listItem-01',
+                        checkIcon: 'FaCheck',
+                        text: 'Construction of itself, because it is pain, proper style design occur pleasure',
+                    },
+                    {
+                        id: 'listItem-02',
+                        checkIcon: 'FaCheck',
+                        text: 'Construction of itself, because it is pain, proper style design occur pleasure',
+                    },
+                    {
+                        id: 'listItem-03',
+                        checkIcon: 'FaCheck',
+                        text: 'Construction of itself, because it is pain, proper style design occur pleasure',
+                    },
+                ],
+                projectAnalysisTitle: 'Diseño Urbano',
+                projectAnalysisDesc: 'Abrazamos el desafío de dar forma a entornos urbanos que trascienden la funcionalidad para convertirse en expresiones vibrantes de comunidad y sostenibilidad. Nuestro enfoque de diseño urbano integra cuidadosamente la planificación del espacio, la movilidad, la estética y la sostenibilidad ambiental. Desde el trazado de calles hasta la creación de espacios públicos, buscamos armonizar la vida urbana con soluciones innovadoras. Reichstag redefine la experiencia urbana, construyendo entornos que inspiran la conexión y el progreso.',
+                additionDescOne: 'Top rated construction packages we pleasure rationally encounter consequences interesting who loves or pursues or desires to obtain',
+                additionDescTwo: 'Top rated construction packages we pleasure rationally encounter consequences',
+                projectPlanningTitle: 'Diseño de Fachadas Integrales',
+                projectPlanningDesc: 'Elevamos la estética y la funcionalidad a nuevas alturas con nuestro servicio de Fachadas Integrales. Cada proyecto es una obra maestra en la que combinamos diseño vanguardista, materiales de alta calidad y una ejecución precisa. Desde la concepción hasta la instalación, nuestro enfoque integral garantiza no solo una fachada visualmente impactante, sino también una solución estructuralmente sólida. Reichstag redefine la impresión inicial de edificaciones, creando fachadas que destacan en cada detalle.',
+                listItemTwo:
+                    [
+                        {
+                            id: 'listItemTwo-01',
+                            primaryText: '01. Diseño arquitectonico',
+                            text: 'of itself ,because proper style design occur pleasure',
+                        },
+                        {
+                            id: 'listItemTwo-02',
+                            primaryText: '02. Trabajo de construccion',
+                            text: 'itself, because pain, proper style design occur pleasure',
+                        },
+                        {
+                            id: 'listItemTwo-03',
+                            primaryText: '03. Finalizacion de trabajo',
+                            text: 'and hand over some of proper style design occur pleasure',
+                        },
+                    ],
+                    interiorDesignTitle: 'Diseño de Interiores',
+            interiorDesignDesc: 'Sumérjase en la fusión perfecta de estética y funcionalidad. En Reichstag, nuestro servicio de diseño de interiores va más allá de la decoración convencional, creando espacios que cuentan historias y reflejan la personalidad de quienes los habitan. Desde la planificación hasta la ejecución, cada detalle es meticulosamente considerado, garantizando ambientes que no solo son visualmente impresionantes, sino también cómodos y adaptados a las necesidades individuales. Experimente la transformación de sus espacios con Reichstag, donde el diseño cobra vida.',
+    interiorFinishesTitle: 'Acabados de Interior',
+    interiorFinishesDesc: 'Sumérjase en la fusión perfecta de estética y funcionalidad. En Reichstag, nuestro servicio de diseño de interiores va más allá de la decoración convencional, creando espacios que cuentan historias y reflejan la personalidad de quienes los habitan. Desde la planificación hasta la ejecución, cada detalle es meticulosamente considerado, garantizando ambientes que no solo son visualmente impresionantes, sino también cómodos y adaptados a las necesidades individuales. Experimente la transformación de sus espacios con Reichstag, donde el diseño cobra vida.',
+    exteriorFinishesTitle: 'Acabados de Exterior',
+    exteriorFinishesDesc: 'En cada proyecto, llevamos la esencia del diseño a los espacios al aire libre. Desde revestimientos que resisten el paso del tiempo hasta detalles que realzan la estética, nuestros Acabados de Exterior son la firma de la calidad en cada construcción. En Reichstag, creamos no solo exteriores visualmente impresionantes, sino también ambientes duraderos que resisten los elementos con estilo.'
+        },
+        {
+            id: 'our-service-02',
+            projectContentTitle: 'Diseño Arquitectónico',
+            projectContentDesc: 'Sumérjase en la excelencia del diseño con nuestro equipo de arquitectos altamente cualificados. Transformamos espacios en experiencias visuales y funcionales, fusionando innovación, estética y funcionalidad. Desde la conceptualización hasta la implementación, cada proyecto refleja nuestro compromiso con la calidad y la atención meticulosa a los detalles. En Reichstag, creamos no solo estructuras, sino también ambientes que inspiran y perduran.',
+            listItem:
+                [
+                    {
+                        id: 'listItem-01',
+                        checkIcon: 'FaCheck',
+                        text: 'Construction of itself, because it is pain, proper style design occur pleasure',
+                    },
+                    {
+                        id: 'listItem-02',
+                        checkIcon: 'FaCheck',
+                        text: 'Construction of itself, because it is pain, proper style design occur pleasure',
+                    },
+                    {
+                        id: 'listItem-03',
+                        checkIcon: 'FaCheck',
+                        text: 'Construction of itself, because it is pain, proper style design occur pleasure',
+                    },
+                ],
+                projectAnalysisTitle: 'Diseño Urbano',
+                projectAnalysisDesc: 'Abrazamos el desafío de dar forma a entornos urbanos que trascienden la funcionalidad para convertirse en expresiones vibrantes de comunidad y sostenibilidad. Nuestro enfoque de diseño urbano integra cuidadosamente la planificación del espacio, la movilidad, la estética y la sostenibilidad ambiental. Desde el trazado de calles hasta la creación de espacios públicos, buscamos armonizar la vida urbana con soluciones innovadoras. Reichstag redefine la experiencia urbana, construyendo entornos que inspiran la conexión y el progreso.',
+                additionDescOne: 'Top rated construction packages we pleasure rationally encounter consequences interesting who loves or pursues or desires to obtain',
+                additionDescTwo: 'Top rated construction packages we pleasure rationally encounter consequences',
+                projectPlanningTitle: 'Diseño de Fachadas Integrales',
+                projectPlanningDesc: 'Elevamos la estética y la funcionalidad a nuevas alturas con nuestro servicio de Fachadas Integrales. Cada proyecto es una obra maestra en la que combinamos diseño vanguardista, materiales de alta calidad y una ejecución precisa. Desde la concepción hasta la instalación, nuestro enfoque integral garantiza no solo una fachada visualmente impactante, sino también una solución estructuralmente sólida. Reichstag redefine la impresión inicial de edificaciones, creando fachadas que destacan en cada detalle.',
+                listItemTwo:
+                    [
+                        {
+                            id: 'listItemTwo-01',
+                            primaryText: '01. Diseño arquitectonico',
+                            text: 'of itself ,because proper style design occur pleasure',
+                        },
+                        {
+                            id: 'listItemTwo-02',
+                            primaryText: '02. Trabajo de construccion',
+                            text: 'itself, because pain, proper style design occur pleasure',
+                        },
+                        {
+                            id: 'listItemTwo-03',
+                            primaryText: '03. Finalizacion de trabajo',
+                            text: 'and hand over some of proper style design occur pleasure',
+                        },
+                    ],
+                    interiorDesignTitle: 'Diseño de Interiores',
+            interiorDesignDesc: 'Sumérjase en la fusión perfecta de estética y funcionalidad. En Reichstag, nuestro servicio de diseño de interiores va más allá de la decoración convencional, creando espacios que cuentan historias y reflejan la personalidad de quienes los habitan. Desde la planificación hasta la ejecución, cada detalle es meticulosamente considerado, garantizando ambientes que no solo son visualmente impresionantes, sino también cómodos y adaptados a las necesidades individuales. Experimente la transformación de sus espacios con Reichstag, donde el diseño cobra vida.',
+    interiorFinishesTitle: 'Acabados de Interior',
+    interiorFinishesDesc: 'Sumérjase en la fusión perfecta de estética y funcionalidad. En Reichstag, nuestro servicio de diseño de interiores va más allá de la decoración convencional, creando espacios que cuentan historias y reflejan la personalidad de quienes los habitan. Desde la planificación hasta la ejecución, cada detalle es meticulosamente considerado, garantizando ambientes que no solo son visualmente impresionantes, sino también cómodos y adaptados a las necesidades individuales. Experimente la transformación de sus espacios con Reichstag, donde el diseño cobra vida.',
+    exteriorFinishesTitle: 'Acabados de Exterior',
+    exteriorFinishesDesc: 'En cada proyecto, llevamos la esencia del diseño a los espacios al aire libre. Desde revestimientos que resisten el paso del tiempo hasta detalles que realzan la estética, nuestros Acabados de Exterior son la firma de la calidad en cada construcción. En Reichstag, creamos no solo exteriores visualmente impresionantes, sino también ambientes duraderos que resisten los elementos con estilo.'
+        }
+    ]
+
+
+---
