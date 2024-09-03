@@ -4,7 +4,6 @@ import Component from '..';
 
 export default function Proyectos({ proyectos }) {
     const [componentsInThePage, setComponentsInThePage] = useState([proyectos]);
-    console.log(proyectos);
 
     useEffect(() => {
         const updatedComponents = proyectos.map((proyecto) => ({
@@ -15,15 +14,7 @@ export default function Proyectos({ proyectos }) {
             url: proyecto.ruta_imagen,
         }));
 
-        const initialComponent = {
-            title: 'Index de proyectos',
-            description: 'Titulo, subtitulo y descripción breve del breadcrumb',
-            link: '/admin/slider',
-            id: 'frame1',
-            url: '/images/admin/projects/title.png',
-        };
-
-        setComponentsInThePage([initialComponent, ...updatedComponents]);
+        setComponentsInThePage([...updatedComponents]);
     }, [proyectos]);
     return (
         <Component

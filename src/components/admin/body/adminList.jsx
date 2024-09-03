@@ -85,7 +85,7 @@ export default function AdminList({
                         transition: `background-color ${theme.transitions.duration.standard}ms`,
                     }}
                 >
-                    <Link
+                    <a
                         href={link}
                         onMouseOver={handleOver}
                         onMouseOut={handleOut}
@@ -272,7 +272,7 @@ export default function AdminList({
                                     gap: '20px',
                                 }}
                             >
-                                <Link href={link}>
+                                <a href={link}>
                                     <EditIcon
                                         fontSize="large"
                                         sx={{
@@ -282,7 +282,7 @@ export default function AdminList({
                                                     : '#014655',
                                         }}
                                     />
-                                </Link>
+                                </a>
                                 <button
                                     type="button"
                                     onClick={() => setDeleteConfirm(true)}

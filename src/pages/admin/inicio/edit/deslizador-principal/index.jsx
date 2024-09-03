@@ -4,7 +4,7 @@ import { getElement } from '../../../../../lib/items';
 // import { getElement } from '../../../../../lib/items';
 // import { htmlToText } from 'html-to-text';
 
-function ServicioEdit({
+export default function ServicioEdit({
     data,
 }) {
     return (
@@ -13,8 +13,6 @@ function ServicioEdit({
         </AdminLayout>
     );
 }
-
-export default ServicioEdit;
 
 export async function getServerSideProps() {
     const response = await getElement('home');

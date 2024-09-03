@@ -2,6 +2,7 @@
 
 //Imports de react.
 import { useEffect, useState, useRef} from "react";
+import Image from "next/image";
 
 
 //  Imports de componentes de Material UI.
@@ -622,6 +623,8 @@ const EditHome = ({hero}) => {
         </div>
     );
 };
+
+export default EditHome;
 
 EditHome.propTypes = {
     hero: PropTypes.string.isRequired,
