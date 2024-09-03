@@ -1,3 +1,4 @@
+import classes from './header/header.module.scss';
 import classesMain from './body/mainSection.module.scss';
 import Cookies from 'js-cookie';
 
@@ -74,7 +75,7 @@ const AdminLayout = ({ children }) => {
 
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
-
+          <div className={classes.boxHeaderMain}>
             <NavAdmin />
             <Box className={classesMain.boxFather}
               sx={{
@@ -86,7 +87,7 @@ const AdminLayout = ({ children }) => {
             >
               {children}
             </Box>
-
+          </div>
         </ThemeProvider>
       </ColorModeContext.Provider>
     </>
