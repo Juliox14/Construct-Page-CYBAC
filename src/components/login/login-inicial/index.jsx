@@ -28,7 +28,7 @@ export default function LoginInicial() {
         if (response.status === 201) {
             setValues({});
             setSuccessValue(true);
-            window.location.href = '/admin';
+            window.location.href = '/admin/inicio';
         }
         if (response.status === 202) {
             setAlertValue(response.data);
