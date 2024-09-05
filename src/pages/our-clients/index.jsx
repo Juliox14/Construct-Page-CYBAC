@@ -11,7 +11,6 @@ function OurClients({
     servicesList,
     footerItems
 }) {
-    console.log(dataHomeClients)
     let clientes_municipio=[];
     let clientes_iniciativa_privada=[];
     let clientes_particular=[];

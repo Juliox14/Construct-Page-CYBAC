@@ -6,7 +6,6 @@ export default function Login(){
     return(
         <div className={classes.bg_pc}>
             <LoginInicial/>
-            {/* <LoginRecordatorio/> */}
         </div>
     );
 }
