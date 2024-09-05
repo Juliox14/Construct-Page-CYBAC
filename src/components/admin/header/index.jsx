@@ -33,14 +33,14 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import CallToActionIcon from '@mui/icons-material/CallToAction';
 import Cookies from "js-cookie";
 
-export default function NavAdmin() {
+export default function NavAdmin(userData) {
 
     const { pathname } = useRouter();
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
     const [hidden, setHidden] = useState(true);
     const [lock, setLock] = useState(false);
-
+    console.log(userData)
     const handleLockHeader = () => {
         if(lock) return
         else {
@@ -139,7 +139,7 @@ export default function NavAdmin() {
                                     }}/>
                                 </motion.div>
 
-                                <motion.img alt="Logo Admin" src={AdminLogo.src} className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxHeader_imgUser}
+                                <motion.img alt="Logo Admin" src={userData.ruta_perfil} className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxHeader_imgUser}
                                 initial={{
                                     width: Cookies.get("lock") === "true" ? "3.5em" : "2.5em",
                                     height: Cookies.get("lock") === "true" ? "3.5em" : "2.5em",
@@ -164,7 +164,7 @@ export default function NavAdmin() {
                                         }}}
                                         animate={hidden ? "hidden" : "visible"}>
                                             
-                                            Gunther Nettel
+                                            {userData.username}
                                         
                                     </motion.h3>
                                 </div>

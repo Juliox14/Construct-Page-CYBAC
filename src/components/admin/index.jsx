@@ -14,49 +14,48 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Head from "next/head";
 import { useState, useMemo, useEffect } from "react";
 
-const AdminLayout = ({ children }) => {
-
+const AdminLayout = ({ children, realUser }) => {
   const [mode, setMode] = useState('light');
-
   useEffect(() => {
     // Lee la preferencia del modo desde las cookies
     const cookieMode = Cookies.get("darkMode") || "light";
     setMode(cookieMode);
-    const dataAdmin = Cookies.get("auth");
   }, []);
 
-    const colorMode = useMemo(
-        () => ({
-        toggleColorMode: () => {
-            setMode((prevMode) => {
-              const newMode = prevMode === 'light' ? 'dark' : 'light';
-              Cookies.set("darkMode", newMode);
-              return newMode;
-            });
-        }}),
-        [],
-    );
+  const colorMode = useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => {
+          const newMode = prevMode === 'light' ? 'dark' : 'light';
+          Cookies.set("darkMode", newMode);
+          return newMode;
+        });
+      },
+    }),
+    [],
+  );
 
-    const theme = useMemo(
-        () =>
-        createTheme({
-            palette: {
-              mode,
-              ...(mode === 'dark' && {
-                  background: {
-                    default: "#1c1c1c",
-                    paper: "#2F2F2F",
-                  },
-                }),
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+          ...(mode === 'dark' && {
+            background: {
+              default: "#1c1c1c",
+              paper: "#2F2F2F",
             },
-            transitions: {
-              duration: {
-                standard: 300,
-              },
-            },
-        }),
-        [mode],
-    );
+          }),
+        },
+        transitions: {
+          duration: {
+            standard: 300,
+          },
+        },
+      }),
+    [mode],
+  );
+
   return (
     <>
       <Head>
@@ -65,8 +64,9 @@ const AdminLayout = ({ children }) => {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <div className={classes.boxHeaderMain}>
-            <NavAdmin />
-            <Box className={classesMain.boxFather}
+            <NavAdmin userData={realUser.realUser}/>
+            <Box
+              className={classesMain.boxFather}
               sx={{
                 bgcolor: 'background.default',
                 color: 'text.primary',
@@ -81,5 +81,4 @@ const AdminLayout = ({ children }) => {
     </>
   );
 };
-
 export default AdminLayout;

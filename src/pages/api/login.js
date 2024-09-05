@@ -11,12 +11,12 @@ const db = mysql.createPool({
     multipleStatements: true,
 });
 
-export async function createToken(username, password){
+export async function createToken(username, password, ruta_perfil){
     const payload = {
         username,
         password,
+        ruta_perfil,
     }
-    //TODO: Extraer la llave del token de una variable de entorno
     const secret = new TextEncoder().encode('JcGnCa-18-13-08');
     try {
         const tokenAdmin = await new SignJWT(payload)
@@ -49,7 +49,6 @@ export default async function registerHandler(req, res) {
     try {
         const { username, password } = req.body;
         const response = await findUser(username, password);
-        // console.log(response)
         if(response.message === 'Usuario no encontrado'){
             return  res.status(202).json(response);
         }
@@ -57,10 +56,10 @@ export default async function registerHandler(req, res) {
             return res.status(202).json(response)
         }
 
-        if(response === true){
-            const result = await createToken(username, password);
+        if(response[0] === true){
+            const result = await createToken(username, password, response[1]);
             const cookie = createCookie(result);
-            res.setHeader('Set-Cookie', cookie);
+            res.setHeader('Set-Cookie', 'dddasdads');
             return res.status(201).json({message: 'Usuario autenticado correctamente'});
         }
         if(response.error){
@@ -74,13 +73,13 @@ export default async function registerHandler(req, res) {
 
 const findUser = async (username, password) => {
     try {
-        const [rows] = await db.query('SELECT 1 FROM admin WHERE username = ?; SELECT password_hashed FROM admin WHERE username = ?;', [username, username]);
+        const [rows] = await db.query('SELECT 1 FROM admin WHERE username = ?; SELECT password_hashed, ruta_perfil FROM admin WHERE username = ?;', [username, username]);
         const exists = rows[0].length>0 ? true: false;
         if (exists){
             const truePassword = rows[1][0].password_hashed;
             const verifyPassword = await bcrypt.compare(password, truePassword);
             if(verifyPassword){
-                return true;
+                return [true, rows[1][0].ruta_perfil];
             }
             else{
                 return { message: 'Contraseña incorrecta'};

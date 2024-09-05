@@ -23,8 +23,9 @@ export function validateUser(username) {
 }
 
 export function validatePassword(password, confirmPassword) {
-    const specialChars = /[!@#$%^&*(),.?":{}|<>]/;
-    const containsSpecialChar = [...password].find(char => specialChars.test(char));
+    const specialChars = /^[!@#$%^&*(),.?":{}|<>]$/;
+    const containsSpecialChar = [...passwo
+        rd].find(char => specialChars.test(char));
     if (confirmPassword) {
         if (password != confirmPassword) {
             return 'Las contraseñas deben ser iguales';
