@@ -49,9 +49,10 @@ function OurClients({
                 />
             </Head>
             <Breadcrumb
-                subTitle="Nuestros Clientes"
-                title="Clientes Satifechos"
-                desc="Construction of itself, because it is pain some proper style design occur are pleasure"
+                subTitle={dataHomeClients[1][0].subTitle_breadcrumb}
+                title={dataHomeClients[1][0].title_breadcrumb}
+                desc={dataHomeClients[1][0].descripcion_breadcrumb}
+                img={dataHomeClients[1][0].ruta_imagen}
             />
             <ClientsList dataHomeClients={clientes_lista} />
             {clientes_municipio.length != 0 && (

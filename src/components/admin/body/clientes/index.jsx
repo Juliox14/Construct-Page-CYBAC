@@ -5,7 +5,7 @@ export default function Clientes() {
         {
             title: 'Titulo',
             description: 'Titulo y descripción breve de la página',
-            link: '/admin/clientes/slider',
+            link: '/admin/clientes/breadcrumbClients',
             id: 'frame1',
             url: '/images/admin/clients/title.png',
         },

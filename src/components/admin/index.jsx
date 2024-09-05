@@ -75,7 +75,7 @@ const AdminLayout = ({ children }) => {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <div className={classes.boxHeaderMain}>
-            <NavAdmin userData={realUser.realUser}/>
+            <NavAdmin userData={/*realUser.realUser? realUser.realUser */ "Administrador"}/>
             <Box
               className={classesMain.boxFather}
               sx={{
