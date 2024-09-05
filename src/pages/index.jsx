@@ -46,6 +46,7 @@ export default function HomePage({
 
 export async function getServerSideProps() {
     const allDataHome = await getElement('home');
+    console.log(allDataHome)
     const [aboutItems] = await getElement('about');
     const heroItems = allDataHome[0];
     const projects = allDataHome[1];
