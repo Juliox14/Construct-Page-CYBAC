@@ -11,12 +11,12 @@ const db = mysql.createPool({
     multipleStatements: true,
 });
 
-export async function createToken(username, password) {
+export async function createToken(username, password, ruta_perfil){
     const payload = {
         username,
         password,
-    };
-    //TODO: Extraer la llave del token de una variable de entorno
+        ruta_perfil,
+    }
     const secret = new TextEncoder().encode('JcGnCa-18-13-08');
     try {
         const tokenAdmin = await new SignJWT(payload)
@@ -58,6 +58,7 @@ export default async function registerHandler(req, res) {
         }
 
         if (response === true) {
+            console.log(response[1])
             const result = await createToken(username, password);
             const cookie = createCookie(result);
             res.setHeader('Set-Cookie', cookie);

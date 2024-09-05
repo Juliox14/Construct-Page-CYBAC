@@ -72,12 +72,12 @@ const AdminLayout = ({ children }) => {
       <Head>
         <title>Admin Dashboard</title>
       </Head>
-
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <div className={classes.boxHeaderMain}>
-            <NavAdmin />
-            <Box className={classesMain.boxFather}
+            <NavAdmin userData={realUser.realUser}/>
+            <Box
+              className={classesMain.boxFather}
               sx={{
                 bgcolor: 'background.default',
                 color: 'text.primary',
@@ -93,5 +93,4 @@ const AdminLayout = ({ children }) => {
     </>
   );
 };
-
 export default AdminLayout;

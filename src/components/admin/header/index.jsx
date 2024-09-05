@@ -31,32 +31,42 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import CallToActionIcon from '@mui/icons-material/CallToAction';
 import Cookies from "js-cookie";
 
-export default function NavAdmin() {
+export default function NavAdmin(userData) {
 
     const { pathname } = useRouter();
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
     const [hidden, setHidden] = useState(true);
     const [lock, setLock] = useState(false);
-
+    console.log(userData)
     const handleLockHeader = () => {
         if(lock) return
         else {
            setHidden(true);
         }
     }
-
     const [backgroundNavBar, setBackgroundNavBar] = useState(null);
     const [lockCookie, setLockCookie] = useState(null);
-
+    
     useEffect(() => {
         const darkMode = Cookies.get("darkMode") === 'dark';
         const lock = Cookies.get("lock") === 'true';
+        const dataAdmin = Cookies.get("auth");
         setLockCookie(lock);
         setHidden(!lock);
         setLock(lock);
         setBackgroundNavBar(darkMode ? "#171717" : "#014655");
     }, []);
+
+    //Decodificar token 
+    const secretKey = 'JcGnCa-18-13-08';
+
+    try {
+        const decoded = jwt.verify(dataClient, secretKey);
+        console.log(decoded);
+    } catch (err) {
+        console.error('Token inválido:', err);
+    }
 
     if (backgroundNavBar === null && lockCookie === null) return null;
     
@@ -127,7 +137,7 @@ export default function NavAdmin() {
                                     }}/>
                                 </motion.div>
 
-                                <motion.img alt="Logo Admin" src={AdminLogo.src} className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxHeader_imgUser}
+                                <motion.img alt="Logo Admin" src={userData.ruta_perfil} className={classes.desktopHeaderElement_boxContainerOfNavAdmin_boxHeader_imgUser}
                                 initial={{
                                     width: Cookies.get("lock") === "true" ? "3.5em" : "2.5em",
                                     height: Cookies.get("lock") === "true" ? "3.5em" : "2.5em",
@@ -151,8 +161,7 @@ export default function NavAdmin() {
                                             transition: { duration: 0.01 }
                                         }}}
                                         animate={hidden ? "hidden" : "visible"}>
-                                            
-                                            Aleff
+                                            {userData.username}
                                         
                                     </motion.h3>
                                 </div>
@@ -322,3 +331,7 @@ export default function NavAdmin() {
         </>
     )
 }
+import { SignJWT, jwtVerify } from 'jose';
+export async function getServerSideProps(){
+    console.log('first')
+};

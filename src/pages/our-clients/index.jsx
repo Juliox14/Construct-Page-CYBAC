@@ -6,11 +6,14 @@ import Footer from '../../components/layout/footer';
 import { getElement } from '../../lib/items';
 import ClientsList from '../../components/clients/clientsList';
 
-function OurClients({ dataHomeClients, servicesList, footerItems }) {
-    console.log(dataHomeClients);
-    let clientes_municipio = [];
-    let clientes_iniciativa_privada = [];
-    let clientes_particular = [];
+function OurClients({
+    dataHomeClients,
+    servicesList,
+    footerItems
+}) {
+    let clientes_municipio=[];
+    let clientes_iniciativa_privada=[];
+    let clientes_particular=[];
     let clientes_lista = [];
     const [data_desc] = dataHomeClients[1];
     for (let cliente of dataHomeClients[0]) {
